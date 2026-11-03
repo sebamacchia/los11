@@ -1,0 +1,947 @@
+{
+ "archivo": "estambul-2005",
+ "formato": "horizontal",
+ "pausa": 0.45,
+ "musica": [
+  {
+   "archivo": "../../musica/tension.mp3",
+   "desde": 1,
+   "hasta": 19,
+   "volumen": 0.22,
+   "fade_out": 2.5
+  },
+  {
+   "archivo": "../../musica/epica.mp3",
+   "desde": 21,
+   "hasta": 40,
+   "volumen": 0.25,
+   "fade_in": 0.3,
+   "fade_out": 3
+  }
+ ],
+ "escenas": [
+  {
+   "capitulo": "El entretiempo",
+   "retardo": 0.8,
+   "texto": "Entretiempo. Final de la Champions League. Milan, tres. Liverpool, cero.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 343.0,
+     "duracion": 3.4
+    },
+    {
+     "tipo": "marcador",
+     "local": "Milan",
+     "visitante": "Liverpool",
+     "goles": [
+      3,
+      0
+     ],
+     "etiqueta": "Entretiempo · Final Champions League 2005"
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "large football stadium crowd murmuring at half time, subdued, tense atmosphere",
+     "en": 0,
+     "duracion": 9,
+     "volumen": 0.35
+    }
+   ]
+  },
+  {
+   "texto": "En cincuenta años de Copa de Europa, ningún equipo había dado vuelta un tres a cero en una final. Ninguno.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 347.5,
+     "duracion": 3.5
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 329.0,
+     "zoom": 1.25,
+     "centro": [
+      0.5,
+      0.4
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Al Liverpool le quedaban cuarenta y cinco minutos. Y lo que pasó en ese segundo tiempo... todavía hoy cuesta creerlo.",
+   "visual": [
+    {
+     "tipo": "placa",
+     "texto": "45 minutos",
+     "sub": "para hacer lo imposible",
+     "duracion": 3.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 180.3,
+     "duracion": 1.9
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 359.5
+    }
+   ]
+  },
+  {
+   "texto": "Esta es la historia de un equipo que estaba muerto... y que terminó levantando esto.",
+   "pausa": 0.3,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 711.0
+    }
+   ]
+  },
+  {
+   "duracion": 3.2,
+   "visual": [
+    {
+     "tipo": "intro",
+     "sub": "El milagro de Estambul"
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "cinematic deep whoosh transition",
+     "en": 0,
+     "duracion": 1.2,
+     "volumen": 0.6
+    },
+    {
+     "prompt": "cinematic deep boom impact hit with reverb tail",
+     "en": 0.9,
+     "duracion": 2.2,
+     "volumen": 0.7
+    }
+   ]
+  },
+  {
+   "capitulo": "Los favoritos",
+   "texto": "Para entender lo que pasó esa noche, primero hay que mirar quién estaba enfrente. El Milan de Carlo Ancelotti era, probablemente, el mejor equipo de Europa. Dos años antes ya había levantado esta misma copa.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 9.0,
+     "duracion": 4.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 307.0,
+     "zocalo": "Carlo Ancelotti",
+     "sub": "DT del Milan",
+     "duracion": 2.5
+    },
+    {
+     "archivo": "material/milan2003.jpg",
+     "zocalo": "AC Milan",
+     "sub": "Campeón de Europa 2003"
+    }
+   ]
+  },
+  {
+   "texto": "Atrás tenía una defensa de leyenda: Maldini, Nesta, Stam y Cafú. En el medio, Pirlo, Gattuso, Seedorf... y un brasileño de veintitrés años llamado Kaká.",
+   "visual": [
+    {
+     "tipo": "placa",
+     "texto": "Maldini · Nesta · Stam · Cafú",
+     "etiqueta": "La defensa",
+     "duracion": 3.2
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 209.0,
+     "duracion": 3.0
+    },
+    {
+     "tipo": "placa",
+     "texto": "Pirlo · Gattuso · Seedorf · Kaká",
+     "etiqueta": "El mediocampo",
+     "duracion": 3.2
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 213.5
+    }
+   ]
+  },
+  {
+   "texto": "Y arriba, el Balón de Oro: Andriy Shevchenko. Al lado, el argentino Hernán Crespo.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 215.5,
+     "duracion": 2.5
+    },
+    {
+     "archivo": "material/shevchenko.jpg",
+     "zocalo": "Andriy Shevchenko",
+     "sub": "Balón de Oro 2004"
+    }
+   ]
+  },
+  {
+   "texto": "Del otro lado había un Liverpool en plena reconstrucción. Su entrenador, el español Rafa Benítez, estaba en su primera temporada en Inglaterra.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 109.3,
+     "duracion": 2.7
+    },
+    {
+     "archivo": "material/benitez.jpg",
+     "zocalo": "Rafa Benítez",
+     "sub": "DT del Liverpool · primera temporada"
+    }
+   ]
+  },
+  {
+   "texto": "En la liga inglesa, ese año terminó quinto. A treinta y siete puntos del campeón.",
+   "visual": [
+    {
+     "tipo": "placa",
+     "texto": "5° puesto",
+     "sub": "en la Premier League, a 37 puntos del campeón",
+     "etiqueta": "Liverpool 2004-05"
+    }
+   ]
+  },
+  {
+   "texto": "Pero tenía algo que no aparece en las estadísticas: un capitán de veinticuatro años, nacido a pocos kilómetros de Anfield, que llevaba al club en la sangre. Steven Gerrard.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 222.0,
+     "duracion": 3.5
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 180.3,
+     "duracion": 1.9
+    },
+    {
+     "archivo": "material/gerrard.jpg",
+     "zocalo": "Steven Gerrard",
+     "sub": "Capitán del Liverpool · 24 años"
+    }
+   ]
+  },
+  {
+   "texto": "En el camino a la final eliminó a la Juventus y al Chelsea de Mourinho. Aun así, en Estambul, casi nadie lo daba como favorito.",
+   "visual": [
+    {
+     "tipo": "placa",
+     "texto": "Juventus y Chelsea",
+     "etiqueta": "En el camino eliminó a",
+     "duracion": 4.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 203.2,
+     "duracion": 2.3
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 241.5
+    }
+   ]
+  },
+  {
+   "capitulo": "El primer tiempo",
+   "texto": "Veinticinco de mayo de dos mil cinco. Estadio Olímpico Atatürk. Y el partido empieza peor de lo que cualquier hincha del Liverpool podía imaginar.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 53.1,
+     "duracion": 2.8
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 161.7,
+     "duracion": 2.2
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 165.2,
+     "zocalo": "Estadio Olímpico Atatürk",
+     "sub": "Estambul · 25 de mayo de 2005",
+     "duracion": 2.4
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 194.0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "referee whistle blowing to start a football match in a loud stadium",
+     "en": "@Y el partido",
+     "duracion": 2,
+     "volumen": 0.5
+    }
+   ]
+  },
+  {
+   "texto": "No había pasado ni un minuto. Tiro libre de Pirlo... y Paolo Maldini, el capitán del Milan, la empuja de volea. Uno a cero.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 251.2,
+     "duracion": 1.6
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 254.5,
+     "duracion": 3.1
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 257.6,
+     "duracion": 1.8
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 259.5,
+     "zoom": 1.25,
+     "centro": [
+      0.5,
+      0.4
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd erupting after a goal, roaring",
+     "en": "@la empuja",
+     "duracion": 5,
+     "volumen": 0.45
+    }
+   ]
+  },
+  {
+   "texto": "El Liverpool intenta reaccionar, pero el Milan juega a otra velocidad. Minuto treinta y nueve: Shevchenko la cruza al medio... y Hernán Crespo, el delantero argentino, hace el segundo.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 316.2,
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 296.0,
+     "duracion": 4.6
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 301.0,
+     "duracion": 4.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 305.0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd cheering after a goal",
+     "en": "@hace el segundo",
+     "duracion": 4,
+     "volumen": 0.4
+    }
+   ]
+  },
+  {
+   "texto": "Y cinco minutos después, Kaká mete un pase de cuarenta metros entre los defensores... Crespo define por arriba del arquero. Tres a cero.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 309.5,
+     "duracion": 1.8,
+     "zoom": 1.25,
+     "centro": [
+      0.55,
+      0.4
+     ]
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 322.0,
+     "duracion": 4.4
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 327.0,
+     "duracion": 1.6
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 329.0,
+     "zoom": 1.25,
+     "centro": [
+      0.5,
+      0.4
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd roaring after a goal",
+     "en": "@Crespo define",
+     "duracion": 5,
+     "volumen": 0.4
+    }
+   ]
+  },
+  {
+   "capitulo": "El vestuario",
+   "retardo": 1.0,
+   "pausa": 1.0,
+   "texto": "Entretiempo. En el vestuario del Liverpool, nadie habla. Hay jugadores que miran el piso. Otros, la pared.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 343.0,
+     "duracion": 4.3
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 347.5,
+     "duracion": 3.0
+    },
+    {
+     "tipo": "placa",
+     "texto": "Entretiempo",
+     "etiqueta": "Milan 3 - 0 Liverpool"
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "quiet empty locker room ambience, distant muffled stadium crowd through the walls",
+     "en": 0,
+     "duracion": 9,
+     "volumen": 0.35
+    }
+   ]
+  },
+  {
+   "texto": "Pero desde la tribuna llega algo que nadie esperaba. Decenas de miles de hinchas del Liverpool, perdiendo tres a cero una final, empiezan a cantar. You'll Never Walk Alone. Nunca caminarás solo.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 234.9,
+     "duracion": 2.2
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 359.2,
+     "duracion": 7.8
+    },
+    {
+     "tipo": "placa",
+     "texto": "You'll Never Walk Alone",
+     "sub": "Nunca caminarás solo",
+     "etiqueta": "La tribuna"
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "huge football stadium crowd singing a slow emotional anthem together in unison, no instruments",
+     "en": "@empiezan a cantar",
+     "duracion": 12,
+     "volumen": 0.5
+    }
+   ]
+  },
+  {
+   "texto": "Benítez hace un cambio: saca a un defensor y mete a Dietmar Hamann, para controlar el medio. Y les pide algo simple: hacer un gol rápido... y ver qué pasa.",
+   "visual": [
+    {
+     "archivo": "material/benitez.jpg",
+     "zocalo": "El cambio",
+     "sub": "Entra Dietmar Hamann",
+     "duracion": 4.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 369.6,
+     "duracion": 2.8
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 379.0
+    }
+   ]
+  },
+  {
+   "capitulo": "Seis minutos",
+   "retardo": 1.2,
+   "pausa": 1.3,
+   "texto": "Lo que vino después duró seis minutos.",
+   "visual": [
+    {
+     "tipo": "placa",
+     "texto": "6 minutos",
+     "sub": "que cambiaron la historia",
+     "etiqueta": "Segundo tiempo"
+    }
+   ]
+  },
+  {
+   "texto": "Minuto cincuenta y cuatro. Centro de Riise desde la izquierda... y Gerrard, de cabeza. Tres a uno. Gerrard no festeja: corre hacia el medio agitando los brazos, pidiéndole a la gente que crea.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 385.0,
+     "duracion": 3.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 388.0,
+     "duracion": 1.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 389.0,
+     "duracion": 2.6
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 394.2,
+     "duracion": 3.6,
+     "zoom": 1.25,
+     "centro": [
+      0.6,
+      0.4
+     ]
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 400.0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "massive stadium crowd explosion of cheering after a goal",
+     "en": "@y Gerrard, de cabeza",
+     "duracion": 6,
+     "volumen": 0.5
+    }
+   ]
+  },
+  {
+   "texto": "Dos minutos después, Vladimir Smicer, que había entrado por un compañero lesionado, prueba desde lejos. Dida se estira... y no llega. Tres a dos.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 414.2,
+     "duracion": 4.6
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 419.0,
+     "velocidad": 0.5,
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 420.0,
+     "velocidad": 0.5,
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 421.0,
+     "zoom": 1.25,
+     "centro": [
+      0.45,
+      0.4
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "massive stadium crowd roaring after a goal",
+     "en": "@y no llega",
+     "duracion": 5,
+     "volumen": 0.5
+    }
+   ]
+  },
+  {
+   "texto": "Y en el minuto sesenta, Gerrard entra al área y lo derriban. Penal. Lo patea Xabi Alonso... Dida se lo ataja... ¡pero el rebote le queda a Alonso! ¡Tres a tres!",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 442.0,
+     "duracion": 2.6
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 445.0,
+     "duracion": 1.5
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 453.0,
+     "zocalo": "Xabi Alonso",
+     "duracion": 1.5
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 455.0,
+     "duracion": 3.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 458.0,
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 461.0,
+     "zoom": 1.25,
+     "centro": [
+      0.5,
+      0.45
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "deafening stadium crowd explosion of joy after an equalizing goal",
+     "en": "@pero el rebote",
+     "duracion": 7,
+     "volumen": 0.55
+    }
+   ]
+  },
+  {
+   "texto": "En seis minutos, el Liverpool había empatado una final que todo el mundo daba por perdida.",
+   "pausa": 0.8,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 462.0,
+     "duracion": 3.4,
+     "zoom": 1.25,
+     "centro": [
+      0.5,
+      0.5
+     ]
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 474.0
+    }
+   ]
+  },
+  {
+   "capitulo": "El alargue",
+   "texto": "Pero el Milan no se rindió. El partido se fue al alargue, y en el minuto ciento diecisiete, Shevchenko tuvo la copa en sus pies. Cabezazo a quemarropa... Dudek lo ataja. El rebote, otra vez para Shevchenko... y otra vez Dudek.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 481.0,
+     "duracion": 3.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 505.7,
+     "duracion": 2.6
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 517.3,
+     "velocidad": 0.8,
+     "duracion": 5.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 522.0,
+     "duracion": 1.6
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 524.9,
+     "zocalo": "Jerzy Dudek",
+     "sub": "Arquero del Liverpool"
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd gasping then shocked roar after a great goalkeeper save",
+     "en": "@Dudek lo ataja",
+     "duracion": 5,
+     "volumen": 0.45
+    }
+   ]
+  },
+  {
+   "capitulo": "Los penales",
+   "texto": "Penales. Y Dudek hace algo que nadie olvidó: se mueve sobre la línea, baila, agita las piernas como si fueran de goma. Lo mismo que había hecho Bruce Grobbelaar, otro arquero del Liverpool, en la final de mil novecientos ochenta y cuatro.",
+   "visual": [
+    {
+     "tipo": "placa",
+     "texto": "Penales",
+     "etiqueta": "Milan 3 - 3 Liverpool",
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 538.0,
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 629.0,
+     "zoom": 1.25,
+     "centro": [
+      0.5,
+      0.4
+     ],
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 633.0,
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 555.0,
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 658.0,
+     "duracion": 2.0
+    },
+    "material/dudek.jpg"
+   ]
+  },
+  {
+   "texto": "Serginho... afuera.",
+   "retardo": 0.2,
+   "duracion": 2.2,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 557.0,
+     "zocalo": "Serginho"
+    }
+   ]
+  },
+  {
+   "texto": "Hamann, gol.",
+   "retardo": 1.5,
+   "duracion": 2.9,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 563.0,
+     "zocalo": "Dietmar Hamann"
+    }
+   ]
+  },
+  {
+   "texto": "Pirlo... atajado.",
+   "retardo": 0.6,
+   "duracion": 3.5,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 572.5,
+     "zocalo": "Andrea Pirlo"
+    }
+   ]
+  },
+  {
+   "texto": "Cissé, gol.",
+   "retardo": 0.8,
+   "duracion": 3.0,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 584.2,
+     "zocalo": "Djibril Cissé"
+    }
+   ]
+  },
+  {
+   "texto": "Tomasson descuenta.",
+   "retardo": 0.3,
+   "duracion": 2.5,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 592.3,
+     "zocalo": "Jon Dahl Tomasson"
+    }
+   ]
+  },
+  {
+   "texto": "Riise... atajado.",
+   "retardo": 0.0,
+   "duracion": 3.0,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 602.0,
+     "zocalo": "John Arne Riise"
+    }
+   ]
+  },
+  {
+   "texto": "Kaká, gol.",
+   "retardo": 0.9,
+   "duracion": 2.9,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 611.8,
+     "zocalo": "Kaká"
+    }
+   ]
+  },
+  {
+   "texto": "Smicer, gol.",
+   "retardo": 1.0,
+   "duracion": 3.4,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 621.0,
+     "zocalo": "Vladimir Smicer"
+    }
+   ]
+  },
+  {
+   "texto": "Si el Milan no convierte el próximo, se termina todo. Y el que va a patear es... Andriy Shevchenko.",
+   "pausa": 0.8,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 627.0,
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 631.0,
+     "zoom": 1.25,
+     "centro": [
+      0.5,
+      0.35
+     ],
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 637.0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "tense stadium crowd hushed murmur before a penalty kick",
+     "en": 0,
+     "duracion": 8,
+     "volumen": 0.35
+    }
+   ]
+  },
+  {
+   "texto": "Patea suave, al medio. Dudek ya se estaba tirando... pero alcanza a sacarla con una mano.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 642.0,
+     "velocidad": 0.75,
+     "duracion": 4.3
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 646.0,
+     "zoom": 1.25,
+     "centro": [
+      0.55,
+      0.4
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "massive stadium crowd explosion of celebration, fans screaming with joy, winning a final",
+     "en": "@pero alcanza",
+     "duracion": 10,
+     "volumen": 0.55
+    }
+   ]
+  },
+  {
+   "texto": "El Liverpool es campeón de Europa.",
+   "retardo": 0.6,
+   "pausa": 2.2,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 648.0,
+     "duracion": 2.6
+    },
+    {
+     "tipo": "placa",
+     "texto": "Liverpool campeón de Europa",
+     "etiqueta": "Estambul · 25 de mayo de 2005",
+     "sub": "3-3 · 3-2 en penales"
+    }
+   ]
+  },
+  {
+   "capitulo": "Después",
+   "texto": "Al día siguiente, cientos de miles de personas salieron a las calles de Liverpool a recibir a sus jugadores.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 745.0,
+     "duracion": 2.0
+    },
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 753.3,
+     "duracion": 2.3
+    },
+    "material/caravana.jpg"
+   ]
+  },
+  {
+   "texto": "Era su quinta Copa de Europa. Y por eso, la UEFA le permitió quedarse para siempre con el trofeo original. Hoy está en Anfield.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_uefa.mp4",
+     "desde": 722.0,
+     "duracion": 3.0
+    },
+    {
+     "archivo": "material/copa.jpg",
+     "zocalo": "El trofeo original",
+     "sub": "Museo de Anfield, Liverpool"
+    }
+   ]
+  },
+  {
+   "texto": "Dos años después, Milan y Liverpool se volvieron a encontrar en otra final. Pero esa... es otra historia.",
+   "visual": [
+    {
+     "tipo": "placa",
+     "texto": "Atenas 2007",
+     "etiqueta": "La revancha"
+    }
+   ]
+  }
+ ],
+ "sfx_volumen": 0.55
+}
