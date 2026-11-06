@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; }
+      .media { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: contain; }
+    </style>
+  </head>
+  <body>
+    <!-- Escena 31 del guion de Estambul: el 3-1 de Gerrard con telestrador.
+         Voz: "centro de Riise" 1.79 s · "y Gerrard, de cabeza" 4.16 s · "tres a uno" 6.10 s · "corre hacia el medio" 9.23 s -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="13.41" data-width="1920" data-height="1080">
+      <!-- 6:26.5 a 6:29.45: la jugada y el centro de Riise -->
+      <video id="v-centro" class="clip media" src="assets/gol_a.mp4" data-start="0" data-duration="2.95"
+             data-track-index="0" muted playsinline style="z-index:1"></video>
+      <!-- cuadro congelado: la pelota en el aire y Gerrard saltando -->
+      <div id="congelado" data-composition-id="congelado" data-composition-src="compositions/congelado.html"
+           data-start="2.95" data-duration="1.7" data-track-index="1" data-track-kind="graphics"
+           data-width="1920" data-height="1080" style="z-index:2"></div>
+      <!-- 6:29.45 a 6:31.95: el cabezazo y el gol desde atrás del arco -->
+      <video id="v-cabezazo" class="clip media" src="assets/gol_b.mp4" data-start="4.65" data-duration="2.35"
+             data-track-index="0" muted playsinline style="z-index:1"></video>
+      <!-- 6:34 a 6:40.4: Gerrard no festeja, corre al medio pidiendo que crean -->
+      <video id="v-corre" class="clip media" src="assets/gol_c.mp4" data-start="7" data-duration="6.41"
+             data-track-index="0" muted playsinline style="z-index:1"></video>
+      <!-- grafismos sobre el video: nombre de Riise y marcador -->
+      <div id="grafismos" data-composition-id="grafismos" data-composition-src="compositions/grafismos.html"
+           data-start="0" data-duration="7" data-track-index="2" data-track-kind="graphics"
+           data-width="1920" data-height="1080" style="z-index:3"></div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

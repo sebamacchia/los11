@@ -1,7 +1,9 @@
 """Arma un video a partir de proyectos/<nombre>/guion.json.
 
-Uso:  python3 herramientas/armar.py proyectos/<nombre> [--solo-audio] [--borrador] [--reusar] [--guion otro.json]
+Uso:  python3 herramientas/armar.py proyectos/<nombre> [--solo-audio] [--borrador] [--reusar] [--filmcraft] [--guion otro.json]
       --reusar: no vuelve a dibujar las escenas que ya están en tmp/ con la misma duración
+      --filmcraft: además arma salida/<archivo>.fcproj (FilmCraft) con cada pieza como clip, para editar a mano
+                   (no pisa un .fcproj que ya existe; --forzar lo rehace)
 
 Tipos de visual (cada escena tiene una lista "visual"):
   "material/foto.jpg"                                  foto fija, entera, con negro a los costados
@@ -27,7 +29,7 @@ import graficos  # noqa: E402
 FPS = 30
 FORMATOS = {"horizontal": (1920, 1080), "vertical": (1080, 1920)}
 IMAGENES = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
-VOZ_POR_DEFECTO = {"voice_id": "bml6kfu9aNiHKYxhtGuS", "model_id": "eleven_v4",
+VOZ_POR_DEFECTO = {"voice_id": "3bwJ6wzKqreWHSoA0x43", "model_id": "eleven_v4",
                    "ajustes": {"stability": 0.5, "similarity_boost": 0.75}}
 
 
@@ -179,6 +181,12 @@ def main():
 
     # 2) video
     piezas = []
+    linea = {"piezas": [], "voces": [{"archivo": str(m), "inicio": a} for m, a in voces],
+             "efectos": [{"archivo": str(m), "inicio": a, "volumen": v * float(guion.get("sfx_volumen", 1.0))}
+                         for m, a, v in efectos],
+             "musica": [], "total": total, "subtitulos": str(salida / "subtitulos.srt"),
+             "fps": FPS, "ancho": W, "alto": H}
+    t_pieza = 0.0
     for i, esc in enumerate(escenas):
         inicio, d_esc = tiempos[i]
         if i == 0:
@@ -195,6 +203,9 @@ def main():
         for v in visuales:  # "hasta": "@frase" -> el visual termina cuando el narrador dice esa frase
             if "hasta" in v:
                 v["duracion"] = round(momento(esc, v["hasta"], info[i]) - pos, 3)
+                if v["duracion"] < 0.5:
+                    raise SystemExit(f"Escena {i+1}: el visual que termina en '{v['hasta']}' queda de "
+                                     f"{v['duracion']}s (los visuales de antes ya ocupan ese tiempo)")
             if "duracion" not in v:
                 break
             pos += float(v["duracion"])
@@ -214,6 +225,11 @@ def main():
             tipo = v.get("tipo", "archivo")
             firma = tmp / f"p{i:03}_{j:02}.json"
             sello = json.dumps({**v, "_d": round(d, 3)}, sort_keys=True)
+            linea["piezas"].append({"archivo": str(dest), "inicio": round(t_pieza, 4), "duracion": round(d, 4),
+                                    "escena": i + 1, "nombre": f"{i+1:02}.{j+1} {v.get('tipo', '') or Path(v.get('archivo', '')).stem}"
+                                    + (f" · {v['zocalo']}" if v.get('zocalo') else "")
+                                    + (f" · {v['texto']}" if v.get('texto') else "")})
+            t_pieza += d
             if "--reusar" in sys.argv and dest.exists() and firma.exists() and firma.read_text() == sello:
                 piezas.append(dest)
                 continue
@@ -297,6 +313,8 @@ def main():
                            f"volume={m.get('volumen', 0.2)},afade=t=in:d={fi},"
                            f"afade=t=out:st={max(0, largo - fo):.2f}:d={fo},adelay={ms}|{ms}[m{k}]")
             n += 1
+            linea["musica"].append({"archivo": str(pista), "inicio": a, "largo": largo, "volumen": float(m.get("volumen", 0.2)),
+                                    "fade_in": fi, "fade_out": fo})
         filtros.append("".join(f"[m{k}]" for k in range(len(musicas))) +
                        f"amix=inputs={len(musicas)}:normalize=0[mus]")
         filtros.append("[mus][vozsc]sidechaincompress=threshold=0.03:ratio=6:attack=30:release=500[musd]")
@@ -314,6 +332,11 @@ def main():
          "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart",
          "-t", f"{total:.3f}", salida / nombre])
     print(f"Listo: {salida / nombre}\nSubtítulos: {salida / 'subtitulos.srt'}")
+    (tmp / "linea.json").write_text(json.dumps(linea, ensure_ascii=False, indent=1))
+    if "--filmcraft" in sys.argv:
+        import filmcraft
+        print("FilmCraft:", filmcraft.exportar(tmp / "linea.json", salida / (guion.get("archivo", proyecto.name) + ".fcproj"),
+                                                     forzar="--forzar" in sys.argv))
 
 
 if __name__ == "__main__":

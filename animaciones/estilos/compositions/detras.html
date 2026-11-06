@@ -1,0 +1,52 @@
+<template>
+  <!-- Estilo 1: texto gigante DETRÁS del jugador (el recorte de Alonso va por encima de las letras) -->
+  <style>
+    @font-face { font-family: "DIN Cond"; src: url("assets/fonts/din-condensed-bold.ttf"); }
+    @font-face { font-family: "DIN Alt"; src: url("assets/fonts/din-alternate-bold.ttf"); }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    .full { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: contain; }
+    #dt-logo { clip-path: inset(30px 80px 950px 1665px); }
+    #dt-letras { position: absolute; left: 230px; top: 70px; font: 900px/0.8 "DIN Cond"; white-space: nowrap; letter-spacing: -14px; }
+    #dt-letras span { display: inline-block; }
+    #dt-esquirlas { position: absolute; left: 0; top: 0; }
+    #dt-nombre { position: absolute; right: 110px; bottom: 120px; font: 92px/1 "DIN Cond"; color: #fff; letter-spacing: 2px;
+      background: #2a1fd6; padding: 16px 30px 6px; }
+    #dt-etq { position: absolute; left: 60px; bottom: 50px; font: 30px "DIN Alt"; letter-spacing: 8px; color: #fff;
+      background: rgba(0,0,0,.6); padding: 10px 18px 6px; }
+  </style>
+  <div id="root" data-composition-id="detras" data-width="1920" data-height="1080">
+    <video id="dt-base" class="clip full" src="assets/alonso.mp4" data-start="0" data-duration="3.5" data-track-index="0" muted playsinline style="z-index:1"></video>
+    <svg id="dt-esquirlas" width="1920" height="1080" style="z-index:2" data-layout-ignore>
+      <polygon id="dt-e1" points="0,0 330,0 120,1080 0,1080" fill="#7b2ff7" />
+      <polygon id="dt-e2" points="0,0 190,0 40,1080 0,1080" fill="#2a1fd6" />
+      <polygon id="dt-e3" points="1920,1080 1560,1080 1800,0 1920,0" fill="#19e38a" />
+    </svg>
+    <div id="dt-letras" style="z-index:3" data-layout-allow-overflow data-layout-allow-occlusion>
+      <span id="dt-c1" style="color:#ffffff">3</span><span id="dt-c2" style="color:#ff3e8a">-</span><span id="dt-c3" style="color:#19b4ff">3</span>
+    </div>
+    <video id="dt-jugador" data-layout-allow-occlusion class="clip full" src="assets/alonso_cut.webm" data-start="0" data-duration="3.5" data-track-index="1" muted playsinline style="z-index:4"></video>
+    <video id="dt-logo" data-layout-allow-occlusion class="clip full" src="assets/alonso_logo.mp4" data-start="0" data-duration="3.5" data-track-index="2" muted playsinline style="z-index:5"></video>
+    <div id="dt-nombre" style="z-index:6">XABI ALONSO · 60'</div>
+    <div id="dt-etq" style="z-index:7">ESTILO 1 — TEXTO DETRÁS DEL JUGADOR</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // esquirlas de color que barren la pantalla
+    tl.fromTo("#dt-e1", { x: -400 }, { x: 0, duration: 0.35, ease: "expo.out" }, 0.05);
+    tl.fromTo("#dt-e2", { x: -300 }, { x: 0, duration: 0.35, ease: "expo.out" }, 0.12);
+    tl.fromTo("#dt-e3", { x: 420 }, { x: 0, duration: 0.4, ease: "expo.out" }, 0.2);
+    // los números golpean uno por uno, torcidos, y se enderezan
+    tl.fromTo("#dt-c1", { opacity: 0, scale: 1.7, skewX: -18, rotation: -6 }, { opacity: 1, scale: 1, skewX: -8, rotation: -3, duration: 0.3, ease: "expo.out" }, 0.25);
+    tl.fromTo("#dt-c2", { opacity: 0, scale: 1.7, y: -80 }, { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "expo.out" }, 0.38);
+    tl.fromTo("#dt-c3", { opacity: 0, scale: 1.7, skewX: 18, rotation: 6 }, { opacity: 1, scale: 1, skewX: 6, rotation: 2, duration: 0.3, ease: "expo.out" }, 0.5);
+    // los colores cambian a contratiempo, como en las gráficas de la Euro
+    tl.to("#dt-c1", { color: "#19e38a", duration: 0.01 }, 1.4);
+    tl.to("#dt-c3", { color: "#ffffff", duration: 0.01 }, 1.4);
+    tl.to("#dt-c2", { color: "#ffd23f", duration: 0.01 }, 1.75);
+    tl.to("#dt-c1", { color: "#ff3e8a", duration: 0.01 }, 2.1);
+    tl.to("#dt-c3", { color: "#7b2ff7", duration: 0.01 }, 2.1);
+    tl.fromTo("#dt-nombre", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, 0.7);
+    tl.fromTo("#dt-etq", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.1);
+    window.__timelines["detras"] = tl;
+  </script>
+</template>

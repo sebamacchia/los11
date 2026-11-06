@@ -1,0 +1,359 @@
+[
+ {
+  "id": "preset-warm-daylight",
+  "nombre": "Warm Daylight",
+  "grading": {
+   "preset": "warm-daylight"
+  }
+ },
+ {
+  "id": "preset-clean-studio",
+  "nombre": "Clean Studio",
+  "grading": {
+   "preset": "clean-studio"
+  }
+ },
+ {
+  "id": "preset-skin-soft",
+  "nombre": "Skin Soft",
+  "grading": {
+   "preset": "skin-soft"
+  }
+ },
+ {
+  "id": "preset-food-pop",
+  "nombre": "Food Pop",
+  "grading": {
+   "preset": "food-pop"
+  }
+ },
+ {
+  "id": "preset-night-lift",
+  "nombre": "Night Lift",
+  "grading": {
+   "preset": "night-lift"
+  }
+ },
+ {
+  "id": "preset-muted-editorial",
+  "nombre": "Muted Editorial",
+  "grading": {
+   "preset": "muted-editorial"
+  }
+ },
+ {
+  "id": "preset-vintage-wash",
+  "nombre": "Vintage Wash",
+  "grading": {
+   "preset": "vintage-wash"
+  }
+ },
+ {
+  "id": "preset-mono-clean",
+  "nombre": "Mono Clean",
+  "grading": {
+   "preset": "mono-clean"
+  }
+ },
+ {
+  "id": "preset-mono-fade",
+  "nombre": "Mono Fade",
+  "grading": {
+   "preset": "mono-fade"
+  }
+ },
+ {
+  "id": "preset-soft-boost",
+  "nombre": "Soft Boost",
+  "grading": {
+   "preset": "soft-boost"
+  }
+ },
+ {
+  "id": "preset-bright-pop",
+  "nombre": "Bright Pop",
+  "grading": {
+   "preset": "bright-pop"
+  }
+ },
+ {
+  "id": "preset-deep-contrast",
+  "nombre": "Deep Contrast",
+  "grading": {
+   "preset": "deep-contrast"
+  }
+ },
+ {
+  "id": "preset-creator-camcorder",
+  "nombre": "Creator Camcorder",
+  "grading": {
+   "preset": "creator-camcorder"
+  }
+ },
+ {
+  "id": "preset-vhs-playback",
+  "nombre": "VHS Playback",
+  "grading": {
+   "preset": "vhs-playback"
+  }
+ },
+ {
+  "id": "preset-home-movie-8mm",
+  "nombre": "8mm Home Movie",
+  "grading": {
+   "preset": "home-movie-8mm"
+  }
+ },
+ {
+  "id": "preset-editorial-halftone",
+  "nombre": "Editorial Halftone",
+  "grading": {
+   "preset": "editorial-halftone"
+  }
+ },
+ {
+  "id": "preset-two-ink-print",
+  "nombre": "Two-Ink Print",
+  "grading": {
+   "preset": "two-ink-print"
+  }
+ },
+ {
+  "id": "efecto-blur",
+  "nombre": "Blur",
+  "grading": {
+   "effects": {
+    "blur": 0.45
+   }
+  }
+ },
+ {
+  "id": "efecto-pixelate",
+  "nombre": "Pixelate",
+  "grading": {
+   "effects": {
+    "pixelate": 0.55
+   }
+  }
+ },
+ {
+  "id": "efecto-chromaBleed",
+  "nombre": "Chroma Softening",
+  "grading": {
+   "effects": {
+    "chromaBleed": 0.55
+   }
+  }
+ },
+ {
+  "id": "efecto-tapeDamage",
+  "nombre": "Tape Damage",
+  "grading": {
+   "effects": {
+    "tapeDamage": 0.65,
+    "tapeTracking": 0.55,
+    "tapeNoise": 0.25,
+    "tapeSpeed": 0.5
+   }
+  }
+ },
+ {
+  "id": "efecto-filmArtifacts",
+  "nombre": "Film Artifacts",
+  "grading": {
+   "effects": {
+    "filmArtifacts": 0.55
+   }
+  }
+ },
+ {
+  "id": "efecto-halftone",
+  "nombre": "Halftone",
+  "grading": {
+   "effects": {
+    "halftone": 0.94,
+    "halftoneSize": 0.36
+   }
+  }
+ },
+ {
+  "id": "efecto-twoInkPrint",
+  "nombre": "Two-Ink Print",
+  "grading": {
+   "effects": {
+    "twoInkPrint": 1,
+    "twoInkPrintSize": 0.42
+   }
+  }
+ },
+ {
+  "id": "efecto-ascii",
+  "nombre": "ASCII",
+  "grading": {
+   "effects": {
+    "ascii": 1,
+    "asciiSize": 0.06578947368421052,
+    "asciiInvert": 0,
+    "asciiStyle": 0,
+    "asciiColor": 1,
+    "asciiRotation": 0
+   }
+  }
+ },
+ {
+  "id": "efecto-dither",
+  "nombre": "Ordered Dither",
+  "grading": {
+   "effects": {
+    "dither": 1,
+    "ditherSize": 0.5
+   }
+  }
+ },
+ {
+  "id": "efecto-bloom",
+  "nombre": "Bloom",
+  "grading": {
+   "effects": {
+    "bloom": 0.55,
+    "bloomRadius": 8
+   }
+  }
+ },
+ {
+  "id": "efecto-monoScreen",
+  "nombre": "Mono Screen",
+  "grading": {
+   "effects": {
+    "monoScreen": 1,
+    "monoScreenSize": 0.35,
+    "monoScreenAngle": 0.25,
+    "monoScreenSpread": 0.3,
+    "monoScreenShape": 0,
+    "monoScreenInvert": 0
+   }
+  }
+ },
+ {
+  "id": "efecto-scanlines",
+  "nombre": "Scanlines",
+  "grading": {
+   "effects": {
+    "scanlines": 0.35,
+    "scanlineCount": 0.17,
+    "scanlineSoftness": 1
+   }
+  }
+ },
+ {
+  "id": "efecto-chromaticAberration",
+  "nombre": "Channel Separation",
+  "grading": {
+   "effects": {
+    "chromaticAberration": 0.15,
+    "chromaticAngle": 0
+   }
+  }
+ },
+ {
+  "id": "efecto-crtCurvature",
+  "nombre": "CRT Curvature",
+  "grading": {
+   "effects": {
+    "crtCurvature": 0.2
+   }
+  }
+ },
+ {
+  "id": "efecto-digitalGlitch",
+  "nombre": "Digital Glitch",
+  "grading": {
+   "effects": {
+    "digitalGlitch": 0.55,
+    "digitalGlitchColorSplit": 0.25,
+    "digitalGlitchLineTear": 0.25,
+    "digitalGlitchPixelate": 0.15,
+    "digitalGlitchBlockAmount": 0.5,
+    "digitalGlitchBlockDisplacement": 0.25,
+    "digitalGlitchBlockOpacity": 0,
+    "digitalGlitchSpeed": 0.5
+   }
+  }
+ },
+ {
+  "id": "efecto-engraving",
+  "nombre": "Engraving",
+  "grading": {
+   "effects": {
+    "engraving": 1,
+    "engravingSpacing": 0.4117647058823529,
+    "engravingMinThickness": 0.2,
+    "engravingMaxThickness": 0.4571428571428572,
+    "engravingAngle": 0.25,
+    "engravingContrast": 0.4666666666666667,
+    "engravingSharpness": 0.59,
+    "engravingWave": 0.2,
+    "engravingWaveFrequency": 0.2222222222222222
+   }
+  }
+ },
+ {
+  "id": "efecto-crosshatch",
+  "nombre": "Crosshatch",
+  "grading": {
+   "effects": {
+    "crosshatch": 1,
+    "crosshatchSpacing": 0.28,
+    "crosshatchThickness": 0.25,
+    "crosshatchAngle": 0.25,
+    "crosshatchContrast": 0.3333333333333333,
+    "crosshatchEdges": 0.5,
+    "crosshatchLineWeight": 0,
+    "crosshatchWave": 0.33,
+    "crosshatchWaveFrequency": 0.2222222222222222
+   }
+  }
+ },
+ {
+  "id": "efecto-kuwahara",
+  "nombre": "Kuwahara Paint",
+  "grading": {
+   "effects": {
+    "kuwahara": 1,
+    "kuwaharaRadius": 0.14285714285714285,
+    "kuwaharaSharpness": 0.3125,
+    "kuwaharaSaturation": 0.5
+   }
+  }
+ },
+ {
+  "id": "efecto-dither-synthwave",
+  "nombre": "Ordered Dither · Synthwave",
+  "grading": {
+   "palette": [
+    "#120458",
+    "#7b2cbf",
+    "#e040fb",
+    "#ff6ec7",
+    "#fff59d"
+   ],
+   "effects": {
+    "dither": 1,
+    "ditherSize": 0.35
+   }
+  }
+ },
+ {
+  "id": "efecto-monitor-crt",
+  "nombre": "Monitor CRT (scanlines + curvatura)",
+  "grading": {
+   "effects": {
+    "scanlines": 0.5,
+    "scanlineCount": 0.2,
+    "scanlineSoftness": 1,
+    "crtCurvature": 0.25,
+    "chromaticAberration": 0.2
+   }
+  }
+ }
+]

@@ -2,6 +2,7 @@
 import hashlib
 import json
 import os
+import time
 import urllib.request
 import urllib.error
 from pathlib import Path
@@ -30,11 +31,17 @@ def _post(ruta, cuerpo, destino: Path):
         headers={"xi-api-key": _clave(), "Content-Type": "application/json", "Accept": "audio/mpeg"},
         method="POST",
     )
-    try:
-        with urllib.request.urlopen(req, timeout=300) as r:
-            datos = r.read()
-    except urllib.error.HTTPError as e:
-        raise SystemExit(f"ElevenLabs {e.code}: {e.read().decode(errors='replace')}")
+    for intento in range(6):  # 429 = sistema ocupado: esperar y reintentar
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                datos = r.read()
+            break
+        except urllib.error.HTTPError as e:
+            detalle = e.read().decode(errors='replace')
+            if e.code == 429 and intento < 5:
+                time.sleep(10 * (intento + 1))
+                continue
+            raise SystemExit(f"ElevenLabs {e.code}: {detalle}")
     destino.parent.mkdir(parents=True, exist_ok=True)
     destino.write_bytes(datos)
     return destino
@@ -65,6 +72,22 @@ def efecto(descripcion, duracion=None, influencia=0.4):
     if destino.exists():
         return destino
     return _post("/sound-generation", cuerpo, destino)
+
+
+def musica(descripcion, segundos=120, destino=None):
+    """Descripción -> mp3 instrumental con ElevenLabs Music (uso comercial incluido en el plan).
+    Si se pasa `destino`, además lo copia ahí (por ejemplo musica/tension.mp3)."""
+    cuerpo = {"prompt": descripcion, "music_length_ms": int(max(10, min(300, segundos)) * 1000),
+              "force_instrumental": True}
+    cache = _cache_path("musica", cuerpo)
+    if not cache.exists():
+        _post("/music?output_format=mp3_44100_128", cuerpo, cache)
+    if destino:
+        destino = Path(destino)
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        destino.write_bytes(cache.read_bytes())
+        return destino
+    return cache
 
 
 def listar_voces():

@@ -10,21 +10,34 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 - `musica/` — música generada con ElevenLabs Music (uso comercial incluido en el plan)
 - `herramientas/elevenlabs.py` — voz + efectos, con caché en `.cache/` (no se cobra dos veces el mismo texto)
 - `herramientas/fotos.py` — busca/baja fotos libres de Wikimedia Commons y anota créditos (Commons limita con 429 si se baja mucho seguido)
+- `herramientas/imagenes.py` — buscador "tipo Google" (DuckDuckGo Imágenes, sin clave) que baja candidatas a `material/candidatas/<búsqueda>/`,
+  arma hoja de contacto y marca cada foto como AGENCIA (Getty/Alamy: marca de agua, licencia paga) / PRENSA / LIBRE / OTRA.
+  Correr con `herramientas/.venv/bin/python` (tiene ddgs + Pillow). `elegir` copia las elegidas y anota el origen en creditos.txt
+- Manual de estilo del canal: Google Doc "Manual de estilo — LOS 11" en la carpeta LOS11 de Drive (copia en `identidad/manual-de-estilo.html`)
 - `herramientas/clips.py` — buscar/bajar videos de YouTube (yt-dlp con cookies de Chrome, autorizado por el usuario), hoja de contacto con tiempos, detectar cortes. Fuentes en `material/fuentes/` (+ `fuentes.txt`)
 - `herramientas/graficos.py` — intro animada del canal, placas de texto, marcador animado, zócalos (Pillow)
 - `herramientas/armar.py` — arma el video (ver docstring para todos los tipos de visual)
+- `herramientas/filmcraft.py` — pasa el video armado a un proyecto de FilmCraft (`salida/<archivo>.fcproj`) para editarlo a mano:
+  V1 una pieza por visual, A1 voz, A2-A3 efectos, A4 música, C1 subtítulos. Se llama con `armar.py ... --filmcraft`
+  (no pisa un .fcproj existente; `--forzar` lo rehace). FilmCraft está en /Applications y su CLI en `herramientas/filmcraft-cli/`
+- `elevenlabs.musica(prompt, segundos, destino)` — genera música instrumental (ElevenLabs Music) a `musica/`
 - `reports/Retención YouTube documentales fútbol.md` — investigación de reglas de YouTube (hook, ritmo, copyright, IA)
 - `.env` — `ELEVENLABS_API_KEY=...` (no compartir)
 
 ## Flujo
 1. Material a `proyectos/<nombre>/material/`; mirarlo (hoja de contacto con Pillow).
-2. Escribir `guion.json`. `python3 herramientas/armar.py proyectos/<nombre> --solo-audio` genera voz/sfx y la duración.
+2. Escribir `guion.json`. `/usr/bin/python3 herramientas/armar.py proyectos/<nombre> --solo-audio` genera voz/sfx y la duración
+   (usar `/usr/bin/python3`: el `python3` de Homebrew no tiene Pillow).
 3. Render: sin flags (final) o `--borrador`.
 
 ## Dirección del usuario (respetar)
 - Fotos FIJAS, enteras, con negro a los costados si son verticales. Nada de zoom/Ken Burns.
 - Hook primero (cold open, sin saludo), DESPUÉS la intro animada del canal (~3 s).
 - Narración natural, frases cortas, explicar el contexto para quien no conoce la historia.
+
+## Fotos (decisión del usuario, 05/11)
+- Solo fotos LIBRES de verdad (Commons / Creative Commons, con crédito) y cuadros congelados de los videos.
+  Nada de Getty/Alamy/prensa aunque `imagenes.py` las encuentre.
 
 ## Video de partidos (pedido del usuario: más video, menos foto)
 - Usar clips de goles/festejos/hinchas: `{"archivo": "material/fuentes/x.mp4", "desde": seg, "velocidad": 0.5, "zocalo": ...}`.
@@ -34,6 +47,9 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 - `--reusar` re-dibuja solo las piezas cuyo visual cambió.
 
 ## Reglas de guion (de la investigación)
+- Investigación nueva: `reports/Hook títulos y suscripciones YouTube.md` (título sin "| LOS 11" adelante, un solo pedido de
+  suscripción a mitad de video, pantalla final de 15-20 s, Content ID de UEFA bloquea o monetiza clips aunque estén muteados).
+- Duración de los videos: 9 minutos (decisión del usuario; desde 8 min YouTube habilita mid-rolls). Unas 1.300-1.400 palabras de narración.
 - 0-25 s: arrancar en el momento de máxima tensión, prometer el "cómo", sin "bienvenidos".
 - Cambio visual cada 4-7 s (placas, marcador, zócalos compensan la falta de movimiento).
 - Reenganche al cambiar de acto (cada 1-2 min); clímax a los ~2/3; final seco con gancho a otra historia.
@@ -44,8 +60,11 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 - Verificar los datos (fechas, minutos, goleadores) antes de generar la voz.
 
 ## Voz del canal
-Sebastián - Deep and Reliable (Voice Library, español latino): `bml6kfu9aNiHKYxhtGuS`, modelo `eleven_v4`
-(elegido por el usuario frente a v3 y multilingual_v2). Es el default en armar.py. Plan ElevenLabs: Creator.
+**LOS 11 - Narrador**: `3bwJ6wzKqreWHSoA0x43`, modelo `eleven_v4` (default en armar.py). Voz PROPIA del canal,
+creada con Voice Design (porteño joven, canchero, calidad estudio): el usuario no quiere voces de la Voice Library
+ni clones ajenos. Antes se usaba "Sebastián - Deep and Reliable" (`bml6kfu9aNiHKYxhtGuS`), descartada.
+Plan ElevenLabs: Creator, límite 30 voces propias (cuenta llena: hay que borrar una para crear otra).
+La API key no tiene permiso voices_write: borrar voces lo hace el usuario desde la web.
 
 ## Limitaciones técnicas
 - El ffmpeg instalado NO tiene `subtitles` ni `drawtext`: todo texto en pantalla se dibuja con Pillow (graficos.py),

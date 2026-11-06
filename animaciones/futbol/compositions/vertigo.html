@@ -1,0 +1,60 @@
+<template>
+  <!-- Vértigo (dolly zoom): Gerrard con la copa queda quieto y del mismo tamaño mientras el estadio se le viene encima.
+       Capas: placa del estadio (lejos), "LA QUINTA" (en el medio), Gerrard recortado (z = 0, el plano que se mantiene).
+       Regla del dolly zoom: perspectiva / distancia = constante (ver camera-dolly-zoom.html). -->
+  <style>
+    @font-face { font-family: "Mono"; src: url("assets/fonts/jetbrains-mono.ttf"); font-weight: 100 800; }
+    @font-face { font-family: "Plex"; src: url("assets/fonts/plex-sans.ttf"); font-weight: 100 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    .full { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+    #vg-stage { position: absolute; inset: 0; perspective-origin: 50% 50%; }
+    #vg-rig { position: absolute; inset: 0; transform-style: preserve-3d; }
+    #vg-placa { position: absolute; left: -1382px; top: -778px; width: 4684px; height: 2636px; object-fit: cover; transform: translateZ(-2000px); }
+    #vg-texto { position: absolute; left: 570px; top: 180px; width: 0; height: 0; transform: translateZ(-700px); transform-style: preserve-3d; }
+    #vg-texto div { position: absolute; translate: -50% -50%; white-space: nowrap; font: 700 242px/0.8 "Mono"; color: #7ab37a; letter-spacing: 2px; }
+    #vg-texto span { display: inline-block; }
+    .pap { position: absolute; width: 22px; height: 12px; }
+    #vg-sujeto { transform: translateZ(0px); }
+    #vg-logo { position: absolute; left: 1640px; top: 20px; width: 240px; height: 130px; }
+    #vg-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+    #vg-dato { position: absolute; left: 96px; bottom: 90px; }
+    #vg-dato .et { display: inline-block; font: 600 24px "Mono"; letter-spacing: 3px; color: #1a2e1a; background: #c8e6c8; padding: 10px 16px 6px; }
+    #vg-dato .tx { margin-top: 10px; font: 700 46px/1 "Mono"; color: #fff; background: rgba(14,26,14,.78); padding: 14px 20px 6px; }
+  </style>
+  <div id="root" data-composition-id="vertigo" data-width="1920" data-height="1080">
+    <video id="vg-hinchas" class="clip full" src="assets/hinchas_in.mp4" data-start="0" data-duration="1.8" data-track-index="0" muted playsinline></video>
+    <video id="vg-gerrard" class="clip full" src="assets/gerrard_in.mp4" data-start="1.8" data-duration="0.4" data-track-index="0" muted playsinline></video>
+    <div id="vg-stage" class="clip" data-start="2.2" data-duration="4.8" data-track-index="1" data-layout-ignore>
+      <div id="vg-rig">
+        <img id="vg-placa" src="assets/gerrard_placa.png" alt="" data-layout-allow-overflow>
+        <div id="vg-papelitos" data-layout-ignore style="position:absolute;inset:0;transform-style:preserve-3d"><i class="pap" style="left:2318px;top:1305px;background:#f2efe8;transform:translateZ(-1100px) rotate(115deg)"></i><i class="pap" style="left:2490px;top:-231px;background:#f2efe8;transform:translateZ(-1500px) rotate(161deg)"></i><i class="pap" style="left:2222px;top:-469px;background:#7ab37a;transform:translateZ(-1500px) rotate(36deg)"></i><i class="pap" style="left:1058px;top:1109px;background:#c8102e;transform:translateZ(-300px) rotate(152deg)"></i><i class="pap" style="left:2686px;top:870px;background:#c8102e;transform:translateZ(-1100px) rotate(159deg)"></i><i class="pap" style="left:1798px;top:-97px;background:#c8102e;transform:translateZ(-300px) rotate(48deg)"></i><i class="pap" style="left:1241px;top:993px;background:#7ab37a;transform:translateZ(-500px) rotate(112deg)"></i><i class="pap" style="left:2435px;top:588px;background:#7ab37a;transform:translateZ(-1500px) rotate(127deg)"></i><i class="pap" style="left:1370px;top:478px;background:#7ab37a;transform:translateZ(-300px) rotate(104deg)"></i><i class="pap" style="left:3096px;top:1386px;background:#7ab37a;transform:translateZ(-1500px) rotate(80deg)"></i><i class="pap" style="left:996px;top:-226px;background:#c8102e;transform:translateZ(-500px) rotate(102deg)"></i><i class="pap" style="left:1835px;top:375px;background:#c8102e;transform:translateZ(-300px) rotate(175deg)"></i><i class="pap" style="left:236px;top:1162px;background:#c8102e;transform:translateZ(-300px) rotate(120deg)"></i><i class="pap" style="left:2744px;top:320px;background:#c8102e;transform:translateZ(-1100px) rotate(144deg)"></i><i class="pap" style="left:1746px;top:165px;background:#c8102e;transform:translateZ(-500px) rotate(79deg)"></i><i class="pap" style="left:-625px;top:370px;background:#c8102e;transform:translateZ(-800px) rotate(34deg)"></i><i class="pap" style="left:1544px;top:-256px;background:#f2efe8;transform:translateZ(-500px) rotate(124deg)"></i><i class="pap" style="left:1474px;top:33px;background:#c8102e;transform:translateZ(-500px) rotate(33deg)"></i><i class="pap" style="left:1494px;top:-282px;background:#f2efe8;transform:translateZ(-1100px) rotate(54deg)"></i><i class="pap" style="left:379px;top:1226px;background:#7ab37a;transform:translateZ(-300px) rotate(5deg)"></i><i class="pap" style="left:77px;top:1348px;background:#c8102e;transform:translateZ(-500px) rotate(10deg)"></i><i class="pap" style="left:151px;top:146px;background:#7ab37a;transform:translateZ(-500px) rotate(75deg)"></i><i class="pap" style="left:-625px;top:-338px;background:#c8102e;transform:translateZ(-1100px) rotate(3deg)"></i><i class="pap" style="left:394px;top:844px;background:#c8102e;transform:translateZ(-1500px) rotate(150deg)"></i><i class="pap" style="left:2194px;top:-241px;background:#f2efe8;transform:translateZ(-1100px) rotate(46deg)"></i><i class="pap" style="left:426px;top:98px;background:#c8102e;transform:translateZ(-500px) rotate(48deg)"></i><i class="pap" style="left:1636px;top:1257px;background:#c8102e;transform:translateZ(-500px) rotate(175deg)"></i><i class="pap" style="left:2380px;top:762px;background:#f2efe8;transform:translateZ(-1100px) rotate(12deg)"></i><i class="pap" style="left:-27px;top:558px;background:#7ab37a;transform:translateZ(-300px) rotate(61deg)"></i><i class="pap" style="left:57px;top:1234px;background:#f2efe8;transform:translateZ(-1100px) rotate(75deg)"></i><i class="pap" style="left:-438px;top:1088px;background:#c8102e;transform:translateZ(-1500px) rotate(32deg)"></i><i class="pap" style="left:902px;top:790px;background:#c8102e;transform:translateZ(-500px) rotate(71deg)"></i><i class="pap" style="left:2138px;top:58px;background:#c8102e;transform:translateZ(-500px) rotate(17deg)"></i><i class="pap" style="left:670px;top:67px;background:#c8102e;transform:translateZ(-800px) rotate(45deg)"></i><i class="pap" style="left:531px;top:676px;background:#c8102e;transform:translateZ(-800px) rotate(23deg)"></i><i class="pap" style="left:-222px;top:446px;background:#7ab37a;transform:translateZ(-800px) rotate(168deg)"></i><i class="pap" style="left:1324px;top:-354px;background:#c8102e;transform:translateZ(-1500px) rotate(4deg)"></i><i class="pap" style="left:2484px;top:971px;background:#c8102e;transform:translateZ(-1100px) rotate(5deg)"></i><i class="pap" style="left:1547px;top:496px;background:#7ab37a;transform:translateZ(-1500px) rotate(81deg)"></i><i class="pap" style="left:2370px;top:-152px;background:#7ab37a;transform:translateZ(-500px) rotate(11deg)"></i><i class="pap" style="left:1788px;top:1216px;background:#7ab37a;transform:translateZ(-500px) rotate(21deg)"></i><i class="pap" style="left:2449px;top:1335px;background:#f2efe8;transform:translateZ(-1100px) rotate(7deg)"></i><i class="pap" style="left:1230px;top:808px;background:#f2efe8;transform:translateZ(-1100px) rotate(97deg)"></i><i class="pap" style="left:-1141px;top:-523px;background:#c8102e;transform:translateZ(-1500px) rotate(163deg)"></i><i class="pap" style="left:2206px;top:1093px;background:#7ab37a;transform:translateZ(-300px) rotate(99deg)"></i><i class="pap" style="left:778px;top:447px;background:#c8102e;transform:translateZ(-1500px) rotate(132deg)"></i></div>
+        <div id="vg-texto" data-layout-allow-overflow><div><span>L</span><span>A</span> <span>Q</span><span>U</span><span>I</span><span>N</span><span>T</span><span>A</span></div></div>
+        <img id="vg-sujeto" class="full" src="assets/gerrard_sujeto.png" alt="Steven Gerrard con la copa" data-layout-allow-occlusion>
+      </div>
+    </div>
+    <img id="vg-logo" class="clip" src="assets/gerrard_logo.png" alt="" data-start="2.2" data-duration="4.8" data-track-index="2" data-layout-allow-occlusion>
+    <div id="vg-flash"></div>
+    <div id="vg-dato">
+      <div class="et">25 DE MAYO DE 2005 — ESTAMBUL</div>
+      <div class="tx">LIVERPOOL, CAMPEÓN DE EUROPA POR QUINTA VEZ</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // cámara: se aleja mientras hace zoom (el fondo "se viene encima"); la distancia sale de u, la perspectiva se resuelve de la distancia
+      const d0 = 1400, d1 = 1400 * 2.6;
+      const stage = document.getElementById("vg-stage");
+      function camara(u) { const d = d0 + (d1 - d0) * u; stage.style.perspective = d + "px"; }
+      const cam = { _u: 0, get u() { return this._u; }, set u(v) { this._u = v; camara(v); } };
+      camara(0);
+      tl.fromTo("#vg-flash", { opacity: 0 }, { opacity: 0.9, duration: 0.04 }, 2.18);
+      tl.to("#vg-flash", { opacity: 0, duration: 0.3, ease: "power2.out" }, 2.22);
+      tl.fromTo(cam, { u: 0 }, { u: 1, duration: 4.6, ease: "power2.inOut" }, 2.2);
+      tl.fromTo("#vg-texto span", { opacity: 0 }, { opacity: 1, duration: 0.08, stagger: 0.07 }, 2.45);
+      tl.fromTo("#vg-dato .et", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, 3.3);
+      tl.fromTo("#vg-dato .tx", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, 3.45);
+      window.__timelines["vertigo"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <!-- Carrete de prueba: cuatro estilos sobre jugadas de Estambul 2005 -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15.5" data-width="1920" data-height="1080">
+      <div id="detras" data-composition-id="detras" data-composition-src="compositions/detras.html"
+           data-start="0" data-duration="3.5" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="garabatos" data-composition-id="garabatos" data-composition-src="compositions/garabatos.html"
+           data-start="3.5" data-duration="3.5" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="collage" data-composition-id="collage" data-composition-src="compositions/collage.html"
+           data-start="7" data-duration="4" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="termico" data-composition-id="termico" data-composition-src="compositions/termico.html"
+           data-start="11" data-duration="4.5" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

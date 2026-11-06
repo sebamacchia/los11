@@ -1,0 +1,34 @@
+<template>
+  <style>
+    @font-face { font-family: "DIN Cond"; src: url("assets/fonts/din-condensed-bold.ttf"); }
+    @font-face { font-family: "DIN Alt"; src: url("assets/fonts/din-alternate-bold.ttf"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #gf-riise { position: absolute; left: 96px; bottom: 120px; opacity: 0; }
+    #gf-riise .barra { width: 8px; height: 92px; background: #e8b33a; position: absolute; left: 0; top: 0; }
+    #gf-riise .txt { margin-left: 26px; padding: 10px 24px 6px; background: rgba(12,13,16,.86); }
+    #gf-riise b { display: block; font: 58px/1 "DIN Cond"; color: #fff; letter-spacing: 1px; }
+    #gf-riise small { display: block; font: 28px "DIN Alt"; color: #e8b33a; letter-spacing: 4px; margin-top: 4px; }
+    #gf-marc { position: absolute; left: 70px; top: 60px; display: flex; font: 46px/1 "DIN Cond"; color: #fff; opacity: 0; }
+    #gf-marc div { padding: 14px 22px 8px; background: rgba(12,13,16,.88); }
+    #gf-marc .sc { background: #f2efe8; color: #111; min-width: 150px; text-align: center; position: relative; overflow: hidden; }
+    #gf-marc .liv { border-bottom: 5px solid #c8102e; } #gf-marc .mil { border-bottom: 5px solid #e8e8e8; }
+    .dig { position: relative; display: inline-block; }
+    #gf-uno { position: absolute; left: 0; top: 0; color: #c8102e; }
+  </style>
+  <div id="root" data-composition-id="grafismos" data-width="1920" data-height="1080">
+    <div id="gf-riise"><div class="barra"></div><div class="txt"><b>John Arne Riise</b><small>CENTRO DESDE LA IZQUIERDA</small></div></div>
+    <div id="gf-marc"><div class="mil">MILAN</div><div class="sc">3 - <span class="dig"><span id="gf-cero">0</span><span id="gf-uno">1</span></span></div><div class="liv">LIVERPOOL</div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // zócalo de Riise mientras se ve el primer plano del centro
+    tl.fromTo("#gf-riise", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, 0.9);
+    tl.to("#gf-riise", { opacity: 0, x: -20, duration: 0.2, ease: "power2.in" }, 2.7);
+    // marcador: entra en 3-0 y cambia a 3-1 con "tres a uno"
+    tl.fromTo("#gf-marc", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 5.3);
+    tl.fromTo("#gf-uno", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 6.1);
+    tl.fromTo("#gf-cero", { opacity: 1 }, { opacity: 0, duration: 0.01 }, 6.1);
+    tl.to("#gf-marc", { opacity: 0, duration: 0.25, ease: "power2.in" }, 6.7);
+    window.__timelines["grafismos"] = tl;
+  </script>
+</template>

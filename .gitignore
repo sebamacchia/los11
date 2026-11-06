@@ -14,3 +14,14 @@ musica/
 proyectos/*/material/
 proyectos/*/salida/
 proyectos/*/tmp*/
+herramientas/filmcraft-cli/
+
+# animaciones (HyperFrames): no subir medios sacados de transmisiones ni temporales
+animaciones/**/.hyperframes/
+animaciones/**/node_modules/
+animaciones/**/renders/
+animaciones/**/assets/*.mp4
+animaciones/**/assets/*.webm
+animaciones/**/assets/*.mov
+# DIN es de Linotype/Apple: no se redistribuye (está en macOS)
+animaciones/**/assets/fonts/din-*.ttf

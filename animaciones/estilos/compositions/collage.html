@@ -1,0 +1,56 @@
+<template>
+  <!-- Estilo 3: collage de papel. El fondo del partido se reemplaza por papeles; los jugadores quedan como siluetas en tinta -->
+  <style>
+    @font-face { font-family: "DIN Cond"; src: url("assets/fonts/din-condensed-bold.ttf"); }
+    @font-face { font-family: "DIN Alt"; src: url("assets/fonts/din-alternate-bold.ttf"); }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #a4a3a6; }
+    .full { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: contain; }
+    #cl-logo { clip-path: inset(30px 80px 950px 1665px); mix-blend-mode: screen; }
+    #cl-papel { position: absolute; left: 0; top: 0; }
+    #cl-titulo { position: absolute; left: 80px; bottom: 140px; font: 200px/0.82 "DIN Cond"; color: #141414; }
+    #cl-titulo span { display: inline-block; background: #f2efe8; padding: 14px 24px 0; margin-bottom: 10px; }
+    #cl-titulo .r { background: #b5553c; color: #f2efe8; }
+    #cl-etq { position: absolute; left: 60px; bottom: 50px; font: 30px "DIN Alt"; letter-spacing: 8px; color: #fff;
+      background: rgba(0,0,0,.6); padding: 10px 18px 6px; }
+  </style>
+  <div data-hf-id="hf-vfi8" id="root" data-composition-id="collage" data-width="1920" data-height="1080">
+    <svg data-hf-id="hf-m6iz" id="cl-papel" width="1920" height="1080" viewBox="0 0 1920 1080" style="z-index:1" data-layout-ignore="">
+      <defs data-hf-id="hf-mh0t">
+        <filter data-hf-id="hf-ozme" id="cl-fibra" x="0" y="0" width="100%" height="100%">
+          <feturbulence data-hf-id="hf-lmpp" type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="7" result="n" />
+          <fecolormatrix data-hf-id="hf-nowz" in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0" result="g" />
+          <fecomposite data-hf-id="hf-x4l4" in="g" in2="SourceGraphic" operator="in" result="gg" />
+          <feblend data-hf-id="hf-6abd" in="SourceGraphic" in2="gg" mode="multiply" />
+        </filter>
+        <filter data-hf-id="hf-byh4" id="cl-roto"><feturbulence data-hf-id="hf-f6or" type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" /><fedisplacementmap data-hf-id="hf-ozfv" in="SourceGraphic" scale="38" /></filter>
+        <pattern data-hf-id="hf-3zw8" id="cl-damero" width="80" height="80" patternUnits="userSpaceOnUse"><rect data-hf-id="hf-oep5" width="80" height="80" fill="#d9d8d6" /><rect data-hf-id="hf-cu4b" width="40" height="40" fill="#1d1d1f" /><rect data-hf-id="hf-c5k6" x="40" y="40" width="40" height="40" fill="#1d1d1f" /></pattern>
+      </defs>
+      <rect data-hf-id="hf-vvfx" width="1920" height="1080" fill="#a4a3a6" filter="url(#cl-fibra)" />
+      <g data-hf-id="hf-ouwt" filter="url(#cl-roto)">
+        <path data-hf-id="hf-59sz" id="cl-b1" d="M120,120 C380,40 600,210 520,420 C460,600 180,560 110,390 C60,270 40,160 120,120Z" fill="#7d7b86" />
+        <path data-hf-id="hf-ehsz" id="cl-b2" d="M1320,80 C1620,20 1860,170 1800,420 C1740,620 1460,560 1370,400 C1290,260 1210,120 1320,80Z" fill="#8c86a3" />
+        <path data-hf-id="hf-o1fq" id="cl-b3" d="M820,640 C1060,560 1290,700 1220,880 C1150,1040 860,1040 790,900 C740,800 700,690 820,640Z" fill="#b5553c" />
+        <circle data-hf-id="hf-uce0" id="cl-b4" cx="1700" cy="820" r="150" fill="#5e5c63" />
+        <rect data-hf-id="hf-6kil" id="cl-damero-r" x="-20" y="455" width="1960" height="170" fill="url(#cl-damero)" transform="rotate(-4 960 540)" />
+      </g>
+    </svg>
+    <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:0,&quot;contrast&quot;:0.4,&quot;highlights&quot;:0,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:0,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:0},&quot;details&quot;:{&quot;vignette&quot;:0,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:1,&quot;ditherSize&quot;:0.25,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;,&quot;palette&quot;:[&quot;#111111&quot;,&quot;#f2efe8&quot;]}" data-hf-id="hf-7sab" id="cl-jugadores" class="clip full" src="assets/smicer_cut.webm" data-start="0" data-duration="4" data-track-index="0" muted playsinline style="z-index:2"></video>
+    <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.5,&quot;contrast&quot;:1,&quot;highlights&quot;:0,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:-1,&quot;temperature&quot;:0,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:0},&quot;details&quot;:{&quot;vignette&quot;:0,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:1,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;,&quot;palette&quot;:[&quot;#000000&quot;,&quot;#ffffff&quot;]}" data-hf-id="hf-w7tt" id="cl-logo" class="clip full" src="assets/smicer_logo.mp4" data-start="0" data-duration="4" data-track-index="1" muted playsinline style="z-index:3"></video>
+    <div data-hf-id="hf-46bd" id="cl-titulo" style="z-index:4"><span data-hf-id="hf-zlms">DE AFUERA.</span><br data-hf-id="hf-x5px"><span data-hf-id="hf-ywn1" class="r">3-2</span></div>
+    <div data-hf-id="hf-ejmu" id="cl-etq" style="z-index:5">ESTILO 3 — COLLAGE DE PAPEL</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // los papeles entran a saltos, como animación cuadro a cuadro (pasos de 1/6 s)
+    tl.fromTo("#cl-b1", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.5, ease: "steps(3)" }, 0.0);
+    tl.fromTo("#cl-b2", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.5, ease: "steps(3)" }, 0.17);
+    tl.fromTo("#cl-b3", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.5, ease: "steps(3)" }, 0.33);
+    tl.fromTo("#cl-b4", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.33, ease: "steps(2)" }, 0.5);
+    tl.fromTo("#cl-damero-r", { x: -2000 }, { x: 0, duration: 0.5, ease: "steps(4)" }, 0.1);
+    tl.to("#cl-b1", { rotation: 8, x: 30, duration: 3, ease: "steps(18)" }, 0.6);
+    tl.to("#cl-b2", { rotation: -6, y: 20, duration: 3, ease: "steps(18)" }, 0.6);
+    tl.fromTo("#cl-titulo span", { opacity: 0, rotation: -3, y: 40 }, { opacity: 1, rotation: -2, y: 0, duration: 0.17, ease: "steps(2)", stagger: 0.2 }, 2.3);
+    tl.fromTo("#cl-etq", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.1);
+    window.__timelines["collage"] = tl;
+  </script>
+</template>

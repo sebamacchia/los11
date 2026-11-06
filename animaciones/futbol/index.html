@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0b0c0f; }
+      #root { position: relative; width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <!-- Carrete 2: gráficos de fútbol sobre Estambul 2005 -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="54" data-width="1920" data-height="1080">
+      <div id="congelado" data-composition-id="congelado" data-composition-src="compositions/congelado.html" data-start="0" data-duration="7" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="repeticion" data-composition-id="repeticion" data-composition-src="compositions/repeticion.html" data-start="7" data-duration="7" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="trayectoria" data-composition-id="trayectoria" data-composition-src="compositions/trayectoria.html" data-start="14" data-duration="8" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="penales" data-composition-id="penales" data-composition-src="compositions/penales.html" data-start="22" data-duration="9" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="reloj" data-composition-id="reloj" data-composition-src="compositions/reloj.html" data-start="31" data-duration="9" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="alineaciones" data-composition-id="alineaciones" data-composition-src="compositions/alineaciones.html" data-start="40" data-duration="7" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="vertigo" data-composition-id="vertigo" data-composition-src="compositions/vertigo.html" data-start="47" data-duration="7" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
