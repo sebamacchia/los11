@@ -31,3 +31,4 @@ animaciones/**/assets/_con_logo/
 
 # cuadros de transmisiones del manual web (están publicados en el artifact)
 identidad/manual-web/img/
+identidad/manual-web/*.pdf

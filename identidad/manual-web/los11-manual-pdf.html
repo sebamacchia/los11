@@ -1,0 +1,341 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Manual LOS 11</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500;700;800&display=swap">
+<style>
+/* Layout: una transmisión editorial — capítulos como los del canal, cuadros reales del video a sangre, datos en mono. Look único oscuro (paleta Forest del canal). */
+:root {
+  --fondo: #1a2e1a; --panel: #2d4a2d; --medio: #4a7c4a; --acento: #7ab37a; --claro: #c8e6c8;
+  --texto: #f2efe8; --suave: #b9c4b5; --noche: #0c160c; --rojo: #c8102e;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--noche); color: var(--texto); font: 17px/1.6 var(--sans); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3, .mono { font-family: var(--mono); }
+h2, h3 { text-wrap: balance; }
+img { max-width: 100%; display: block; }
+a { color: var(--claro); }
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; }
+
+/* hero */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--panel); }
+.hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .38; filter: saturate(.7); }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--noche) 18%, rgba(12,22,12,.55) 60%, rgba(12,22,12,.2)); }
+.hero .wrap { position: relative; z-index: 1; padding-block: 72px 64px; }
+.marca { display: inline-flex; align-items: center; gap: 14px; font: 700 15px var(--mono); letter-spacing: 1px; }
+.marca::before { content: ""; width: 6px; height: 26px; background: var(--acento); }
+.hero h1 { font-size: clamp(64px, 13vw, 168px); line-height: .9; margin: 40px 0 10px; letter-spacing: 2px; font-weight: 800; }
+.hero h1 .cur { display: inline-block; width: .12em; height: .78em; background: var(--acento); margin-left: .08em; vertical-align: -.04em; animation: parpadeo 1.1s steps(1) infinite; }
+@keyframes parpadeo { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .hero h1 .cur { animation: none; } }
+.hero .bajada { font: 500 clamp(18px, 2.4vw, 26px)/1.4 var(--sans); color: var(--claro); max-width: 30ch; margin: 0; }
+.hero .meta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { font: 600 12px var(--mono); letter-spacing: 2px; text-transform: uppercase; background: var(--claro); color: var(--fondo); padding: 6px 10px 4px; }
+.chip.osc { background: var(--panel); color: var(--claro); }
+
+/* índice de capítulos */
+.indice { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--panel); border: 1px solid var(--panel); margin: 48px 0 0; }
+.indice a { background: var(--noche); padding: 14px 16px; text-decoration: none; font: 500 13px var(--mono); letter-spacing: 1px; color: var(--suave); }
+.indice a b { display: block; color: var(--acento); font-size: 22px; font-weight: 800; }
+.indice a:hover { background: var(--fondo); color: var(--texto); }
+
+/* capítulos */
+section { padding-block: 88px 8px; }
+.cap { display: grid; grid-template-columns: auto 1fr; gap: 6px 26px; align-items: end; border-bottom: 1px solid var(--panel); padding-bottom: 22px; margin-bottom: 34px; }
+.cap .num { grid-row: span 2; font: 800 clamp(70px, 10vw, 128px)/.8 var(--mono); color: transparent; -webkit-text-stroke: 2px var(--acento); }
+.cap .eti { font: 500 13px var(--mono); letter-spacing: 4px; color: var(--acento); text-transform: uppercase; }
+.cap h2 { margin: 0; font-size: clamp(30px, 4.6vw, 52px); line-height: 1.05; text-transform: uppercase; letter-spacing: 1px; }
+.lead { font-size: 20px; color: var(--claro); max-width: 62ch; margin: 0 0 26px; }
+p { max-width: 68ch; color: #dedcd3; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+.cols > * { min-width: 0; }
+.bloque { background: var(--fondo); border-left: 4px solid var(--acento); padding: 18px 20px; }
+.bloque h3 { margin: 0 0 6px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: var(--acento); }
+.bloque p { margin: 0; font-size: 16px; }
+
+/* paleta */
+.paleta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; border: 1px solid var(--panel); }
+.sw { padding: 74px 14px 14px; font: 500 13px var(--mono); }
+.sw b { display: block; font-size: 15px; margin-bottom: 2px; }
+.equipos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.eq { display: flex; align-items: center; gap: 8px; font: 600 13px var(--mono); letter-spacing: 1px; background: var(--fondo); padding: 8px 12px; }
+.eq i { width: 12px; height: 24px; display: inline-block; }
+
+/* tipografía */
+.tipo { display: grid; gap: 1px; background: var(--panel); border: 1px solid var(--panel); }
+.tipo > div { background: var(--noche); padding: 22px 22px 18px; display: grid; grid-template-columns: 210px 1fr; gap: 16px; align-items: baseline; }
+.tipo .q { font: 500 12px var(--mono); letter-spacing: 2px; color: var(--acento); text-transform: uppercase; }
+.t1 { font: 800 clamp(34px, 5vw, 58px)/1 var(--mono); }
+.t2 { font: 500 15px var(--mono); letter-spacing: 4px; color: var(--claro); }
+.t3 { font: 400 21px var(--sans); color: var(--claro); }
+
+/* figuras */
+.galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 30px 26px; }
+figure { margin: 0; min-width: 0; }
+figure img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--panel); background: var(--fondo); }
+figcaption { padding-top: 12px; }
+figcaption .n { font: 700 18px var(--mono); letter-spacing: 1px; text-transform: uppercase; }
+figcaption .k { font: 500 11px var(--mono); letter-spacing: 2px; color: var(--fondo); background: var(--acento); padding: 3px 7px 2px; margin-left: 8px; vertical-align: 2px; }
+figcaption p { margin: 6px 0 0; font-size: 15.5px; }
+figcaption .cuando { color: var(--acento); font-size: 14px; margin-top: 6px; }
+.grande { grid-column: 1 / -1; display: grid; grid-template-columns: 1.6fr 1fr; gap: 26px; align-items: center; }
+.grande > * { min-width: 0; }
+
+/* estructura de un video */
+.linea { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; border-top: 4px solid var(--acento); margin-top: 18px; }
+.linea div { padding: 16px 14px 0 0; }
+.linea b { display: block; font: 700 14px var(--mono); text-transform: uppercase; letter-spacing: 1px; }
+.linea span { display: block; font: 500 12px var(--mono); color: var(--acento); margin-bottom: 6px; }
+.linea p { font-size: 14.5px; margin: 4px 0 0; }
+
+/* listas */
+ul.si, ul.no { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+ul.si li, ul.no li { padding-left: 30px; position: relative; max-width: 70ch; }
+ul.si li::before { content: "▲"; position: absolute; left: 0; color: var(--acento); font-size: 13px; top: 4px; }
+ul.no li::before { content: "▼"; position: absolute; left: 0; color: var(--rojo); font-size: 13px; top: 4px; }
+
+.voz { display: grid; grid-template-columns: 1fr 1.3fr; gap: 26px; }
+.voz > * { min-width: 0; }
+.cita { font: 500 clamp(20px, 2.6vw, 28px)/1.35 var(--sans); font-style: italic; color: var(--texto); border-left: 6px solid var(--acento); padding: 6px 0 6px 22px; margin: 0 0 14px; }
+code, pre { font-family: var(--mono); }
+pre { background: var(--fondo); border-left: 4px solid var(--acento); padding: 14px 16px; overflow-x: auto; font-size: 13px; color: var(--claro); margin: 0; }
+.pasos { counter-reset: paso; display: grid; gap: 1px; background: var(--panel); border: 1px solid var(--panel); }
+.pasos div { background: var(--noche); padding: 16px 18px 16px 70px; position: relative; }
+.pasos div::before { counter-increment: paso; content: counter(paso, decimal-leading-zero); position: absolute; left: 18px; top: 14px; font: 800 24px var(--mono); color: var(--acento); }
+.pasos b { font-family: var(--mono); text-transform: uppercase; letter-spacing: 1px; font-size: 14px; }
+.pasos p { margin: 4px 0 0; font-size: 15.5px; }
+footer { border-top: 1px solid var(--panel); margin-top: 100px; padding-block: 28px 48px; font: 500 13px var(--mono); color: var(--suave); }
+
+@media (max-width: 720px) {
+  .grande, .voz { grid-template-columns: 1fr; }
+  .tipo > div { grid-template-columns: 1fr; gap: 6px; }
+  .galeria { grid-template-columns: 1fr; }
+  section { padding-block: 64px 4px; }
+}
+</style><style>
+@page { size: 1240px 1754px; margin: 0; }
+* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+html, body { background: #0c160c !important; margin: 0; }
+section { break-before: page; padding-top: 70px !important; }
+figure, .bloque, .grande, .tipo > div, .pasos div, .linea, .cap { break-inside: avoid; }
+.hero { min-height: 1754px; display: flex; align-items: center; }
+.hero h1 .cur { animation: none; }
+.galeria { grid-template-columns: repeat(2, 1fr) !important; }
+img[loading] { content-visibility: visible; }
+</style></head><body>
+
+<header class="hero">
+  <img class="bg" src="img/hf_vertigo.jpg" alt="">
+  <div class="wrap">
+    <div class="marca">LOS 11</div>
+    <h1>LOS 11<span class="cur" aria-hidden="true"></span></h1>
+    <p class="bajada">Los partidos que cambiaron el fútbol, contados para que los entienda cualquiera.</p>
+    <div class="meta">
+      <span class="chip">Manual del canal</span><span class="chip osc">Versión 2 · noviembre 2026</span><span class="chip osc">YouTube · español</span>
+    </div>
+    <nav class="indice" aria-label="Capítulos">
+      <a href="#idea"><b>01</b>La idea</a><a href="#marca"><b>02</b>Identidad</a><a href="#voz"><b>03</b>La voz</a>
+      <a href="#estructura"><b>04</b>Un video</a><a href="#graficos"><b>05</b>Gráficos</a><a href="#cine"><b>06</b>Momentos de cine</a>
+      <a href="#edicion"><b>07</b>Edición</a><a href="#material"><b>08</b>Material</a><a href="#como"><b>09</b>Cómo se hace</a>
+      <a href="#futuro"><b>10</b>Hasta dónde</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="idea">
+  <div class="cap"><span class="num">01</span><span class="eti">Capítulo 1</span><h2>La idea</h2></div>
+  <p class="lead">LOS 11 cuenta historias de fútbol para gente que no necesariamente sabe de fútbol. Técnico y preciso como un análisis de datos, pero contado con emoción.</p>
+  <div class="cols">
+    <div class="bloque"><h3>Qué contamos</h3><p>Partidos que cambiaron el fútbol: remontadas, finales, tragedias, revoluciones tácticas. El primero: <i>El milagro de Estambul</i>, Liverpool–Milan 2005.</p></div>
+    <div class="bloque"><h3>Cómo</h3><p>Video real del partido con la información dibujada encima. El espectador siente que está mirando el partido, con un analista al lado.</p></div>
+    <div class="bloque"><h3>Formato</h3><p>9 a 10 minutos, 1.300–1.400 palabras de narración, 6 a 9 capítulos. Desde 8 minutos YouTube permite cortes publicitarios.</p></div>
+    <div class="bloque"><h3>La promesa</h3><p>Que se entienda <b>cómo</b> pasó, no solo qué pasó: quién es quién, por qué importa, qué cambió.</p></div>
+  </div>
+</section>
+
+<section id="marca">
+  <div class="cap"><span class="num">02</span><span class="eti">Capítulo 2</span><h2>Identidad</h2></div>
+  <p class="lead">Paleta "Forest" y tipografía "Técnica". Verde de cancha nocturna, letra de tablero de datos.</p>
+  <div class="paleta" role="list">
+    <div class="sw" role="listitem" style="background:#1a2e1a;color:#c8e6c8"><b>Fondo</b>#1a2e1a<br>tinte sobre el video</div>
+    <div class="sw" role="listitem" style="background:#2d4a2d;color:#c8e6c8"><b>Panel</b>#2d4a2d<br>cajas, fila destacada</div>
+    <div class="sw" role="listitem" style="background:#4a7c4a;color:#f2efe8"><b>Medio</b>#4a7c4a<br>barras, tramos</div>
+    <div class="sw" role="listitem" style="background:#7ab37a;color:#1a2e1a"><b>Acento</b>#7ab37a<br>líneas, cifras, aros</div>
+    <div class="sw" role="listitem" style="background:#c8e6c8;color:#1a2e1a"><b>Claro</b>#c8e6c8<br>rótulos, textos</div>
+    <div class="sw" role="listitem" style="background:#f2efe8;color:#1a2e1a"><b>Texto</b>#f2efe8<br>títulos y nombres</div>
+  </div>
+  <p>Los colores de los equipos se respetan siempre, porque dicen quién es quién. El rojo marca lo que sale mal: un penal errado, el jugador que sale.</p>
+  <div class="equipos">
+    <span class="eq"><i style="background:#c8102e"></i>Liverpool</span><span class="eq"><i style="background:#e8e8e8"></i>Milan</span>
+    <span class="eq"><i style="background:#034694"></i>Chelsea</span><span class="eq"><i style="background:#ef0107"></i>Arsenal</span>
+    <span class="eq"><i style="background:#0068a8"></i>Inter</span><span class="eq"><i style="background:#ebebeb"></i>Juventus</span>
+  </div>
+
+  <h3 class="mono" style="margin:48px 0 14px;color:var(--acento);letter-spacing:2px">TIPOGRAFÍA</h3>
+  <div class="tipo">
+    <div><span class="q">JetBrains Mono 800<br>títulos, nombres, números</span><span class="t1">SEIS MINUTOS · 3-3</span></div>
+    <div><span class="q">JetBrains Mono 500<br>etiquetas</span><span class="t2">SEGUNDO TIEMPO · MINUTO 54'</span></div>
+    <div><span class="q">IBM Plex Sans<br>textos que explican</span><span class="t3">Gerrard, de cabeza. Tres a uno.</span></div>
+  </div>
+  <p>Las dos fuentes son libres (licencia OFL). En pantalla los números van en cifras; en la narración, en palabras.</p>
+
+  <div class="grande" style="margin-top:44px">
+    <figure><img src="img/intro.jpg" alt="Intro animada del canal: LOS 11 sobre fondo verde oscuro" ></figure>
+    <div>
+      <h3 class="mono" style="color:var(--acento);letter-spacing:2px;margin:0 0 8px">LA MARCA</h3>
+      <p>"LOS 11" en mono con una barra vertical verde. Va arriba a la izquierda de cada gráfico, a 96 px del borde. La intro la escribe letra por letra con un cursor verde y suma el subtítulo del video.</p>
+      <p><b>Logos ajenos:</b> los de los canales de TV (UEFA, LFCTV, Sky) se sacan siempre. El cuadro se recorta lo justo para que queden afuera enteros; nunca cortados a medias.</p>
+    </div>
+  </div>
+</section>
+
+<section id="voz">
+  <div class="cap"><span class="num">03</span><span class="eti">Capítulo 3</span><h2>La voz</h2></div>
+  <div class="voz">
+    <div>
+      <p class="cita">"Pero bueno, vamos al partido en sí."</p>
+      <p><b class="mono">LOS 11 · NARRADOR</b><br>Voz propia del canal, creada con ElevenLabs Voice Design: porteño joven, canchero, calidad de estudio. No usamos voces de biblioteca ni clones de otras personas.</p>
+    </div>
+    <ul class="si">
+      <li>Frases cortas, como contándole a un amigo. Se explica el contexto para quien no conoce la historia.</li>
+      <li>Silencio antes de la frase clave. La música baja sola cuando habla el narrador.</li>
+      <li>Frases puente entre capítulos para que la historia se sienta contada: "Pero antes, hay que contar cómo llegó hasta ahí." · "Y entonces llegó lo más difícil." · "Pero la historia no terminó esa noche."</li>
+      <li>Cada dato se verifica antes de grabar: fechas, minutos, goleadores, resultados.</li>
+      <li>Música original (ElevenLabs Music): tensión para el primer acto, épica para la remontada. Efectos de sonido sincronizados con la frase exacta.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="estructura">
+  <div class="cap"><span class="num">04</span><span class="eti">Capítulo 4</span><h2>Anatomía de un video</h2></div>
+  <p class="lead">Un video de 9–10 minutos, en capítulos. Hay un cambio visual cada 4 a 7 segundos.</p>
+  <div class="linea">
+    <div><span>0:00 – 0:25</span><b>Cold open</b><p>El momento de máxima tensión, sin saludo. Promete el "cómo".</p></div>
+    <div><span>~0:25</span><b>Intro</b><p>"LOS 11" escribiéndose, 3 segundos.</p></div>
+    <div><span>6–9 capítulos</span><b>La historia</b><p>Cada uno abre con su separador y, si hace falta, una frase puente.</p></div>
+    <div><span>mitad</span><b>Suscripción</b><p>Un solo pedido, a mitad del video.</p></div>
+    <div><span>~2/3</span><b>Clímax</b><p>Las animaciones fuertes: vértigo, penales.</p></div>
+    <div><span>final</span><b>Gancho</b><p>Cierre seco con otra historia y pantalla final de 15–20 s.</p></div>
+  </div>
+  <div class="grande" style="margin-top:44px">
+    <figure><img src="img/capitulo.jpg" alt="Separador de capítulo: 03, El primer tiempo" ></figure>
+    <div>
+      <h3 class="mono" style="color:var(--acento);letter-spacing:2px;margin:0 0 8px">SEPARADOR DE CAPÍTULO</h3>
+      <p>Número calado gigante, "CAPÍTULO 3", el título escribiéndose y una barra con todos los capítulos (el actual en verde). El espectador siempre sabe en qué parte de la historia está. Los mismos títulos son los capítulos de YouTube.</p>
+    </div>
+  </div>
+</section>
+
+<section id="graficos">
+  <div class="cap"><span class="num">05</span><span class="eti">Capítulo 5</span><h2>Gráficos animados</h2></div>
+  <p class="lead">Si un dato importa, se dibuja. Todos los gráficos van sobre el video del partido, desenfocado y teñido de verde, y se animan en el momento exacto en que el narrador dice cada cosa.</p>
+  <div class="galeria">
+    <figure><img src="img/formacion.jpg" alt="Formación del Milan con la foto de cada jugador en su puesto" ><figcaption><span class="n">Formación</span><span class="k">formacion</span><p>La cancha con un lugar vacío por puesto. Cada jugador aparece con su foto cuando lo nombran, y su nombre sale grande a la izquierda.</p><p class="cuando">Para presentar un equipo, una defensa, un mediocampo.</p></figcaption></figure>
+    <figure><img src="img/camino.jpg" alt="El camino del Milan a la final: llaves con ida, vuelta y global" ><figcaption><span class="n">Camino a la final</span><span class="k">camino</span><p>Una fila por fase con el color del rival, ida, vuelta, resultado global y una nota ("pasó por gol de visitante").</p><p class="cuando">Para contar cómo llegó un equipo.</p></figcaption></figure>
+    <figure><img src="img/tabla.jpg" alt="Tabla de la Premier League 2004-05 con Liverpool quinto a 37 puntos" ><figcaption><span class="n">Tabla de posiciones</span><span class="k">tabla</span><p>Las barras de puntos crecen contando, se ilumina el equipo de la historia, aparece la línea de clasificación y la distancia al primero.</p><p class="cuando">Campañas, fases de grupos, "terminó quinto".</p></figcaption></figure>
+    <figure><img src="img/tabla_grupo.jpg" alt="Grupo A antes de la última fecha con el cartel ganarle a Olympiacos por 2 goles" ><figcaption><span class="n">Tabla con objetivo</span><span class="k">tabla + nota</span><p>La misma tabla con un cartel abajo que dice qué hacía falta.</p><p class="cuando">Antes de un partido decisivo.</p></figcaption></figure>
+    <figure><img src="img/palmares.jpg" alt="Cuatro Copas de Europa del Liverpool en una línea de tiempo" ><figcaption><span class="n">Palmarés</span><span class="k">palmares</span><p>Una línea de tiempo donde cada copa aparece con su final (rival, resultado, ciudad) y el contador sube.</p><p class="cuando">La historia de un club, sus títulos.</p></figcaption></figure>
+    <figure><img src="img/linea.jpg" alt="Línea de tiempo después de Heysel: 20 años sin una final" ><figcaption><span class="n">Línea de tiempo (años)</span><span class="k">linea</span><p>Tramos que se estiran sobre los años y un contador que recorre el tiempo hasta el destino.</p><p class="cuando">"6 años sin Europa", "20 años sin una final".</p></figcaption></figure>
+    <figure><img src="img/linea_minutos.jpg" alt="45 minutos para dar vuelta: barra del partido con el primer tiempo 3-0" ><figcaption><span class="n">Reloj de minutos</span><span class="k">linea</span><p>El mismo gráfico sobre los 90 minutos: lo que ya pasó y los minutos que quedan.</p><p class="cuando">"Le quedaban 45 minutos", "quedaba media hora".</p></figcaption></figure>
+    <figure><img src="img/cambio.jpg" alt="Cambio: sale Kewell, entra Smicer, minuto 23" ><figcaption><span class="n">Cambio</span><span class="k">cambio</span><p>Sale (foto apagada, flecha roja), entra (flecha verde), el minuto en el medio.</p><p class="cuando">Cambios y decisiones del técnico.</p></figcaption></figure>
+    <figure><img src="img/marcador.jpg" alt="Marcador Milan 3 - 0 Liverpool" ><figcaption><span class="n">Marcador</span><span class="k">marcador</span><p>Equipo, resultado y equipo. Cada gol cambia el número con un pulso verde, justo cuando el narrador lo dice.</p><p class="cuando">El resultado en vivo.</p></figcaption></figure>
+    <figure><img src="img/placa_foto.jpg" alt="Placa 10 años más con el retrato de Steven Gerrard" ><figcaption><span class="n">Placa con retrato</span><span class="k">placa</span><p>Título que se escribe letra por letra, cifras en verde, y el retrato de quien se nombra.</p><p class="cuando">Frases y datos que no tienen otra forma visual.</p></figcaption></figure>
+    <figure><img src="img/zocalo.jpg" alt="Zócalo Luis García sobre el gol fantasma" ><figcaption><span class="n">Zócalo</span><span class="k">zocalo</span><p>Nombre en caja clara y un dato abajo, sobre el clip.</p><p class="cuando">Cuando alguien aparece en pantalla y el video no trae su nombre.</p></figcaption></figure>
+    <figure><img src="img/camino_previa.jpg" alt="Liverpool 2005-06 desde la primera ronda previa" ><figcaption><span class="n">Rondas previas</span><span class="k">camino</span><p>El cuadro de llaves sirve para cualquier recorrido: acá, el campeón que tuvo que arrancar desde la primera ronda previa.</p><p class="cuando">Recorridos fuera de lo normal.</p></figcaption></figure>
+  </div>
+</section>
+
+<section id="cine">
+  <div class="cap"><span class="num">06</span><span class="eti">Capítulo 6</span><h2>Momentos de cine</h2></div>
+  <p class="lead">Piezas especiales para los momentos que tienen que quedar en la memoria. Se reservan para el clímax y para presentar protagonistas.</p>
+  <div class="galeria">
+    <figure><img src="img/hf_congelado.jpg" alt="Maldini congelado y recortado con contorno verde" ><figcaption><span class="n">Congelado</span><p>El video se congela con un flash, el fondo pasa a gris y queda el jugador recortado con contorno verde, un número gigante detrás, su nombre y un dato.</p><p class="cuando">Presentar a un protagonista en su momento.</p></figcaption></figure>
+    <figure><img src="img/hf_vertigo.jpg" alt="Gerrard con la copa y LA QUINTA detrás, efecto vértigo" ><figcaption><span class="n">Vértigo</span><p>Dolly zoom: el jugador queda quieto mientras el estadio se le viene encima, con una palabra gigante detrás y papelitos.</p><p class="cuando">El clímax. Una o dos veces por video.</p></figcaption></figure>
+    <figure><img src="img/hf_repeticion-tactica.jpg" alt="Repetición táctica del cabezazo de Gerrard" ><figcaption><span class="n">Repetición táctica</span><p>La jugada reconstruida en una pizarra, al lado del video real.</p><p class="cuando">Goles que se entienden por los movimientos.</p></figcaption></figure>
+    <figure><img src="img/hf_trayectoria.jpg" alt="Trayectoria del tiro de Smicer, 23 metros" ><figcaption><span class="n">Trayectoria</span><p>Pausa, se dibuja la curva del remate hasta el arco y la distancia.</p><p class="cuando">Goles de afuera.</p></figcaption></figure>
+    <figure><img src="img/hf_penales.jpg" alt="Tanda de penales patada por patada" ><figcaption><span class="n">Penales</span><p>La tanda patada por patada con el total que sube y el video del penal decisivo.</p><p class="cuando">Definiciones por penales.</p></figcaption></figure>
+    <figure><img src="img/hf_reloj-del-partido.jpg" alt="Reloj del partido de 0 a 120 minutos con los goles" ><figcaption><span class="n">Reloj del partido</span><p>Barra de 0' a 120' con goles y cambios; una ventana muestra cada gol cuando la barra pasa por su minuto.</p><p class="cuando">Resúmenes.</p></figcaption></figure>
+    <figure><img src="img/hf_alineaciones.jpg" alt="Alineaciones de Milan y Liverpool en la cancha" ><figcaption><span class="n">Alineaciones</span><p>Los dos equipos en la cancha con sistema y técnico.</p><p class="cuando">Antes del partido.</p></figcaption></figure>
+    <figure><img src="img/hf_pizarra.jpg" alt="Pizarra táctica: Liverpool pasa a tres atrás" ><figcaption><span class="n">Pizarra táctica</span><p>Fichas que se mueven para explicar un cambio de sistema.</p><p class="cuando">Cambios tácticos.</p></figcaption></figure>
+  </div>
+  <p style="margin-top:24px">Cada pieza se corta antes de revelar lo que la narración todavía no contó: nada de spoilers.</p>
+</section>
+
+<section id="edicion">
+  <div class="cap"><span class="num">07</span><span class="eti">Capítulo 7</span><h2>Estilo de edición</h2></div>
+  <div class="cols">
+    <div>
+      <h3 class="mono" style="color:var(--acento);letter-spacing:2px;margin:0 0 14px">SÍ</h3>
+      <ul class="si">
+        <li>Gráficos sobre el video del partido, desenfocado y teñido. Nunca sobre negro liso.</li>
+        <li>Más video que foto: goles, festejos, hinchas, cámara lenta cuando suma.</li>
+        <li>Cada vez que se nombra a alguien, se le ve la cara.</li>
+        <li>Datos animados en lugar de texto.</li>
+        <li>Entradas rápidas y secas (0,3–0,45 s); textos letra por letra; un "pop" para fotos y copas.</li>
+        <li>Subtítulos en archivo aparte para YouTube.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="mono" style="color:var(--rojo);letter-spacing:2px;margin:0 0 14px">NO</h3>
+      <ul class="no">
+        <li>Logos de canales de TV en pantalla.</li>
+        <li>Audio original de las transmisiones: siempre muteado.</li>
+        <li>Placas de puro texto para algo que se puede mostrar.</li>
+        <li>Entrevistas en inglés con subtítulos.</li>
+        <li>Zoom o Ken Burns sobre fotos.</li>
+        <li>Primeros planos de víctimas en hechos trágicos.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="material">
+  <div class="cap"><span class="num">08</span><span class="eti">Capítulo 8</span><h2>Material</h2></div>
+  <div class="grande">
+    <figure><img src="img/caras.jpg" alt="Retratos de los jugadores de Milan y Liverpool de la final de 2005" ></figure>
+    <div>
+      <h3 class="mono" style="color:var(--acento);letter-spacing:2px;margin:0 0 8px">RETRATOS DE ÉPOCA</h3>
+      <p>Las caras salen de la presentación de equipos del propio partido: la cámara pasa por cada jugador, así que la foto es de esa noche y con esa camiseta. Se recortan centradas para los círculos y en cuadrado para las placas.</p>
+    </div>
+  </div>
+  <div class="cols" style="margin-top:30px">
+    <div class="bloque"><h3>Video</h3><p>Clips de partidos, hinchas y archivo, con hojas de contacto con tiempos y detección de cortes. Se sube oculto primero para revisar Content ID.</p></div>
+    <div class="bloque"><h3>Fotos</h3><p>Solo libres de verdad (Wikimedia Commons, Creative Commons, con crédito) o cuadros congelados de los videos. Nada de Getty, Alamy ni fotos de prensa.</p></div>
+    <div class="bloque"><h3>Créditos</h3><p>Cada foto y fuente queda anotada, lista para pegar en la descripción del video.</p></div>
+  </div>
+</section>
+
+<section id="como">
+  <div class="cap"><span class="num">09</span><span class="eti">Capítulo 9</span><h2>Cómo se hace un video</h2></div>
+  <div class="pasos">
+    <div><b>Tema e investigación</b><p>Se elige la historia, se junta material y se verifican los datos.</p></div>
+    <div><b>Guion</b><p>Escena por escena: lo que dice el narrador y lo que se ve. Hay una copia legible en Drive para editar entre todos.</p></div>
+    <div><b>Voz y sonido</b><p>Se genera la narración, los efectos y la música. Cada frase se paga una sola vez.</p></div>
+    <div><b>Armado automático</b><p>El sistema arma el video, los gráficos, los subtítulos y los capítulos, y un proyecto de FilmCraft con una pieza por plano.</p></div>
+    <div><b>Revisión</b><p>En FilmCraft se marcan notas pieza por pieza.</p></div>
+    <div><b>Correcciones</b><p>Cada ronda de notas sale como versión nueva (v2, v3…), sin pisar lo editado a mano.</p></div>
+    <div><b>Publicación</b><p>Se sube oculto, se revisa Content ID, y se completan título, descripción con créditos y capítulos.</p></div>
+  </div>
+  <p style="margin-top:22px">Así se pide un gráfico en el guion. Se sincroniza solo con la frase del narrador:</p>
+  <pre>{"tipo": "formacion", "titulo": "El Milan de Ancelotti",
+ "jugadores": [{"nombre": "Maldini", "foto": "retratos/caras/maldini.png",
+                "x": 0.22, "y": 0.13, "puesto": "Defensor · capitán", "en": "@Maldini"}]}</pre>
+</section>
+
+<section id="futuro">
+  <div class="cap"><span class="num">10</span><span class="eti">Capítulo 10</span><h2>Hasta dónde puede ir</h2></div>
+  <p class="lead">Lo que el sistema ya sabe hacer sirve para cualquier historia de fútbol, de cualquier época.</p>
+  <div class="cols">
+    <div class="bloque"><h3>Ya se puede</h3><p>Contar un partido entero con video real, marcador vivo, cambios, tácticas, penales y reloj. Explicar el contexto con tablas, llaves, palmarés y líneas de tiempo. Presentar equipos completos con la cara de cada jugador.</p></div>
+    <div class="bloque"><h3>Aperturas en carpeta</h3><p>Rebobinado desde el final hasta el momento clave. El 3-0 gigante con un flash de lo que viene. Pantalla partida con un contador histórico. Dolly zoom sobre la hinchada.</p></div>
+    <div class="bloque"><h3>Próximas ideas</h3><p>Mapas animados (viajes de hinchas, sedes), jugadores comparados lado a lado, gráficos de posesión y tiros cuando haya datos.</p></div>
+  </div>
+</section>
+
+<footer>LOS 11 · Manual del canal · v2 · noviembre 2026 · Paleta Forest · JetBrains Mono + IBM Plex Sans</footer>
+</main>
+</body></html>
