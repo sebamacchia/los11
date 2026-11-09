@@ -13,7 +13,7 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 - `herramientas/imagenes.py` — buscador "tipo Google" (DuckDuckGo Imágenes, sin clave) que baja candidatas a `material/candidatas/<búsqueda>/`,
   arma hoja de contacto y marca cada foto como AGENCIA (Getty/Alamy: marca de agua, licencia paga) / PRENSA / LIBRE / OTRA.
   Correr con `herramientas/.venv/bin/python` (tiene ddgs + Pillow). `elegir` copia las elegidas y anota el origen en creditos.txt
-- **Manual del canal (v2, 09/11)**: TODO lo que el canal es y puede hacer (marca, voz, estructura, edición, catálogo de gráficos).
+- **Manual del canal (v2, 09/11)**: TODO lo que el canal es y puede hacer. Versión para mostrar (con imágenes de cada animación): https://claude.ai/artifact/GZDu5cr8CXi6t5DMQipFDS (fuente `identidad/manual-web/`; republicar con el tool Artifact y esa url).
   Web: `identidad/manual-de-estilo.html` · Drive: Google Doc "Manual del canal — LOS 11 (v2)" en la carpeta LOS11. Leerlo antes de un video nuevo.
 - `herramientas/clips.py` — buscar/bajar videos de YouTube (yt-dlp con cookies de Chrome, autorizado por el usuario), hoja de contacto con tiempos, detectar cortes. Fuentes en `material/fuentes/` (+ `fuentes.txt`)
 - `herramientas/graficos.py` — intro animada del canal, placas de texto, marcador animado, zócalos (Pillow)
