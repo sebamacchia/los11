@@ -13,6 +13,19 @@ Tipos de visual (cada escena tiene una lista "visual"):
   {"tipo": "placa", "texto": "6 MINUTOS", "sub": "...", "etiqueta": "..."}
   {"tipo": "marcador", "local": "MILAN", "visitante": "LIVERPOOL", "goles": [3, 0],
    "etiqueta": "ENTRETIEMPO", "cambios": [[1.0, 3, 1, "Gerrard 54'"]]}
+  {"tipo": "placa", ..., "foto": "material/retratos/kewell.png"}   placa con el retrato de quien se nombra
+  {"tipo": "formacion", "titulo": "AC Milan", "etiqueta": "4-3-1-2", "jugadores": [{"nombre": "Maldini",
+   "foto": "material/retratos/maldini.png", "x": 0.2, "y": 0.15, "puesto": "Lateral izquierdo", "en": "@Maldini"}]}
+   cancha con un lugar por jugador; cada uno aparece con su foto cuando el narrador lo nombra ("en"; sin "en" = desde el inicio)
+  {"tipo": "camino", "titulo": "El camino del Milan", "partidos": [{"fase": "Octavos", "rival": "Manchester United",
+   "color": [218, 41, 28], "ida": "1-0", "vuelta": "1-0", "global": "2-0", "nota": "...", "en": "@Manchester"}]}
+   llaves eliminadas, una fila por fase que entra cuando el narrador nombra al rival
+  {"tipo": "tabla", "titulo": "Premier League 2004-05", "equipos": [{"nombre": "Chelsea", "puntos": 95, "color": [...]}],
+   "destacar": "Liverpool", "en_destacar": "@quinto", "zona": 4, "zona_texto": "Champions", "en_zona": "@...",
+   "en_diferencia": "@treinta y siete"}   tabla animada (barras de puntos, línea de copa, distancia al primero)
+  {"tipo": "palmares", "texto": "Copas de Europa", "etiqueta": "Liverpool", "empieza": "@entre mil", "intervalo": 0.6,
+   "titulos": [{"año": 1977, "rival": "...", "resultado": "3-1", "sede": "Roma"}]}   línea de tiempo con una copa por título
+Logos de canal (UEFA, LFCTV): se sacan solos de todo clip y fondo (LOGO_ESQUINA / LOGO_FRANJA).
 Cualquier visual acepta "duracion"; el resto de la escena se reparte en partes iguales.
 Música: "musica": [{"archivo": "...", "desde": <n° escena>, "hasta": <n° escena>, "volumen": 0.2}]
 (escenas numeradas desde 1; "hasta" incluida).
@@ -64,14 +77,60 @@ def render_imagen(src, dest, dur, W, H, calidad, zocalo=None):
     run(cmd + ["-t", f"{dur:.3f}"] + _enc(calidad) + [dest])
 
 
+# Logos de canal de las fuentes (pedido del usuario, 09/11: sacar el logo UEFA todo lo posible).
+# LOGO_ESQUINA: logo arriba a la derecha -> (x donde empieza, y donde termina), en fracción del cuadro.
+#   El cuadro se recorta (zoom mínimo) para que el logo quede afuera entero; nunca a medias.
+# LOGO_FRANJA: logo sobre la franja negra de un video 4:3 -> se pinta de negro (x, y, ancho, alto en px del original).
+LOGO_ESQUINA = {"final_uefa": (0.867, 0.125)}
+LOGO_FRANJA = {"juventus": [(1700, 30, 220, 90)], "chelsea_semi": [(1700, 30, 220, 90)]}
+
+
+def ventana(src, zoom=None, centro=(0.5, 0.45)):
+    """Recorte (z, x0, y0) del cuadro original, o None si va entero. Si la fuente tiene logo en la esquina,
+    elige el recorte más parecido al pedido que deja el logo completamente afuera."""
+    z = float(zoom) if isinstance(zoom, (int, float)) else 1.0
+    cx, cy = centro
+    esquina = LOGO_ESQUINA.get(Path(src).stem)
+    if not esquina:
+        return (z, (1 - 1 / z) * cx, (1 - 1 / z) * cy) if z != 1.0 else None
+    lx0, ly1 = esquina
+    centro_pedido = ((1 - 1 / z) * cx + 0.5 / z, (1 - 1 / z) * cy + 0.5 / z)
+    opciones = []
+    za = max(z, 1 / (1 - ly1) + 0.002)  # A: el logo queda arriba, afuera
+    opciones.append((za, (1 - 1 / za) * cx, max((1 - 1 / za) * cy, ly1)))
+    zb = max(z, 1 / lx0 + 0.002)  # B: el logo queda a la derecha, afuera
+    opciones.append((zb, min((1 - 1 / zb) * cx, lx0 - 1 / zb), (1 - 1 / zb) * cy))
+
+    def costo(o):
+        zz, x0, y0 = o
+        return 3 * (zz - z) + abs(x0 + 0.5 / zz - centro_pedido[0]) + abs(y0 + 0.5 / zz - centro_pedido[1])
+    return min(opciones, key=costo)
+
+
+def filtro_limpio(src, zoom=None, centro=(0.5, 0.45)):
+    """Filtros (antes de escalar) que sacan los logos y aplican el zoom fijo. Devuelve (filtro, zoom_que_falta)."""
+    partes = [f"drawbox=x={x}:y={y}:w={w}:h={h}:color=black:t=fill"
+              for x, y, w, h in LOGO_FRANJA.get(Path(src).stem, [])]
+    rampa = isinstance(zoom, (list, tuple))
+    v = ventana(src, None if rampa else zoom, centro)
+    if v:
+        z, x0, y0 = v
+        partes.append(f"crop=w=iw/{z:.5f}:h=ih/{z:.5f}:x=iw*{x0:.5f}:y=ih*{y0:.5f}")
+    return ",".join(partes), (zoom if rampa else None)
+
+
 def render_video(src, dest, dur, W, H, desde, calidad, vel=1.0, zocalo=None, zoom=None, centro=(0.5, 0.45)):
     """Clip de video entero (con negro si no es 16:9), sin audio. vel < 1 = cámara lenta.
-    zoom: número (primer plano fijo) o [inicio, fin] (la cámara se acerca de a poco); centro = punto a acercar (0-1)."""
-    vf = f"scale={W}:{H}:force_original_aspect_ratio=decrease,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:black,setsar=1"
+    zoom: número (primer plano fijo) o [inicio, fin] (la cámara se acerca de a poco); centro = punto a acercar (0-1).
+    Los logos de canal se sacan solos (ver LOGO_ESQUINA / LOGO_FRANJA)."""
+    limpio, zoom = filtro_limpio(src, zoom, centro)
+    vf = (limpio + "," if limpio else "") + (
+        f"scale={W}:{H}:force_original_aspect_ratio=decrease:flags=lanczos,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:black,setsar=1")
     if vel != 1.0:
         vf = f"setpts=PTS/{vel}," + vf + f",minterpolate=fps={FPS}:mi_mode=blend"
     else:
         vf += f",fps={FPS}"
+    vf += f",tpad=stop_mode=clone:stop_duration={dur:.2f}"  # si el clip es más corto, congela el último cuadro
     if zoom:
         z0, z1 = (zoom, zoom) if isinstance(zoom, (int, float)) else zoom
         n = max(1, round(dur * FPS))
@@ -122,6 +181,46 @@ def momento(esc, valor, info):
     return float(valor)
 
 
+def _visuales(esc):
+    vs = esc.get("visual") or []
+    if isinstance(vs, (str, dict)):
+        vs = [vs]
+    return [{"archivo": v} if isinstance(v, str) else dict(v) for v in vs]
+
+
+def _es_fuente(v):
+    a = v.get("archivo", "")
+    return not v.get("tipo") and "material/fuentes/" in a and Path(a).suffix.lower() not in IMAGENES
+
+
+def fondo_de(proyecto, escenas, i, j, v):
+    """Video de fondo para una placa o marcador: el "fondo" del visual ({"archivo", "desde"} o false),
+    o si no, el clip del partido más cercano (en la misma escena, después en las vecinas)."""
+    if "fondo" in v:
+        f = v["fondo"]
+        if not f:
+            return None
+        elegido = f
+    else:
+        vs = _visuales(escenas[i])
+        orden = sorted(range(len(vs)), key=lambda k: (abs(k - j), k > j))
+        elegido = next((vs[k] for k in orden if k != j and _es_fuente(vs[k])), None)
+        for paso in range(1, 6):
+            if elegido:
+                break
+            for ii, ultimo in ((i - paso, True), (i + paso, False)):
+                if 0 <= ii < len(escenas):
+                    cand = [x for x in _visuales(escenas[ii]) if _es_fuente(x)]
+                    if cand:
+                        elegido = cand[-1] if ultimo else cand[0]
+                        break
+    if not elegido:
+        return None
+    limpio, _ = filtro_limpio(elegido["archivo"])
+    return {"archivo": str((proyecto / elegido["archivo"]).resolve()), "desde": float(elegido.get("desde", 0)),
+            "limpio": limpio}
+
+
 def main():
     if len(sys.argv) < 2:
         raise SystemExit(__doc__)
@@ -136,6 +235,9 @@ def main():
     salida = proyecto / "salida"
     salida.mkdir(exist_ok=True)
     escenas = guion["escenas"]
+    sufijo = "" if archivo_guion == "guion.json" else "_" + Path(archivo_guion).stem  # no pisa los de guion.json
+    srt_path = salida / f"subtitulos{sufijo}.srt"
+    cap_path = salida / f"capitulos{sufijo}.txt"
 
     # 1) audio: narración y efectos, y la línea de tiempo
     t = float(guion.get("intro", 0.2))
@@ -167,10 +269,10 @@ def main():
     total = t + outro
     print(f"Duración total: {total:.1f}s ({total/60:.1f} min, {len(escenas)} escenas)")
 
-    with open(salida / "subtitulos.srt", "w") as f:
+    with open(srt_path, "w") as f:
         for n, (a, b, txt) in enumerate(srt, 1):
             f.write(f"{n}\n{srt_tiempo(a)} --> {srt_tiempo(b)}\n{txt}\n\n")
-    with open(salida / "capitulos.txt", "w") as f:
+    with open(cap_path, "w") as f:
         for i, esc in enumerate(escenas):
             if esc.get("capitulo"):
                 s = 0 if not f.tell() else int(tiempos[i][0])
@@ -184,7 +286,7 @@ def main():
     linea = {"piezas": [], "voces": [{"archivo": str(m), "inicio": a} for m, a in voces],
              "efectos": [{"archivo": str(m), "inicio": a, "volumen": v * float(guion.get("sfx_volumen", 1.0))}
                          for m, a, v in efectos],
-             "musica": [], "total": total, "subtitulos": str(salida / "subtitulos.srt"),
+             "musica": [], "total": total, "subtitulos": str(srt_path),
              "fps": FPS, "ancho": W, "alto": H}
     t_pieza = 0.0
     for i, esc in enumerate(escenas):
@@ -224,7 +326,8 @@ def main():
             dest = tmp / f"p{i:03}_{j:02}.mp4"
             tipo = v.get("tipo", "archivo")
             firma = tmp / f"p{i:03}_{j:02}.json"
-            sello = json.dumps({**v, "_d": round(d, 3)}, sort_keys=True)
+            fondo = fondo_de(proyecto, escenas, i, j, v) if tipo in ("placa", "marcador", "formacion", "camino", "tabla", "palmares", "linea", "capitulo", "cambio") else None
+            sello = json.dumps({**v, "_d": round(d, 3), "_fondo": fondo}, sort_keys=True)
             linea["piezas"].append({"archivo": str(dest), "inicio": round(t_pieza, 4), "duracion": round(d, 4),
                                     "escena": i + 1, "nombre": f"{i+1:02}.{j+1} {v.get('tipo', '') or Path(v.get('archivo', '')).stem}"
                                     + (f" · {v['zocalo']}" if v.get('zocalo') else "")
@@ -238,12 +341,58 @@ def main():
                 graficos.intro(dest, W, H, d, v.get("sub", ""))
                 etiqueta = "intro"
             elif tipo == "placa":
-                graficos.placa(dest, W, H, d, v["texto"], v.get("sub", ""), v.get("etiqueta", ""))
+                foto = str((proyecto / v["foto"]).resolve()) if v.get("foto") else None
+                graficos.placa(dest, W, H, d, v["texto"], v.get("sub", ""), v.get("etiqueta", ""), fondo, foto)
                 etiqueta = f"placa '{v['texto']}'"
+            elif tipo == "formacion":
+                jug = []
+                for jj in v["jugadores"]:
+                    jug.append({**jj, "foto": str((proyecto / jj["foto"]).resolve()) if jj.get("foto") else None,
+                                "t": None if jj.get("en") is None else momento(esc, jj["en"], info[i]) - v_ini})
+                graficos.formacion(dest, W, H, d, jug, v.get("titulo", ""), v.get("etiqueta", ""), fondo)
+                etiqueta = f"formación {v.get('titulo', '')}"
+            elif tipo == "tabla":
+                def _t(clave):
+                    return None if v.get(clave) is None else max(0.0, momento(esc, v[clave], info[i]) - v_ini)
+                graficos.tabla(dest, W, H, d, v["equipos"], v.get("titulo", ""), v.get("etiqueta", ""),
+                               v.get("destacar", ""), v.get("zona", 0), v.get("zona_texto", ""),
+                               _t("en_destacar"), _t("en_zona"), _t("en_diferencia"), fondo,
+                               v.get("nota", ""), _t("en_nota"))
+                etiqueta = f"tabla {v.get('titulo', '')}"
+            elif tipo == "palmares":
+                ts = [{**x, "t": max(0.3, momento(esc, x["en"], info[i]) - v_ini) if x.get("en") is not None
+                       else 0.6 + k * float(v.get("intervalo", 0.6))} for k, x in enumerate(v["titulos"])]
+                if v.get("empieza"):  # las copas aparecen de a una desde ese momento
+                    t0 = max(0.3, momento(esc, v["empieza"], info[i]) - v_ini)
+                    ts = [{**x, "t": t0 + k * float(v.get("intervalo", 0.6))} for k, x in enumerate(ts)]
+                graficos.palmares(dest, W, H, d, ts, v.get("texto", ""), v.get("etiqueta", ""),
+                                  v.get("desde"), v.get("hasta_año"), fondo)
+                etiqueta = f"palmarés {v.get('texto', '')}"
+            elif tipo == "capitulo":
+                graficos.capitulo(dest, W, H, d, int(v["numero"]), v["titulo"], int(v.get("total", 0)), fondo)
+                etiqueta = f"capítulo {v['numero']}"
+            elif tipo == "cambio":
+                def _f(j):
+                    return {**j, "foto": str((proyecto / j["foto"]).resolve()) if j.get("foto") else None}
+                graficos.cambio(dest, W, H, d, _f(v["sale"]), _f(v["entra"]), v.get("minuto", ""),
+                                v.get("etiqueta", ""), fondo)
+                etiqueta = f"cambio {v['sale']['nombre']} -> {v['entra']['nombre']}"
+            elif tipo == "linea":
+                def _m(x):
+                    return max(0.3, momento(esc, x, info[i]) - v_ini)
+                trs = [{**tr, "t": _m(tr["en"])} for tr in v["tramos"]]
+                cont = {**v["contador"], "t": _m(v["contador"]["en"])} if v.get("contador") else None
+                graficos.linea_tiempo(dest, W, H, d, v["desde"], v["hasta_año"], trs, cont, v.get("etiqueta", ""), fondo)
+                etiqueta = "línea de tiempo"
+            elif tipo == "camino":
+                ps = [{**p, "t": 0.4 + 0.7 * k if p.get("en") is None else max(0.3, momento(esc, p["en"], info[i]) - v_ini)}
+                      for k, p in enumerate(v["partidos"])]
+                graficos.camino(dest, W, H, d, ps, v.get("titulo", ""), v.get("etiqueta", ""), fondo)
+                etiqueta = f"camino {v.get('titulo', '')}"
             elif tipo == "marcador":
                 cambios = [[momento(esc, c[0], info[i]) - v_ini] + list(c[1:]) for c in v.get("cambios", [])]
                 graficos.marcador(dest, W, H, d, v["local"], v["visitante"], v["goles"],
-                                  v.get("etiqueta", ""), cambios)
+                                  v.get("etiqueta", ""), cambios, fondo)
                 etiqueta = f"marcador {v['goles']}"
             else:
                 src = (proyecto / v["archivo"]).resolve()
@@ -331,7 +480,7 @@ def main():
          "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "19",
          "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart",
          "-t", f"{total:.3f}", salida / nombre])
-    print(f"Listo: {salida / nombre}\nSubtítulos: {salida / 'subtitulos.srt'}")
+    print(f"Listo: {salida / nombre}\nSubtítulos: {srt_path}")
     (tmp / "linea.json").write_text(json.dumps(linea, ensure_ascii=False, indent=1))
     if "--filmcraft" in sys.argv:
         import filmcraft

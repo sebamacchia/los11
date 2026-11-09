@@ -7,7 +7,7 @@
     .full { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
     #ty-plano { position: absolute; inset: 0; }
     #ty-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
-    #ty-dist { position: absolute; left: 940px; top: 330px; font: 700 96px/1 "Mono"; color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,.7); }
+    #ty-dist { position: absolute; left: 798px; top: 223px; font: 700 96px/1 "Mono"; color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,.7); }
     #ty-dist small { display: inline-block; font: 500 23px "Mono"; letter-spacing: 3px; color: #7ab37a; background: rgba(14,26,14,.85); padding: 8px 14px 4px; margin-top: 6px; }
     #ty-pausa { position: absolute; left: 60px; top: 60px; font: 500 23px "Mono"; letter-spacing: 3px; color: #fff; background: rgba(14,26,14,.8); padding: 10px 20px 6px; }
     #ty-nom { position: absolute; left: 120px; top: 760px; font: 700 50px/1 "Mono"; color: #1a2e1a; background: #c8e6c8; padding: 12px 22px 6px; }
@@ -18,17 +18,16 @@
     <div id="ty-plano" class="clip" data-start="3.2" data-duration="2.4" data-track-index="1" style="z-index:2">
       <img id="ty-foto" class="full" src="assets/smicer_freeze.png" alt="" />
       <svg width="1920" height="1080" viewBox="0 0 1920 1080" style="position:absolute;left:0;top:0" data-layout-ignore>
-        <ellipse id="ty-anillo" cx="540" cy="722" rx="70" ry="22" fill="rgba(122,179,122,.25)" stroke="#7ab37a" stroke-width="6" opacity="0"/>
-        <path id="ty-curva" d="M 572 718 Q 1250 520 1846 412" fill="none" stroke="#7ab37a" stroke-width="9" stroke-linecap="round" stroke-dasharray="1500" stroke-dashoffset="1500"/>
-        <circle id="ty-meta" cx="1846" cy="412" r="20" fill="none" stroke="#fff" stroke-width="5" opacity="0"/>
-        <text id="ty-dida" x="1760" y="530" text-anchor="middle" font-family="Mono" font-weight="700" font-size="25" fill="#fff" opacity="0" style="paint-order:stroke;stroke:#000;stroke-width:6px">DIDA</text>
+        <ellipse id="ty-anillo" cx="340" cy="672" rx="80" ry="25" fill="rgba(122,179,122,.25)" stroke="#7ab37a" stroke-width="6" opacity="0"/>
+        <path id="ty-curva" d="M 377 667 Q 1153 441 1835 317" fill="none" stroke="#7ab37a" stroke-width="9" stroke-linecap="round" stroke-dasharray="1500" stroke-dashoffset="1500"/>
+        <circle id="ty-meta" cx="1835" cy="317" r="23" fill="none" stroke="#fff" stroke-width="5" opacity="0"/>
+        <text id="ty-dida" x="1737" y="452" text-anchor="middle" font-family="Mono" font-weight="700" font-size="25" fill="#fff" opacity="0" style="paint-order:stroke;stroke:#000;stroke-width:6px">DIDA</text>
       </svg>
       <div id="ty-dist">≈ 23 m<small>DE AFUERA DEL ÁREA</small></div>
       <div id="ty-pausa">❚❚ PAUSA</div>
       <div id="ty-nom">VLADIMIR SMICER<small>56' · 3-2</small></div>
     </div>
     <video id="ty-b" class="clip full" src="assets/smicer_b.mp4" data-start="5.6" data-duration="2.4" data-track-index="0" muted playsinline style="z-index:1"></video>
-    <img id="ty-logo" class="clip full" src="assets/smicer_logo.png" alt="" data-start="3.2" data-duration="2.4" data-track-index="2" style="z-index:3;clip-path:inset(30px 80px 950px 1665px)" data-layout-allow-occlusion />
     <div id="ty-flash" style="z-index:4"></div>
   </div>
   <script>

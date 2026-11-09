@@ -1,88 +1,210 @@
-<html><head><meta charset="utf-8"></head><body>
-<h1>Manual de estilo — LOS 11</h1>
-<p><i>Versión 1 · 5 de noviembre de 2026. Elegido en la página del manual de estilo. Todo gráfico nuevo del canal sigue estas reglas. Si algo cambia, se cambia acá primero.</i></p>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual del canal — LOS 11</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --fondo:#1a2e1a; --panel:#2d4a2d; --medio:#4a7c4a; --acento:#7ab37a; --claro:#c8e6c8; --texto:#f2efe8; --oscuro:#0e1a0e; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--oscuro); color:var(--texto); font:16px/1.6 "IBM Plex Sans", system-ui, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 48px 20px 96px; }
+  h1, h2, h3, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  h1 { font-size: 44px; margin: 0 0 6px; letter-spacing: 1px; border-left: 10px solid var(--acento); padding-left: 18px; }
+  h2 { font-size: 24px; margin: 56px 0 14px; color: var(--claro); text-transform: uppercase; letter-spacing: 2px; }
+  h2::before { content: ""; display:inline-block; width:40px; height:4px; background:var(--acento); vertical-align: middle; margin-right: 14px; }
+  h3 { font-size: 18px; margin: 28px 0 8px; color: var(--acento); }
+  p, li { color: #e4e2da; }
+  .sub { color: var(--claro); margin: 0 0 28px; }
+  table { width:100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 15px; }
+  th, td { text-align:left; padding: 9px 10px; border-bottom: 1px solid var(--panel); vertical-align: top; }
+  th { font-family:"JetBrains Mono", monospace; font-size: 12px; letter-spacing: 2px; color: var(--acento); text-transform: uppercase; }
+  code, pre { font-family: "JetBrains Mono", monospace; font-size: 13px; }
+  code { background: var(--panel); padding: 1px 6px; border-radius: 3px; color: var(--claro); }
+  pre { background: var(--fondo); border-left: 4px solid var(--acento); padding: 12px 14px; overflow-x: auto; color: var(--claro); }
+  .sw { display:inline-block; width:22px; height:22px; border-radius:3px; vertical-align: middle; border:1px solid #ffffff22; }
+  .card { background: var(--fondo); border: 1px solid var(--panel); padding: 16px 18px; margin: 12px 0; }
+  .tag { display:inline-block; font:600 11px "JetBrains Mono", monospace; letter-spacing:2px; background:var(--claro); color:var(--fondo); padding:3px 8px; margin-right:6px; }
+  .no { color: #e88; } .si { color: var(--acento); }
+  nav { columns: 2; font-family:"JetBrains Mono", monospace; font-size: 14px; margin: 18px 0 8px; }
+  nav a { color: var(--claro); text-decoration: none; display:block; padding: 2px 0; }
+  @media (max-width: 640px) { h1 { font-size: 30px; } nav { columns: 1; } th, td { padding: 7px 6px; } }
+</style>
+</head>
+<body>
+<main>
+<h1>LOS 11</h1>
+<p class="sub mono">Manual del canal · versión 2 · 9 de noviembre de 2026 · todo lo que el canal es y todo lo que puede hacer</p>
+<p>Este documento reúne la identidad, la voz, el estilo de edición y el catálogo completo de gráficos y animaciones del canal. Sirve para que cualquiera (o Claude, en una sesión nueva) entienda <b>hasta dónde se puede ir</b> sin redescubrir nada. Si algo cambia, se cambia acá primero.</p>
 
-<h2>1. La idea</h2>
-<p>LOS 11 cuenta historias de fútbol para gente que no necesariamente sabe de fútbol. El estilo es <b>técnico y preciso</b>: como un análisis de datos, pero contado con emoción. Los gráficos van <b>sobre las imágenes del partido</b>, nunca sobre un fondo negro vacío: el espectador tiene que sentir que está mirando el partido, con la información encima.</p>
+<nav>
+  <a href="#idea">1. La idea</a><a href="#marca">2. Identidad de marca</a><a href="#voz">3. Voz y narración</a>
+  <a href="#estructura">4. Estructura de un video</a><a href="#edicion">5. Estilo de edición</a><a href="#catalogo">6. Catálogo de gráficos</a>
+  <a href="#hyperframes">7. Animaciones especiales</a><a href="#material">8. Material: video, fotos, retratos</a><a href="#flujo">9. Cómo se hace un video</a>
+  <a href="#limites">10. Límites y reglas</a><a href="#posible">11. Hasta dónde puede ir</a>
+</nav>
 
-<h2>2. Colores — paleta Forest</h2>
-<table border="1" cellpadding="8" style="border-collapse:collapse">
-<tr><th>Color</th><th>Código</th><th>Para qué se usa</th></tr>
-<tr><td bgcolor="#1a2e1a" style="color:#c8e6c8">Fondo</td><td>#1a2e1a</td><td>Fondo de las placas y sombras sobre el video (siempre semitransparente sobre la imagen)</td></tr>
-<tr><td bgcolor="#2d4a2d" style="color:#c8e6c8">Panel</td><td>#2d4a2d</td><td>Cajas de datos, marcador, paneles</td></tr>
-<tr><td bgcolor="#4a7c4a" style="color:#ffffff">Medio</td><td>#4a7c4a</td><td>Aciertos (penal convertido), rellenos secundarios</td></tr>
-<tr><td bgcolor="#7ab37a" style="color:#1a2e1a">Acento</td><td>#7ab37a</td><td>Líneas, trayectorias, barras, bordes de ventanas, números destacados, contorno del jugador recortado</td></tr>
-<tr><td bgcolor="#c8e6c8" style="color:#1a2e1a">Claro</td><td>#c8e6c8</td><td>Etiquetas (fondo claro con texto #1a2e1a), textos secundarios</td></tr>
+<h2 id="idea">1. La idea</h2>
+<p>LOS 11 cuenta <b>los partidos que cambiaron el fútbol</b>, para que los entienda cualquiera, también quien no sabe de fútbol. El tono es técnico y preciso, como un análisis de datos, pero contado con emoción. Primer video: <i>El milagro de Estambul</i> (Liverpool–Milan, final de la Champions 2005).</p>
+<ul>
+  <li><b>Duración:</b> unos 9–10 minutos (desde 8 min YouTube permite cortes publicitarios). 1.300–1.400 palabras de narración.</li>
+  <li><b>Público:</b> hispanohablante; la narración explica el contexto (quién es quién, por qué importa).</li>
+  <li><b>Promesa:</b> que el espectador entienda <i>cómo</i> pasó, no solo <i>qué</i> pasó.</li>
+</ul>
+
+<h2 id="marca">2. Identidad de marca</h2>
+<h3>Marca</h3>
+<p>El nombre se escribe <span class="mono">LOS 11</span>, en JetBrains Mono Bold, con una <b>barra vertical verde</b> a la izquierda. Va arriba a la izquierda de todos los gráficos (margen de 96 px). La intro animada del canal escribe "LOS 11" letra por letra con un cursor verde y el subtítulo del video.</p>
+<h3>Colores — paleta Forest</h3>
+<table>
+  <tr><th></th><th>Nombre</th><th>Código</th><th>Uso</th></tr>
+  <tr><td><span class="sw" style="background:#1a2e1a"></span></td><td>Fondo</td><td class="mono">#1a2e1a</td><td>Tinte sobre el video desenfocado, cajas oscuras</td></tr>
+  <tr><td><span class="sw" style="background:#2d4a2d"></span></td><td>Panel</td><td class="mono">#2d4a2d</td><td>Paneles, fila destacada en tablas</td></tr>
+  <tr><td><span class="sw" style="background:#4a7c4a"></span></td><td>Medio</td><td class="mono">#4a7c4a</td><td>Barras secundarias, tramos de tiempo, bloque detrás del retrato</td></tr>
+  <tr><td><span class="sw" style="background:#7ab37a"></span></td><td>Acento</td><td class="mono">#7ab37a</td><td>Líneas, cifras destacadas, etiquetas, aros, cursor</td></tr>
+  <tr><td><span class="sw" style="background:#c8e6c8"></span></td><td>Claro</td><td class="mono">#c8e6c8</td><td>Rótulos (fondo claro, texto oscuro), textos secundarios</td></tr>
+  <tr><td><span class="sw" style="background:#f2efe8"></span></td><td>Texto</td><td class="mono">#f2efe8</td><td>Títulos y nombres</td></tr>
 </table>
-<p><b>Colores de los equipos:</b> se respetan los colores reales de cada club, porque dicen quién es quién (ej.: Liverpool rojo #c8102e, Milan blanco). Errores/fallos (penal errado) en rojo. El texto principal va en blanco.</p>
-
-<h2>3. Tipografía — Técnica</h2>
-<table border="1" cellpadding="8" style="border-collapse:collapse">
-<tr><th>Uso</th><th>Fuente</th><th>Peso</th><th>Ejemplo</th></tr>
-<tr><td>Títulos, nombres de jugadores, marcadores, números</td><td>JetBrains Mono</td><td>Bold (700)</td><td>SEIS MINUTOS · 3-1</td></tr>
-<tr><td>Etiquetas chicas (arriba de los títulos, tags)</td><td>JetBrains Mono</td><td>Medium (500), en mayúsculas, con poco espaciado</td><td>SEGUNDO TIEMPO · 54'</td></tr>
-<tr><td>Textos que explican (leyendas, aclaraciones)</td><td>IBM Plex Sans</td><td>Regular / SemiBold</td><td>Gerrard, de cabeza. Tres a uno.</td></tr>
+<p>Los <b>colores reales de los equipos</b> se respetan porque dicen quién es quién (Liverpool rojo <span class="mono">#c8102e</span>, Milan blanco, Chelsea azul…). Errores (penal errado, el que sale en un cambio) en rojo.</p>
+<h3>Tipografía — "Técnica"</h3>
+<table>
+  <tr><th>Uso</th><th>Fuente</th><th>Ejemplo</th></tr>
+  <tr><td>Títulos, nombres, marcadores, números</td><td>JetBrains Mono 700–800</td><td class="mono">SEIS MINUTOS · 3-1</td></tr>
+  <tr><td>Etiquetas chicas (arriba de los títulos)</td><td>JetBrains Mono 500, mayúsculas, espaciada</td><td class="mono" style="letter-spacing:3px;font-size:13px">SEGUNDO TIEMPO · 54'</td></tr>
+  <tr><td>Textos que explican</td><td>IBM Plex Sans 400–600</td><td>Gerrard, de cabeza. Tres a uno.</td></tr>
 </table>
+<p>Las dos son libres (OFL); los archivos están en <code>animaciones/futbol/assets/fonts/</code>. En pantalla los números van con cifras (3-1, 54', 2005); en la narración, en letras.</p>
+<h3>Logos ajenos</h3>
+<p>Los logos de canal que traen los videos (UEFA, LFCTV, Sky…) <b>se sacan</b>: el cuadro se recorta lo mínimo para que el logo quede afuera entero (nunca cortado a medias), o se pinta de negro si está sobre una franja negra. Se configura por fuente en <code>armar.py</code> (<code>LOGO_ESQUINA</code>, <code>LOGO_FRANJA</code>).</p>
+
+<h2 id="voz">3. Voz y narración</h2>
+<div class="card"><span class="tag">VOZ</span> <b>LOS 11 - Narrador</b> · ElevenLabs, modelo <code>eleven_v4</code> · id <code>3bwJ6wzKqreWHSoA0x43</code><br>
+Voz propia del canal creada con Voice Design: porteño joven, canchero, calidad de estudio. No se usan voces de la Voice Library ni clones de terceros. Cuenta ElevenLabs: plan Creator (límite de 30 voces propias).</div>
 <ul>
-<li>Las dos fuentes son libres (licencia OFL). Archivos en <code>animaciones/futbol/assets/fonts/</code>.</li>
-<li>JetBrains Mono es ancha: los títulos van en una o dos líneas cortas. Si no entra, se corta la frase, no se achica la letra por debajo de lo legible.</li>
-<li>Tamaños de referencia (video 1920×1080): título 92–96 px · nombre de jugador 50–124 px · etiqueta 24–28 px · leyenda 22–28 px · marcador 50 px.</li>
-<li>En placas y gráficos, números y años van con cifras (3-1, 54', 2005). En la narración se escriben en letras.</li>
+  <li>Frases cortas, naturales, como contándole a un amigo. Explicar el contexto para quien no conoce la historia.</li>
+  <li>Números, años y minutos <b>escritos en letras</b> en el guion (la voz los lee mejor).</li>
+  <li>Silencio antes de la frase clave (<code>retardo</code> y <code>pausa</code> largos); la música baja sola cuando habla la voz.</li>
+  <li><b>Frases puente</b> entre capítulos, para que la historia se sienta contada: "Pero antes, hay que contar cómo llegó hasta ahí.", "Pero bueno, vamos al partido en sí.", "Y entonces llegó lo más difícil.", "Pero la historia no terminó esa noche."</li>
+  <li>Verificar datos (fechas, minutos, goleadores, resultados) antes de generar la voz. El audio se cachea: el mismo texto no se paga dos veces.</li>
 </ul>
 
-<h2>4. Cómo se integran los gráficos con el video</h2>
-<ul>
-<li><b>Fondo:</b> nunca negro plano. Detrás de cada gráfico va el video del partido (o la hinchada), desenfocado y oscurecido, con una sombra verde oscura (#1a2e1a) del lado donde va el texto.</li>
-<li><b>Ventana de video (picture-in-picture):</b> la jugada real al lado del gráfico. Borde izquierdo de 8 px en verde acento, sombra suave, etiqueta arriba ("LA JUGADA REAL", "EL ÚLTIMO PENAL · SHEVCHENKO") o abajo con el minuto ("54' GERRARD").</li>
-<li><b>Márgenes:</b> 96 px a los costados. Arriba a la izquierda va la marca "LOS 11" con una barra vertical verde.</li>
-<li><b>Logo de UEFA:</b> siempre visible donde aparece en el video original; no se tapa ni se borra. Si el fondo se desenfoca, el logo se deja nítido encima.</li>
-<li><b>Audio original de los videos:</b> siempre muteado.</li>
-<li>No poner nombre/zócalo donde el video ya trae el nombre del jugador.</li>
-</ul>
-
-<h2>5. Catálogo de gráficos del canal</h2>
-<table border="1" cellpadding="8" style="border-collapse:collapse">
-<tr><th>Gráfico</th><th>Qué hace</th><th>Cuándo usarlo</th></tr>
-<tr><td><b>Congelado + jugador separado</b></td><td>Corre el video, se congela con un flash, el fondo pasa a gris y queda el jugador recortado con contorno verde, un número gigante detrás y su nombre + dato</td><td>Presentar a un protagonista en el momento en que entra a la historia</td></tr>
-<tr><td><b>Texto detrás del jugador</b></td><td>Palabra gigante entre el fondo y el jugador recortado</td><td>Frases clave, apodos, momentos ("LA QUINTA")</td></tr>
-<tr><td><b>Vértigo (dolly zoom)</b></td><td>El jugador queda quieto y del mismo tamaño mientras el estadio se le viene encima (o se aleja), con texto en el medio y papelitos a distintas profundidades</td><td>El clímax: el gol, la copa, el error fatal. Máximo una o dos veces por video</td></tr>
-<tr><td><b>Pizarra táctica</b></td><td>Cancha con los jugadores como fichas; cambios de sistema (ej.: pasa a jugar con tres defensores)</td><td>Explicar un cambio táctico</td></tr>
-<tr><td><b>Repetición táctica</b></td><td>La jugada de un gol reconstruida en la pizarra, al lado del video real</td><td>Goles que se entienden mejor viendo los movimientos. Lleva la nota "reconstrucción aproximada"</td></tr>
-<tr><td><b>Telestrador</b></td><td>Círculos, flechas y líneas dibujadas encima del video</td><td>Señalar a un jugador, un espacio, una atajada</td></tr>
-<tr><td><b>Trayectoria del tiro</b></td><td>El video se pone en pausa y se dibuja la curva del remate con la distancia</td><td>Golazos de afuera, tiros lejanos</td></tr>
-<tr><td><b>Penales</b></td><td>La tanda patada por patada con el total que sube, y el video del penal decisivo con marca de telestrador</td><td>Definiciones por penales</td></tr>
-<tr><td><b>Reloj del partido</b></td><td>Barra de 0' a 120' con goles, cambios y momentos; una ventana muestra cada gol cuando la barra pasa por su minuto</td><td>Resumen del partido, al principio o al final</td></tr>
-<tr><td><b>Alineaciones</b></td><td>Los dos equipos en la cancha, línea por línea, con sistema y técnico; los jugadores reales se ven detrás</td><td>Antes del partido</td></tr>
+<h2 id="estructura">4. Estructura de un video</h2>
+<table>
+  <tr><th>Parte</th><th>Qué pasa</th></tr>
+  <tr><td>Cold open (0–25 s)</td><td>Arranca en el momento de máxima tensión (ej.: entretiempo 3-0), sin saludo; promete el "cómo". Es el momento de lucirse: animación, no texto plano.</td></tr>
+  <tr><td>Intro del canal (~3 s)</td><td>"LOS 11" escribiéndose + subtítulo del video.</td></tr>
+  <tr><td>Capítulos (6–9)</td><td>Cada uno abre con su <b>separador animado</b> (número calado, título, barra de progreso de capítulos) y, si hace falta, una frase puente. Los títulos son también los capítulos de YouTube (<code>capitulos_*.txt</code>).</td></tr>
+  <tr><td>Pedido de suscripción</td><td>Uno solo, a mitad del video.</td></tr>
+  <tr><td>Clímax</td><td>A los ~2/3. Ahí van las animaciones fuertes (vértigo, penales).</td></tr>
+  <tr><td>Final</td><td>Seco, con gancho a otra historia, y pantalla final de 15–20 s.</td></tr>
 </table>
+<p><b>Ritmo:</b> cambio visual cada 4–7 s. Reenganche al cambiar de acto (cada 1–2 min).</p>
 
-<h2>6. Animación</h2>
+<h2 id="edicion">5. Estilo de edición</h2>
 <ul>
-<li><b>Entradas:</b> rápidas y secas, 0,3–0,45 s, con desaceleración fuerte (expo.out). Los textos entran de costado (30–60 px) o letra por letra.</li>
-<li><b>Congelado:</b> flash blanco de 0,04 s al congelar, se apaga en 0,25 s.</li>
-<li><b>Números que cambian</b> (marcadores, totales): el número viejo sale para arriba y el nuevo entra desde abajo.</li>
-<li><b>Fichas de jugadores:</b> aparecen con un pequeño rebote (back.out), escalonadas línea por línea.</li>
-<li><b>Líneas y trayectorias:</b> se dibujan de punta a punta (0,4–0,7 s).</li>
-<li>Nada de zoom ni movimiento sobre las fotos fijas (Ken Burns): las fotos van fijas y enteras.</li>
-<li>Cambio visual cada 4–7 segundos.</li>
+  <li><span class="si">✔</span> <b>Gráficos sobre el video del partido</b>: el clip más cercano, desenfocado, oscurecido y teñido de verde. Nunca sobre negro liso.</li>
+  <li><span class="si">✔</span> <b>Más video, menos foto</b>: clips de goles, festejos, hinchas, en cámara lenta cuando suma. Audio original siempre muteado.</li>
+  <li><span class="si">✔</span> <b>Cada vez que se nombra a alguien, se lo ve</b>: retrato (cuadro congelado de su cara) en la placa, en la formación o en el cambio.</li>
+  <li><span class="si">✔</span> <b>Datos animados en vez de texto</b>: tablas, cuadros de llaves, líneas de tiempo, contadores. Si un número importa, se dibuja.</li>
+  <li><span class="si">✔</span> Zócalos con nombre y dato cuando aparece alguien en video (no si el video ya trae el nombre).</li>
+  <li><span class="si">✔</span> Fotos fijas, enteras, con negro a los costados si son verticales. Nada de zoom/Ken Burns en fotos.</li>
+  <li><span class="si">✔</span> Música propia (ElevenLabs Music: <code>tension</code> para el primer acto, <code>epica</code> para la remontada); efectos de sonido (hinchada, silbato) cronometrados con la frase.</li>
+  <li><span class="si">✔</span> Subtítulos en <code>.srt</code> aparte (se suben a YouTube).</li>
+  <li><span class="no">✘</span> Logos de canal ajenos, entrevistas en inglés con subtítulos, placas de puro texto para algo que se puede mostrar.</li>
+  <li><b>Animación:</b> entradas rápidas y secas (0,3–0,45 s, desaceleración fuerte); textos que entran de costado o letra por letra; "pop" (crece, se pasa un poco y vuelve) para fotos y copas.</li>
 </ul>
 
-<h2>7. Transiciones</h2>
+<h2 id="catalogo">6. Catálogo de gráficos (armar.py + graficos.py)</h2>
+<p>Se piden en el guion (<code>proyectos/&lt;video&gt;/guion.json</code>), escena por escena, en la lista <code>"visual"</code>. Todos se sincronizan con la voz: <code>"en": "@frase"</code> = cuando el narrador dice esa frase; <code>"hasta": "@frase"</code> = el visual termina ahí.</p>
+<table>
+  <tr><th>Tipo</th><th>Qué hace</th><th>Cuándo</th></tr>
+  <tr><td class="mono">intro</td><td>Animación del canal: "LOS 11" escribiéndose + subtítulo</td><td>Después del cold open</td></tr>
+  <tr><td class="mono">capitulo</td><td>Número calado, "CAPÍTULO n", título que se escribe, barra de progreso de capítulos</td><td>Inicio de cada capítulo (con o sin frase puente)</td></tr>
+  <tr><td class="mono">placa</td><td>Título que se escribe letra por letra (cifras en verde), etiqueta y bajada. Con <code>"foto"</code>: retrato a la derecha</td><td>Frases o datos que no tienen forma visual (usar lo menos posible)</td></tr>
+  <tr><td class="mono">marcador</td><td>Equipo | resultado | equipo; los goles cambian con pulso verde en el momento justo</td><td>Resultados en vivo</td></tr>
+  <tr><td class="mono">zocalo</td><td>Nombre en caja clara + dato, sobre un clip</td><td>Presentar a alguien que está en pantalla</td></tr>
+  <tr><td class="mono">formacion</td><td>Cancha con un lugar punteado por puesto; cada jugador aparece con su foto cuando lo nombran, su nombre grande a la izquierda</td><td>Presentar un equipo, una defensa, un medio</td></tr>
+  <tr><td class="mono">camino</td><td>Una fila por fase (octavos, cuartos…): rival con su color, ida, vuelta, global, nota</td><td>Cómo llegó un equipo a la final; rondas previas</td></tr>
+  <tr><td class="mono">tabla</td><td>Tabla de posiciones: barras de puntos que crecen contando, equipo destacado, línea de clasificación, distancia al primero, cartel abajo</td><td>Campañas, fases de grupos, "terminó quinto"</td></tr>
+  <tr><td class="mono">palmares</td><td>Línea de tiempo con una copa por título que aparece con su final (rival, resultado, sede) y un contador</td><td>Historia de un club, títulos</td></tr>
+  <tr><td class="mono">linea</td><td>Eje (años o minutos) con tramos que se estiran y un contador que recorre el tiempo</td><td>"6 años sin Europa", "20 años sin final", "45 minutos para dar vuelta", "quedaba media hora"</td></tr>
+  <tr><td class="mono">cambio</td><td>Sale (foto apagada, flecha roja) / entra (flecha verde), minuto en el medio</td><td>Cambios, decisiones del técnico</td></tr>
+  <tr><td class="mono">clip de video</td><td><code>{"archivo", "desde", "velocidad", "zoom", "centro", "zocalo"}</code>: cámara lenta, primer plano fijo o acercamiento; sin logos</td><td>Siempre que haya imagen real</td></tr>
+</table>
+<h3>Ejemplos de pedido</h3>
+<pre>{"tipo": "formacion", "titulo": "El Milan de Ancelotti", "etiqueta": "Formación · 4-3-1-2",
+ "jugadores": [{"nombre": "Maldini", "foto": "material/retratos/caras/maldini.png",
+                "x": 0.22, "y": 0.13, "puesto": "Defensor · capitán", "en": "@Maldini"}]}
+
+{"tipo": "tabla", "titulo": "Premier League 2004-05", "equipos": [{"nombre": "Chelsea", "puntos": 95, "color": [3,70,148]}],
+ "destacar": "Liverpool", "en_destacar": "@quinto", "zona": 4, "zona_texto": "Champions League",
+ "en_zona": "@quinto", "en_diferencia": "@treinta y siete", "nota": "...", "en_nota": "@..."}
+
+{"tipo": "linea", "desde": 0, "hasta_año": 90,
+ "tramos": [{"desde": 0, "hasta": 45, "texto": "Milan 3-0", "en": "@Al Liverpool"}],
+ "contador": {"desde": 45, "hasta": 90, "texto": "minutos para dar vuelta", "fin_texto": "90'", "en": "@le quedaban"}}
+
+{"tipo": "cambio", "minuto": "23'", "sale": {"nombre": "Kewell", "foto": "...", "texto": "lesionado"},
+ "entra": {"nombre": "Smicer", "foto": "...", "texto": "última temporada"}}</pre>
+
+<h2 id="hyperframes">7. Animaciones especiales (HyperFrames)</h2>
+<p>Piezas más elaboradas, hechas como páginas HTML animadas y renderizadas a video (<code>animaciones/futbol/</code>). Se reutilizan cambiando los assets y textos.</p>
+<table>
+  <tr><th>Animación</th><th>Qué hace</th><th>Cuándo</th></tr>
+  <tr><td>Congelado + jugador recortado</td><td>El video se congela con un flash, el fondo pasa a gris, queda el jugador con contorno verde, número gigante detrás, nombre y dato</td><td>Presentar a un protagonista en su momento</td></tr>
+  <tr><td>Vértigo (dolly zoom)</td><td>El jugador queda quieto mientras el estadio se le viene encima, con una palabra gigante detrás ("LA QUINTA") y papelitos</td><td>El clímax. Una o dos veces por video</td></tr>
+  <tr><td>Repetición táctica</td><td>La jugada reconstruida en una pizarra, al lado del video real ("reconstrucción aproximada")</td><td>Goles que se entienden viendo los movimientos</td></tr>
+  <tr><td>Trayectoria del tiro</td><td>Pausa, se dibuja la curva del remate con la distancia</td><td>Goles de afuera</td></tr>
+  <tr><td>Penales</td><td>La tanda patada por patada con el total que sube y el video del penal decisivo</td><td>Definiciones por penales</td></tr>
+  <tr><td>Reloj del partido</td><td>Barra 0'–120' con goles y cambios; una ventana muestra cada gol cuando la barra pasa</td><td>Resumen</td></tr>
+  <tr><td>Alineaciones</td><td>Los dos equipos en la cancha con sistema y técnico</td><td>Antes del partido</td></tr>
+  <tr><td>Pizarra táctica</td><td>Fichas que se mueven para explicar un cambio de sistema</td><td>Cambios tácticos</td></tr>
+</table>
+<p>Para cuidar el spoiler, estas piezas se cortan antes de revelar lo que la narración todavía no contó.</p>
+
+<h2 id="material">8. Material: video, fotos, retratos</h2>
 <ul>
-<li><b>Corte seco</b> por defecto.</li>
-<li><b>Flash blanco</b> para congelar o para volver al video después de una pausa.</li>
-<li>El gráfico se apoya sobre el mismo video que venía corriendo (desenfocado), así el cambio no se siente como salto.</li>
+  <li><b>Video de partidos:</b> <code>herramientas/clips.py</code> busca y baja de YouTube (autorizado por el usuario), arma hojas de contacto con tiempos y detecta cortes. Riesgo asumido: Content ID de UEFA; se sube oculto primero y se revisa.</li>
+  <li><b>Fotos:</b> solo libres de verdad (Wikimedia Commons / Creative Commons, con crédito en <code>creditos.txt</code>) o cuadros congelados de los videos. Nada de Getty, Alamy ni fotos de prensa.</li>
+  <li><b>Retratos de jugadores:</b> se sacan de la <b>presentación de equipos</b> del propio partido (la cámara pasa por cada jugador): son de la época y con la camiseta del partido. Se guardan en <code>material/retratos/</code> (cuadrado para placas) y <code>material/retratos/caras/</code> (cara centrada para círculos), con los tiempos en <code>retratos.json</code>.</li>
+  <li><b>Hechos trágicos</b> (ej.: Heysel): imágenes del día (estadio, tribuna, multitud), nunca primeros planos de víctimas.</li>
 </ul>
 
-<h2>8. Voz y música (resumen)</h2>
-<ul>
-<li>Voz propia del canal: <b>LOS 11 - Narrador</b> (ElevenLabs). Porteño joven, natural, frases cortas.</li>
-<li>Música generada con ElevenLabs Music (uso comercial incluido). Silencio antes de la frase clave.</li>
-</ul>
-
-<h2>9. Cómo trabajamos</h2>
+<h2 id="flujo">9. Cómo se hace un video</h2>
 <ol>
-<li>Claude arma el video (guion, voz, gráficos) y lo deja en un proyecto de <b>FilmCraft</b>.</li>
-<li>Sebastián (y Bauti) lo miran en FilmCraft y le dan dirección a Claude sobre cada cosa a cambiar.</li>
-<li>Claude aplica los cambios y vuelve a armar una versión nueva (no pisa las ediciones hechas a mano).</li>
+  <li><b>Tema + material</b> a <code>proyectos/&lt;video&gt;/material/</code>. Investigación y verificación de datos.</li>
+  <li><b>Guion</b> escena por escena (<code>guion.json</code>): texto, visuales, efectos, capítulos. Copia legible en la carpeta LOS11 de Drive (Bauti puede editar ahí; esos cambios se pasan al guion).</li>
+  <li><b>Audio:</b> <code>armar.py proyectos/&lt;video&gt; --solo-audio</code> genera voz y efectos y calcula la duración.</li>
+  <li><b>Render:</b> <code>armar.py proyectos/&lt;video&gt; --guion guion_vN.json --reusar --filmcraft</code> → video, subtítulos, capítulos y proyecto de FilmCraft (una pieza por visual).</li>
+  <li><b>Revisión en FilmCraft</b> (abrir con Archivo → Abrir proyecto, Cmd+O): el usuario marca notas pieza por pieza.</li>
+  <li><b>Correcciones</b> en una versión nueva (<code>guion_vN+1.json</code>), sin pisar lo que el usuario editó. Se corrige solo lo pedido.</li>
+  <li><b>Publicación:</b> subir oculto, revisar Content ID, título, descripción con créditos y capítulos.</li>
 </ol>
-</body></html>
+
+<h2 id="limites">10. Límites y reglas</h2>
+<ul>
+  <li>No se recrean videojuegos ni obras ajenas; no se imitan marcas.</li>
+  <li>ElevenLabs: plan Creator; la clave no puede borrar voces (eso se hace en la web).</li>
+  <li>El ffmpeg instalado no tiene <code>drawtext</code> ni <code>subtitles</code>: todo el texto en pantalla se dibuja con Pillow; los subtítulos van en .srt.</li>
+  <li>FilmCraft 0.17.1 no abre proyectos con doble clic: siempre Cmd+O dentro de la app.</li>
+  <li>Material de transmisiones (video y cuadros) no se sube a GitHub.</li>
+</ul>
+
+<h2 id="posible">11. Hasta dónde puede ir</h2>
+<p>Lo que el sistema ya sabe hacer, combinable en cualquier historia de fútbol:</p>
+<ul>
+  <li>Contar un partido entero con video real, marcador vivo, cambios, tácticas, penales y reloj.</li>
+  <li>Explicar contexto con datos animados: tablas de liga, grupos, cuadros de llaves, palmarés, líneas de tiempo de años o de minutos.</li>
+  <li>Presentar equipos completos con la cara de cada jugador en su posición.</li>
+  <li>Momentos de cine: congelados con el jugador recortado, dolly zoom, texto detrás del jugador.</li>
+  <li>Narración con voz propia, música original y efectos sincronizados con la frase.</li>
+</ul>
+<p>Ideas en carpeta para próximos videos:</p>
+<ul>
+  <li><b>Aperturas:</b> rebobinado (del final hacia atrás hasta el momento clave), 3-0 gigante con flash de lo que viene, pantalla partida con contador histórico, dolly zoom sobre la hinchada.</li>
+  <li>Mapas animados (viajes de hinchas, sedes), comparaciones de jugadores lado a lado, gráficos de posesión o tiros si hay datos.</li>
+</ul>
+</main>
+</body>
+</html>

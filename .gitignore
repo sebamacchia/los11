@@ -25,3 +25,6 @@ animaciones/**/assets/*.webm
 animaciones/**/assets/*.mov
 # DIN es de Linotype/Apple: no se redistribuye (está en macOS)
 animaciones/**/assets/fonts/din-*.ttf
+
+# originales con logo (sacados de transmisiones)
+animaciones/**/assets/_con_logo/

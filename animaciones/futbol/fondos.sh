@@ -1,15 +1,18 @@
 #!/bin/bash
-# Fondos desenfocados (con el logo UEFA nítido encima) y recortes para las ventanas de video (PiP).
+# Fondos desenfocados y recortes para las ventanas de video (PiP). SIN logo UEFA (pedido del usuario, 09/11):
+# todo se recorta a 1677x943 desde (121,135) y se lleva a 1920x1080, así el logo queda afuera.
+# Los assets de cuadros/recortes (maldini_*, smicer_* (desde x=243), gerrard_*, hinchas_in) se recortaron igual; originales en assets/_con_logo/.
+SIN_LOGO="crop=1677:943:121:135,scale=1920:1080:flags=lanczos,setsar=1"
 set -e
 V=../../proyectos/estambul-2005/material/fuentes/final_uefa.mp4
 A=assets
 fondo() { # nombre desde hasta factor_lentitud duracion
   ffmpeg -loglevel error -y -ss $2 -to $3 -i $V -an -filter_complex \
-   "[0:v]setpts=$4*PTS,split[a][b];[a]gblur=sigma=22,eq=brightness=-0.16:saturation=0.55,vignette=PI/4[f];[b]crop=175:100:1665:30,eq=brightness=-0.16:saturation=0.55[l];[f][l]overlay=1665:30,trim=duration=$5,setpts=PTS-STARTPTS" \
+   "[0:v]$SIN_LOGO,setpts=$4*PTS,gblur=sigma=22,eq=brightness=-0.16:saturation=0.55,vignette=PI/4,trim=duration=$5,setpts=PTS-STARTPTS" \
    -r 30 -c:v libx264 -crf 20 -pix_fmt yuv420p $A/$1.mp4
 }
 corte() { # nombre desde hasta
-  ffmpeg -loglevel error -y -ss $2 -to $3 -i $V -an -r 30 -c:v libx264 -crf 18 -pix_fmt yuv420p $A/$1.mp4
+  ffmpeg -loglevel error -y -ss $2 -to $3 -i $V -an -vf "$SIN_LOGO" -r 30 -c:v libx264 -crf 18 -pix_fmt yuv420p $A/$1.mp4
 }
 fondo rep_fondo 384.0 387.0 2.4 7
 fondo pen_fondo 700.9 706.2 1.75 9

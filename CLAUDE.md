@@ -13,7 +13,8 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 - `herramientas/imagenes.py` — buscador "tipo Google" (DuckDuckGo Imágenes, sin clave) que baja candidatas a `material/candidatas/<búsqueda>/`,
   arma hoja de contacto y marca cada foto como AGENCIA (Getty/Alamy: marca de agua, licencia paga) / PRENSA / LIBRE / OTRA.
   Correr con `herramientas/.venv/bin/python` (tiene ddgs + Pillow). `elegir` copia las elegidas y anota el origen en creditos.txt
-- Manual de estilo del canal: Google Doc "Manual de estilo — LOS 11" en la carpeta LOS11 de Drive (copia en `identidad/manual-de-estilo.html`)
+- **Manual del canal (v2, 09/11)**: TODO lo que el canal es y puede hacer (marca, voz, estructura, edición, catálogo de gráficos).
+  Web: `identidad/manual-de-estilo.html` · Drive: Google Doc "Manual del canal — LOS 11 (v2)" en la carpeta LOS11. Leerlo antes de un video nuevo.
 - `herramientas/clips.py` — buscar/bajar videos de YouTube (yt-dlp con cookies de Chrome, autorizado por el usuario), hoja de contacto con tiempos, detectar cortes. Fuentes en `material/fuentes/` (+ `fuentes.txt`)
 - `herramientas/graficos.py` — intro animada del canal, placas de texto, marcador animado, zócalos (Pillow)
 - `herramientas/armar.py` — arma el video (ver docstring para todos los tipos de visual)
@@ -42,7 +43,12 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 ## Video de partidos (pedido del usuario: más video, menos foto)
 - Usar clips de goles/festejos/hinchas: `{"archivo": "material/fuentes/x.mp4", "desde": seg, "velocidad": 0.5, "zocalo": ...}`.
 - Ubicar momentos con `clips.py hoja` (cada 5 s, luego cada 1 s en los goles) y `clips.py cortes`; no pasarse de un corte de plano.
-- Evitar planos de entrevistas/subtítulos en inglés; no poner zócalo donde el video ya trae el nombre. No tapar/quitar el logo UEFA.
+- Evitar planos de entrevistas/subtítulos en inglés; no poner zócalo donde el video ya trae el nombre.
+- Logos de canal (UEFA, LFCTV...): SACARLOS todo lo posible (pedido del usuario, 09/11; antes era al revés). `armar.py`
+  recorta el cuadro lo mínimo para que el logo quede afuera entero (nunca cortado a medias) — tabla `LOGO_ESQUINA`/`LOGO_FRANJA`
+  para fuentes nuevas. Los gráficos HyperFrames usan assets ya recortados (`animaciones/futbol/fondos.sh`).
+- Cuando se nombra a un jugador, va su imagen: retratos en `material/retratos/` (cuadros congelados de la presentación
+  de equipos, ver `retratos.json`); placas con `"foto"`, y `"tipo": "formacion"` para armar un equipo en la cancha.
 - Riesgo asumido por el usuario: Content ID de UEFA. Audio original siempre muteado.
 - `--reusar` re-dibuja solo las piezas cuyo visual cambió.
 
@@ -69,4 +75,12 @@ La API key no tiene permiso voices_write: borrar voces lo hace el usuario desde 
 ## Limitaciones técnicas
 - El ffmpeg instalado NO tiene `subtitles` ni `drawtext`: todo texto en pantalla se dibuja con Pillow (graficos.py),
   y los subtítulos salen como .srt aparte.
-- Fuentes: DIN Condensed Bold / DIN Alternate Bold (no tienen "·": graficos.py lo cambia por "|").
+- Fuentes (desde 08/11, estilo Técnica + Forest): JetBrains Mono y IBM Plex Sans (variables, en `animaciones/futbol/assets/fonts/`).
+  Placas y marcador se dibujan sobre el clip del partido más cercano, desenfocado y teñido (o `"fondo": {...}` / `false`).
+
+## Gráficos animados (graficos.py, tipos de visual en armar.py — ver docstring de armar.py)
+intro · capitulo (separador con número y barra de progreso) · placa (+ "foto") · marcador · zócalo · formacion (equipo en la
+cancha con retratos que aparecen al nombrarlos) · camino (llaves con ida/vuelta/global) · tabla (posiciones con barras,
+destacado, línea de copa, distancia, cartel) · palmares (copas en línea de tiempo) · linea (tramos de años o minutos + contador)
+· cambio (sale/entra con fotos). Todo se sincroniza con `"en": "@frase"`. Estructura en capítulos con frases puente del narrador.
+`--reusar` NO detecta cambios de código en graficos.py: borrar `tmp_*/pNNN_MM.*` de las piezas a rehacer.

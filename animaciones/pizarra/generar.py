@@ -42,24 +42,24 @@ jugadores = ""
 for jid, num, nombre, ini, fin in JUGADORES:
     anillo = ""
     if jid == "hamann":
-        anillo = '<circle class="anillo" cx="0" cy="0" r="42" fill="none" stroke="#7CFC9A" stroke-width="5"/>'
+        anillo = '<circle class="anillo" cx="0" cy="0" r="42" fill="none" stroke="#c8e6c8" stroke-width="5"/>'
     if jid == "finnan":
         anillo = '<circle class="anillo" cx="0" cy="0" r="42" fill="none" stroke="#ff4d4d" stroke-width="5"/>'
     if jid == "gerrard":
-        anillo = '<circle class="anillo" cx="0" cy="0" r="42" fill="none" stroke="#e8b33a" stroke-width="5"/>'
+        anillo = '<circle class="anillo" cx="0" cy="0" r="42" fill="none" stroke="#7ab37a" stroke-width="5"/>'
     x0, y0 = P(*ini)
     jugadores += (f'<g transform="translate({x0} {y0})"><g id="pz-{jid}"><g class="cuerpo">{anillo}'
                   f'<circle cx="0" cy="0" r="29" fill="#c8102e" stroke="#fff" stroke-width="4"/>'
-                  f'<text x="0" y="10" text-anchor="middle" font-size="28" fill="#fff">{num}</text>'
-                  f'<text x="0" y="66" text-anchor="middle" font-size="33" fill="#fff" class="nombre">{nombre}</text>'
+                  f'<text x="0" y="10" text-anchor="middle" font-size="24" fill="#fff">{num}</text>'
+                  f'<text x="0" y="66" text-anchor="middle" font-size="25" fill="#fff" class="nombre">{nombre}</text>'
                   f'</g></g></g>')
 
 tx, ty = P(20, 28); cx_, cy_ = P(18, 50); hx, hy = P(20, 72)
 gx0, gy0 = P(44, 58); gx1, gy1 = P(64, 36); ax1, ay1 = P(97, 50)
-trazos = (f'<polyline id="pz-linea3" points="{tx},{ty} {cx_},{cy_} {hx},{hy}" fill="none" stroke="#e8b33a" stroke-width="7" '
+trazos = (f'<polyline id="pz-linea3" points="{tx},{ty} {cx_},{cy_} {hx},{hy}" fill="none" stroke="#7ab37a" stroke-width="7" '
           f'stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="600" stroke-dashoffset="600"/>'
-          f'<line id="pz-estela" x1="{gx0}" y1="{gy0}" x2="{gx1}" y2="{gy1}" stroke="#e8b33a" stroke-width="6" stroke-dasharray="14 12"/>'
-          f'<path id="pz-flecha" d="M{gx1 + 30},{gy1 + 10} Q{(gx1 + ax1) / 2},{gy1 - 40} {ax1},{ay1}" fill="none" stroke="#e8b33a" '
+          f'<line id="pz-estela" x1="{gx0}" y1="{gy0}" x2="{gx1}" y2="{gy1}" stroke="#7ab37a" stroke-width="6" stroke-dasharray="14 12"/>'
+          f'<path id="pz-flecha" d="M{gx1 + 30},{gy1 + 10} Q{(gx1 + ax1) / 2},{gy1 - 40} {ax1},{ay1}" fill="none" stroke="#7ab37a" '
           f'stroke-width="9" stroke-linecap="round" stroke-dasharray="520" stroke-dashoffset="520" data-layout-ignore marker-end="url(#pz-punta)"/>')
 
 js_pos = []
@@ -75,31 +75,31 @@ for jid, num, nombre, ini, fin in JUGADORES:
 
 HTML = f'''<template>
   <style>
-    @font-face {{ font-family: "DIN Cond"; src: url("assets/fonts/din-condensed-bold.ttf"); }}
-    @font-face {{ font-family: "DIN Alt"; src: url("assets/fonts/din-alternate-bold.ttf"); }}
-    #root {{ position: absolute; inset: 0; overflow: hidden; color: #f2efe8; font-family: "DIN Cond";
-      background: radial-gradient(ellipse at 62% 55%, #16201a 0%, #0b0c0f 65%); }}
-    #pz-logo {{ position: absolute; left: 96px; top: 70px; font: 34px "DIN Cond"; letter-spacing: 3px;
-      border-left: 8px solid #e8b33a; padding-left: 14px; }}
-    #pz-etq {{ position: absolute; left: 96px; top: 134px; font: 30px "DIN Alt"; letter-spacing: 9px; color: #e8b33a; }}
-    #pz-tit {{ position: absolute; left: 94px; top: 176px; font: 104px/1 "DIN Cond"; letter-spacing: 1px; }}
+    @font-face {{ font-family: "Mono"; src: url("assets/fonts/jetbrains-mono.ttf"); font-weight: 100 800; }}
+    @font-face {{ font-family: "Plex"; src: url("assets/fonts/plex-sans.ttf"); font-weight: 100 700; }}
+    #root {{ position: absolute; inset: 0; overflow: hidden; color: #f2efe8; font-family: "Mono"; font-weight: 700;
+      background: radial-gradient(ellipse at 62% 55%, #2d4a2d 0%, #1a2e1a 70%); }}
+    #pz-logo {{ position: absolute; left: 96px; top: 70px; font: 700 28px "Mono"; letter-spacing: 1px;
+      border-left: 8px solid #7ab37a; padding-left: 14px; }}
+    #pz-etq {{ position: absolute; left: 96px; top: 134px; font: 500 24px "Mono"; letter-spacing: 4px; color: #7ab37a; }}
+    #pz-tit {{ position: absolute; left: 94px; top: 176px; font: 700 92px/0.98 "Mono"; }}
     #pz-tit span {{ display: inline-block; }}
-    #pz-ley {{ position: absolute; left: 96px; top: 330px; width: 480px; font: 36px/1.15 "DIN Cond"; }}
+    #pz-ley {{ position: absolute; left: 96px; top: 330px; width: 500px; font: 500 30px/1.2 "Plex"; }}
     #pz-ley div {{ margin-bottom: 18px; padding-left: 38px; text-indent: -38px; }}
     #pz-ley b {{ display: inline-block; width: 22px; height: 22px; border-radius: 50%; margin-right: 16px; vertical-align: 2px; }}
-    #pz-form {{ position: absolute; left: 96px; bottom: 96px; font: 64px "DIN Cond"; color: #e8b33a; white-space: nowrap; }}
+    #pz-form {{ position: absolute; left: 96px; bottom: 96px; font: 700 52px "Mono"; color: #7ab37a; white-space: nowrap; }}
     #pz-form span {{ display: inline-block; }}
-    #pz-form .gris {{ color: #9a9a9a; }}
-    #pz-f3 {{ color: #ffd36b; }}
+    #pz-form .gris {{ color: rgba(242,239,232,.5); }}
+    #pz-f3 {{ color: #c8e6c8; }}
     #pz-mesa {{ position: absolute; left: 640px; top: 175px; width: 1260px; height: 900px;
       transform: perspective(1900px) rotateX(32deg) scale(1.02); transform-origin: 50% 40%; }}
     #pz-campo {{ width: 100%; height: 100%; }}
     #pz-campo svg {{ filter: drop-shadow(0 40px 50px rgba(0,0,0,.6)); }}
     .anillo, #pz-flecha, #pz-estela, #pz-f2, #pz-f3, #pz-ley div, #pz-orden {{ opacity: 0; }}
     #pz-orden {{ position: absolute; left: 96px; top: 700px; width: 480px; }}
-    #pz-orden small {{ display: block; font: 30px "DIN Alt"; letter-spacing: 7px; color: #e8b33a; margin-bottom: 10px; }}
-    #pz-orden p {{ font: 46px/1.05 "DIN Cond"; }}
-    .nombre {{ paint-order: stroke; stroke: #0b2a17; stroke-width: 7px; }}
+    #pz-orden small {{ display: block; font: 500 22px "Mono"; letter-spacing: 3px; color: #7ab37a; margin-bottom: 10px; }}
+    #pz-orden p {{ font: 600 40px/1.1 "Plex"; }}
+    .nombre {{ paint-order: stroke; stroke: #1a2e1a; stroke-width: 7px; }}
   </style>
   <div id="root" data-composition-id="pizarra" data-width="1920" data-height="1080">
     <div id="pz-logo">LOS 11</div>
@@ -107,16 +107,16 @@ HTML = f'''<template>
     <div id="pz-tit"><span>TRES</span> <span>ATRÁS</span></div>
     <div id="pz-ley">
       <div id="pz-l1"><b style="background:#ff4d4d"></b>Sale Finnan, lesionado</div>
-      <div id="pz-l2"><b style="background:#7CFC9A"></b>Entra Hamann, al medio</div>
-      <div id="pz-l3"><b style="background:#e8b33a"></b>Tres atrás: Traoré, Carragher y Hyypiä</div>
-      <div id="pz-l4"><b style="background:#e8b33a"></b>Gerrard, más libre para atacar</div>
+      <div id="pz-l2"><b style="background:#c8e6c8"></b>Entra Hamann, al medio</div>
+      <div id="pz-l3"><b style="background:#7ab37a"></b>Tres atrás: Traoré, Carragher y Hyypiä</div>
+      <div id="pz-l4"><b style="background:#7ab37a"></b>Gerrard, más libre para atacar</div>
     </div>
     <div id="pz-orden"><small>LA ORDEN DE BENÍTEZ</small><p>«Un gol rápido...<br>y ver qué pasa»</p></div>
     <div id="pz-form"><span id="pz-f1">4-4-1-1</span><span id="pz-f2" class="gris">&nbsp;→&nbsp;</span><span id="pz-f3">3-4-2-1</span></div>
     <div id="pz-mesa" data-layout-allow-overflow><div id="pz-campo">
-      <svg viewBox="-70 -50 {W + 140} {H + 170}" width="1260" height="900" font-family="DIN Cond">
+      <svg viewBox="-70 -50 {W + 140} {H + 170}" width="1260" height="900" font-family="Mono" font-weight="700">
         <defs><marker id="pz-punta" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
-          <path d="M0,0 L4,2 L0,4 z" fill="#e8b33a"/></marker></defs>
+          <path d="M0,0 L4,2 L0,4 z" fill="#7ab37a"/></marker></defs>
         {franjas}{lineas}{trazos}{jugadores}
       </svg>
     </div></div>
@@ -150,7 +150,7 @@ HTML = f'''<template>
     // "hacer un gol rápido"
     tl.set("#pz-flecha", {{ opacity: 1 }}, 10.72);
     tl.to("#pz-flecha", {{ strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }}, 10.72);
-    tl.to("#pz-area", {{ stroke: "#e8b33a", duration: 0.3 }}, 11.3);
+    tl.to("#pz-area", {{ stroke: "#7ab37a", duration: 0.3 }}, 11.3);
     // movimientos
     {chr(10).join("    " + s for s in js_mov)}
     window.__timelines["pizarra"] = tl;
