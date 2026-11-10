@@ -161,17 +161,30 @@ def _partir(txt, f, ancho):
 # ---------- intro del canal ----------
 def intro(dest, W, H, dur=3.2, subtitulo="", fondo=None):
     """'LOS 11' se escribe letra por letra (máquina de escribir, con cursor verde), se abre la línea y
-    aparece el título del video. Funde a negro al final."""
+    entra GRANDE el título del video con un barrido (la última palabra en verde). Funde a negro al final."""
     s = W / 1920
-    f_t = fuente(700, 190 * s)
-    f_s = fuente(500, 34 * s)
-    esp_s = 6 * s
+    f_t = fuente(700, 150 * s)
+    sub = subtitulo.upper()
     d0 = ImageDraw.Draw(Image.new("RGB", (1, 1)))
+    tam = 120 * s
+    while sub and d0.textlength(sub, font=fuente(800, tam)) > W * 0.84:
+        tam -= 4 * s
+    f_s = fuente(800, tam)
     ancho = d0.textlength(CANAL, font=f_t)
     x0 = W / 2 - ancho / 2
     asc, desc = f_t.getmetrics()
-    y0 = H / 2 - asc * 0.78
-    sub = subtitulo.upper()
+    y0 = H / 2 - 150 * s - asc * 0.78 if sub else H / 2 - asc * 0.78
+    yl = H / 2 - 20 * s if sub else H / 2 + 92 * s
+    palabras = sub.split(" ")
+    resto, ultima = (" ".join(palabras[:-1]) + " ", palabras[-1]) if len(palabras) > 1 else ("", sub)
+    ws = d0.textlength(sub, font=f_s)
+    xs = W / 2 - ws / 2
+    ys = yl + 44 * s
+    capa_t = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    if sub:
+        dt = ImageDraw.Draw(capa_t)
+        dt.text((xs, ys), resto, font=f_s, fill=TEXTO)
+        dt.text((xs + d0.textlength(resto, font=f_s), ys), ultima, font=f_s, fill=ACENTO)
 
     def cuadro(t, i, n):
         img = _fondo_liso(W, H).convert("RGBA")
@@ -181,22 +194,21 @@ def intro(dest, W, H, dur=3.2, subtitulo="", fondo=None):
         d.text((x0, y0), txt, font=f_t, fill=TEXTO)
         cx = x0 + d.textlength(txt, font=f_t) + 10 * s
         escribiendo = k < len(CANAL)
-        if escribiendo or int(t * 2.5) % 2 == 0 and t < 1.6:  # cursor
-            d.rectangle([cx, y0 + asc * 0.12, cx + 26 * s, y0 + asc * 0.98], fill=ACENTO)
-        a = ease((t - 0.85) / 0.5)
+        if escribiendo or int(t * 2.5) % 2 == 0 and t < 1.0:  # cursor
+            d.rectangle([cx, y0 + asc * 0.12, cx + 22 * s, y0 + asc * 0.98], fill=ACENTO)
+        a = ease((t - 0.75) / 0.45)
         if a > 0:
-            lw = (ancho / 2 + 60 * s) * a
-            yl = H / 2 + 92 * s
+            lw = (max(ancho, ws) / 2 + 40 * s) * a
             d.rectangle([W / 2 - lw, yl, W / 2 + lw, yl + 6 * s], fill=ACENTO)
         if sub:
-            b = ease((t - 1.15) / 0.45)
-            if b > 0:
-                capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-                dc = ImageDraw.Draw(capa)
-                w = _ancho_esp(sub, f_s, esp_s)
-                _espaciado(dc, (W / 2 - w / 2, H / 2 + 128 * s + (1 - b) * 16 * s), sub, f_s, CLARO, esp_s)
-                capa.putalpha(capa.getchannel("A").point(lambda v: int(v * b)))
-                img = Image.alpha_composite(img, capa)
+            b = ease((t - 0.95) / 0.55)
+            if b > 0:  # barrido de izquierda a derecha, con un leve ascenso
+                corte = int(xs + (ws + 40 * s) * b)
+                c = capa_t.crop((0, 0, max(1, corte), H))
+                img.alpha_composite(c, (0, int((1 - b) * 14 * s)))
+                if b < 1:  # borde verde del barrido
+                    d = ImageDraw.Draw(img)
+                    d.rectangle([corte, ys + 6 * s, corte + 8 * s, ys + tam * 0.98], fill=ACENTO)
         fin = max(0.0, (t - (dur - 0.45)) / 0.45)
         if fin > 0:
             img = Image.blend(img, Image.new("RGBA", (W, H), (0, 0, 0, 255)), min(1, fin))
@@ -985,3 +997,286 @@ def zocalo(dest, W, H, titulo, sub=""):
         d.rectangle([x + 8 * s, y + h_t, x + 8 * s + ws, y + h_t + h_s], fill=OSCURO + (220,))
         _espaciado(d, (x + 34 * s, y + h_t + 11 * s), sub, f_s, CLARO + (255,), esp)
     img.save(dest)
+
+
+def golpe(src, dest, W, H, dur, texto, sub="", t0=0.5, local="", visitante=""):
+    """Marcador gigante que GOLPEA sobre un clip ya renderizado (src, WxH) en el segundo t0:
+    entra grande y cae a su tamaño, flash blanco, sacudón, y el video se oscurece detrás.
+    texto = "1-0"; local/visitante a los costados; sub abajo (ej. "MALDINI · 1'")."""
+    s = W / 1920
+    f_g = fuente(800, 330 * s)
+    f_eq = fuente(700, 58 * s)
+    f_sub = fuente(700, 40 * s)
+    n = round(dur * FPS)
+    txt = texto
+    L, V = local.upper(), visitante.upper()
+    d0 = ImageDraw.Draw(Image.new("RGB", (1, 1)))
+    wg = d0.textlength(txt, font=f_g)
+    bb = d0.textbbox((0, 0), txt, font=f_g)
+    hg = bb[3] - bb[1]
+    sep = 56 * s
+    # capa del marcador a tamaño final (se escala para el golpe)
+    wl = d0.textlength(L, font=f_eq) if L else 0
+    wv = d0.textlength(V, font=f_eq) if V else 0
+    ancho = int(wl + wv + wg + 2 * sep + 40 * s)
+    alto = int(hg + 140 * s)
+    capa = Image.new("RGBA", (ancho, alto), (0, 0, 0, 0))
+    d = ImageDraw.Draw(capa)
+    yg = (alto - hg) / 2 - bb[1] - 30 * s
+    xg = wl + sep + 20 * s
+    for dx, dy in ((6, 8), (3, 4)):  # sombra
+        d.text((xg + dx * s, yg + dy * s), txt, font=f_g, fill=(0, 0, 0, 150))
+    d.text((xg, yg), txt, font=f_g, fill=TEXTO + (255,))
+    ym = (alto - 30 * s) / 2 - 30 * s
+    if L:
+        d.text((20 * s, ym), L, font=f_eq, fill=TEXTO + (255,))
+        d.rectangle([20 * s, ym + 76 * s, 20 * s + wl, ym + 84 * s], fill=COLOR_EQUIPO.get(L, ACENTO) + (255,))
+    if V:
+        xv = xg + wg + sep
+        d.text((xv, ym), V, font=f_eq, fill=TEXTO + (255,))
+        d.rectangle([xv, ym + 76 * s, xv + wv, ym + 84 * s], fill=COLOR_EQUIPO.get(V, ACENTO) + (255,))
+    if ancho > 0.88 * W:  # palabras largas ("SHEVCHENKO"): achicar para que entre en el cuadro
+        k = 0.88 * W / ancho
+        ancho, alto = int(ancho * k), int(alto * k)
+        capa = capa.resize((ancho, alto), Image.LANCZOS)
+
+    p_in =subprocess.Popen(["ffmpeg", "-v", "error", "-i", str(src), "-frames:v", str(n), "-f", "rawvideo",
+                             "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
+    p = subprocess.Popen(
+        ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
+         "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+         "-pix_fmt", "yuv420p", "-an", str(dest)], stdin=subprocess.PIPE)
+    import math
+    tam = W * H * 3
+    ultimo = Image.new("RGB", (W, H))
+    for i in range(n):
+        buf = p_in.stdout.read(tam)
+        if len(buf) == tam:
+            ultimo = Image.frombytes("RGB", (W, H), buf)
+        t = i / FPS - t0
+        img = ultimo.convert("RGBA")
+        if t >= 0:
+            oscuro = Image.new("RGBA", (W, H), OSCURO + (int(150 * ease(t / 0.15)),))
+            img = Image.alpha_composite(img, oscuro)
+            esc = 1 + 0.9 * (1 - ease(t / 0.14))          # cae desde grande
+            sac = 16 * s * max(0.0, 1 - t / 0.35) * math.sin(t * 90)  # sacudón
+            c = capa if esc == 1 else capa.resize((int(ancho * esc), int(alto * esc)), Image.BILINEAR)
+            if t < 0.14:
+                c.putalpha(c.getchannel("A").point(lambda a: int(a * ease(t / 0.08))))
+            img.alpha_composite(c, (int(W / 2 - c.width / 2 + sac), int(H / 2 - c.height / 2 - 20 * s)))
+            if sub and t > 0.25:
+                a = ease((t - 0.25) / 0.25)
+                cs = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+                dd = ImageDraw.Draw(cs)
+                w = dd.textlength(sub, font=f_sub) + 48 * s
+                y = H / 2 + alto / 2 - 10 * s + (1 - a) * 20 * s
+                dd.rectangle([W / 2 - w / 2, y, W / 2 + w / 2, y + 66 * s], fill=ACENTO + (int(255 * a),))
+                dd.text((W / 2 - w / 2 + 24 * s, y + 10 * s), sub, font=f_sub, fill=OSCURO + (int(255 * a),))
+                img = Image.alpha_composite(img, cs)
+            flash = int(200 * max(0.0, 1 - t / 0.18))
+            if flash:
+                img = Image.alpha_composite(img, Image.new("RGBA", (W, H), (255, 255, 255, flash)))
+        p.stdin.write(img.convert("RGB").tobytes())
+    p_in.stdout.close()
+    p_in.wait()
+    p.stdin.close()
+    if p.wait() != 0:
+        raise SystemExit(f"ffmpeg falló renderizando {dest}")
+
+
+def _icono(d, kind, cx, cy, r, color):
+    """Íconos simples dibujados: 'mas' (suscribirse), 'like' (pulgar), 'comentario' (globito), 'check'."""
+    w = max(2, int(r * 0.16))
+    if kind == "mas":
+        d.line([cx - r * 0.55, cy, cx + r * 0.55, cy], fill=color, width=w)
+        d.line([cx, cy - r * 0.55, cx, cy + r * 0.55], fill=color, width=w)
+    elif kind == "check":
+        d.line([cx - r * 0.55, cy, cx - r * 0.12, cy + r * 0.45, cx + r * 0.6, cy - r * 0.45], fill=color, width=w,
+               joint="curve")
+    elif kind == "like":
+        d.rounded_rectangle([cx - r * 0.75, cy - r * 0.05, cx - r * 0.42, cy + r * 0.7], r * 0.08, fill=color)
+        d.rounded_rectangle([cx - r * 0.32, cy - r * 0.1, cx + r * 0.72, cy + r * 0.7], r * 0.2, fill=color)
+        d.polygon([(cx - r * 0.32, cy - r * 0.05), (cx - r * 0.05, cy - r * 0.75), (cx + r * 0.2, cy - r * 0.7),
+                   (cx + r * 0.12, cy - r * 0.1)], fill=color)
+    elif kind == "comentario":
+        d.rounded_rectangle([cx - r * 0.75, cy - r * 0.6, cx + r * 0.75, cy + r * 0.35], r * 0.25, fill=color)
+        d.polygon([(cx - r * 0.35, cy + r * 0.3), (cx - r * 0.5, cy + r * 0.75), (cx + r * 0.05, cy + r * 0.3)], fill=color)
+
+
+def cierre(dest, W, H, dur, botones, titulo="LOS 11", sub="", fondo=None):
+    """Pantalla final: botones que entran de a uno (t = segundo en que el narrador los nombra).
+    botones = [{"texto": "SUSCRIBITE", "icono": "mas", "t": 1.2, "click": "SUSCRIPTO"}, ...]
+    El que tiene "click" recibe un cursor que lo aprieta y cambia de texto. Abajo queda lugar libre
+    para los elementos de la pantalla final de YouTube."""
+    import math
+    s = W / 1920
+    f_b = fuente(800, 64 * s)
+    f_t = fuente(800, 120 * s)
+    f_s = fuente(500, 40 * s, plex=True)
+    d0 = ImageDraw.Draw(Image.new("RGB", (1, 1)))
+    hb, r_ic, pad, gap = 150 * s, 42 * s, 44 * s, 48 * s
+    anchos = [pad * 2 + r_ic * 2 + 22 * s + max(d0.textlength(b["texto"], font=f_b),
+                                                 d0.textlength(b.get("click", ""), font=f_b)) for b in botones]
+    total = sum(anchos) + gap * (len(botones) - 1)
+    yb = H / 2 - 20 * s
+
+    def cuadro(t, i, n):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        a = ease(t / 0.5)
+        al = int(255 * a)
+        _marca(d, s, al)
+        # título arriba
+        tt = titulo.split(" ")
+        x = W / 2 - d0.textlength(titulo, font=f_t) / 2
+        y = yb - 220 * s + (1 - a) * 30 * s
+        for k, palabra in enumerate(tt):
+            col = ACENTO if palabra.isdigit() else TEXTO
+            d.text((x, y), palabra, font=f_t, fill=col + (al,))
+            x += d0.textlength(palabra + " ", font=f_t)
+        x = W / 2 - total / 2
+        for b, wb in zip(botones, anchos):
+            tb = t - b["t"]
+            if tb > 0:
+                e = ease(tb / 0.3)
+                pop = 1 + 0.25 * math.sin(min(1.0, tb / 0.3) * math.pi)  # entra con rebote
+                clic_t = b["t"] + 0.9
+                apretado = b.get("click") and t >= clic_t
+                presion = 0.92 if b.get("click") and clic_t - 0.08 <= t < clic_t + 0.08 else 1.0
+                esc = pop * presion
+                cx, cy = x + wb / 2, yb + hb / 2
+                w2, h2 = wb * esc / 2, hb * esc / 2
+                fondo_b = (PANEL if apretado else ACENTO) + (int(255 * e),)
+                d.rounded_rectangle([cx - w2, cy - h2, cx + w2, cy + h2], h2, fill=fondo_b)
+                txt = b["click"] if apretado else b["texto"]
+                col = TEXTO if apretado else OSCURO
+                ic = "check" if apretado else b.get("icono", "mas")
+                icx = cx - w2 + pad * esc + r_ic * esc
+                _icono(d, ic, icx, cy, r_ic * esc, col + (int(255 * e),))
+                fb = fuente(800, 64 * s * esc)
+                d.text((icx + r_ic * esc + 22 * s * esc, cy - 42 * s * esc), txt, font=fb, fill=col + (int(255 * e),))
+                if apretado:  # onda del clic
+                    k = (t - clic_t) / 0.6
+                    if k < 1:
+                        rr = h2 * (1 + 0.6 * k)
+                        d.rounded_rectangle([cx - w2 - (rr - h2), cy - rr, cx + w2 + (rr - h2), cy + rr], rr,
+                                            outline=ACENTO + (int(200 * (1 - k)),), width=int(4 * s))
+                # cursor que viene a apretar
+                if b.get("click") and clic_t - 0.7 <= t < clic_t + 0.5:
+                    k = ease((t - (clic_t - 0.7)) / 0.6)
+                    px = cx + w2 * 0.4 + (1 - k) * 260 * s
+                    py = cy + (1 - k) * 200 * s
+                    flecha = [(0, 0), (0, 44), (11, 34), (19, 52), (27, 48), (19, 31), (34, 31)]
+                    pts = [(px + u * s * 1.3, py + v * s * 1.3) for u, v in flecha]
+                    d.polygon(pts, fill=TEXTO + (255,), outline=OSCURO + (255,))
+            x += wb + gap
+        if sub:
+            tl = max(b["t"] for b in botones) + 0.6
+            if t > tl:
+                e = ease((t - tl) / 0.5)
+                w = d0.textlength(sub, font=f_s)
+                d.text((W / 2 - w / 2, yb + hb + 70 * s + (1 - e) * 16 * s), sub, font=f_s, fill=CLARO + (int(255 * e),))
+        return capa
+
+    _render(dest, W, H, dur, cuadro, fondo)
+
+
+def prestamo(dest, W, H, dur, foto, nombre, origen, destino, t_mov=0.8, t_nota=None, nota="", sub_nota="",
+             etiqueta="", fondo=None):
+    """Jugador a préstamo: su retrato viaja del club dueño (origen) al club donde juega (destino) por una flecha
+    punteada con el cartel 'A PRÉSTAMO'. En t_nota cae un sello sobre el club de origen (nota/sub_nota).
+    origen/destino = {"nombre": "Chelsea", "colores": [[3, 70, 148]]} (uno o más colores, se hacen rayas)."""
+    import math
+    s = W / 1920
+    r = 130 * s
+    f_club = fuente(800, 64 * s)
+    f_e = fuente(500, 26 * s)
+    f_lab = fuente(700, 32 * s)
+    f_nom = fuente(700, 44 * s)
+    f_sello = fuente(800, 40 * s)
+    f_ss = fuente(600, 26 * s)
+    cara = _circulo(_retrato(foto, 2 * r)) if foto else None
+    xo, xd, yp = W * 0.24, W * 0.76, H * 0.66
+    pw, ph = 470 * s, 150 * s
+    xl = 96 * s
+
+    def panel(d, cx, club, a):
+        al = int(255 * a)
+        d.rounded_rectangle([cx - pw / 2, yp - ph / 2, cx + pw / 2, yp + ph / 2], 14 * s, fill=PANEL + (int(235 * a),))
+        cols = [tuple(c) for c in club.get("colores", [ACENTO])]
+        n = 8
+        for k in range(n):  # franja con los colores del club
+            x0 = cx - pw / 2 + k * pw / n
+            d.rectangle([x0, yp + ph / 2 - 14 * s, x0 + pw / n, yp + ph / 2], fill=cols[k % len(cols)] + (al,))
+        tw = d.textlength(club["nombre"].upper(), font=f_club)
+        d.text((cx - tw / 2, yp - 46 * s), club["nombre"].upper(), font=f_club, fill=TEXTO + (al,))
+
+    def pos(k):  # recorrido en arco de origen a destino
+        x = xo + (xd - xo) * k
+        y = yp - ph / 2 - r - 40 * s - math.sin(math.pi * k) * 150 * s
+        return x, y
+
+    def cuadro(t, i, n):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        a = ease(t / 0.4)
+        _marca(d, s, int(255 * a))
+        if etiqueta:
+            d.rectangle([xl, 196 * s, xl + 46 * s * a, 200 * s], fill=ACENTO + (int(255 * a),))
+            _espaciado(d, (xl + 62 * s, 182 * s), etiqueta.upper(), f_e, ACENTO + (int(255 * a),), 4 * s)
+        panel(d, xo, origen, ease((t - 0.1) / 0.4))
+        panel(d, xd, destino, ease((t - 0.3) / 0.4))
+        m = ease((t - t_mov) / 1.1)
+        # flecha punteada que se dibuja delante del jugador
+        if t > t_mov - 0.3:
+            b = ease((t - (t_mov - 0.3)) / 0.3)
+            pasos = 40
+            for k in range(pasos):
+                k0, k1 = k / pasos, (k + 0.5) / pasos
+                if k0 > max(m, 0.02) + 0.98 * b * (1 - m) and m < 1:
+                    pass
+                p0, p1 = pos(k0), pos(k1)
+                d.line([p0, p1], fill=ACENTO + (int(200 * b),), width=max(2, int(5 * s)))
+            hx, hy = pos(1.0)
+            fl = 22 * s
+            d.polygon([(hx, hy + r + 4 * s), (hx - fl, hy + r - fl * 1.4), (hx + fl, hy + r - fl * 1.4)],
+                      fill=ACENTO + (int(255 * b),))
+            lab = "A PRÉSTAMO"
+            tw = _ancho_esp(lab, f_lab, 6 * s)
+            mx, my = pos(0.5)
+            d.rounded_rectangle([mx - tw / 2 - 22 * s, my - 150 * s, mx + tw / 2 + 22 * s, my - 92 * s], 10 * s,
+                                fill=ACENTO + (int(255 * b),))
+            _espaciado(d, (mx - tw / 2, my - 140 * s), lab, f_lab, OSCURO + (int(255 * b),), 6 * s)
+        # jugador
+        ap = ease((t - 0.35) / 0.4)
+        x, y = pos(max(0.0, m))
+        if cara is not None and ap > 0:
+            c = cara.copy()
+            c.putalpha(c.getchannel("A").point(lambda v: int(v * ap)))
+            capa.alpha_composite(c, (int(x - r), int(y - r)))
+            d.ellipse([x - r, y - r, x + r, y + r], outline=ACENTO + (int(255 * ap),), width=max(4, int(7 * s)))
+            tw = d.textlength(nombre.upper(), font=f_nom)
+            d.text((x - tw / 2, y - r - 62 * s), nombre.upper(), font=f_nom, fill=TEXTO + (int(255 * ap),))
+        # sello sobre el club de origen
+        if t_nota is not None and t >= t_nota and nota:
+            k = (t - t_nota) / 0.25
+            esc = 1 + 0.8 * (1 - ease(k))
+            al = int(255 * ease(k / 0.6))
+            ancho = max(d.textlength(nota.upper(), font=f_sello), d.textlength(sub_nota.upper(), font=f_ss)) + 60 * s
+            lay = Image.new("RGBA", (int(ancho), int(130 * s)), (0, 0, 0, 0))
+            dl = ImageDraw.Draw(lay)
+            rojo = (200, 16, 46)
+            dl.rounded_rectangle([4, 4, lay.width - 4, lay.height - 4], 12 * s, outline=rojo + (255,), width=int(6 * s),
+                                 fill=(14, 26, 14, 200))
+            tw = dl.textlength(nota.upper(), font=f_sello)
+            dl.text((lay.width / 2 - tw / 2, 18 * s), nota.upper(), font=f_sello, fill=(255, 90, 100, 255))
+            if sub_nota:
+                tw = dl.textlength(sub_nota.upper(), font=f_ss)
+                dl.text((lay.width / 2 - tw / 2, 78 * s), sub_nota.upper(), font=f_ss, fill=TEXTO + (255,))
+            lay = lay.rotate(-8, expand=True, resample=Image.BICUBIC)
+            lay = lay.resize((int(lay.width * esc), int(lay.height * esc)), Image.BILINEAR)
+            lay.putalpha(lay.getchannel("A").point(lambda v: int(v * al / 255)))
+            capa.alpha_composite(lay, (int(xo - lay.width / 2), int(yp + ph / 2 + 30 * s)))
+        return capa
+
+    _render(dest, W, H, dur, cuadro, fondo)

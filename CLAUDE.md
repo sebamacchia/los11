@@ -46,7 +46,8 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 - Evitar planos de entrevistas/subtítulos en inglés; no poner zócalo donde el video ya trae el nombre.
 - Logos de canal (UEFA, LFCTV...): SACARLOS todo lo posible (pedido del usuario, 09/11; antes era al revés). `armar.py`
   recorta el cuadro lo mínimo para que el logo quede afuera entero (nunca cortado a medias) — tabla `LOGO_ESQUINA`/`LOGO_FRANJA`
-  para fuentes nuevas. Los gráficos HyperFrames usan assets ya recortados (`animaciones/futbol/fondos.sh`).
+  para fuentes nuevas. Textos de la TV (goleador, nombres): enteros o afuera, NUNCA cortados — tabla `TEXTO_TV`.
+  Los gráficos HyperFrames usan assets ya recortados (`animaciones/futbol/fondos.sh`).
 - Cuando se nombra a un jugador, va su imagen: retratos en `material/retratos/` (cuadros congelados de la presentación
   de equipos, ver `retratos.json`); placas con `"foto"`, y `"tipo": "formacion"` para armar un equipo en la cancha.
 - Riesgo asumido por el usuario: Content ID de UEFA. Audio original siempre muteado.

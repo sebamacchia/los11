@@ -1,0 +1,92 @@
+<template>
+  <!-- Minuto 117: la jugada se pausa dos veces. Fondo apagado, jugadores recortados con contorno verde,
+       aro + nombre sobre cada uno, flecha del cabezazo. Coordenadas del plano original 1920x1080;
+       #iv-plano usa transformOrigin 0 0: pantalla = k * p + (x, y). -->
+  <style>
+    @font-face { font-family: "Mono"; src: url("assets/fonts/jetbrains-mono.ttf"); font-weight: 100 800; }
+    @font-face { font-family: "Plex"; src: url("assets/fonts/plex-sans.ttf"); font-weight: 100 700; }
+    #iv-root { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    #iv-plano { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    .full { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+    .tinte { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: rgba(14, 26, 14, .5); }
+    .cut { filter: drop-shadow(3px 0 0 #7ab37a) drop-shadow(-3px 0 0 #7ab37a) drop-shadow(0 3px 0 #7ab37a) drop-shadow(0 -3px 0 #7ab37a); }
+    #iv-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+    .aro { position: absolute; border: 5px solid #c8e6c8; border-radius: 50%; box-shadow: 0 0 24px rgba(122,179,122,.6); }
+    .tag { position: absolute; font: 700 44px/1 "Mono"; color: #fff; white-space: nowrap; }
+    .tag .et { display: block; font: 600 22px/1 "Mono"; letter-spacing: 3px; color: #1a2e1a; background: #c8e6c8;
+               padding: 8px 12px 4px; margin-bottom: 8px; width: max-content; }
+    .tag .nm { display: block; background: rgba(14,26,14,.85); padding: 10px 14px 4px; width: max-content; }
+    #iv-flecha { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    #iv-num { position: absolute; left: 60px; top: 40px; font: 700 300px/0.8 "Mono"; color: transparent;
+              -webkit-text-stroke: 3px rgba(122,179,122,.6); }
+    #iv-dato { position: absolute; left: 50%; bottom: 90px; transform: translateX(-50%); text-align: center; }
+    #iv-dato .a { display: inline-block; font: 700 92px/1 "Mono"; color: #fff; text-shadow: 0 4px 0 rgba(0,0,0,.5); }
+    #iv-dato .b { display: block; width: max-content; margin: 14px auto 0; font: 700 30px/1 "Mono"; color: #1a2e1a;
+                  background: #c8e6c8; padding: 12px 20px 6px; }
+  </style>
+  <div id="iv-root" data-composition-id="intervenido_117" data-width="1920" data-height="1080">
+    <div id="iv-plano">
+      <video id="iv-s1" class="clip full" src="assets/iv117_s1.mp4" data-start="0" data-duration="1.3" data-track-index="0" muted playsinline></video>
+      <img id="iv-f1" class="clip full" src="assets/iv117_f1.png" alt="" data-start="1.3" data-duration="2.1" data-track-index="1"
+           data-color-grading='{"preset":null,"intensity":1,"adjust":{"exposure":-0.7,"contrast":0.1,"saturation":-1}}'>
+      <div id="iv-t1" class="clip tinte" data-start="1.3" data-duration="2.1" data-track-index="2"></div>
+      <img id="iv-c1" class="clip full cut" src="assets/iv117_f1_cut.png" alt="Shevchenko y Dudek" data-start="1.3" data-duration="2.1" data-track-index="3" data-layout-allow-occlusion="">
+      <video id="iv-s2" class="clip full" src="assets/iv117_s2.mp4" data-start="3.4" data-duration="1.37" data-track-index="0" muted playsinline></video>
+      <img id="iv-f2" class="clip full" src="assets/iv117_f2.png" alt="" data-start="4.77" data-duration="2.66" data-track-index="1"
+           data-color-grading='{"preset":null,"intensity":1,"adjust":{"exposure":-0.7,"contrast":0.1,"saturation":-1}}'>
+      <div id="iv-t2" class="clip tinte" data-start="4.77" data-duration="2.66" data-track-index="2"></div>
+      <img id="iv-c2" class="clip full cut" src="assets/iv117_f2_cut.png" alt="Shevchenko y Dudek" data-start="4.77" data-duration="2.66" data-track-index="3" data-layout-allow-occlusion="">
+      <video id="iv-s3" class="clip full" src="assets/iv117_s3.mp4" data-start="7.43" data-duration="0.94" data-track-index="0" muted playsinline></video>
+    </div>
+
+    <div id="iv-num" class="clip" data-start="1.3" data-duration="2.1" data-track-index="4" data-layout-allow-overflow="" data-layout-ignore="">117'</div>
+    <svg id="iv-flecha" class="clip" data-start="1.3" data-duration="2.1" data-track-index="5" viewBox="0 0 1920 1080" data-layout-ignore="">
+      <defs><marker id="iv-punta" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 z" fill="#c8e6c8"/></marker></defs>
+      <path id="iv-linea" d="M1470,620 Q 1150,470 830,560" fill="none" stroke="#c8e6c8" stroke-width="7"
+            stroke-dasharray="760" stroke-dashoffset="760" marker-end="url(#iv-punta)"/>
+    </svg>
+
+    <!-- pausa 1 (pantalla, k=2): Shevchenko ~(1340,510), Dudek ~(540,450) -->
+    <div id="iv-aro1" class="clip aro" data-start="1.3" data-duration="2.1" data-track-index="6" style="left:1400px;top:545px;width:240px;height:300px"></div>
+    <div id="iv-tag1" class="clip tag" data-start="1.3" data-duration="2.1" data-track-index="7" style="left:1420px;top:870px"><span class="et">CABEZAZO A QUEMARROPA</span><span class="nm">SHEVCHENKO</span></div>
+    <div id="iv-aro2" class="clip aro" data-start="1.3" data-duration="2.1" data-track-index="8" style="left:610px;top:490px;width:260px;height:220px"></div>
+    <div id="iv-tag2" class="clip tag" data-start="1.3" data-duration="2.1" data-track-index="9" style="left:470px;top:730px"><span class="et">1ª ATAJADA</span><span class="nm">DUDEK</span></div>
+
+    <!-- pausa 2 (pantalla, k=2): Shevchenko ~(1090,430), Dudek ~(990,560) -->
+    <div id="iv-aro3" class="clip aro" data-start="4.77" data-duration="2.66" data-track-index="6" style="left:1000px;top:250px;width:200px;height:260px"></div>
+    <div id="iv-tag3" class="clip tag" data-start="4.77" data-duration="2.66" data-track-index="7" style="left:1230px;top:250px"><span class="et">EL REBOTE</span><span class="nm">SHEVCHENKO</span></div>
+    <div id="iv-aro4" class="clip aro" data-start="4.77" data-duration="2.66" data-track-index="8" style="left:860px;top:470px;width:260px;height:240px"></div>
+    <div id="iv-tag4" class="clip tag" data-start="4.77" data-duration="2.66" data-track-index="9" style="left:440px;top:560px"><span class="et">2ª ATAJADA</span><span class="nm">DUDEK</span></div>
+
+    <div id="iv-dato" class="clip" data-start="6.6" data-duration="1.77" data-track-index="10"><span class="a">DOBLE ATAJADA</span><span class="b">MINUTO 117 · DUDEK SALVA AL LIVERPOOL</span></div>
+    <div id="iv-flash" style="z-index:20"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // cámara: entra con zoom al área (deja el logo afuera) y se mueve hacia la segunda jugada
+    tl.fromTo("#iv-plano", { transformOrigin: "0 0", scale: 1.5, x: -210, y: -45 },
+              { scale: 2, x: -600, y: -240, duration: 1.3, ease: "power1.inOut" }, 0);
+    tl.to("#iv-plano", { x: -480, y: -360, duration: 1.37, ease: "power1.inOut" }, 3.4);
+    // flashes de cada pausa
+    for (const t of [1.3, 4.77]) {
+      tl.fromTo("#iv-flash", { opacity: 0 }, { opacity: 0.8, duration: 0.03 }, t - 0.02);
+      tl.to("#iv-flash", { opacity: 0, duration: 0.25, ease: "power2.out" }, t + 0.01);
+    }
+    // pausa 1
+    tl.fromTo("#iv-num", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, 1.4);
+    tl.fromTo("#iv-aro1", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 1.4);
+    tl.fromTo("#iv-tag1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 1.5);
+    tl.to("#iv-linea", { strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut" }, 1.8);
+    tl.fromTo("#iv-aro2", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 2.55);
+    tl.fromTo("#iv-tag2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 2.65);
+    // pausa 2
+    tl.fromTo("#iv-aro3", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 4.9);
+    tl.fromTo("#iv-tag3", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 5.0);
+    tl.fromTo("#iv-aro4", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 6.45);
+    tl.fromTo("#iv-tag4", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 6.55);
+    tl.fromTo("#iv-dato .a", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.25, ease: "expo.out" }, 6.6);
+    tl.fromTo("#iv-dato .b", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 6.8);
+    window.__timelines["intervenido_117"] = tl;
+  </script>
+</template>

@@ -1,0 +1,70 @@
+<template>
+  <!-- Generado por intervenidos.py (sheva): pausa, fondo apagado, jugadores recortados, aros y datos. -->
+  <style>
+    @font-face { font-family: "Mono"; src: url("assets/fonts/jetbrains-mono.ttf"); font-weight: 100 800; }
+    #intervenido_sheva { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    #intervenido_sheva .plano { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+    #intervenido_sheva .full { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+    #intervenido_sheva .tinte { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: rgba(14, 26, 14, .5); }
+    #intervenido_sheva .cut { filter: drop-shadow(3px 0 0 #7ab37a) drop-shadow(-3px 0 0 #7ab37a) drop-shadow(0 3px 0 #7ab37a) drop-shadow(0 -3px 0 #7ab37a); }
+    #intervenido_sheva .flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 30; }
+    #intervenido_sheva .aro { position: absolute; border: 5px solid #c8e6c8; border-radius: 50%; box-shadow: 0 0 24px rgba(122,179,122,.6); }
+    #intervenido_sheva .tag { position: absolute; font: 700 44px/1 "Mono"; color: #fff; white-space: nowrap; }
+    #intervenido_sheva .tag .et { display: block; font: 600 22px/1 "Mono"; letter-spacing: 3px; color: #1a2e1a; background: #c8e6c8;
+                padding: 8px 12px 4px; margin-bottom: 8px; width: max-content; }
+    #intervenido_sheva .tag .nm { display: block; background: rgba(14,26,14,.85); padding: 10px 14px 4px; width: max-content; }
+    #intervenido_sheva .flecha { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    #intervenido_sheva .num { position: absolute; left: 60px; top: 40px; font: 700 300px/0.8 "Mono"; color: transparent;
+               -webkit-text-stroke: 3px rgba(122,179,122,.6); }
+    #intervenido_sheva .dato { position: absolute; left: 50%; bottom: 90px; transform: translateX(-50%); text-align: center; z-index: 25; }
+    #intervenido_sheva .dato .a { display: inline-block; font: 700 92px/1 "Mono"; color: #fff; text-shadow: 0 4px 0 rgba(0,0,0,.5); white-space: nowrap; }
+    #intervenido_sheva .dato .b { display: block; width: max-content; margin: 14px auto 0; font: 700 30px/1 "Mono"; color: #1a2e1a;
+                   background: #c8e6c8; padding: 12px 20px 6px; }
+  </style>
+  <div id="intervenido_sheva" data-composition-id="intervenido_sheva" data-width="1920" data-height="1080">
+    <div class="plano">
+    <video class="clip full" src="assets/iv_sheva_s0.mp4" data-start="0" data-duration="1.4" data-track-index="0" muted playsinline></video>
+    <img class="clip full" src="assets/iv_sheva_f1.png" alt="" data-start="1.4" data-duration="1.9" data-track-index="1" data-color-grading='{"preset":null,"intensity":1,"adjust":{"exposure":-0.7,"contrast":0.1,"saturation":-1}}'>
+    <div class="clip tinte" data-start="1.4" data-duration="1.9" data-track-index="2"></div>
+    <img class="clip full cut" src="assets/iv_sheva_f1_cut.png" alt="jugadores" data-start="1.4" data-duration="1.9" data-track-index="3" data-layout-allow-occlusion="">
+    <video class="clip full" src="assets/iv_sheva_s2.mp4" data-start="3.3" data-duration="1.5" data-track-index="0" muted playsinline></video>
+    <img class="clip full" src="assets/iv_sheva_f3.png" alt="" data-start="4.8" data-duration="1.8" data-track-index="1" data-color-grading='{"preset":null,"intensity":1,"adjust":{"exposure":-0.7,"contrast":0.1,"saturation":-1}}'>
+    <div class="clip tinte" data-start="4.8" data-duration="1.8" data-track-index="2"></div>
+    <img class="clip full cut" src="assets/iv_sheva_f3_cut.png" alt="jugadores" data-start="4.8" data-duration="1.8" data-track-index="3" data-layout-allow-occlusion="">
+    <video class="clip full" src="assets/iv_sheva_s4.mp4" data-start="6.6" data-duration="3.89" data-track-index="0" muted playsinline></video>
+    </div>
+    <div id="intervenido_sheva-num1" class="clip num" data-start="1.4" data-duration="1.9" data-track-index="4" data-layout-allow-overflow="" data-layout-ignore="">2-3</div>
+    <div id="intervenido_sheva-a10" class="clip aro" data-start="1.4" data-duration="1.9" data-track-index="6" style="left:636px;top:-108px;width:432px;height:528px"></div>
+    <div id="intervenido_sheva-t10" class="clip tag" data-start="1.4" data-duration="1.9" data-track-index="7" style="left:1092px;top:116px"><span class="et">BALÓN DE ORO 2004</span><span class="nm">SHEVCHENKO</span></div>
+    <div id="intervenido_sheva-a30" class="clip aro" data-start="4.8" data-duration="1.8" data-track-index="6" style="left:722px;top:400px;width:168px;height:392px"></div>
+    <div id="intervenido_sheva-t30" class="clip tag" data-start="4.8" data-duration="1.8" data-track-index="7" style="right:1222px;top:556px;text-align:right"><span class="et">SUAVE, AL MEDIO</span><span class="nm">SHEVCHENKO</span></div>
+    <div id="intervenido_sheva-a31" class="clip aro" data-start="4.8" data-duration="1.8" data-track-index="8" style="left:904px;top:435px;width:336px;height:210px"></div>
+    <div id="intervenido_sheva-t31" class="clip tag" data-start="4.8" data-duration="1.8" data-track-index="9" style="left:1264px;top:500px"><span class="et">YA SE ESTABA TIRANDO</span><span class="nm">DUDEK</span></div>
+    <div id="intervenido_sheva-d0" class="clip dato" data-start="8.0" data-duration="2.49" data-track-index="20"><span class="a">DUDEK</span><span class="b">LA SACA CON UNA MANO</span></div>
+    <div class="flash"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#intervenido_sheva .plano", {"scale": 1.2, "x": -60.0, "y": -204.0}, 0);
+    tl.set("#intervenido_sheva .plano", {"scale": 1.2, "x": -60.0, "y": -204.0}, 0);
+    tl.set("#intervenido_sheva .plano", {"scale": 1.2, "x": -60.0, "y": -204.0}, 1.4);
+    tl.fromTo("#intervenido_sheva .flash", {opacity: 0}, {opacity: 0.8, duration: 0.03}, 1.38);
+    tl.to("#intervenido_sheva .flash", {opacity: 0, duration: 0.25, ease: "power2.out"}, 1.41);
+    tl.fromTo("#intervenido_sheva-num1", {opacity: 0, x: -60}, {opacity: 1, x: 0, duration: 0.45, ease: "expo.out"}, 1.5);
+    tl.fromTo("#intervenido_sheva-a10", {opacity: 0, scale: 1.6}, {opacity: 1, scale: 1, duration: 0.3, ease: "expo.out"}, 1.45);
+    tl.fromTo("#intervenido_sheva-t10", {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.3, ease: "expo.out"}, 1.55);
+    tl.set("#intervenido_sheva .plano", {"scale": 1.4, "x": -328.0, "y": -244.0}, 3.3);
+    tl.set("#intervenido_sheva .plano", {"scale": 1.4, "x": -328.0, "y": -244.0}, 4.8);
+    tl.fromTo("#intervenido_sheva .flash", {opacity: 0}, {opacity: 0.8, duration: 0.03}, 4.78);
+    tl.to("#intervenido_sheva .flash", {opacity: 0, duration: 0.25, ease: "power2.out"}, 4.81);
+    tl.fromTo("#intervenido_sheva-a30", {opacity: 0, scale: 1.6}, {opacity: 1, scale: 1, duration: 0.3, ease: "expo.out"}, 4.9);
+    tl.fromTo("#intervenido_sheva-t30", {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.3, ease: "expo.out"}, 5.0);
+    tl.fromTo("#intervenido_sheva-a31", {opacity: 0, scale: 1.6}, {opacity: 1, scale: 1, duration: 0.3, ease: "expo.out"}, 5.9);
+    tl.fromTo("#intervenido_sheva-t31", {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.3, ease: "expo.out"}, 6.0);
+    tl.set("#intervenido_sheva .plano", {"scale": 1.4, "x": -328.0, "y": -244.0}, 6.6);
+    tl.fromTo("#intervenido_sheva .plano", {"scale": 1.4, "x": -328.0, "y": -244.0}, {...{"scale": 1.6, "x": -576.0, "y": -356.0}, duration: 3.89, ease: "power1.inOut"}, 6.6);
+    tl.fromTo("#intervenido_sheva-d0 .a", {opacity: 0, scale: 1.4}, {opacity: 1, scale: 1, duration: 0.25, ease: "expo.out"}, 8.0);
+    tl.fromTo("#intervenido_sheva-d0 .b", {opacity: 0, y: 16}, {opacity: 1, y: 0, duration: 0.3, ease: "expo.out"}, 8.2);
+    window.__timelines["intervenido_sheva"] = tl;
+  </script>
+</template>

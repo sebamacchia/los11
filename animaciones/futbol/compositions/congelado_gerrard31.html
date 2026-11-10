@@ -1,0 +1,44 @@
+<template>
+  <!-- Video → se congela → el fondo se apaga y queda solo el jugador → entra el texto -->
+  <style>
+    @font-face { font-family: "Mono"; src: url("assets/fonts/jetbrains-mono.ttf"); font-weight: 100 800; }
+    @font-face { font-family: "Plex"; src: url("assets/fonts/plex-sans.ttf"); font-weight: 100 700; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    .full { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+    #gr-plano { position: absolute; inset: 0; }
+    #gr-flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+    #gr-jugador { filter: drop-shadow(0 0 0 #fff) drop-shadow(6px 0 0 #7ab37a) drop-shadow(-6px 0 0 #7ab37a) drop-shadow(0 6px 0 #7ab37a) drop-shadow(0 -6px 0 #7ab37a); }
+    #gr-num { position: absolute; left: 40px; top: 20px; font: 700 608px/0.8 "Mono"; color: transparent; -webkit-text-stroke: 4px rgba(122,179,122,.55); }
+    #gr-texto { position: absolute; right: 90px; text-align: right; bottom: 110px; width: 1000px; }
+    #gr-texto .et { display: inline-block; font: 600 26px "Mono"; letter-spacing: 3px; color: #c8e6c8; background: rgba(14,26,14,.85); padding: 8px 14px 4px; }
+    #gr-texto .nom { font: 700 124px/0.86 "Mono"; color: #fff; margin-top: 10px; }
+    #gr-texto .nom span { display: inline-block; }
+    #gr-texto .dato { display: inline-block; margin-top: 22px; font: 700 30px/1 "Mono"; color: #1a2e1a; background: #c8e6c8; padding: 12px 20px 6px; }
+  </style>
+  <div data-hf-id="hf-grwtxj" id="root" data-composition-id="congelado_gerrard31" data-width="1920" data-height="1080">
+    <video data-hf-id="hf-grq79b" id="gr-video" class="clip full" src="assets/cg_gerrard31.mp4" data-start="0" data-duration="2.7" data-track-index="0" muted playsinline style="z-index:1"></video>
+    <div data-hf-id="hf-grlo4p" id="gr-plano" style="z-index:2">
+      <img data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.6,&quot;contrast&quot;:0.15,&quot;highlights&quot;:0,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:0,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-1},&quot;details&quot;:{&quot;vignette&quot;:0,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-grg3sz" id="gr-fondo" class="clip full" src="assets/cg_gerrard31_freeze.png" alt="" data-start="2.7" data-duration="4.3" data-track-index="1">
+      <div data-hf-id="hf-grxa78" id="gr-num" class="clip" data-start="2.7" data-duration="4.3" data-track-index="2" data-layout-allow-overflow="" data-layout-ignore="">8</div>
+      <img data-hf-id="hf-grqamf" id="gr-jugador" class="clip full" src="assets/cg_gerrard31_cut.png" alt="Steven Gerrard" data-start="2.7" data-duration="4.3" data-track-index="3" data-layout-allow-occlusion="">
+    </div>
+    <div data-hf-id="hf-gr92kh" id="gr-flash" style="z-index:4"></div>
+    <div data-hf-id="hf-gr5dbm" id="gr-texto" style="z-index:5">
+      <div data-hf-id="hf-gr0qqt" class="et">MINUTO 54 — 3-1</div>
+      <div data-hf-id="hf-grs2y2" class="nom"><span data-hf-id="hf-gr6gta">STEVEN</span><br data-hf-id="hf-grx5px"><span data-hf-id="hf-grfonj">GERRARD</span></div>
+      <div data-hf-id="hf-gr7isq" class="dato">CAPITÁN · DE CABEZA · EL QUE EMPEZÓ TODO</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#gr-flash", { opacity: 0 }, { opacity: 0.85, duration: 0.04 }, 2.68);
+    tl.to("#gr-flash", { opacity: 0, duration: 0.25, ease: "power2.out" }, 2.72);
+    tl.fromTo("#gr-plano", { scale: 1, transformOrigin: "35% 40%" }, { scale: 1.08, duration: 4.3, ease: "power2.out" }, 2.7);
+    tl.fromTo("#gr-num", { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.5, ease: "expo.out" }, 2.85);
+    tl.fromTo("#gr-jugador", { scale: 1.04, transformOrigin: "60% 50%" }, { scale: 1, duration: 0.35, ease: "expo.out" }, 2.7);
+    tl.fromTo("#gr-texto .et", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 3.0);
+    tl.fromTo("#gr-texto .nom span", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power4.out", stagger: 0.1 }, 3.1);
+    tl.fromTo("#gr-texto .dato", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, 3.5);
+    window.__timelines["congelado_gerrard31"] = tl;
+  </script>
+</template>

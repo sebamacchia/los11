@@ -25,8 +25,21 @@ Tipos de visual (cada escena tiene una lista "visual"):
    "en_diferencia": "@treinta y siete"}   tabla animada (barras de puntos, línea de copa, distancia al primero)
   {"tipo": "palmares", "texto": "Copas de Europa", "etiqueta": "Liverpool", "empieza": "@entre mil", "intervalo": 0.6,
    "titulos": [{"año": 1977, "rival": "...", "resultado": "3-1", "sede": "Roma"}]}   línea de tiempo con una copa por título
+  {"archivo": "clip.mp4", "desde": 257.6, "golpe": "1-0", "golpe_en": 0.75, "golpe_sub": "MALDINI · 1'",
+   "local": "Milan", "visitante": "Liverpool"}   marcador gigante que golpea sobre el clip (flash + sacudón) en golpe_en s
+   golpe_en acepta "@frase"; con "gol": 258.3 (segundo de la fuente en que entra la pelota) el clip se acomoda solo
+   para que el gol caiga en el golpe. "fin": 327.0 = no pasar de ese segundo de la fuente (congela el último cuadro)
 Logos de canal (UEFA, LFCTV): se sacan solos de todo clip y fondo (LOGO_ESQUINA / LOGO_FRANJA).
 Cualquier visual acepta "duracion"; el resto de la escena se reparte en partes iguales.
+  {"tipo": "prestamo", "foto": "material/retratos/caras/crespo.png", "nombre": "Crespo", "en": "@préstamo",
+   "origen": {"nombre": "Chelsea", "colores": [[3, 70, 148]]}, "destino": {"nombre": "Milan", "colores": [[200, 16, 46], [20, 20, 20]]},
+   "en_nota": "@El mismo equipo", "nota": "Eliminado por el Liverpool", "sub_nota": "semifinal 2005"}   jugador a préstamo
+  {"tipo": "cierre", "sub": "la próxima historia, acá", "botones": [{"texto": "SUSCRIBITE", "icono": "mas",
+   "click": "SUSCRIPTO", "en": "@suscribite"}, {"texto": "LIKE", "icono": "like", "en": "@like"},
+   {"texto": "COMENTÁ", "icono": "comentario", "en": "@comentarios"}]}   pantalla final (abajo queda libre)
+Efectos ("sfx"): {"prompt": "...", "en": "@frase", "duracion": 5, "volumen": 0.5} (ElevenLabs) o
+  {"archivo": "material/fuentes/x.mp4", "desde": 40, "duracion": 10, "en": "@frase", "volumen": 0.6} (audio real)
+  cualquiera acepta "velocidad": 0.6 (más lento/largo), "fade_in": 1.2 y "fade_out": 2.5 (segundos)
 Música: "musica": [{"archivo": "...", "desde": <n° escena>, "hasta": <n° escena>, "volumen": 0.2}]
 (escenas numeradas desde 1; "hasta" incluida).
 """
@@ -81,16 +94,70 @@ def render_imagen(src, dest, dur, W, H, calidad, zocalo=None):
 # LOGO_ESQUINA: logo arriba a la derecha -> (x donde empieza, y donde termina), en fracción del cuadro.
 #   El cuadro se recorta (zoom mínimo) para que el logo quede afuera entero; nunca a medias.
 # LOGO_FRANJA: logo sobre la franja negra de un video 4:3 -> se pinta de negro (x, y, ancho, alto en px del original).
-LOGO_ESQUINA = {"final_uefa": (0.867, 0.125)}
+LOGO_ESQUINA = {"final_uefa": (0.867, 0.125), "grobbelaar_1984": (0.867, 0.125)}
 LOGO_FRANJA = {"juventus": [(1700, 30, 220, 90)], "chelsea_semi": [(1700, 30, 220, 90)]}
+# Textos de la transmisión quemados en la fuente: (desde, hasta, (x0, y0, x1, y1) en fracción del cuadro).
+# El recorte los deja ENTEROS o totalmente AFUERA, nunca cortados a medias (pedido del usuario, 09/11).
+_GOLEADOR = (0.07, 0.08, 0.63, 0.28)  # "39' – HERNÁN CRESPO / 2-0", arriba a la izquierda
+TEXTO_TV = {"final_uefa": [(132.5, 139.0, _GOLEADOR), (260.3, 265.3, _GOLEADOR), (309.3, 312.0, _GOLEADOR),
+                           (326.8, 331.8, _GOLEADOR), (393.8, 398.6, _GOLEADOR), (422.8, 428.2, _GOLEADOR),
+                           (464.8, 472.8, _GOLEADOR)]}
+
+# Planos que NUNCA tienen que aparecer (entrevistas de Gerrard grabadas años después, en final_uefa).
+# Si un clip se mete en uno, armar.py avisa (pedido del usuario, 09/11).
+PROHIBIDO = {"final_uefa": [(352.9, 359.0), (407.9, 414.0), (490.95, 494.0), (528.2, 530.95),
+                            (731.95, 736.0), (746.95, 751.0)]}
 
 
-def ventana(src, zoom=None, centro=(0.5, 0.45)):
+def _valida(z, x0, y0, cajas, logo):
+    """La ventana (z, x0, y0) deja el logo afuera y cada texto de TV entero o afuera."""
+    w = 1 / z
+    if x0 < -1e-6 or y0 < -1e-6 or x0 + w > 1 + 1e-6 or y0 + w > 1 + 1e-6:
+        return False
+    def afuera(c):
+        return c[2] <= x0 or c[0] >= x0 + w or c[3] <= y0 or c[1] >= y0 + w
+    def adentro(c):
+        return x0 <= c[0] and y0 <= c[1] and x0 + w >= c[2] and y0 + w >= c[3]
+    if logo and not afuera(logo):
+        return False
+    return all(afuera(c) or adentro(c) for c in cajas)
+
+
+def ventana(src, zoom=None, centro=(0.5, 0.45), tramo=None):
     """Recorte (z, x0, y0) del cuadro original, o None si va entero. Si la fuente tiene logo en la esquina,
-    elige el recorte más parecido al pedido que deja el logo completamente afuera."""
+    elige el recorte más parecido al pedido que deja el logo completamente afuera. Si en `tramo` (segundos de
+    la fuente) hay un texto de la transmisión (TEXTO_TV), el recorte lo deja entero o afuera, nunca cortado."""
     z = float(zoom) if isinstance(zoom, (int, float)) else 1.0
     cx, cy = centro
     esquina = LOGO_ESQUINA.get(Path(src).stem)
+    cajas = [c for a, b, c in TEXTO_TV.get(Path(src).stem, []) if tramo and a < tramo[1] and b > tramo[0]]
+    logo = (esquina[0], 0.0, 1.0, esquina[1]) if esquina else None
+    base = _ventana_logo(z, cx, cy, esquina)
+    if not cajas:
+        return base
+    zz, x0, y0 = base or (1.0, 0.0, 0.0)
+    if _valida(zz, x0, y0, cajas, logo):
+        return base
+    # busca la ventana válida más parecida a la pedida (más zoom cuesta más que moverse)
+    pedido = ((1 - 1 / z) * cx + 0.5 / z, (1 - 1 / z) * cy + 0.5 / z)
+    mejor, costo_min = None, 1e9
+    for k in range(0, 61):
+        zc = max(z, 1.0) + k * 0.02
+        w = 1 / zc
+        pasos = [i * 0.01 for i in range(int((1 - w) / 0.01) + 1)] + [1 - w]
+        for xa in pasos:
+            for ya in pasos:
+                c = 3 * (zc - z) + abs(xa + w / 2 - pedido[0]) + abs(ya + w / 2 - pedido[1])
+                if c < costo_min and _valida(zc, xa, ya, cajas, logo):
+                    mejor, costo_min = (zc, xa, ya), c
+        if mejor and 3 * (zc + 0.02 - z) > costo_min:
+            break
+    if mejor and mejor[0] == 1.0 and mejor[1] == 0 and mejor[2] == 0:
+        return None
+    return mejor or base
+
+
+def _ventana_logo(z, cx, cy, esquina):
     if not esquina:
         return (z, (1 - 1 / z) * cx, (1 - 1 / z) * cy) if z != 1.0 else None
     lx0, ly1 = esquina
@@ -107,23 +174,28 @@ def ventana(src, zoom=None, centro=(0.5, 0.45)):
     return min(opciones, key=costo)
 
 
-def filtro_limpio(src, zoom=None, centro=(0.5, 0.45)):
+def filtro_limpio(src, zoom=None, centro=(0.5, 0.45), tramo=None):
     """Filtros (antes de escalar) que sacan los logos y aplican el zoom fijo. Devuelve (filtro, zoom_que_falta)."""
     partes = [f"drawbox=x={x}:y={y}:w={w}:h={h}:color=black:t=fill"
               for x, y, w, h in LOGO_FRANJA.get(Path(src).stem, [])]
     rampa = isinstance(zoom, (list, tuple))
-    v = ventana(src, None if rampa else zoom, centro)
+    v = ventana(src, None if rampa else zoom, centro, tramo)
     if v:
         z, x0, y0 = v
         partes.append(f"crop=w=iw/{z:.5f}:h=ih/{z:.5f}:x=iw*{x0:.5f}:y=ih*{y0:.5f}")
     return ",".join(partes), (zoom if rampa else None)
 
 
-def render_video(src, dest, dur, W, H, desde, calidad, vel=1.0, zocalo=None, zoom=None, centro=(0.5, 0.45)):
+def render_video(src, dest, dur, W, H, desde, calidad, vel=1.0, zocalo=None, zoom=None, centro=(0.5, 0.45), fin=None):
     """Clip de video entero (con negro si no es 16:9), sin audio. vel < 1 = cámara lenta.
     zoom: número (primer plano fijo) o [inicio, fin] (la cámara se acerca de a poco); centro = punto a acercar (0-1).
     Los logos de canal se sacan solos (ver LOGO_ESQUINA / LOGO_FRANJA)."""
-    limpio, zoom = filtro_limpio(src, zoom, centro)
+    largo = dur * vel + 0.1 if fin is None else max(0.1, min(dur * vel + 0.1, float(fin) - float(desde)))
+    for a, b in PROHIBIDO.get(Path(src).stem, []):
+        if float(desde) < b and float(desde) + largo > a:
+            print(f"  AVISO: {Path(src).name} {float(desde):.1f}-{float(desde) + largo:.1f} s se mete en un plano prohibido "
+                  f"({a}-{b} s, entrevista): {Path(dest).name}")
+    limpio, zoom = filtro_limpio(src, zoom, centro, (float(desde), float(desde) + largo))
     vf = (limpio + "," if limpio else "") + (
         f"scale={W}:{H}:force_original_aspect_ratio=decrease:flags=lanczos,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:black,setsar=1")
     if vel != 1.0:
@@ -137,7 +209,7 @@ def render_video(src, dest, dur, W, H, desde, calidad, vel=1.0, zocalo=None, zoo
         cx, cy = centro
         vf += (f",scale={W*2}:{H*2}:flags=lanczos,zoompan=z='{z0}+({z1}-{z0})*min(on/{n},1)'"
                f":x='(iw-iw/zoom)*{cx}':y='(ih-ih/zoom)*{cy}':d=1:s={W}x{H}:fps={FPS}")
-    cmd = ["ffmpeg", "-y", "-ss", str(desde), "-t", f"{dur * vel + 0.1:.3f}", "-i", src]
+    cmd = ["ffmpeg", "-y", "-ss", str(desde), "-t", f"{largo:.3f}", "-i", src]
     if zocalo:
         cmd += ["-loop", "1", "-t", f"{dur:.3f}", "-i", zocalo, "-filter_complex",
                 f"[0:v]{vf}[b];[1:v]format=rgba,fade=t=in:st={min(0.3, dur*0.1):.2f}:d={min(0.4, dur*0.2):.2f}:alpha=1,"
@@ -260,9 +332,18 @@ def main():
         d_esc = float(esc.get("duracion", retardo + d_voz + pausa))
         info.append((retardo, d_voz))
         for s in esc.get("sfx", []):
-            mp3 = elevenlabs.efecto(s["prompt"], s.get("duracion"))
+            if s.get("archivo"):  # audio real de una fuente (ej. la hinchada cantando), recortado
+                src = (proyecto / s["archivo"]).resolve()
+                ds, dd = float(s.get("desde", 0)), float(s.get("duracion", 8))
+                mp3 = tmp / f"audio_{src.stem}_{ds:g}_{dd:g}.wav"
+                if not mp3.exists():
+                    run(["ffmpeg", "-y", "-ss", str(ds), "-t", str(dd), "-i", str(src), "-vn",
+                         "-ar", "44100", "-ac", "2", str(mp3)])
+                mp3 = str(mp3)
+            else:
+                mp3 = elevenlabs.efecto(s["prompt"], s.get("duracion"))
             en = momento(esc, s.get("en", 0), info[-1])
-            efectos.append((mp3, t + en, float(s.get("volumen", 0.5))))
+            efectos.append((mp3, t + en, float(s.get("volumen", 0.5)), s))
         tiempos.append((t, d_esc))
         t += d_esc
     outro = float(guion.get("outro", 1.0))
@@ -285,7 +366,7 @@ def main():
     piezas = []
     linea = {"piezas": [], "voces": [{"archivo": str(m), "inicio": a} for m, a in voces],
              "efectos": [{"archivo": str(m), "inicio": a, "volumen": v * float(guion.get("sfx_volumen", 1.0))}
-                         for m, a, v in efectos],
+                         for m, a, v, _ in efectos],
              "musica": [], "total": total, "subtitulos": str(srt_path),
              "fps": FPS, "ancho": W, "alto": H}
     t_pieza = 0.0
@@ -326,7 +407,7 @@ def main():
             dest = tmp / f"p{i:03}_{j:02}.mp4"
             tipo = v.get("tipo", "archivo")
             firma = tmp / f"p{i:03}_{j:02}.json"
-            fondo = fondo_de(proyecto, escenas, i, j, v) if tipo in ("placa", "marcador", "formacion", "camino", "tabla", "palmares", "linea", "capitulo", "cambio") else None
+            fondo = fondo_de(proyecto, escenas, i, j, v) if tipo in ("placa", "marcador", "formacion", "camino", "tabla", "palmares", "linea", "capitulo", "cambio", "cierre", "prestamo") else None
             sello = json.dumps({**v, "_d": round(d, 3), "_fondo": fondo}, sort_keys=True)
             linea["piezas"].append({"archivo": str(dest), "inicio": round(t_pieza, 4), "duracion": round(d, 4),
                                     "escena": i + 1, "nombre": f"{i+1:02}.{j+1} {v.get('tipo', '') or Path(v.get('archivo', '')).stem}"
@@ -389,6 +470,18 @@ def main():
                       for k, p in enumerate(v["partidos"])]
                 graficos.camino(dest, W, H, d, ps, v.get("titulo", ""), v.get("etiqueta", ""), fondo)
                 etiqueta = f"camino {v.get('titulo', '')}"
+            elif tipo == "prestamo":
+                foto = str((proyecto / v["foto"]).resolve()) if v.get("foto") else None
+                t_mov = max(0.5, momento(esc, v["en"], info[i]) - v_ini) if v.get("en") else 0.8
+                t_nota = max(0.5, momento(esc, v["en_nota"], info[i]) - v_ini) if v.get("en_nota") else None
+                graficos.prestamo(dest, W, H, d, foto, v.get("nombre", ""), v["origen"], v["destino"], t_mov, t_nota,
+                                  v.get("nota", ""), v.get("sub_nota", ""), v.get("etiqueta", ""), fondo)
+                etiqueta = "préstamo"
+            elif tipo == "cierre":
+                bs = [{**b, "t": max(0.2, momento(esc, b["en"], info[i]) - v_ini) if b.get("en") else 0.4 + 0.5 * k}
+                      for k, b in enumerate(v["botones"])]
+                graficos.cierre(dest, W, H, d, bs, v.get("titulo", "LOS 11"), v.get("sub", ""), fondo)
+                etiqueta = "cierre"
             elif tipo == "marcador":
                 cambios = [[momento(esc, c[0], info[i]) - v_ini] + list(c[1:]) for c in v.get("cambios", [])]
                 graficos.marcador(dest, W, H, d, v["local"], v["visitante"], v["goles"],
@@ -405,8 +498,18 @@ def main():
                 if src.suffix.lower() in IMAGENES:
                     render_imagen(src, dest, d, W, H, calidad, zoc)
                 else:
-                    render_video(src, dest, d, W, H, v.get("desde", 0), calidad,
-                                 float(v.get("velocidad", 1.0)), zoc, v.get("zoom"), v.get("centro", (0.5, 0.45)))
+                    t_g = v.get("golpe_en", 0.5)
+                    if isinstance(t_g, str):
+                        t_g = momento(esc, t_g, info[i]) - v_ini
+                    desde = v.get("desde", 0)
+                    if v.get("gol") is not None:  # la pelota entra (segundo "gol" de la fuente) justo en el golpe
+                        desde = round(float(v["gol"]) - float(t_g) * float(v.get("velocidad", 1.0)), 2)
+                    crudo = tmp / f"c{i:03}_{j:02}.mp4" if v.get("golpe") else dest
+                    render_video(src, crudo, d, W, H, desde, calidad, float(v.get("velocidad", 1.0)), zoc,
+                                 v.get("zoom"), v.get("centro", (0.5, 0.45)), v.get("fin"))
+                    if v.get("golpe"):
+                        graficos.golpe(crudo, dest, W, H, d, v["golpe"], v.get("golpe_sub", ""),
+                                       float(t_g), v.get("local", ""), v.get("visitante", ""))
                 etiqueta = src.name
             piezas.append(dest)
             print(f"  {i+1:>2}.{j+1} {etiqueta} ({d:.1f}s)")
@@ -434,12 +537,15 @@ def main():
     for k, (mp3, inicio) in enumerate(voces):
         entrada(mp3, inicio, 1.0, f"v{k}")
     sfx_vol = float(guion.get("sfx_volumen", 1.0))
-    for k, (mp3, inicio, vol) in enumerate(efectos):
+    for k, (mp3, inicio, vol, sx) in enumerate(efectos):
         entrada(mp3, inicio, vol * sfx_vol, f"s{k}")
-        d = duracion(mp3)  # entra y sale suave, nada de golpes
-        fi, fo = min(0.8, d / 4), min(1.5, d / 3)
+        vel = float(sx.get("velocidad", 1.0))  # < 1 = más lento y más largo (ej. estirar un ambiente)
+        d = duracion(mp3) / vel  # entra y sale suave, nada de golpes
+        fi = float(sx.get("fade_in", min(0.8, d / 4)))
+        fo = min(float(sx.get("fade_out", min(1.5, d / 3))), d - fi)
+        tempo = f"atempo={max(0.5, vel):.4f}," if vel != 1.0 else ""
         filtros[-1] = filtros[-1].replace(f"volume={vol * sfx_vol}",
-                                          f"volume={vol * sfx_vol},afade=t=in:d={fi:.2f},afade=t=out:st={d - fo:.2f}:d={fo:.2f}")
+                                          f"{tempo}volume={vol * sfx_vol},afade=t=in:d={fi:.2f},afade=t=out:st={d - fo:.2f}:d={fo:.2f}")
     filtros.append("".join(f"[v{k}]" for k in range(len(voces))) +
                    f"amix=inputs={len(voces)}:normalize=0,asplit=2[voz][vozsc]")
     mezcla = ["[voz]"] + [f"[s{k}]" for k in range(len(efectos))]

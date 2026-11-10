@@ -1,0 +1,65 @@
+<template>
+  <!-- Generado por intervenidos.py (maldini): pausa, fondo apagado, jugadores recortados, aros y datos. -->
+  <style>
+    @font-face { font-family: "Mono"; src: url("assets/fonts/jetbrains-mono.ttf"); font-weight: 100 800; }
+    #intervenido_maldini { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    #intervenido_maldini .plano { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+    #intervenido_maldini .full { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+    #intervenido_maldini .tinte { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: rgba(14, 26, 14, .5); }
+    #intervenido_maldini .cut { filter: drop-shadow(3px 0 0 #7ab37a) drop-shadow(-3px 0 0 #7ab37a) drop-shadow(0 3px 0 #7ab37a) drop-shadow(0 -3px 0 #7ab37a); }
+    #intervenido_maldini .flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 30; }
+    #intervenido_maldini .aro { position: absolute; border: 5px solid #c8e6c8; border-radius: 50%; box-shadow: 0 0 24px rgba(122,179,122,.6); }
+    #intervenido_maldini .tag { position: absolute; font: 700 44px/1 "Mono"; color: #fff; white-space: nowrap; }
+    #intervenido_maldini .tag .et { display: block; font: 600 22px/1 "Mono"; letter-spacing: 3px; color: #1a2e1a; background: #c8e6c8;
+                padding: 8px 12px 4px; margin-bottom: 8px; width: max-content; }
+    #intervenido_maldini .tag .nm { display: block; background: rgba(14,26,14,.85); padding: 10px 14px 4px; width: max-content; }
+    #intervenido_maldini .flecha { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    #intervenido_maldini .num { position: absolute; left: 60px; top: 40px; font: 700 300px/0.8 "Mono"; color: transparent;
+               -webkit-text-stroke: 3px rgba(122,179,122,.6); }
+    #intervenido_maldini .dato { position: absolute; left: 50%; bottom: 90px; transform: translateX(-50%); text-align: center; z-index: 25; }
+    #intervenido_maldini .dato .a { display: inline-block; font: 700 92px/1 "Mono"; color: #fff; text-shadow: 0 4px 0 rgba(0,0,0,.5); white-space: nowrap; }
+    #intervenido_maldini .dato .b { display: block; width: max-content; margin: 14px auto 0; font: 700 30px/1 "Mono"; color: #1a2e1a;
+                   background: #c8e6c8; padding: 12px 20px 6px; }
+  </style>
+  <div id="intervenido_maldini" data-composition-id="intervenido_maldini" data-width="1920" data-height="1080">
+    <div class="plano">
+    <video class="clip full" src="assets/iv_maldini_s0.mp4" data-start="0" data-duration="0.9" data-track-index="0" muted playsinline></video>
+    <img class="clip full" src="assets/iv_maldini_f1.png" alt="" data-start="0.9" data-duration="1.5" data-track-index="1" data-color-grading='{"preset":null,"intensity":1,"adjust":{"exposure":-0.7,"contrast":0.1,"saturation":-1}}'>
+    <div class="clip tinte" data-start="0.9" data-duration="1.5" data-track-index="2"></div>
+    <img class="clip full cut" src="assets/iv_maldini_f1_cut.png" alt="jugadores" data-start="0.9" data-duration="1.5" data-track-index="3" data-layout-allow-occlusion="">
+    <video class="clip full" src="assets/iv_maldini_s2.mp4" data-start="2.4" data-duration="1.5" data-track-index="0" muted playsinline></video>
+    <img class="clip full" src="assets/iv_maldini_f3.png" alt="" data-start="3.9" data-duration="1.4" data-track-index="1" data-color-grading='{"preset":null,"intensity":1,"adjust":{"exposure":-0.7,"contrast":0.1,"saturation":-1}}'>
+    <div class="clip tinte" data-start="3.9" data-duration="1.4" data-track-index="2"></div>
+    <img class="clip full cut" src="assets/iv_maldini_f3_cut.png" alt="jugadores" data-start="3.9" data-duration="1.4" data-track-index="3" data-layout-allow-occlusion="">
+    <video class="clip full" src="assets/iv_maldini_s4.mp4" data-start="5.3" data-duration="0.73" data-track-index="0" muted playsinline></video>
+    </div>
+    <div id="intervenido_maldini-num1" class="clip num" data-start="0.9" data-duration="1.5" data-track-index="4" data-layout-allow-overflow="" data-layout-ignore="">1'</div>
+    <svg id="intervenido_maldini-fl1" class="clip flecha" data-start="0.9" data-duration="1.5" data-track-index="5" viewBox="0 0 1920 1080" data-layout-ignore=""><defs><marker id="intervenido_maldini-fl1-p" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#c8e6c8"/></marker></defs><path class="ln" d="M1114,764 Q 1366,399 1772,218" fill="none" stroke="#c8e6c8" stroke-width="7" stroke-dasharray="1108" stroke-dashoffset="1108" marker-end="url(#intervenido_maldini-fl1-p)"/></svg>
+    <div id="intervenido_maldini-a10" class="clip aro" data-start="0.9" data-duration="1.5" data-track-index="6" style="left:568px;top:120px;width:420px;height:728px"></div>
+    <div id="intervenido_maldini-t10" class="clip tag" data-start="0.9" data-duration="1.5" data-track-index="7" style="left:1012px;top:444px"><span class="et">TIRO LIBRE</span><span class="nm">PIRLO</span></div>
+    <div id="intervenido_maldini-a30" class="clip aro" data-start="3.9" data-duration="1.4" data-track-index="6" style="left:536px;top:300px;width:368px;height:480px"></div>
+    <div id="intervenido_maldini-t30" class="clip tag" data-start="3.9" data-duration="1.4" data-track-index="7" style="left:536px;top:796px"><span class="et">EL CAPITÁN · DE VOLEA</span><span class="nm">MALDINI</span></div>
+    <div class="flash"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#intervenido_maldini .plano", {"scale": 1.4, "x": -300.0, "y": -244.0}, 0);
+    tl.set("#intervenido_maldini .plano", {"scale": 1.4, "x": -300.0, "y": -244.0}, 0);
+    tl.set("#intervenido_maldini .plano", {"scale": 1.4, "x": -300.0, "y": -244.0}, 0.9);
+    tl.fromTo("#intervenido_maldini .flash", {opacity: 0}, {opacity: 0.8, duration: 0.03}, 0.88);
+    tl.to("#intervenido_maldini .flash", {opacity: 0, duration: 0.25, ease: "power2.out"}, 0.91);
+    tl.fromTo("#intervenido_maldini-num1", {opacity: 0, x: -60}, {opacity: 1, x: 0, duration: 0.45, ease: "expo.out"}, 1.0);
+    tl.to("#intervenido_maldini-fl1 .ln", {strokeDashoffset: 0, duration: 0.55, ease: "power2.inOut"}, 1.3);
+    tl.fromTo("#intervenido_maldini-a10", {opacity: 0, scale: 1.6}, {opacity: 1, scale: 1, duration: 0.3, ease: "expo.out"}, 1.0);
+    tl.fromTo("#intervenido_maldini-t10", {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.3, ease: "expo.out"}, 1.1);
+    tl.set("#intervenido_maldini .plano", {"scale": 1.4, "x": -300.0, "y": -244.0}, 2.4);
+    tl.fromTo("#intervenido_maldini .plano", {"scale": 1.4, "x": -300.0, "y": -244.0}, {...{"scale": 1.6, "x": -480.0, "y": -356.0}, duration: 1.5, ease: "power1.inOut"}, 2.4);
+    tl.set("#intervenido_maldini .plano", {"scale": 1.6, "x": -480.0, "y": -356.0}, 3.9);
+    tl.fromTo("#intervenido_maldini .flash", {opacity: 0}, {opacity: 0.8, duration: 0.03}, 3.88);
+    tl.to("#intervenido_maldini .flash", {opacity: 0, duration: 0.25, ease: "power2.out"}, 3.9099999999999997);
+    tl.fromTo("#intervenido_maldini-a30", {opacity: 0, scale: 1.6}, {opacity: 1, scale: 1, duration: 0.3, ease: "expo.out"}, 4.2);
+    tl.fromTo("#intervenido_maldini-t30", {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.3, ease: "expo.out"}, 4.3);
+    tl.set("#intervenido_maldini .plano", {"scale": 1.3, "x": -210.0, "y": -188.0}, 5.3);
+    window.__timelines["intervenido_maldini"] = tl;
+  </script>
+</template>
