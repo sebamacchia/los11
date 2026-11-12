@@ -83,5 +83,6 @@ La API key no tiene permiso voices_write: borrar voces lo hace el usuario desde 
 intro · capitulo (separador con número y barra de progreso) · placa (+ "foto") · marcador · zócalo · formacion (equipo en la
 cancha con retratos que aparecen al nombrarlos) · camino (llaves con ida/vuelta/global) · tabla (posiciones con barras,
 destacado, línea de copa, distancia, cartel) · palmares (copas en línea de tiempo) · linea (tramos de años o minutos + contador)
-· cambio (sale/entra con fotos). Todo se sincroniza con `"en": "@frase"`. Estructura en capítulos con frases puente del narrador.
+· cambio (sale/entra con fotos) · charla (citas con foto) · altura · mapa (Malvinas) · cifras · corto (camisetas 1-2,
+subasta: mini cortometrajes animados) · golpe_estilo "fantasma" con flechas. Relatos reales: sfx con "archivo" en escena muda. Todo se sincroniza con `"en": "@frase"`. Estructura en capítulos con frases puente del narrador.
 `--reusar` NO detecta cambios de código en graficos.py: borrar `tmp_*/pNNN_MM.*` de las piezas a rehacer.

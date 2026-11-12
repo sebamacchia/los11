@@ -1,0 +1,279 @@
+{
+  "archivo": "argentina-1986_b",
+  "formato": "horizontal",
+  "pausa": 0.45,
+  "sfx_volumen": 0.55,
+  "musica": [
+    {"archivo": "../../musica/m86_hook.mp3", "desde": 1, "hasta": 5, "volumen": 0.24, "fade_out": 0.8},
+    {"archivo": "../../musica/m86_relato.mp3", "desde": 7, "hasta": 24, "volumen": 0.2, "fade_in": 1.0, "fade_out": 2.0},
+    {"archivo": "../../musica/m86_inglaterra.mp3", "desde": 25, "hasta": 38, "volumen": 0.2, "fade_in": 1.0, "fade_out": 1.5},
+    {"archivo": "../../musica/m86_epica.mp3", "desde": 39, "hasta": 58, "volumen": 0.24, "fade_in": 1.5, "fade_out": 3}
+  ],
+  "escenas": [
+    {"capitulo": "Cuatro minutos", "retardo": 0.4,
+     "texto": "Estadio Azteca, México. Veintidós de junio de mil novecientos ochenta y seis. Cuartos de final del Mundial: Argentina contra Inglaterra. Cuatro años después de la guerra de Malvinas.",
+     "visual": [
+       {"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 140.0, "hasta": "@Cuartos", "golpe": "1986", "golpe_sub": "MUNDIAL DE MÉXICO · ESTADIO AZTECA", "golpe_en": 0.4},
+       {"archivo": "material/limpias/inglaterra.mp4", "desde": 34.0, "velocidad": 0.6, "hasta": "@Cuatro años", "golpe": "ARG-ING", "golpe_sub": "CUARTOS DE FINAL", "golpe_en": 0.4},
+       {"archivo": "material/limpias/inglaterra.mp4", "desde": 59.5, "velocidad": 0.5}
+     ],
+     "sfx": [{"prompt": "huge football stadium crowd ambience, 1980s, chanting and drums, distant", "en": 0, "duracion": 14, "volumen": 0.35, "fade_in": 1.5, "fade_out": 2.0}]},
+    {"texto": "Minuto cincuenta y uno. Maradona salta con el arquero inglés... y la mete. Con la mano.",
+     "visual": [
+       {"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 46.0, "gol": 48.4, "golpe": "1-0", "golpe_sub": "51' · LA MANO DE DIOS", "golpe_en": "@Con la mano", "velocidad": 0.6, "local": "Argentina", "visitante": "Inglaterra", "fin": 50.5}
+     ],
+     "sfx": [{"prompt": "stadium crowd erupting in a goal celebration roar", "en": "@Con la mano", "duracion": 4, "volumen": 0.5, "fade_out": 1.5}]},
+    {"texto": "Cuatro minutos después, el mismo Maradona arranca en su propio campo... y hace el gol más lindo de la historia de los Mundiales.",
+     "visual": [
+       {"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 266.0, "gol": 279.3, "golpe": "2-0", "golpe_sub": "55' · EL GOL DEL SIGLO", "golpe_en": "@más lindo", "velocidad": 1.0, "local": "Argentina", "visitante": "Inglaterra", "fin": 283.0}
+     ],
+     "sfx": [{"prompt": "massive stadium crowd roar for a goal, building excitement", "en": "@más lindo", "duracion": 5, "volumen": 0.5, "fade_out": 2}]},
+    {"texto": "El gol más tramposo... y el gol más hermoso. El mismo tipo. El mismo partido. Cuatro minutos de diferencia.",
+     "visual": [
+       {"archivo": "material/mano_dios.jpg", "hasta": "@El mismo tipo"},
+       {"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 283.0, "velocidad": 0.4, "golpe": "4'", "golpe_sub": "ENTRE LA MANO DE DIOS Y EL GOL DEL SIGLO", "golpe_en": "@Cuatro minutos", "fin": 285.0}
+     ]},
+    {"texto": "Esta es la historia de cómo una selección en la que casi nadie creía... terminó levantando esto.", "pausa": 0.4,
+     "visual": [
+       {"archivo": "material/limpias/final.mp4", "desde": 474.0, "velocidad": 0.45, "hasta": "@terminó", "fin": 477.0},
+       {"archivo": "material/maradona_copa.jpg"}
+     ]},
+    {"duracion": 3.2, "visual": [{"tipo": "intro", "sub": "México 86: el Mundial de Diego"}],
+     "sfx": [{"prompt": "cinematic deep whoosh transition", "en": 0, "duracion": 1.2, "volumen": 0.6},
+             {"prompt": "cinematic deep boom impact hit with reverb tail", "en": 0.9, "duracion": 2.2, "volumen": 0.7}]},
+
+    {"capitulo": "Nadie creía", "visual": [{"tipo": "capitulo", "numero": 1, "titulo": "Nadie creía", "total": 8}], "duracion": 2.4},
+    {"texto": "Para entender México, hay que volver un año atrás. Treinta de junio de mil novecientos ochenta y cinco, cancha de River. Última fecha de la eliminatoria: Argentina contra Perú.",
+     "visual": [
+       {"archivo": "material/limpias/peru1985.mp4", "desde": 8.0, "velocidad": 0.6, "golpe": "1985", "golpe_sub": "ELIMINATORIAS · ARGENTINA-PERÚ", "golpe_en": "@Treinta de junio"},
+       {"archivo": "material/limpias/peru1985.mp4", "desde": 40.0, "velocidad": 0.6}
+     ]},
+    {"texto": "Con un empate, Argentina iba al Mundial. Pero a diez minutos del final... perdía dos a uno.",
+     "visual": [{"tipo": "marcador", "local": "Argentina", "visitante": "Perú", "goles": [1, 2], "etiqueta": "Minuto 80 · Eliminatorias 1985"}]},
+    {"texto": "Passarella le pega, la pelota da en el palo... y en el rebote aparece Ricardo Gareca. Dos a dos. Argentina, al Mundial.",
+     "visual": [
+       {"archivo": "material/limpias/peru1985.mp4", "desde": 200.0, "velocidad": 0.6, "hasta": "@Dos a dos"},
+       {"archivo": "material/gareca.jpg", "zocalo": "Ricardo Gareca", "sub": "Argentina 2-2 Perú · 81'"}
+     ]},
+    {"texto": "El técnico era Carlos Bilardo. Y a Bilardo lo criticaban todos: la prensa, los hinchas, hasta los campeones del setenta y ocho. Decían que su equipo jugaba feo. Que no le ganaba a nadie.",
+     "visual": [
+       {"tipo": "placa", "texto": "Carlos Bilardo", "sub": "el técnico más criticado", "etiqueta": "Argentina 1983-1990", "foto": "material/retratos/caras/bilardo.png"},
+       {"archivo": "material/limpias/italia.mp4", "desde": 9.5, "velocidad": 0.5}
+     ]},
+    {"texto": "Pero Bilardo tenía una idea fija: todo el equipo iba a jugar para un solo hombre. Y a ese hombre le dio la cinta de capitán. Diego Armando Maradona. Veinticinco años.",
+     "visual": [
+       {"archivo": "material/limpias/inglaterra.mp4", "desde": 237.0, "velocidad": 0.5, "hasta": "@Diego Armando", "fin": 239.6},
+       {"archivo": "material/limpias/italia.mp4", "desde": 0.0, "velocidad": 0.5, "golpe": "10", "golpe_sub": "DIEGO ARMANDO MARADONA · CAPITÁN", "golpe_en": "@Diego Armando"}
+     ]},
+    {"texto": "Llegó a México como la gran estrella del mundo. Jugaba en el Nápoles, en Italia, y su pase había sido el más caro de la historia.",
+     "visual": [
+       {"archivo": "material/limpias/bulgaria.mp4", "desde": 204.0, "velocidad": 0.5, "fin": 206.5},
+       {"archivo": "material/limpias/corea.mp4", "desde": 186.0, "velocidad": 0.45, "golpe": "Nº1", "golpe_sub": "EL PASE MÁS CARO DE LA HISTORIA · 1984", "golpe_en": "@su pase"}
+     ]},
+    {"texto": "Y había un problema más. El otro gran líder del plantel, el capitán campeón del setenta y ocho, Daniel Passarella, se enfermó en México... y no jugó ni un minuto.",
+     "visual": [{"archivo": "material/passarella.jpg", "zocalo": "Daniel Passarella", "sub": "capitán campeón en 1978"}]},
+
+    {"capitulo": "El grupo", "visual": [{"tipo": "capitulo", "numero": 2, "titulo": "El grupo", "total": 8}], "duracion": 2.4},
+    {"texto": "Primer partido, en el Estadio Olímpico Universitario: Corea del Sur. Los coreanos esperaban a Diego con un solo plan... pegarle.",
+     "visual": [
+       {"archivo": "material/limpias/corea.mp4", "desde": 8.0, "velocidad": 0.4, "hasta": "@Los coreanos", "golpe": "ARG-COR", "golpe_sub": "GRUPO A · 2 DE JUNIO", "golpe_en": 0.4},
+       {"archivo": "material/limpias/corea.mp4", "desde": 195.5, "velocidad": 0.4},
+       {"archivo": "material/limpias/corea.mp4", "desde": 178.0, "velocidad": 0.5}
+     ],
+     "sfx": [{"prompt": "referee whistle blow, football match", "en": "@pegarle", "duracion": 1.0, "volumen": 0.4}]},
+    {"texto": "Pero Argentina ganó tres a uno. Dos goles de Jorge Valdano... y uno de Oscar Ruggeri.",
+     "visual": [
+       {"archivo": "material/limpias/corea.mp4", "desde": 52.0, "gol": 56.0, "golpe": "1-0", "golpe_sub": "VALDANO · 6'", "golpe_en": "@Jorge Valdano", "local": "Argentina", "visitante": "Corea", "fin": 59.0},
+       {"tipo": "marcador", "local": "Argentina", "visitante": "Corea del Sur", "goles": [3, 1], "etiqueta": "Final · Grupo A"}
+     ]},
+    {"texto": "Después, en Puebla, el campeón del mundo: Italia. Altobelli, de penal, uno a cero. Y Maradona, casi sin ángulo, de zurda... uno a uno.",
+     "visual": [
+       {"archivo": "material/limpias/italia.mp4", "desde": 58.0, "gol": 61.0, "golpe": "0-1", "golpe_sub": "ALTOBELLI · 6' · PENAL", "golpe_en": "@uno a cero", "local": "Argentina", "visitante": "Italia", "fin": 63.0},
+       {"archivo": "material/limpias/italia.mp4", "desde": 268.0, "gol": 272.0, "golpe": "1-1", "golpe_sub": "MARADONA · 34'", "golpe_en": "@uno a uno", "local": "Argentina", "visitante": "Italia", "fin": 274.5}
+     ],
+     "sfx": [{"prompt": "stadium crowd cheering a goal", "en": "@uno a uno", "duracion": 3, "volumen": 0.45, "fade_out": 1.2}]},
+    {"texto": "Y para cerrar, Bulgaria: dos a cero, con goles de Valdano y Burruchaga. Primera del grupo. Sin perder.",
+     "visual": [
+       {"archivo": "material/limpias/bulgaria.mp4", "desde": 24.0, "gol": 28.5, "golpe": "1-0", "golpe_sub": "VALDANO · 4'", "golpe_en": "@Valdano", "local": "Argentina", "visitante": "Bulgaria", "fin": 31.5},
+       {"archivo": "material/limpias/bulgaria.mp4", "desde": 440.0, "gol": 443.0, "golpe": "2-0", "golpe_sub": "BURRUCHAGA · 77'", "golpe_en": "@Burruchaga", "local": "Argentina", "visitante": "Bulgaria", "fin": 445.5},
+       {"tipo": "tabla", "titulo": "Grupo A · México 86", "etiqueta": "Tabla final · 2 puntos por victoria", "equipos": [
+         {"nombre": "Argentina", "puntos": 5, "color": [117, 170, 219]},
+         {"nombre": "Italia", "puntos": 4, "color": [0, 82, 165]},
+         {"nombre": "Bulgaria", "puntos": 2, "color": [0, 150, 110]},
+         {"nombre": "Corea del Sur", "puntos": 1, "color": [205, 46, 58]}],
+        "destacar": "Argentina", "en_destacar": "@Primera"}
+     ]},
+
+    {"capitulo": "Las camisetas", "visual": [{"tipo": "capitulo", "numero": 3, "titulo": "Las camisetas", "total": 8}], "duracion": 2.4},
+    {"texto": "En octavos, otra vez en Puebla, el clásico del Río de la Plata: Uruguay. Un partido trabado, cerrado... que lo definió Pedro Pasculli, antes del entretiempo. Uno a cero.",
+     "visual": [
+       {"archivo": "material/limpias/uruguay.mp4", "desde": 25.0, "velocidad": 0.45, "hasta": "@Un partido", "golpe": "ARG-URU", "golpe_sub": "OCTAVOS DE FINAL · PUEBLA", "golpe_en": 0.4},
+       {"archivo": "material/limpias/uruguay.mp4", "desde": 154.0, "velocidad": 0.5, "hasta": "@Pedro Pasculli"},
+       {"archivo": "material/limpias/uruguay.mp4", "desde": 233.0, "gol": 237.5, "golpe": "1-0", "golpe_sub": "PASCULLI · 42'", "golpe_en": "@Uno a cero", "local": "Argentina", "visitante": "Uruguay", "fin": 239.0}
+     ]},
+    {"texto": "Pero ese partido dejó un problema. Argentina jugó con camisetas azules de algodón, gruesas... y con el calor de México pesaban una tonelada.",
+     "visual": [
+       {"archivo": "material/limpias/uruguay.mp4", "desde": 34.0, "velocidad": 0.4, "fin": 36.5},
+       {"archivo": "material/limpias/uruguay.mp4", "desde": 94.0, "velocidad": 0.4, "golpe": "ALGODÓN", "golpe_sub": "CAMISETAS PESADAS PARA EL CALOR DE MÉXICO", "golpe_en": "@pesaban"}
+     ]},
+    {"texto": "Y en cuartos venía Inglaterra, que se vestía de blanco. A tres días del partido, Bilardo mandó a un colaborador, Rubén Moschella, a recorrer los negocios de la Ciudad de México.",
+     "visual": [{"tipo": "placa", "texto": "3 DÍAS", "sub": "para conseguir camisetas nuevas", "etiqueta": "Antes de Inglaterra"}]},
+    {"texto": "Volvió con dos modelos. Maradona eligió uno y dijo: con esta le ganamos a Inglaterra. Compraron treinta y ocho, les cosieron el escudo... y les plancharon números plateados en la espalda.",
+     "visual": [
+       {"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 239.0, "velocidad": 0.4, "hasta": "@Compraron", "fin": 242.6},
+       {"archivo": "material/limpias/inglaterra.mp4", "desde": 157.5, "velocidad": 0.4, "golpe": "38", "golpe_sub": "CAMISETAS COMPRADAS EN UN NEGOCIO DEL DF", "golpe_en": "@Compraron"}
+     ]},
+
+    {"capitulo": "La mano de Dios", "visual": [{"tipo": "capitulo", "numero": 4, "titulo": "La mano de Dios", "total": 8}], "duracion": 2.4},
+    {"texto": "Pero ese no era un partido más. Cuatro años antes, Argentina e Inglaterra habían ido a la guerra por las Malvinas. Murieron seiscientos cuarenta y nueve soldados argentinos.", "pausa": 0.7,
+     "visual": [
+       {"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 140.0, "velocidad": 0.4, "hasta": "@Murieron"},
+       {"tipo": "placa", "texto": "MALVINAS · 1982", "sub": "649 soldados argentinos muertos", "etiqueta": "Cuatro años antes"}
+     ]},
+    {"texto": "Y en el fútbol había una cuenta pendiente desde el sesenta y seis: en Wembley echaron a Rattín, y el técnico inglés llamó animales a los argentinos.",
+     "visual": [{"archivo": "material/rattin.jpg", "zocalo": "Antonio Rattín", "sub": "Wembley, 1966"}]},
+    {"texto": "Primer tiempo: cero a cero. Inglaterra cerraba todos los caminos.",
+     "visual": [
+       {"archivo": "material/limpias/inglaterra.mp4", "desde": 25.5, "velocidad": 0.5},
+       {"archivo": "material/limpias/inglaterra.mp4", "desde": 140.0, "velocidad": 0.5, "golpe": "0-0", "golpe_sub": "ENTRETIEMPO", "golpe_en": 0.4, "local": "Argentina", "visitante": "Inglaterra"}
+     ]},
+    {"texto": "Minuto cincuenta y uno. Maradona arranca por el medio y busca a Valdano. Steve Hodge, el inglés, quiere despejar... y se la tira para atrás, a su arquero. Sale Peter Shilton, casi veinte centímetros más alto. Diego salta... y la empuja con la mano izquierda.", "retardo": 0.5,
+     "visual": [{"archivo": "salida/graficos/iv_mano.mp4", "desde": 0}],
+     "sfx": [{"prompt": "tense heartbeat pulse, low cinematic", "en": 0, "duracion": 6, "volumen": 0.3, "fade_out": 1.0}]},
+    {"texto": "El árbitro, el tunecino Alí Bin Nasser, no lo ve. Gol. Los ingleses protestan... y Diego les grita a sus compañeros: vengan a abrazarme, que si no, no lo cobra.",
+     "visual": [
+       {"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 52.0, "velocidad": 0.6, "golpe": "1-0", "golpe_sub": "51' · MARADONA", "golpe_en": "@Gol", "local": "Argentina", "visitante": "Inglaterra", "fin": 57.0},
+       {"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 99.0, "velocidad": 0.5, "fin": 102.5}
+     ],
+     "sfx": [{"prompt": "stadium crowd erupting in a goal celebration roar", "en": "@Gol", "duracion": 4, "volumen": 0.45, "fade_out": 1.5}]},
+    {"texto": "Esa noche, Maradona diría que el gol fue un poco con la cabeza... y otro poco con la mano de Dios.", "pausa": 0.8,
+     "visual": [
+       {"archivo": "material/mano_dios2.jpg", "hasta": "@y otro poco"},
+       {"tipo": "placa", "texto": "La mano de Dios", "sub": "un poco con la cabeza de Maradona y otro poco con la mano de Dios", "etiqueta": "Maradona, después del partido"}
+     ]},
+    {"texto": "Pero lo mejor todavía no había pasado. Si te gustan estas historias, suscribite a Los Once: acá contamos todo el fútbol, como merece ser contado.", "pausa": 0.6,
+     "visual": [{"tipo": "placa", "texto": "Suscribite a LOS 11", "sub": "todo el fútbol, como merece ser contado", "etiqueta": "LOS 11"}]},
+
+    {"capitulo": "El gol del siglo", "visual": [{"tipo": "capitulo", "numero": 5, "titulo": "El gol del siglo", "total": 8}], "duracion": 2.4},
+    {"texto": "Minuto cincuenta y cinco. Héctor Enrique se la da a Maradona en su propio campo. Gira, y deja en el camino a Beardsley y a Reid. Arranca. Pasa la mitad de cancha. Le sale Butcher: lo deja. Le sale Fenwick: lo deja. Entra al área, sale Shilton... Diego amaga, lo deja sentado... y con Butcher colgado de la espalda, la empuja. Gol.", "retardo": 0.6,
+     "visual": [{"archivo": "salida/graficos/iv_siglo.mp4", "desde": 0}],
+     "sfx": [{"prompt": "stadium crowd roar rising to an explosion of joy for a goal", "en": "@Gol", "duracion": 5, "volumen": 0.55, "fade_out": 2}]},
+    {"texto": "Diez segundos. Más de cincuenta metros. Cinco ingleses en el camino.", "pausa": 0.6,
+     "visual": [{"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 283.0, "velocidad": 0.35, "golpe": "10\"", "golpe_sub": "+50 METROS · 5 INGLESES EN EL CAMINO", "golpe_en": 0.4, "fin": 285.0}]},
+    {"texto": "En la radio, Víctor Hugo Morales lo gritó para siempre: barrilete cósmico, ¿de qué planeta viniste? Y en dos mil dos, en una votación de la FIFA, lo eligieron el gol del siglo.",
+     "visual": [
+       {"tipo": "placa", "texto": "Barrilete cósmico", "sub": "¿de qué planeta viniste?", "etiqueta": "Víctor Hugo Morales · relato"},
+       {"archivo": "material/eludiendo_shilton.jpg", "zocalo": "El gol del siglo", "sub": "votación de la FIFA, 2002"}
+     ]},
+    {"texto": "El tramposo y el genio. El mismo día, con cuatro minutos de diferencia. Y quizás por eso, cuarenta años después, todavía no nos cansamos de verlo.", "pausa": 0.8,
+     "visual": [{"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 270.0, "velocidad": 0.3, "fin": 275.5}]},
+    {"texto": "Lineker descontó a los ochenta y uno. Pero ya era tarde. Argentina dos, Inglaterra uno. A semifinales.",
+     "visual": [{"tipo": "marcador", "local": "Argentina", "visitante": "Inglaterra", "goles": [2, 0], "etiqueta": "Cuartos de final · Azteca", "cambios": [[1.0, 2, 1, "Lineker 81'"]]}]},
+
+    {"capitulo": "Bélgica", "visual": [{"tipo": "capitulo", "numero": 6, "titulo": "Bélgica", "total": 8}], "duracion": 2.4},
+    {"texto": "En semifinales, Bélgica. Y Diego lo volvió a hacer. Minuto cincuenta y uno: entra entre dos defensores y la pica por encima del arquero.",
+     "visual": [
+       {"archivo": "material/limpias/belgica.mp4", "desde": 0.0, "velocidad": 0.5, "hasta": "@Y Diego", "golpe": "ARG-BÉL", "golpe_sub": "SEMIFINAL · AZTECA", "golpe_en": 0.4},
+       {"archivo": "material/limpias/belgica.mp4", "desde": 266.5, "gol": 270.0, "golpe": "1-0", "golpe_sub": "MARADONA · 51'", "golpe_en": "@la pica", "local": "Argentina", "visitante": "Bélgica", "fin": 275.5}
+     ]},
+    {"texto": "Ese partido dejó una de las fotos más famosas de la historia del fútbol: Diego con la pelota... y seis belgas enfrente, esperándolo.",
+     "visual": [{"archivo": "material/limpias/belgica.mp4", "desde": 352.0, "velocidad": 0.4, "golpe": "1 vs 6", "golpe_sub": "LA FOTO MÁS FAMOSA DEL MUNDIAL", "golpe_en": "@seis belgas", "fin": 355.0}]},
+    {"texto": "Minuto sesenta y tres: arranca desde la izquierda, deja atrás a tres belgas... y otro golazo. Dos a cero. Argentina, a la final. Invicta: cinco victorias y un empate.",
+     "visual": [
+       {"archivo": "material/limpias/belgica.mp4", "desde": 356.0, "gol": 361.5, "golpe": "2-0", "golpe_sub": "MARADONA · 63'", "golpe_en": "@otro golazo", "local": "Argentina", "visitante": "Bélgica", "fin": 365.5},
+       {"tipo": "camino", "titulo": "El camino de Argentina", "etiqueta": "México 1986",
+        "partidos": [
+          {"fase": "Grupo A", "rival": "Corea · Italia · Bulgaria", "color": [117, 170, 219], "global": "3-1 · 1-1 · 2-0", "nota": "primera del grupo"},
+          {"fase": "Octavos", "rival": "Uruguay", "color": [92, 156, 222], "global": "1-0", "nota": "Pasculli"},
+          {"fase": "Cuartos", "rival": "Inglaterra", "color": [230, 230, 230], "global": "2-1", "nota": "la mano de Dios y el gol del siglo"},
+          {"fase": "Semifinal", "rival": "Bélgica", "color": [205, 46, 58], "global": "2-0", "nota": "Maradona, dos goles", "en": "@a la final"}]}
+     ],
+     "sfx": [{"prompt": "stadium crowd cheering a goal", "en": "@otro golazo", "duracion": 3, "volumen": 0.45, "fade_out": 1.2}]},
+
+    {"capitulo": "La final", "visual": [{"tipo": "capitulo", "numero": 7, "titulo": "La final", "total": 8}], "duracion": 2.4},
+    {"texto": "Veintinueve de junio. Estadio Azteca, más de cien mil personas. Enfrente, Alemania Federal, que en semifinales había eliminado a la Francia de Platini. Rummenigge, Völler, Schumacher... y Lothar Matthäus, con una sola misión: perseguir a Maradona por toda la cancha.",
+     "visual": [
+       {"archivo": "material/limpias/final.mp4", "desde": 44.5, "velocidad": 0.5, "hasta": "@Enfrente", "golpe": "ARG-ALE", "golpe_sub": "FINAL · 29 DE JUNIO · AZTECA", "golpe_en": 0.4},
+       {"archivo": "material/limpias/final.mp4", "desde": 115.0, "velocidad": 0.5, "hasta": "@y Lothar"},
+       {"archivo": "material/limpias/final.mp4", "desde": 71.0, "velocidad": 0.4, "zocalo": "Lothar Matthäus", "sub": "la marca de Maradona"}
+     ]},
+    {"texto": "Bilardo salió con los de siempre. Pumpido al arco. Atrás, Cuciuffo, Brown y Ruggeri. En el medio, Giusti, Batista, Enrique y Olarticoechea. Arriba, Burruchaga, Valdano... y Diego.",
+     "visual": [
+       {"tipo": "formacion", "titulo": "La Argentina de Bilardo", "etiqueta": "Final · 3-5-2", "jugadores": [
+         {"nombre": "Pumpido", "foto": "material/retratos/caras/pumpido.png", "x": 0.07, "y": 0.5, "puesto": "Arquero", "en": "@Pumpido"},
+         {"nombre": "Cuciuffo", "foto": "material/retratos/caras/cuciuffo.png", "x": 0.22, "y": 0.22, "puesto": "Defensor", "en": "@Cuciuffo"},
+         {"nombre": "Brown", "foto": "material/retratos/caras/brown.png", "x": 0.2, "y": 0.5, "puesto": "Líbero", "en": "@Brown"},
+         {"nombre": "Ruggeri", "foto": "material/retratos/caras/ruggeri.png", "x": 0.22, "y": 0.78, "puesto": "Defensor", "en": "@Ruggeri"},
+         {"nombre": "Giusti", "foto": "material/retratos/caras/giusti.png", "x": 0.42, "y": 0.12, "puesto": "Carrilero", "en": "@Giusti"},
+         {"nombre": "Batista", "foto": "material/retratos/caras/batista.png", "x": 0.38, "y": 0.5, "puesto": "Volante central", "en": "@Batista"},
+         {"nombre": "Enrique", "foto": "material/retratos/caras/enrique.png", "x": 0.46, "y": 0.32, "puesto": "Volante", "en": "@Enrique"},
+         {"nombre": "Olarticoechea", "foto": "material/retratos/caras/olarticoechea.png", "x": 0.42, "y": 0.88, "puesto": "Carrilero", "en": "@Olarticoechea"},
+         {"nombre": "Burruchaga", "foto": "material/retratos/caras/burruchaga.png", "x": 0.56, "y": 0.68, "puesto": "Volante", "en": "@Burruchaga"},
+         {"nombre": "Valdano", "foto": "material/retratos/caras/valdano.png", "x": 0.78, "y": 0.62, "puesto": "Delantero", "en": "@Valdano"},
+         {"nombre": "Maradona", "foto": "material/retratos/caras/maradona.png", "x": 0.68, "y": 0.38, "puesto": "Capitán", "en": "@y Diego"}]}
+     ]},
+    {"texto": "Minuto veintitrés: tiro libre de Burruchaga, el arquero sale mal, y José Luis Brown, de cabeza... uno a cero.",
+     "visual": [{"archivo": "material/limpias/final.mp4", "desde": 116.0, "gol": 121.0, "golpe": "1-0", "golpe_sub": "BROWN · 23'", "golpe_en": "@uno a cero", "local": "Argentina", "visitante": "Alemania", "fin": 123.8}],
+     "sfx": [{"prompt": "stadium crowd erupting in a goal celebration roar", "en": "@uno a cero", "duracion": 3.5, "volumen": 0.45, "fade_out": 1.5}]},
+    {"texto": "En ese partido, Brown se dislocó el hombro. Le hizo un agujero a la camiseta, metió el dedo para sostener el brazo... y siguió jugando.",
+     "visual": [{"archivo": "material/brown_camiseta.jpg", "zocalo": "José Luis Brown", "sub": "el agujero en la camiseta"}]},
+    {"texto": "Minuto cincuenta y cinco: Enrique para Valdano, que entra solo y la cruza. Dos a cero. Parecía terminado.",
+     "visual": [
+       {"archivo": "material/limpias/final.mp4", "desde": 279.0, "gol": 285.0, "golpe": "2-0", "golpe_sub": "VALDANO · 55'", "golpe_en": "@Dos a cero", "local": "Argentina", "visitante": "Alemania", "fin": 286.5},
+       {"archivo": "material/limpias/final.mp4", "desde": 287.0, "velocidad": 0.4, "fin": 288.0}
+     ],
+     "sfx": [{"prompt": "stadium crowd erupting in a goal celebration roar", "en": "@Dos a cero", "duracion": 3.5, "volumen": 0.45, "fade_out": 1.5}]},
+    {"texto": "Pero Alemania no se rendía nunca. Minuto setenta y cuatro: Rummenigge. Minuto ochenta y uno: Völler. Dos a dos.",
+     "visual": [
+       {"archivo": "material/limpias/final.mp4", "desde": 369.0, "gol": 374.5, "golpe": "2-1", "golpe_sub": "RUMMENIGGE · 74'", "golpe_en": "@Rummenigge", "local": "Argentina", "visitante": "Alemania", "fin": 376.0},
+       {"archivo": "material/limpias/final.mp4", "desde": 447.0, "gol": 451.0, "golpe": "2-2", "golpe_sub": "VÖLLER · 81'", "golpe_en": "@Dos a dos", "local": "Argentina", "visitante": "Alemania", "fin": 452.0},
+       {"archivo": "material/limpias/final.mp4", "desde": 376.5, "velocidad": 0.4, "fin": 378.5}
+     ]},
+    {"texto": "Minuto ochenta y cuatro. Maradona, rodeado de alemanes, levanta la cabeza... y mete un pase para Burruchaga. Que corre, corre, con Briegel atrás... y la cruza ante Schumacher. Tres a dos.", "retardo": 1.0,
+     "visual": [{"archivo": "salida/graficos/iv_burru.mp4", "desde": 0}],
+     "sfx": [{"prompt": "stadium crowd roar rising to an explosion of joy for a goal", "en": "@Tres a dos", "duracion": 5, "volumen": 0.55, "fade_out": 2}]},
+    {"texto": "Seis minutos después, el árbitro brasileño Romualdo Arppi Filho termina el partido. Argentina es campeón del mundo.", "pausa": 0.8,
+     "visual": [
+       {"archivo": "material/limpias/final.mp4", "desde": 482.0, "velocidad": 0.4, "hasta": "@Argentina es", "fin": 485.8},
+       {"archivo": "material/limpias/final.mp4", "desde": 474.0, "velocidad": 0.4, "golpe": "3-2", "golpe_sub": "ARGENTINA CAMPEÓN DEL MUNDO", "golpe_en": "@campeón", "local": "Argentina", "visitante": "Alemania", "fin": 477.0}
+     ],
+     "sfx": [{"prompt": "referee final whistle three blows then huge stadium crowd celebration", "en": "@termina", "duracion": 5, "volumen": 0.5, "fade_out": 2}]},
+
+    {"capitulo": "El Mundial de Diego", "visual": [{"tipo": "capitulo", "numero": 8, "titulo": "El Mundial de Diego", "total": 8}], "duracion": 2.4},
+    {"texto": "Diego levanta la copa en el Azteca. Cinco goles, cinco asistencias... y el Balón de Oro del torneo.",
+     "visual": [
+       {"archivo": "material/maradona_copa.jpg", "hasta": "@Cinco goles"},
+       {"tipo": "placa", "texto": "5 goles · 5 asistencias", "sub": "Balón de Oro del Mundial", "etiqueta": "Maradona en México 86", "foto": "material/retratos/caras/maradona.png"}
+     ]},
+    {"texto": "Cuando volvieron a Buenos Aires, salieron al balcón de la Casa Rosada. Y Diego levantó la copa frente a una Plaza de Mayo repleta.",
+     "visual": [{"archivo": "material/festejo_avion.jpg", "hasta": "@salieron"}, {"archivo": "material/balcon.jpg"}]},
+    {"texto": "Bilardo, el que todos querían echar, era campeón del mundo. Y la mano de Dios y el gol del siglo quedaron juntos para siempre: en el mismo partido, separados por cuatro minutos.",
+     "visual": [
+       {"archivo": "material/bilardo.jpg", "hasta": "@Y la mano"},
+       {"archivo": "material/mano_dios.jpg", "hasta": "@separados"},
+       {"archivo": "material/eludiendo_shilton.jpg"}
+     ]},
+    {"texto": "¿Y la camiseta azul, la que compraron en un negocio del DF? La de los dos goles a Inglaterra se subastó en dos mil veintidós... por más de nueve millones de dólares.",
+     "visual": [
+       {"archivo": "material/limpias/inglaterra_fifa.mp4", "desde": 239.0, "velocidad": 0.35, "hasta": "@se subastó", "fin": 242.6},
+       {"archivo": "material/limpias/inglaterra.mp4", "desde": 157.5, "velocidad": 0.35, "golpe": "US$ 9M", "golpe_sub": "LA CAMISETA DE LOS DOS GOLES · SUBASTA 2022", "golpe_en": "@nueve millones"}
+     ]},
+    {"texto": "Pasaron cuarenta años. Argentina volvió a ser campeona en Qatar, con Messi. Pero México ochenta y seis... siempre va a ser el Mundial de Diego.", "pausa": 1.0,
+     "visual": [
+       {"tipo": "palmares", "texto": "Copas del Mundo", "etiqueta": "Argentina", "empieza": "@Pasaron", "intervalo": 0.8, "desde": 1974, "hasta_año": 2026,
+        "titulos": [{"año": 1978, "rival": "Países Bajos", "resultado": "3-1", "sede": "Buenos Aires"},
+                    {"año": 1986, "rival": "Alemania Federal", "resultado": "3-2", "sede": "México"},
+                    {"año": 2022, "rival": "Francia", "resultado": "3-3 (4-2 pen.)", "sede": "Qatar"}], "hasta": "@Pero México"},
+       {"archivo": "material/maradona_copa2.jpg"}
+     ]},
+    {"retardo": 0.5, "pausa": 10.0,
+     "texto": "Si llegaste hasta acá: suscribite, dejá tu like, y contanos en los comentarios cuál es el mejor gol que viste en tu vida. Te leemos.",
+     "visual": [{"tipo": "cierre", "sub": "", "botones": [
+       {"texto": "SUSCRIBITE", "icono": "mas", "click": "SUSCRIPTO", "en": "@suscribite"},
+       {"texto": "LIKE", "icono": "like", "en": "@like"},
+       {"texto": "COMENTÁ", "icono": "comentario", "en": "@comentarios"}]}],
+     "sfx": [{"prompt": "soft modern UI pop click sound", "en": "@suscribite", "duracion": 0.6, "volumen": 11.0},
+             {"prompt": "soft modern UI pop click sound", "en": "@like", "duracion": 0.6, "volumen": 11.0},
+             {"prompt": "soft modern UI pop click sound", "en": "@comentarios", "duracion": 0.6, "volumen": 11.0}]}
+  ]
+}

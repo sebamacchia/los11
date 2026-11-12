@@ -7,6 +7,7 @@ nunca sobre negro liso. Cuando se nombra a alguien, va su retrato (`foto`); `for
 
 Las animaciones se renderizan cuadro a cuadro y se mandan a ffmpeg por pipe.
 """
+import math
 import subprocess
 from pathlib import Path
 
@@ -970,6 +971,1168 @@ def marcador(dest, W, H, dur, local, visitante, goles, etiqueta="", cambios=None
             yn = yb + hb + 40 * s
             d.rectangle([W / 2 - w / 2, yn, W / 2 + w / 2, yn + 62 * s], fill=CLARO + (int(255 * b),))
             d.text((W / 2 - w / 2 + 20 * s, yn + 12 * s), nota, font=f_n, fill=FONDO + (int(255 * b),))
+        return capa
+
+    _render(dest, W, H, dur, cuadro, fondo)
+
+
+# ---------- jugada: la cancha en perspectiva con el recorrido de la pelota (pedido del usuario, 11/11) ----------
+def _homografia(src, dst):
+    """Matriz 3x3 que lleva los 4 puntos src a los 4 dst."""
+    import numpy as np
+    A, b = [], []
+    for (x, y), (u, v) in zip(src, dst):
+        A.append([x, y, 1, 0, 0, 0, -u * x, -u * y]); b.append(u)
+        A.append([0, 0, 0, x, y, 1, -v * x, -v * y]); b.append(v)
+    h = np.linalg.solve(np.array(A, float), np.array(b, float))
+    return np.append(h, 1.0).reshape(3, 3)
+
+
+def _interp(puntos, t):
+    """Posición (x, y) en el segundo t sobre una lista de puntos {"x", "y", "t"} (lineal entre puntos)."""
+    if t <= puntos[0]["t"]:
+        return puntos[0]["x"], puntos[0]["y"], 0
+    for k in range(1, len(puntos)):
+        a, b = puntos[k - 1], puntos[k]
+        if t <= b["t"]:
+            u = (t - a["t"]) / max(1e-6, b["t"] - a["t"])
+            if b.get("suave"):
+                u = u * u * (3 - 2 * u)
+            return a["x"] + (b["x"] - a["x"]) * u, a["y"] + (b["y"] - a["y"]) * u, k
+    return puntos[-1]["x"], puntos[-1]["y"], len(puntos) - 1
+
+
+def _textura_cancha(K):
+    """La cancha completa (105x68 m) dibujada a K px por metro, con franjas de corte de pasto."""
+    import numpy as np
+    M = int(4 * K)  # margen de 4 m alrededor (para los arcos)
+    PW, PH = int(105 * K), int(68 * K)
+    img = Image.new("RGBA", (PW + 2 * M, PH + 2 * M), (38, 62, 38, 255))
+    d = ImageDraw.Draw(img)
+    d.rectangle([M, M, M + PW, M + PH], fill=PANEL + (255,))
+    for k in range(0, 105, 10):  # franjas
+        if (k // 10) % 2:
+            d.rectangle([M + k * K, M, M + (k + 10) * K, M + PH], fill=(50, 82, 50, 255))
+    lc, lw = CLARO + (210,), max(2, int(K * 0.16))
+    for lado in (0, 1):  # arcos (7,32 x 2,44 m)
+        gx0, gx1 = (M - 2.44 * K, M) if lado == 0 else (M + PW, M + PW + 2.44 * K)
+        d.rectangle([gx0, M + PH / 2 - 3.66 * K, gx1, M + PH / 2 + 3.66 * K], fill=(230, 230, 230, 60), outline=lc, width=lw)
+    img2 = img.crop((M, M, M + PW, M + PH))
+    d2 = ImageDraw.Draw(img2)
+    d, img_full = d2, img
+    d.rectangle([lw // 2, lw // 2, PW - lw // 2, PH - lw // 2], outline=lc, width=lw)
+    d.line([PW / 2, 0, PW / 2, PH], fill=lc, width=lw)
+    rc = 9.15 * K
+    d.ellipse([PW / 2 - rc, PH / 2 - rc, PW / 2 + rc, PH / 2 + rc], outline=lc, width=lw)
+    d.ellipse([PW / 2 - lw, PH / 2 - lw, PW / 2 + lw, PH / 2 + lw], fill=lc)
+    for lado in (0, 1):
+        ah, aw = 40.3 * K, 16.5 * K
+        x_a = 0 if lado == 0 else PW - aw
+        d.rectangle([x_a, (PH - ah) / 2, x_a + aw, (PH + ah) / 2], outline=lc, width=lw)
+        ah2, aw2 = 18.3 * K, 5.5 * K
+        x_a = 0 if lado == 0 else PW - aw2
+        d.rectangle([x_a, (PH - ah2) / 2, x_a + aw2, (PH + ah2) / 2], outline=lc, width=lw)
+        px = 11 * K if lado == 0 else PW - 11 * K
+        d.ellipse([px - lw, PH / 2 - lw, px + lw, PH / 2 + lw], fill=lc)
+    img_full.paste(img2, (M, M))
+    return img_full
+
+
+def jugada(dest, W, H, dur, pelota, jugadores=(), titulo="", etiqueta="", minuto="", datos=(), contador=None,
+           ancho=62.0, color_rival=(236, 236, 236), color_arg=(117, 170, 219), fondo=None, seguir=True):
+    """Cancha vista en perspectiva (ataca hacia la derecha) con la pelota recorriendo la jugada: estela
+    verde, rivales que se apagan cuando los deja atrás, retratos de los protagonistas y contador de metros/segundos.
+    pelota = [{"x", "y", "t"}] en METROS de cancha (x 0-105, y 0-68; y=0 banda de arriba), t en segundos de la pieza;
+             {"aire": true} en el punto de llegada = pelota por el aire (traza punteada).
+    jugadores = [{"nombre", "equipo": "arg"|"rival", "x", "y", "foto", "mov": [{"x","y","t"}], "vencido": t, "etiqueta"}]
+    datos = [{"a": "60 METROS", "b": "10,8 SEGUNDOS", "t": [t0, t1]}]   contador = {"desde": t0, "hasta": t1}
+    ancho = metros de cancha visibles (la cámara sigue a la pelota)."""
+    import math
+    import numpy as np
+    s = W / 1920
+    K = 16
+    tex = _textura_cancha(K)
+    f_e = fuente(500, 26 * s)
+    f_ti = fuente(700, 44 * s)
+    f_nom = fuente(700, 22 * s)
+    f_et = fuente(600, 18 * s)
+    f_min = fuente(700, 230 * s)
+    f_cont = fuente(700, 64 * s)
+    f_cl = fuente(500, 22 * s)
+    f_da = fuente(700, 92 * s)
+    f_db = fuente(700, 30 * s)
+    xl = 96 * s
+    caras = {}
+    for j in jugadores:
+        if j.get("foto"):
+            caras[j["nombre"]] = _circulo(_retrato(j["foto"], int(76 * s)))
+    pel = sorted(pelota, key=lambda p: p["t"])
+    t_ini, t_fin = pel[0]["t"], pel[-1]["t"]
+    # largo del recorrido (para el contador) y muestreo de la estela
+    def largo_hasta(t):
+        L, prev = 0.0, None
+        tt = pel[0]["t"]
+        while tt < min(t, t_fin) + 1e-9:
+            x, y, _ = _interp(pel, tt)
+            if prev:
+                L += math.hypot(x - prev[0], y - prev[1])
+            prev = (x, y)
+            tt += 0.05
+        return L
+
+    def jug_pos(j, t):
+        if j.get("mov"):
+            pts = [{"x": j["x"], "y": j["y"], "t": j["mov"][0]["t"] - 1e-3}] + list(j["mov"])
+            x, y, _ = _interp(pts, t)
+            return x, y
+        return j["x"], j["y"]
+
+    def cuadro(t, i, n):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        a = ease(t / 0.5)
+        # cámara: ventana de `ancho` metros centrada en la pelota (con un poco de retraso)
+        bx, by, _ = _interp(pel, t - 0.2)
+        if not seguir:
+            bx = 52.5
+        ww = min(105.0, ancho)
+        wx0 = max(0.0, min(105.0 - ww, bx - ww / 2))
+        # entrada: de vista cenital a perspectiva
+        incl = 0.56 + 0.44 * (1 - ease(t / 0.9))
+        y0, y1 = H * 0.27, H * 1.0
+        x0, x1 = -W * 0.06, W * 1.06
+        cx = W / 2
+        top_w = (x1 - x0) * incl
+        quad_dst = [(cx - top_w / 2, y0), (cx + top_w / 2, y0), (x1, y1), (x0, y1)]
+        quad_src = [(wx0, 0.0), (wx0 + ww, 0.0), (wx0 + ww, 68.0), (wx0, 68.0)]
+        Hm = _homografia(quad_src, quad_dst)  # metros -> pantalla
+        Hinv = np.linalg.inv(_homografia([((x + 4) * K, (y + 4) * K) for x, y in quad_src], quad_dst))  # pantalla -> textura
+        coef = (Hinv / Hinv[2, 2]).flatten()[:8]
+        cancha = tex.transform((W, H), Image.PERSPECTIVE, tuple(coef), Image.BILINEAR)
+        if a < 1:
+            cancha.putalpha(cancha.getchannel("A").point(lambda v: int(v * a)))
+        capa.alpha_composite(cancha)
+        # sombra/viñeta abajo para que el texto se lea
+        d = ImageDraw.Draw(capa)
+
+        def P(x, y):
+            p = Hm @ (x, y, 1.0)
+            return p[0] / p[2], p[1] / p[2]
+
+        # estela de la pelota
+        if t > t_ini:
+            pts, tt = [], t_ini
+            fin = min(t, t_fin)
+            while tt <= fin:
+                x, y, k = _interp(pel, tt)
+                pts.append((P(x, y), pel[min(k, len(pel) - 1)].get("aire", False)))
+                tt += 0.04
+            x, y, k = _interp(pel, fin)
+            pts.append((P(x, y), pel[min(k, len(pel) - 1)].get("aire", False)))
+            if len(pts) > 1:
+                piso = [p for p, aire in pts if not aire]
+                glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+                dg = ImageDraw.Draw(glow)
+                for m in range(1, len(pts)):
+                    (p0, _), (p1, aire) = pts[m - 1], pts[m]
+                    if aire and (m // 3) % 2:
+                        continue
+                    dg.line([p0, p1], fill=ACENTO + (110,), width=int(22 * s))
+                    d.line([p0, p1], fill=TEXTO + (255,), width=int(7 * s))
+                capa.alpha_composite(glow)
+                d = ImageDraw.Draw(capa)
+        # jugadores (de lejos a cerca)
+        orden = sorted(jugadores, key=lambda j: jug_pos(j, t)[1])
+        for j in orden:
+            x, y = jug_pos(j, t)
+            sx, sy = P(x, y)
+            venc = j.get("vencido")
+            apag = venc is not None and t >= venc
+            al = int(255 * a * (0.38 if apag else 1.0))
+            col = color_arg if j.get("equipo", "rival") == "arg" else color_rival
+            cara = caras.get(j["nombre"])
+            if cara is not None:
+                r = 38 * s
+                c = cara.resize((int(2 * r), int(2 * r)), Image.BILINEAR)
+                if al < 255:
+                    c.putalpha(c.getchannel("A").point(lambda v: int(v * al / 255)))
+                capa.alpha_composite(c, (int(sx - r), int(sy - r)))
+                d.ellipse([sx - r, sy - r, sx + r, sy + r], outline=ACENTO + (al,), width=int(5 * s))
+            else:
+                r = 20 * s
+                d.ellipse([sx - r, sy - r * 0.75, sx + r, sy + r * 0.75], fill=(0, 0, 0, int(al * 0.4)))
+                d.ellipse([sx - r, sy - r - 6 * s, sx + r, sy + r - 6 * s], fill=col + (al,),
+                          outline=OSCURO + (al,), width=int(3 * s))
+            if venc is not None and 0 <= t - venc < 0.5:  # aro que se expande al dejarlo atrás
+                u = (t - venc) / 0.5
+                rr = r + 60 * s * u
+                d.ellipse([sx - rr, sy - rr, sx + rr, sy + rr], outline=ACENTO + (int(255 * (1 - u)),), width=int(5 * s))
+            if j.get("nombre") and al > 0:
+                nom = j["nombre"].upper()
+                tw = d.textlength(nom, font=f_nom)
+                yy = sy + r + 6 * s
+                fondo_c = (ACENTO if cara is not None else CLARO)
+                d.rectangle([sx - tw / 2 - 8 * s, yy, sx + tw / 2 + 8 * s, yy + 30 * s], fill=fondo_c + (al,))
+                d.text((sx - tw / 2, yy + 3 * s), nom, font=f_nom, fill=OSCURO + (al,))
+                if j.get("etiqueta") and not apag:
+                    et = j["etiqueta"].upper()
+                    tw2 = d.textlength(et, font=f_et)
+                    d.rectangle([sx - tw2 / 2 - 6 * s, yy - 26 * s, sx + tw2 / 2 + 6 * s, yy - 2 * s], fill=OSCURO + (int(al * 0.85),))
+                    d.text((sx - tw2 / 2, yy - 24 * s), et, font=f_et, fill=CLARO + (al,))
+        # la pelota
+        if t >= t_ini - 0.5:
+            x, y, k = _interp(pel, t)
+            sx, sy = P(x, y)
+            seg = pel[min(k, len(pel) - 1)]
+            alt = 0.0
+            if seg.get("aire") and k > 0:
+                u = (t - pel[k - 1]["t"]) / max(1e-6, seg["t"] - pel[k - 1]["t"])
+                alt = math.sin(math.pi * max(0, min(1, u))) * float(seg.get("altura", 120)) * s
+            rb = 11 * s * (1 + alt / (300 * s))
+            d.ellipse([sx - rb * 1.3, sy - rb * 0.5, sx + rb * 1.3, sy + rb * 0.5], fill=(0, 0, 0, 110))
+            d.ellipse([sx - rb, sy - alt - rb, sx + rb, sy - alt + rb], fill=TEXTO + (255,), outline=OSCURO + (255,), width=int(2 * s))
+        # marca, título, etiqueta
+        _marca(d, s, int(255 * a))
+        if etiqueta:
+            d.rectangle([xl, 136 * s, xl + 46 * s * a, 140 * s], fill=ACENTO + (int(255 * a),))
+            _espaciado(d, (xl + 62 * s, 122 * s), etiqueta.upper(), f_e, ACENTO + (int(255 * a),), 4 * s)
+        if titulo:
+            d.text((xl, 162 * s), titulo.upper(), font=f_ti, fill=TEXTO + (int(255 * a),))
+        if minuto:
+            b = ease((t - 0.2) / 0.5)
+            tw = d.textlength(minuto, font=f_min)
+            d.text((W - 80 * s - tw + (1 - b) * 40 * s, 40 * s), minuto, font=f_min, fill=(0, 0, 0, 0),
+                   stroke_width=int(3 * s), stroke_fill=ACENTO + (int(150 * b),))
+        # contador de metros y segundos
+        if contador and t >= contador["desde"]:
+            tt = min(t, contador["hasta"])
+            seg_c = tt - contador["desde"]
+            m = largo_hasta(tt) - largo_hasta(contador["desde"])
+            yb = 250 * s
+            for k2, (val, uni) in enumerate(((f"{m:.0f}", "METROS"), (f"{seg_c:.1f}".replace(".", ","), "SEGUNDOS"))):
+                xx = W - 96 * s - 300 * s * (1 - k2)
+                tw = d.textlength(val, font=f_cont)
+                d.text((xx - tw, yb), val, font=f_cont, fill=TEXTO + (255,))
+                tw2 = d.textlength(uni, font=f_cl)
+                d.text((xx - tw2, yb + 74 * s), uni, font=f_cl, fill=ACENTO + (255,))
+        # datos grandes abajo
+        for dt in datos:
+            t0, t1 = dt["t"]
+            if not (t0 <= t < t1):
+                continue
+            b = ease((t - t0) / 0.3)
+            esc = 1.4 - 0.4 * b
+            A_ = dt["a"]
+            fa = fuente(700, 92 * s * esc)
+            tw = d.textlength(A_, font=fa)
+            d.text(((W - tw) / 2, H - 230 * s), A_, font=fa, fill=TEXTO + (int(255 * b),),
+                   stroke_width=int(4 * s), stroke_fill=(0, 0, 0, int(140 * b)))
+            if dt.get("b"):
+                b2 = ease((t - t0 - 0.2) / 0.3)
+                tw2 = d.textlength(dt["b"], font=f_db)
+                yy = H - 120 * s + (1 - b2) * 16 * s
+                d.rectangle([(W - tw2) / 2 - 20 * s, yy, (W + tw2) / 2 + 20 * s, yy + 50 * s], fill=CLARO + (int(255 * b2),))
+                d.text(((W - tw2) / 2, yy + 8 * s), dt["b"], font=f_db, fill=FONDO + (int(255 * b2),))
+        return capa
+
+    _render(dest, W, H, dur, cuadro, fondo)
+
+
+# ---------- insignia del canal sobre la marca de agua de una fuente (pedido del usuario, 11/11) ----------
+def fantasma(src, dest, W, H, dur, texto, sub="", t0=0.5, flechas=(), foco=None):
+    """Alternativa al golpe (pedido del usuario, 11/11: "que esté ahí pero no ocupe toda la pantalla"): en t0 el clip
+    se CONGELA y la cámara se acerca despacio hacia `foco` (x, y en 0-1); el resultado aparece como número gigante
+    solo de contorno, semitransparente, abajo a la derecha; `sub` en un chip abajo a la izquierda; y las `flechas`
+    [{"a": (x, y) 0-1, "texto": "LA MANO DE DIOS", "t": seg, "desde": (x, y) opcional}] señalan un punto del cuadro
+    congelado con una etiqueta verde (la línea crece desde la etiqueta hasta el punto)."""
+    import math
+    s = W / 1920
+    f_g = fuente(800, 520 * s)
+    f_sub = fuente(700, 40 * s)
+    f_fl = fuente(800, 38 * s)
+    n = round(dur * FPS)
+    d0 = ImageDraw.Draw(Image.new("RGB", (1, 1)))
+    bb = d0.textbbox((0, 0), texto, font=f_g, stroke_width=int(6 * s))
+    wg, hg = bb[2] - bb[0], bb[3] - bb[1]
+    num = Image.new("RGBA", (int(wg + 40 * s), int(hg + 40 * s)), (0, 0, 0, 0))
+    ImageDraw.Draw(num).text((20 * s - bb[0], 20 * s - bb[1]), texto, font=f_g, fill=(0, 0, 0, 0),
+                             stroke_width=int(6 * s), stroke_fill=TEXTO + (255,))
+    foco_px = ((foco[0] if foco else 0.5) * W, (foco[1] if foco else 0.5) * H)
+    resto = max(0.5, dur - t0)
+
+    def pos(p, k, z):
+        """Punto del cuadro original (0-1) -> píxel en pantalla con el zoom k (0-1) aplicado."""
+        cx = W / 2 + (foco_px[0] - W / 2) * k
+        cy = H / 2 + (foco_px[1] - H / 2) * k
+        x0, y0 = cx - W / (2 * z), cy - H / (2 * z)
+        return ((p[0] * W - x0) * z, (p[1] * H - y0) * z)
+
+    p_in = subprocess.Popen(["ffmpeg", "-v", "error", "-i", str(src), "-frames:v", str(n), "-f", "rawvideo",
+                             "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
+    p = subprocess.Popen(
+        ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
+         "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+         "-pix_fmt", "yuv420p", "-an", str(dest)], stdin=subprocess.PIPE)
+    tam = W * H * 3
+    ultimo = Image.new("RGB", (W, H))
+    congelado = None
+    recientes = []
+
+    def nitidez(im):
+        g = im.convert("L").resize((480, 270), Image.BILINEAR)
+        from PIL import ImageFilter, ImageStat
+        return ImageStat.Stat(g.filter(ImageFilter.FIND_EDGES)).var[0]
+
+    for i in range(n):
+        buf = p_in.stdout.read(tam)
+        if len(buf) == tam and congelado is None:
+            ultimo = Image.frombytes("RGB", (W, H), buf)
+            recientes = (recientes + [ultimo])[-3:]
+        t = i / FPS - t0
+        if t < 0:
+            p.stdin.write(ultimo.tobytes())
+            continue
+        if congelado is None:
+            cands = list(recientes)
+            for _ in range(3):  # también los 3 cuadros que siguen
+                buf = p_in.stdout.read(tam)
+                if len(buf) == tam:
+                    cands.append(Image.frombytes("RGB", (W, H), buf))
+            congelado = max(cands, key=nitidez)
+        k = min(1.0, t / resto)
+        z = 1 + 0.12 * k
+        cx = W / 2 + (foco_px[0] - W / 2) * k
+        cy = H / 2 + (foco_px[1] - H / 2) * k
+        x0, y0 = cx - W / (2 * z), cy - H / (2 * z)
+        img = congelado.crop((int(x0), int(y0), int(x0 + W / z), int(y0 + H / z))).resize((W, H), Image.BILINEAR).convert("RGBA")
+        img = Image.alpha_composite(img, Image.new("RGBA", (W, H), OSCURO + (int(60 * ease(t / 0.3)),)))
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        # número fantasma: aparece con un pop
+        a = ease(t / 0.3)
+        esc = 1 + 0.25 * (1 - ease(t / 0.3))
+        c = num if esc == 1 else num.resize((int(num.width * esc), int(num.height * esc)), Image.BILINEAR)
+        c = c.copy()
+        c.putalpha(c.getchannel("A").point(lambda v: int(v * 0.72 * a)))
+        capa.alpha_composite(c, (int(W - 50 * s - c.width), int(H - 30 * s - c.height)))
+        # chip con el detalle
+        if sub:
+            b = ease((t - 0.2) / 0.3)
+            if b > 0:
+                w = d.textlength(sub, font=f_sub) + 44 * s
+                x = 60 * s - (1 - b) * 40 * s
+                y = H - 150 * s
+                d.rectangle([x, y, x + w, y + 66 * s], fill=OSCURO + (int(235 * b),))
+                d.text((x + 22 * s, y + 10 * s), sub, font=f_sub, fill=TEXTO + (int(255 * b),))
+        # flechas
+        for f in flechas:
+            tf = f.get("t", 0.4) - t0  # "t" cuenta desde el inicio de la pieza
+            if t < tf:
+                continue
+            b = ease((t - tf) / 0.35)
+            P = pos(f["a"], k, z)
+            if f.get("desde"):
+                L = pos(f["desde"], k, z)
+            else:
+                dx = -260 * s if P[0] > W * 0.55 else 260 * s
+                dy = 200 * s if P[1] < H * 0.4 else -200 * s
+                L = (P[0] + dx, P[1] + dy)
+            E = (L[0] + (P[0] - L[0]) * b, L[1] + (P[1] - L[1]) * b)
+            d.line([L, E], fill=ACENTO + (255,), width=int(5 * s))
+            if b >= 1:
+                r = 11 * s + 4 * s * math.sin((t - tf) * 6)
+                d.ellipse([P[0] - r, P[1] - r, P[0] + r, P[1] + r], outline=ACENTO + (255,), width=int(4 * s))
+            tw = d.textlength(f["texto"], font=f_fl)
+            lb = ease((t - tf - 0.1) / 0.25)
+            if lb > 0:
+                ww, hh = (tw + 36 * s) * (0.9 + 0.1 * lb), 58 * s * (0.9 + 0.1 * lb)
+                lx = L[0] - ww / 2
+                ly = L[1] - hh / 2
+                d.rounded_rectangle([lx, ly, lx + ww, ly + hh], radius=int(6 * s), fill=ACENTO + (int(255 * lb),))
+                d.text((L[0] - tw / 2, L[1] - 22 * s), f["texto"], font=f_fl, fill=OSCURO + (int(255 * lb),))
+        img = Image.alpha_composite(img, capa)
+        flash = int(110 * max(0.0, 1 - t / 0.15))
+        if flash:
+            img = Image.alpha_composite(img, Image.new("RGBA", (W, H), (255, 255, 255, flash)))
+        p.stdin.write(img.convert("RGB").tobytes())
+    p_in.stdout.close()
+    p_in.wait()
+    p.stdin.close()
+    if p.wait() != 0:
+        raise SystemExit(f"ffmpeg falló renderizando {dest}")
+
+
+def insignia(dest, W, H, caja):
+    """PNG WxH transparente con una insignia "LOS 11" que tapa la marca de agua del canal de origen.
+    caja = (x, y, w, h) en píxeles del cuadro final."""
+    x, y, w, h = caja
+    s = W / 1920
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([x, y, x + w, y + h], radius=int(10 * s), fill=OSCURO + (225,))
+    d.rectangle([x + 18 * s, y + 22 * s, x + 26 * s, y + h - 22 * s], fill=ACENTO + (255,))
+    f = fuente(800, int(h * 0.46))
+    f2 = fuente(500, int(h * 0.17))
+    d.text((x + 44 * s, y + h * 0.14), CANAL, font=f, fill=TEXTO + (255,))
+    _espaciado(d, (x + 46 * s, y + h * 0.66), "ARCHIVO", f2, ACENTO + (255,), 4 * s)
+    img.save(dest)
+
+
+# ---------- charla: tarjetas de cita con foto real de quien habla (pedido del usuario, 11/11) ----------
+def _cubrir(ruta, w, h, recorte=None):
+    """Foto recortada "cover" a w x h (cacheada), apenas desaturada. recorte = (x0, y0, x1, y1) en la foto original."""
+    clave = (str(ruta), int(w), int(h), tuple(recorte) if recorte else None)
+    if clave not in _cubrir.cache:
+        from PIL import ImageEnhance
+        im = Image.open(ruta).convert("RGB")
+        if recorte:
+            im = im.crop(tuple(int(v) for v in recorte))
+        iw, ih = im.size
+        if iw / ih > w / h:
+            nw = ih * w / h
+            im = im.crop((int((iw - nw) / 2), 0, int((iw + nw) / 2), ih))
+        else:
+            nh = iw * h / w
+            im = im.crop((0, int((ih - nh) / 2), iw, int((ih + nh) / 2)))
+        im = ImageEnhance.Color(im.resize((int(w), int(h)), Image.LANCZOS)).enhance(0.85)
+        _cubrir.cache[clave] = im
+    return _cubrir.cache[clave]
+
+
+_cubrir.cache = {}
+
+
+def _persona(d, cx, base_y, alto, color, alpha=255, ancho=0.3):
+    """Silueta sencilla (cabeza + hombros) de `alto` px apoyada en base_y."""
+    r = alto * 0.17
+    d.ellipse([cx - r, base_y - alto, cx + r, base_y - alto + 2 * r], fill=color + (alpha,))
+    d.rounded_rectangle([cx - alto * ancho, base_y - alto + 2.25 * r, cx + alto * ancho, base_y],
+                        radius=int(alto * 0.14), fill=color + (alpha,))
+
+
+def charla(dest, W, H, dur, globos, titulo="", etiqueta="", fondo=None):
+    """Citas reales, una por vez, como tarjetas: la foto de quien habla a un costado (o, si no hay foto, el nombre del
+    medio como cabecera de diario) y la frase grande al otro. globos = [{"lado": "izq"|"der", "quien": "Menotti",
+    "fuente": "campeón del mundo 1978", "texto": "...", "t": seg, "foto": ruta opcional}]. Cada cita entra con la foto
+    barriendo desde su lado y las líneas de texto subiendo; la anterior se va hacia su lado."""
+    s = W / 1920
+    f_tx = fuente(600, 62 * s, plex=True)
+    f_q = fuente(800, 190 * s, plex=True)
+    f_nom = fuente(800, 30 * s)
+    f_src = fuente(500, 22 * s)
+    f_medio = fuente(700, 60 * s, plex=True)
+    f_e = fuente(500, 26 * s)
+    f_ti = fuente(700, 44 * s)
+    xl = 96 * s
+    pw, ph = 540 * s, 690 * s
+    py = (H - ph) / 2 + 40 * s
+    fotos = {}
+    for g in globos:
+        if g.get("foto"):
+            fotos[g["foto"]] = _cubrir(g["foto"], pw, ph, g.get("recorte"))
+    ancho_tx = W - 2 * 120 * s - pw - 90 * s
+
+    def tarjeta(capa, g, a, salida=0.0):
+        """a = entrada 0-1; salida = 0-1 (se va)."""
+        d = ImageDraw.Draw(capa)
+        lado = g.get("lado", "izq")
+        izq = lado == "izq"
+        al = int(255 * a * (1 - salida))
+        dx = -salida * 60 * s if izq else salida * 60 * s
+        px = (120 * s if izq else W - 120 * s - pw) + dx
+        # foto (barrido desde su lado) o cabecera de medio
+        foto = fotos.get(g.get("foto"))
+        panel = Image.new("RGBA", (int(pw), int(ph)), (0, 0, 0, 0))
+        if foto is not None:
+            panel.paste(foto, (0, 0))
+        else:
+            pd = ImageDraw.Draw(panel)
+            pd.rectangle([0, 0, pw, ph], fill=PANEL + (255,))
+            nom = g["quien"].upper()
+            fm = f_medio
+            while pd.textlength(nom, font=fm) > pw - 60 * s and fm.size > 30 * s:
+                fm = fuente(700, fm.size - 4, plex=True)
+            tw = pd.textlength(nom, font=fm)
+            pd.line([40 * s, ph * 0.40, pw - 40 * s, ph * 0.40], fill=TEXTO + (255,), width=int(3 * s))
+            pd.text(((pw - tw) / 2, ph * 0.40 + 20 * s), nom, font=fm, fill=TEXTO + (255,))
+            pd.line([40 * s, ph * 0.40 + 50 * s + fm.size, pw - 40 * s, ph * 0.40 + 50 * s + fm.size], fill=TEXTO + (255,), width=int(3 * s))
+            if g.get("fuente"):
+                fs = fuente(500, 22 * s)
+                tw = pd.textlength(g["fuente"].upper(), font=fs)
+                pd.text(((pw - tw) / 2, ph * 0.40 + 70 * s + fm.size), g["fuente"].upper(), font=fs, fill=ACENTO + (255,))
+        vis = int(pw * ease(a / 0.6))
+        if vis > 0:
+            parte = panel.crop((0, 0, vis, int(ph))) if izq else panel.crop((int(pw) - vis, 0, int(pw), int(ph)))
+            if al < 255:
+                parte.putalpha(parte.getchannel("A").point(lambda v: v * al // 255))
+            capa.alpha_composite(parte, (int(px) if izq else int(px + pw - vis), int(py)))
+            d = ImageDraw.Draw(capa)
+            d.rectangle([px, py, px + pw, py + ph], outline=TEXTO + (int(al * 0.5),), width=int(2 * s))
+        # nombre y fuente debajo de la foto
+        if a > 0.5 and foto is not None:
+            b = int(al * ease((a - 0.5) / 0.3))
+            nom = g["quien"].upper()
+            tw = d.textlength(nom, font=f_nom)
+            cx = px + pw / 2
+            d.rectangle([cx - tw / 2 - 16 * s, py + ph + 18 * s, cx + tw / 2 + 16 * s, py + ph + 62 * s], fill=ACENTO + (b,))
+            d.text((cx - tw / 2, py + ph + 24 * s), nom, font=f_nom, fill=OSCURO + (b,))
+            if g.get("fuente"):
+                tw = d.textlength(g["fuente"].upper(), font=f_src)
+                d.text((cx - tw / 2, py + ph + 76 * s), g["fuente"].upper(), font=f_src, fill=CLARO + (b,))
+        # la frase
+        tx0 = (px + pw + 90 * s) if izq else (120 * s + dx)
+        lineas = _partir(g["texto"], f_tx, ancho_tx)
+        lh = 80 * s
+        alto_tx = lh * len(lineas)
+        ty0 = H / 2 - alto_tx / 2 + 30 * s
+        q_a = int(al * ease((a - 0.15) / 0.3))
+        d.text((tx0 - 10 * s, ty0 - 165 * s), "“", font=f_q, fill=ACENTO + (q_a,))
+        for j, ln in enumerate(lineas):
+            b = ease((a - 0.25 - j * 0.08) / 0.3)
+            if b <= 0:
+                continue
+            d.text((tx0, ty0 + j * lh + (1 - b) * 18 * s), ln, font=f_tx, fill=TEXTO + (int(al * b),))
+        b = ease((a - 0.35 - len(lineas) * 0.08) / 0.3)
+        if b > 0 and foto is None:
+            d.rectangle([tx0, ty0 + alto_tx + 26 * s, tx0 + 60 * s * b, ty0 + alto_tx + 30 * s], fill=ACENTO + (int(al * b),))
+            src = " · ".join(x for x in (g.get("quien"), g.get("fuente")) if x)
+            _espaciado(d, (tx0 + 80 * s, ty0 + alto_tx + 16 * s), src.upper(), f_src, CLARO + (int(al * b),), 3 * s)
+        elif b > 0:
+            d.rectangle([tx0, ty0 + alto_tx + 26 * s, tx0 + 60 * s * b, ty0 + alto_tx + 30 * s], fill=ACENTO + (int(al * b),))
+
+    def cuadro(t, i, n):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        a = ease(t / 0.4)
+        _marca(d, s, int(255 * a))
+        if etiqueta:
+            d.rectangle([xl, 136 * s, xl + 46 * s * a, 140 * s], fill=ACENTO + (int(255 * a),))
+            _espaciado(d, (xl + 62 * s, 122 * s), etiqueta.upper(), f_e, ACENTO + (int(255 * a),), 4 * s)
+        if titulo:
+            d.text((xl, 162 * s), titulo.upper(), font=f_ti, fill=TEXTO + (int(255 * a),))
+        activos = [g for g in globos if t >= g["t"]]
+        if not activos:
+            return capa
+        actual = activos[-1]
+        if len(activos) >= 2:
+            prev = activos[-2]
+            sal = ease((t - actual["t"]) / 0.3)
+            if sal < 1:
+                tarjeta(capa, prev, 1.0, sal)
+        tarjeta(capa, actual, min(1.0, (t - actual["t"]) / 1.0))
+        return capa
+
+    _render(dest, W, H, dur, cuadro, fondo)
+
+
+# ---------- altura: medir a un jugador contra otro, con fotos reales (pedido del usuario, 11/11) ----------
+def altura(dest, W, H, dur, personas, titulo="", etiqueta="", fondo=None):
+    """Columnas con la foto de cada persona, de alto proporcional a su altura real, que suben desde el piso mientras el
+    número cuenta. personas = [{"nombre": "Maradona", "altura": 1.65, "foto": ruta, "recorte": (x0,y0,x1,y1) opcional,
+    "t": seg, "sub": "el capitán"}] (hasta 3, de izquierda a derecha). Al final, la diferencia en centímetros."""
+    s = W / 1920
+    f_num = fuente(800, 150 * s)
+    f_m = fuente(700, 44 * s)
+    f_lab = fuente(700, 36 * s)
+    f_nom = fuente(800, 30 * s)
+    f_sub = fuente(500, 26 * s, plex=True)
+    f_tick = fuente(500, 20 * s)
+    f_e = fuente(500, 26 * s)
+    f_ti = fuente(700, 44 * s)
+    f_dif = fuente(800, 64 * s)
+    xl = 96 * s
+    base_y = H - 150 * s
+    px_m = 360 * s  # píxeles por metro
+    cw = 300 * s
+    paso = 420 * s
+    maxh = max(p["altura"] for p in personas)
+    n = len(personas)
+    xs = [W * 0.60 + (k - (n - 1) / 2) * paso for k in range(n)]
+    x_regla = xs[0] - cw / 2 - 70 * s
+    cols = {}
+    for p in personas:
+        if p.get("foto"):
+            cols[p["nombre"]] = _cubrir(p["foto"], cw, p["altura"] * px_m, p.get("recorte"))
+
+    def cuadro(t, i, nn):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        a = ease(t / 0.4)
+        _marca(d, s, int(255 * a))
+        if etiqueta:
+            d.rectangle([xl, 196 * s, xl + 46 * s * a, 200 * s], fill=ACENTO + (int(255 * a),))
+            _espaciado(d, (xl + 62 * s, 182 * s), etiqueta.upper(), f_e, ACENTO + (int(255 * a),), 4 * s)
+        if titulo:
+            d.text((xl, 222 * s), titulo.upper(), font=f_ti, fill=TEXTO + (int(255 * a),))
+        # piso y regla
+        d.line([x_regla - 40 * s, base_y, xs[-1] + cw / 2 + 160 * s, base_y], fill=CLARO + (int(200 * a),), width=int(3 * s))
+        top = base_y - (maxh + 0.12) * px_m
+        d.line([x_regla, base_y, x_regla, base_y - (base_y - top) * a], fill=CLARO + (160,), width=int(3 * s))
+        cm = 0
+        while cm <= (maxh + 0.12) * 100:
+            y = base_y - cm / 100 * px_m
+            if y < base_y - (base_y - top) * a:
+                break
+            largo = 22 if cm % 50 == 0 else (12 if cm % 10 == 0 else 0)
+            if largo:
+                d.line([x_regla - largo * s, y, x_regla, y], fill=CLARO + (160,), width=int(2 * s))
+            if cm % 50 == 0:
+                txt = f"{cm / 100:.2f}".replace(".", ",")
+                tw = d.textlength(txt, font=f_tick)
+                d.text((x_regla - 34 * s - tw, y - 12 * s), txt, font=f_tick, fill=CLARO + (200,))
+            cm += 10
+        ultimo = None
+        for k, p in enumerate(personas):
+            if t < p["t"]:
+                continue
+            b = ease((t - p["t"]) / 1.2)
+            h_act = p["altura"] * b
+            x = xs[k]
+            hp = h_act * px_m
+            col = ACENTO if k == 0 else CLARO
+            col_img = cols.get(p["nombre"])
+            if hp > 2:
+                if col_img is not None:
+                    hf = col_img.height
+                    parte = col_img.crop((0, int(hf - hp), int(cw), hf))
+                    capa.paste(parte, (int(x - cw / 2), int(base_y - hp)))
+                    d = ImageDraw.Draw(capa)
+                else:
+                    _persona(d, x, base_y, hp, col, 230, ancho=0.16)
+                d.rectangle([x - cw / 2, base_y - hp, x + cw / 2, base_y], outline=col + (255,), width=int(3 * s))
+            # línea de altura hasta la regla y número grande contando
+            y = base_y - hp
+            d.line([x_regla, y, x - cw / 2, y], fill=col + (200,), width=int(2 * s))
+            txt = f"{h_act:.2f}".replace(".", ",")
+            if 0 < b < 1 or (k == n - 1 and t < p["t"] + 1.6):
+                d.text((xl, 300 * s), txt, font=f_num, fill=TEXTO + (255,))
+                d.text((xl + d.textlength(txt, font=f_num) + 24 * s, 380 * s), "m", font=f_m, fill=ACENTO + (255,))
+            if b >= 1:
+                lab = txt + " m"
+                tw = d.textlength(lab, font=f_lab)
+                d.rectangle([x - tw / 2 - 12 * s, y - 62 * s, x + tw / 2 + 12 * s, y - 14 * s], fill=col + (255,))
+                d.text((x - tw / 2, y - 58 * s), lab, font=f_lab, fill=OSCURO + (255,))
+            nom = p["nombre"].upper()
+            tw = d.textlength(nom, font=f_nom)
+            d.rectangle([x - tw / 2 - 14 * s, base_y + 16 * s, x + tw / 2 + 14 * s, base_y + 58 * s], fill=col + (255,))
+            d.text((x - tw / 2, base_y + 21 * s), nom, font=f_nom, fill=OSCURO + (255,))
+            if p.get("sub"):
+                tw = d.textlength(p["sub"], font=f_sub)
+                d.text((x - tw / 2, base_y + 70 * s), p["sub"], font=f_sub, fill=CLARO + (255,))
+            ultimo = (k, b)
+        # diferencia
+        if n >= 2 and ultimo and ultimo[0] == n - 1 and ultimo[1] >= 1:
+            b2 = ease((t - personas[-1]["t"] - 1.2) / 0.4)
+            dif = round((personas[-1]["altura"] - personas[0]["altura"]) * 100)
+            y0, y1 = base_y - personas[0]["altura"] * px_m, base_y - personas[-1]["altura"] * px_m
+            xm = xs[-1] + cw / 2 + 40 * s
+            al = int(255 * b2)
+            d.line([xs[0] + cw / 2, y0, xm, y0], fill=ACENTO + (al,), width=int(3 * s))
+            d.line([xm, y0, xm, y1], fill=ACENTO + (al,), width=int(6 * s))
+            d.line([xm - 14 * s, y1, xm + 14 * s, y1], fill=ACENTO + (al,), width=int(6 * s))
+            d.line([xm - 14 * s, y0, xm + 14 * s, y0], fill=ACENTO + (al,), width=int(6 * s))
+            txt = f"{dif:+d} cm"
+            d.text((xm + 24 * s, (y0 + y1) / 2 - 36 * s), txt, font=f_dif, fill=ACENTO + (al,))
+            d.text((xl, 300 * s), txt, font=f_num, fill=ACENTO + (al,))
+        return capa
+
+    _render(dest, W, H, dur, cuadro, fondo)
+
+
+# ---------- cifras: números grandes que cuentan (pedido del usuario, 11/11: Malvinas con contexto) ----------
+def cifras(dest, W, H, dur, items, titulo="", etiqueta="", fondo=None):
+    """Hasta tres cifras en fila, cada una cuenta desde 0 cuando el narrador la nombra.
+    items = [{"numero": 649, "texto": "SOLDADOS ARGENTINOS MUERTOS", "t": seg, "sufijo": ""}]."""
+    s = W / 1920
+    f_num = fuente(800, 170 * s)
+    f_tx = fuente(600, 26 * s)
+    f_e = fuente(500, 26 * s)
+    f_ti = fuente(700, 44 * s)
+    xl = 96 * s
+    n = len(items)
+    ancho = (W - 2 * xl) / n
+
+    def cuadro(t, i, nn):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        a = ease(t / 0.4)
+        _marca(d, s, int(255 * a))
+        if etiqueta:
+            d.rectangle([xl, 136 * s, xl + 46 * s * a, 140 * s], fill=ACENTO + (int(255 * a),))
+            _espaciado(d, (xl + 62 * s, 122 * s), etiqueta.upper(), f_e, ACENTO + (int(255 * a),), 4 * s)
+        if titulo:
+            d.text((xl, 162 * s), titulo.upper(), font=f_ti, fill=TEXTO + (int(255 * a),))
+        for k, it in enumerate(items):
+            if t < it["t"]:
+                continue
+            b = ease((t - it["t"]) / 1.3)
+            cx = xl + ancho * (k + 0.5)
+            val = int(round(it["numero"] * b))
+            txt = f"{val:,}".replace(",", ".") + it.get("sufijo", "")
+            tw = d.textlength(txt, font=f_num)
+            d.text((cx - tw / 2, H * 0.36), txt, font=f_num, fill=(ACENTO if b >= 1 else TEXTO) + (255,))
+            d.rectangle([cx - 30 * s, H * 0.36 + 200 * s, cx + 30 * s, H * 0.36 + 206 * s], fill=ACENTO + (255,))
+            lineas = _partir(it["texto"].upper(), f_tx, ancho - 60 * s)
+            for j, ln in enumerate(lineas):
+                lw = _ancho_esp(ln, f_tx, 3 * s)
+                _espaciado(d, (cx - lw / 2, H * 0.36 + 226 * s + j * 36 * s), ln, f_tx, CLARO + (255,), 3 * s)
+        return capa
+
+    _render(dest, W, H, dur, cuadro, fondo)
+
+
+# ---------- cortos animados: pequeñas historias dibujadas (pedido del usuario, 11/11: "esas cosas definen el canal") ----------
+def _camiseta(d, cx, cy, h, color, numero=None, alpha=255, borde=None, num_color=None, f=None):
+    """Camiseta de frente (o de espaldas con número) de alto h centrada en (cx, cy)."""
+    w = h * 0.86
+    col = color + (alpha,)
+    cuerpo = [(cx - w * 0.5, cy - h * 0.5), (cx - w * 0.22, cy - h * 0.5), (cx, cy - h * 0.42), (cx + w * 0.22, cy - h * 0.5),
+              (cx + w * 0.5, cy - h * 0.5), (cx + w * 0.62, cy - h * 0.22), (cx + w * 0.42, cy - h * 0.1),
+              (cx + w * 0.38, cy + h * 0.5), (cx - w * 0.38, cy + h * 0.5), (cx - w * 0.42, cy - h * 0.1),
+              (cx - w * 0.62, cy - h * 0.22)]
+    d.polygon(cuerpo, fill=col, outline=(borde + (alpha,)) if borde else None, width=max(1, int(h * 0.02)))
+    if numero is not None:
+        fn = f or fuente(800, h * 0.42)
+        tw = d.textlength(str(numero), font=fn)
+        d.text((cx - tw / 2, cy - h * 0.22), str(numero), font=fn, fill=(num_color or TEXTO) + (alpha,))
+
+
+def _edificios(d, x0, x1, base_y, s, color, alpha=255, semilla=3):
+    import random
+    rnd = random.Random(semilla)
+    x = x0
+    while x < x1:
+        w = rnd.randint(int(60 * s), int(140 * s))
+        h = rnd.randint(int(80 * s), int(260 * s))
+        d.rectangle([x, base_y - h, min(x + w, x1), base_y], fill=color + (alpha,))
+        for wy in range(int(base_y - h + 18 * s), int(base_y - 10 * s), int(28 * s)):
+            for wx in range(int(x + 12 * s), int(min(x + w, x1) - 14 * s), int(26 * s)):
+                if rnd.random() < 0.55:
+                    d.rectangle([wx, wy, wx + 10 * s, wy + 14 * s], fill=OSCURO + (alpha,))
+        x += w + rnd.randint(int(10 * s), int(30 * s))
+
+
+def _negocio(d, cx, base_y, s, alpha=255, activo=False, texto="CAMISETAS"):
+    col = (ACENTO if activo else CLARO) + (alpha,)
+    w, h = 220 * s, 170 * s
+    d.rectangle([cx - w / 2, base_y - h, cx + w / 2, base_y], fill=PANEL + (alpha,), outline=col, width=int(4 * s))
+    d.rectangle([cx - w / 2 - 14 * s, base_y - h - 34 * s, cx + w / 2 + 14 * s, base_y - h], fill=col)
+    f = fuente(800, 22 * s)
+    tw = d.textlength(texto, font=f)
+    d.text((cx - tw / 2, base_y - h - 30 * s), texto, font=f, fill=OSCURO + (alpha,))
+    d.rectangle([cx - 30 * s, base_y - 100 * s, cx + 30 * s, base_y], fill=OSCURO + (alpha,))
+    d.rectangle([cx - w / 2 + 20 * s, base_y - 130 * s, cx - 50 * s, base_y - 40 * s], fill=OSCURO + (alpha,))
+    d.rectangle([cx + 50 * s, base_y - 130 * s, cx + w / 2 - 20 * s, base_y - 40 * s], fill=OSCURO + (alpha,))
+
+
+def corto_camisetas(dest, W, H, dur, parte, tiempos, fondo=None):
+    """Corto animado de las camisetas de México 86 (pedido del usuario: "un pequeño cortometraje").
+    parte 1: Inglaterra de blanco vs la azul gruesa -> 3 días -> Moschella recorre los negocios del DF -> uno.
+    parte 2: dos modelos -> Diego elige -> 38 camisetas -> escudo cosido -> números plateados planchados.
+    tiempos = {"blanco": s, "tres": s, "moschella": s, "negocio": s} o {"modelos", "elige", "treinta", "escudo", "numeros"}."""
+    s = W / 1920
+    f_e = fuente(500, 26 * s)
+    f_lab = fuente(800, 30 * s)
+    f_big = fuente(800, 150 * s)
+    f_q = fuente(600, 40 * s, plex=True)
+    xl = 96 * s
+    AZUL = (28, 60, 130)
+    AZUL_CLARO = (70, 130, 210)
+    BLANCO = (235, 235, 235)
+    PLATA = (205, 210, 220)
+    cara = None
+    if parte == 2:
+        ruta = RAIZ / "proyectos" / "argentina-1986" / "material" / "retratos" / "caras" / "maradona.png"
+        if ruta.exists():
+            cara = _circulo(_retrato(ruta, int(180 * s)), ACENTO + (255,), 6 * s)
+    T = {k: float(v) for k, v in tiempos.items()}
+
+    def etiqueta(d, a, txt):
+        d.rectangle([xl, 136 * s, xl + 46 * s * a, 140 * s], fill=ACENTO + (int(255 * a),))
+        _espaciado(d, (xl + 62 * s, 122 * s), txt.upper(), f_e, ACENTO + (int(255 * a),), 4 * s)
+
+    def chip(d, cx, y, txt, a, col=ACENTO, f=None):
+        f = f or f_lab
+        tw = d.textlength(txt, font=f)
+        d.rectangle([cx - tw / 2 - 16 * s, y, cx + tw / 2 + 16 * s, y + f.size + 18 * s], fill=col + (int(255 * a),))
+        d.text((cx - tw / 2, y + 8 * s), txt, font=f, fill=OSCURO + (int(255 * a),))
+
+    def cuadro1(t, i, n):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        a = ease(t / 0.4)
+        _marca(d, s, int(255 * a))
+        etiqueta(d, a, "Tres días antes de Inglaterra")
+        base_y = H * 0.80
+        mos = T.get("moschella", 1e9)
+        if t < mos:
+            # dos camisetas: Inglaterra (blanca) y la azul gruesa de Argentina
+            b = ease((t - T.get("blanco", 0)) / 0.5)
+            if b > 0:
+                cxs = (W * 0.36, W * 0.64)
+                _camiseta(d, cxs[0], H * 0.48, 300 * s, BLANCO, alpha=int(255 * b), borde=CLARO)
+                chip(d, cxs[0], H * 0.70, "INGLATERRA · BLANCA", b, col=CLARO)
+                c = ease((t - T.get("blanco", 0) - 0.4) / 0.5)
+                if c > 0:
+                    _camiseta(d, cxs[1], H * 0.48, 300 * s, AZUL, alpha=int(255 * c), borde=CLARO)
+                    chip(d, cxs[1], H * 0.70, "ARGENTINA · AZUL, DE ALGODÓN GRUESO", c, col=CLARO)
+                    # "pesada": gotas de sudor
+                    for k in range(4):
+                        gy = H * 0.48 + ((t * 120 + k * 60) % 180) * s - 60 * s
+                        d.ellipse([cxs[1] + (k - 1.5) * 50 * s - 6 * s, gy, cxs[1] + (k - 1.5) * 50 * s + 6 * s, gy + 16 * s],
+                                  fill=AZUL_CLARO + (int(200 * c),))
+            tr = ease((t - T.get("tres", 1e9)) / 0.4)
+            if tr > 0:
+                txt = "3 DÍAS"
+                tw = d.textlength(txt, font=f_big)
+                d.rounded_rectangle([W / 2 - tw / 2 - 40 * s, H * 0.30, W / 2 + tw / 2 + 40 * s, H * 0.30 + 200 * s], radius=int(16 * s), fill=OSCURO + (int(230 * tr),))
+                d.text((W / 2 - tw / 2, H * 0.30 + 10 * s), txt, font=f_big, fill=TEXTO + (int(255 * tr),))
+                chip(d, W / 2, H * 0.30 + 210 * s, "PARA EL PARTIDO CONTRA INGLATERRA", tr)
+        else:
+            # Moschella recorre el DF: ciudad que se desplaza, negocios que pasan
+            m = t - mos
+            _edificios(d, 0, W, base_y - 60 * s, s, PANEL, 255)
+            d.rectangle([0, base_y - 60 * s, W, base_y + 20 * s], fill=OSCURO + (255,))
+            neg = T.get("negocio", 1e9)
+            parado = t >= neg
+            vel = (W * 0.9 + 2 * 640 * s - W * 0.66) / max(0.5, neg - mos)  # el 3er negocio frena en x = 0.66 W
+            desp = vel * min(m, max(0.0, neg - mos))
+            xs = [W * 0.9 + k * 640 * s - desp for k in range(6)]
+            for k, x in enumerate(xs):
+                if -200 * s < x < W + 200 * s:
+                    ultimo = k == 2
+                    _negocio(d, x, base_y - 60 * s, s, 255, activo=parado and ultimo,
+                             texto=["ZAPATOS", "ROPA", "CAMISETAS", "DEPORTES", "MERCADO", "ROPA"][k])
+                    if not parado or not ultimo:
+                        f = fuente(800, 60 * s)
+                        d.text((x - 16 * s, base_y - 330 * s), "?", font=f, fill=CLARO + (255,))
+            # Moschella: silueta caminando (piernas alternan)
+            px = W * 0.42
+            paso = math.sin(m * 10) * 16 * s if not parado else 0
+            _persona(d, px, base_y - 70 * s, 220 * s, ACENTO, 255, ancho=0.22)
+            d.line([px - 10 * s, base_y - 70 * s, px - 24 * s + paso, base_y + 10 * s], fill=ACENTO + (255,), width=int(16 * s))
+            d.line([px + 10 * s, base_y - 70 * s, px + 24 * s - paso, base_y + 10 * s], fill=ACENTO + (255,), width=int(16 * s))
+            d.rounded_rectangle([px - 70 * s, base_y - 170 * s, px - 30 * s, base_y - 110 * s], radius=int(6 * s), fill=OSCURO + (255,))  # portafolio
+            chip(d, px, base_y - 330 * s, "RUBÉN MOSCHELLA · AYUDANTE DE BILARDO", ease(m / 0.4))
+            if parado:
+                q = ease((t - neg) / 0.4)
+                chip(d, W / 2, H * 0.18, "ACÁ. CAMISETAS DE TODOS LOS COLORES.", q, col=TEXTO, f=f_q)
+            else:
+                chip(d, W / 2, H * 0.18, "RECORRIENDO LOS NEGOCIOS DE CIUDAD DE MÉXICO", ease(m / 0.4), col=TEXTO, f=f_q)
+        return capa
+
+    def cuadro2(t, i, n):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        a = ease(t / 0.4)
+        _marca(d, s, int(255 * a))
+        etiqueta(d, a, "La camiseta azul")
+        t_mod, t_el, t_38, t_esc, t_num = (T.get(k, 1e9) for k in ("modelos", "elige", "treinta", "escudo", "numeros"))
+        cy = H * 0.50
+        if t < t_38:
+            b = ease((t - t_mod) / 0.5)
+            if b > 0:
+                el = ease((t - t_el) / 0.5)
+                for k, (cx, col, nom) in enumerate(((W * 0.33, AZUL_CLARO, "MODELO 1 · AZUL CLARO"), (W * 0.60, AZUL, "MODELO 2 · AZUL OSCURO"))):
+                    al = int(255 * b * (1 if (el <= 0 or k == 1) else 0.35))
+                    esc = 1 + 0.12 * el if k == 1 else 1
+                    _camiseta(d, cx, cy, 320 * s * esc, col, alpha=al, borde=CLARO)
+                    chip(d, cx, cy + 190 * s, nom, b * (1 if (el <= 0 or k == 1) else 0.4), col=CLARO)
+                if el > 0:
+                    if cara is not None:
+                        c = cara.copy()
+                        c.putalpha(c.getchannel("A").point(lambda v: int(v * el)))
+                        capa.alpha_composite(c, (int(W * 0.80 - 90 * s), int(cy - 90 * s - (1 - el) * 30 * s)))
+                        d = ImageDraw.Draw(capa)
+                    d.line([W * 0.80 - 100 * s, cy + 40 * s, W * 0.60 + 150 * s, cy], fill=ACENTO + (int(255 * el),), width=int(5 * s))
+                    chip(d, W * 0.5, H * 0.16, "“CON ESTA LE GANAMOS A INGLATERRA”", el, col=TEXTO, f=f_q)
+                    chip(d, W * 0.80, cy + 120 * s, "MARADONA", el)
+        else:
+            m = t - t_38
+            # 38 camisetas en grilla, con contador
+            cols, filas = 10, 4
+            total = 38
+            vistas = min(total, int(m / 1.4 * total) + 1) if t < t_esc else total
+            cw, ch = 150 * s, 120 * s
+            x0 = W / 2 - cols * cw / 2 + cw / 2
+            y0 = H * 0.32
+            esc_a = ease((t - t_esc) / 0.5)
+            num_a = ease((t - t_num) / 0.5)
+            for k in range(vistas):
+                cx = x0 + (k % cols) * cw
+                cyy = y0 + (k // cols) * ch
+                if t >= t_esc and k == 0:
+                    continue
+                _camiseta(d, cx, cyy, 100 * s, AZUL, alpha=int(255 * (0.35 if (esc_a > 0) else 1)), borde=CLARO,
+                          numero=(k + 1 if num_a > 0 else None), num_color=PLATA, f=fuente(800, 40 * s))
+            if t < t_esc:
+                txt = str(vistas)
+                tw = d.textlength(txt, font=f_big)
+                d.text((W / 2 - tw / 2, H * 0.66), txt, font=f_big, fill=(ACENTO if vistas == total else TEXTO) + (255,))
+                chip(d, W / 2, H * 0.66 + 170 * s, "CAMISETAS COMPRADAS", ease(m / 0.3))
+            else:
+                # una camiseta grande: le cosen el escudo, le planchan el número
+                cx, cyy = W * 0.5, H * 0.56
+                _camiseta(d, cx, cyy, 420 * s, AZUL, alpha=255, borde=CLARO)
+                # escudo (vuela desde la derecha)
+                ex = cx - 70 * s + (1 - esc_a) * 500 * s
+                ey = cyy - 90 * s
+                r = 36 * s
+                ea = esc_a * (1 - num_a)
+                d.polygon([(ex - r, ey - r), (ex + r, ey - r), (ex + r, ey + r * 0.4), (ex, ey + r * 1.2), (ex - r, ey + r * 0.4)],
+                          fill=AZUL_CLARO + (int(255 * ea),), outline=TEXTO + (int(255 * ea),), width=int(3 * s))
+                fs = fuente(800, 22 * s)
+                d.text((ex - d.textlength("AFA", font=fs) / 2, ey - 16 * s), "AFA", font=fs, fill=TEXTO + (int(255 * ea),))
+                if esc_a >= 1 and num_a <= 0:
+                    # puntadas alrededor
+                    for k in range(8):
+                        ang = k / 8 * 6.283 + t * 2
+                        d.line([ex + math.cos(ang) * (r + 8 * s), ey + math.sin(ang) * (r + 8 * s),
+                                ex + math.cos(ang) * (r + 18 * s), ey + math.sin(ang) * (r + 18 * s)], fill=TEXTO + (255,), width=int(3 * s))
+                chip(d, W * 0.5, H * 0.16, "LE COSIERON EL ESCUDO", esc_a if num_a <= 0 else 0.0)
+                if num_a > 0:
+                    # número plateado, planchado (la plancha pasa y lo revela)
+                    fn = fuente(800, 230 * s)
+                    tw = d.textlength("10", font=fn)
+                    nx, ny = cx - tw / 2, cyy - 120 * s
+                    rev = int(tw * ease((t - t_num - 0.2) / 0.9))
+                    cap = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+                    ImageDraw.Draw(cap).text((nx, ny), "10", font=fn, fill=PLATA + (255,))
+                    mask = Image.new("L", (W, H), 0)
+                    ImageDraw.Draw(mask).rectangle([nx - 10, 0, nx + rev, H], fill=255)
+                    cap.putalpha(Image.composite(cap.getchannel("A"), Image.new("L", (W, H), 0), mask))
+                    capa.alpha_composite(cap)
+                    d = ImageDraw.Draw(capa)
+                    # plancha
+                    px = nx + rev
+                    d.rounded_rectangle([px - 60 * s, cyy - 40 * s, px + 90 * s, cyy + 40 * s], radius=int(20 * s), fill=CLARO + (255,))
+                    d.rectangle([px - 20 * s, cyy - 70 * s, px + 70 * s, cyy - 40 * s], fill=CLARO + (255,))
+                    for k in range(3):
+                        d.line([px - 70 * s - k * 22 * s, cyy - 10 * s + k * 10 * s, px - 100 * s - k * 22 * s, cyy - 10 * s + k * 10 * s],
+                               fill=TEXTO + (160,), width=int(3 * s))
+                    chip(d, W * 0.5, H * 0.16, "NÚMEROS PLATEADOS, DE FÚTBOL AMERICANO, PLANCHADOS", num_a)
+        return capa
+
+    _render(dest, W, H, dur, cuadro1 if parte == 1 else cuadro2, fondo)
+
+
+def corto_subasta(dest, W, H, dur, tiempos, fondo=None):
+    """Corto animado de la camiseta: Diego se la cambia a Hodge -> la guarda 36 años -> subasta -> 9 millones.
+    tiempos = {"cambio": s, "guardo": s, "subasta": s, "millones": s, "cara": s}."""
+    s = W / 1920
+    f_e = fuente(500, 26 * s)
+    f_lab = fuente(800, 30 * s)
+    f_big = fuente(800, 150 * s)
+    f_anio = fuente(800, 90 * s)
+    xl = 96 * s
+    AZUL = (28, 60, 130)
+    BLANCO = (235, 235, 235)
+    PLATA = (205, 210, 220)
+    T = {k: float(v) for k, v in tiempos.items()}
+    ruta = RAIZ / "proyectos" / "argentina-1986" / "material" / "retratos" / "caras" / "maradona.png"
+    cara = _circulo(_retrato(ruta, int(150 * s)), ACENTO + (255,), 6 * s) if ruta.exists() else None
+
+    def chip(d, cx, y, txt, a, col=ACENTO, f=None):
+        f = f or f_lab
+        tw = d.textlength(txt, font=f)
+        d.rectangle([cx - tw / 2 - 16 * s, y, cx + tw / 2 + 16 * s, y + f.size + 18 * s], fill=col + (int(255 * a),))
+        d.text((cx - tw / 2, y + 8 * s), txt, font=f, fill=OSCURO + (int(255 * a),))
+
+    def cuadro(t, i, n):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        a = ease(t / 0.4)
+        _marca(d, s, int(255 * a))
+        d.rectangle([xl, 136 * s, xl + 46 * s * a, 140 * s], fill=ACENTO + (int(255 * a),))
+        _espaciado(d, (xl + 62 * s, 122 * s), "LA CAMISETA", f_e, ACENTO + (int(255 * a),), 4 * s)
+        t_c, t_g, t_s, t_m, t_k = (T.get(k, 1e9) for k in ("cambio", "guardo", "subasta", "millones", "cara"))
+        base_y = H * 0.78
+        if t < t_g:
+            # Diego y Hodge frente a frente; las camisetas se cruzan
+            b = ease((t - t_c) / 0.5)
+            xd, xh = W * 0.30, W * 0.70
+            _persona(d, xd, base_y, 330 * s, ACENTO, 255, ancho=0.26)
+            _persona(d, xh, base_y, 360 * s, CLARO, 255, ancho=0.26)
+            if cara is not None:
+                capa.alpha_composite(cara, (int(xd - 75 * s), int(base_y - 330 * s - 20 * s)))
+                d = ImageDraw.Draw(capa)
+            chip(d, xd, base_y + 20 * s, "MARADONA", 1.0)
+            chip(d, xh, base_y + 20 * s, "STEVE HODGE · EL DEL DESPEJE", 1.0, col=CLARO)
+            k = ease((t - t_c - 0.3) / 1.0)
+            cy = base_y - 170 * s
+            arco = -math.sin(k * math.pi) * 160 * s
+            _camiseta(d, xd + (xh - xd) * k, cy + arco, 170 * s, AZUL, numero=10, alpha=255, borde=CLARO, num_color=PLATA)
+            _camiseta(d, xh - (xh - xd) * k, cy - arco, 150 * s, BLANCO, numero=18, alpha=255, borde=PANEL, num_color=OSCURO)
+            chip(d, W / 2, H * 0.17, "DESPUÉS DEL PARTIDO, EN EL VESTUARIO", b, col=TEXTO)
+        elif t < t_s:
+            # la camiseta en un marco; los años pasan
+            m = t - t_g
+            cx, cy = W * 0.32, H * 0.50
+            d.rectangle([cx - 190 * s, cy - 210 * s, cx + 190 * s, cy + 210 * s], fill=PANEL + (255,), outline=CLARO + (255,), width=int(8 * s))
+            _camiseta(d, cx, cy, 300 * s, AZUL, numero=10, alpha=255, borde=CLARO, num_color=PLATA)
+            anio = 1986 + int(min(36, m / 2.2 * 36))
+            txt = str(anio)
+            tw = d.textlength(txt, font=f_big)
+            d.text((W * 0.68 - tw / 2, H * 0.34), txt, font=f_big, fill=TEXTO + (255,))
+            yrs = anio - 1986
+            chip(d, W * 0.68, H * 0.34 + 180 * s, f"{yrs} AÑOS GUARDADA" if yrs != 1 else "1 AÑO GUARDADA", 1.0)
+            # barra de tiempo
+            d.line([W * 0.52, H * 0.72, W * 0.84, H * 0.72], fill=VERDE + (255,), width=int(6 * s))
+            d.line([W * 0.52, H * 0.72, W * 0.52 + (W * 0.32) * yrs / 36, H * 0.72], fill=ACENTO + (255,), width=int(6 * s))
+            chip(d, W / 2, H * 0.17, "HODGE LA GUARDÓ EN SU CASA", ease(m / 0.4), col=TEXTO)
+        else:
+            m = t - t_s
+            # casa de remates: podio, martillo y precio que sube
+            cx = W * 0.5
+            d.rectangle([cx - 160 * s, H * 0.60, cx + 160 * s, H * 0.72], fill=PANEL + (255,), outline=CLARO + (255,), width=int(4 * s))
+            _camiseta(d, cx, H * 0.47, 240 * s, AZUL, numero=10, alpha=255, borde=CLARO, num_color=PLATA)
+            # martillo que golpea
+            g = (m % 0.8) / 0.8
+            ang = -0.9 + 0.9 * (1 - abs(1 - 2 * g)) if t < t_m + 0.5 else -0.2
+            mx, my = W * 0.80, H * 0.52
+            ex, ey = mx + math.cos(ang) * 140 * s, my + math.sin(ang) * 140 * s
+            d.line([mx, my, ex, ey], fill=CLARO + (255,), width=int(14 * s))
+            d.rounded_rectangle([ex - 50 * s, ey - 28 * s, ex + 50 * s, ey + 28 * s], radius=int(10 * s), fill=ACENTO + (255,))
+            d.rectangle([mx - 90 * s, my + 60 * s, mx + 90 * s, my + 80 * s], fill=CLARO + (255,))
+            chip(d, W / 2, H * 0.17, "SOTHEBY'S · LONDRES · MAYO DE 2022", ease(m / 0.4), col=TEXTO)
+            if t >= t_m:
+                k = ease((t - t_m) / 1.6)
+                val = int(9_280_000 * k)
+                txt = "US$ " + f"{val:,}".replace(",", ".")
+                tw = d.textlength(txt, font=f_anio)
+                d.text((cx - tw / 2, H * 0.76), txt, font=f_anio, fill=(ACENTO if k >= 1 else TEXTO) + (255,))
+            if t >= t_k:
+                chip(d, W / 2, H * 0.88, "LA CAMISETA MÁS CARA DE LA HISTORIA DEL DEPORTE", ease((t - t_k) / 0.4))
+        return capa
+
+    _render(dest, W, H, dur, cuadro, fondo)
+
+
+# ---------- mapa de Malvinas (pedido del usuario, 11/11: "aclaremos qué son las Malvinas") ----------
+_SUDAMERICA_SUR = [  # contorno aproximado del cono sur (lon, lat): Argentina, Uruguay y Chile como una sola masa
+    (-53.4, -33.7), (-56.0, -34.9), (-58.4, -34.6), (-57.4, -36.3), (-57.5, -38.0), (-62.0, -39.0), (-62.3, -40.6),
+    (-65.0, -41.0), (-63.6, -42.3), (-64.6, -42.9), (-65.0, -43.3), (-65.3, -45.0), (-67.5, -45.9), (-65.9, -47.75),
+    (-67.7, -49.3), (-68.9, -50.3), (-69.2, -51.6), (-68.4, -52.3), (-69.6, -52.6), (-68.6, -52.7), (-67.7, -53.8),
+    (-65.2, -54.6), (-66.5, -55.0), (-68.6, -55.0), (-70.5, -55.2), (-72.5, -54.0), (-74.5, -52.5), (-75.5, -48.5),
+    (-74.2, -46.0), (-73.6, -43.0), (-73.4, -39.5), (-73.6, -37.0), (-71.6, -33.0), (-71.4, -28.0), (-71.0, -20.0), (-43.0, -20.0), (-44.0, -23.0),
+    (-46.5, -24.0), (-48.5, -26.0), (-48.6, -28.5), (-50.3, -30.5), (-52.1, -32.2), (-53.4, -33.7)]
+_MALVINAS = [
+    [(-61.3, -51.3), (-60.2, -51.25), (-59.7, -51.6), (-60.0, -52.2), (-60.9, -52.25), (-61.4, -51.8)],   # Gran Malvina
+    [(-59.5, -51.35), (-58.3, -51.3), (-57.7, -51.55), (-58.1, -51.9), (-58.7, -52.35), (-59.4, -52.2), (-59.6, -51.75)],  # Soledad
+]
+
+
+def mapa_malvinas(dest, W, H, dur, tiempos, etiqueta="", fondo=None):
+    """Mapa del Atlántico Sur: aparece el continente, se marcan las islas, la distancia a la costa y la flecha a
+    Londres. tiempos = {"islas": s, "distancia": s, "reino": s, "desde": s} (cada paso entra al nombrarlo)."""
+    s = W / 1920
+    lon0, lon1, lat0, lat1 = -78.0, -44.0, -27.0, -57.0
+    alto_m = H * 0.86
+    esc_y = alto_m / (lat0 - lat1)
+    esc_x = esc_y * math.cos(math.radians(45))
+    ancho_m = (lon1 - lon0) * esc_x
+    ox = W * 0.60 - ancho_m / 2
+    oy = H * 0.07
+
+    def P(lon, lat):
+        return (ox + (lon - lon0) * esc_x, oy + (lat0 - lat) * esc_y)
+
+    f_e = fuente(500, 26 * s)
+    f_lab = fuente(800, 34 * s)
+    f_chico = fuente(600, 24 * s)
+    f_big = fuente(800, 54 * s)
+    xl = 96 * s
+    T = {k: float(v) for k, v in tiempos.items()}
+    cont = [P(*p) for p in _SUDAMERICA_SUR]
+    centro_islas = P(-59.4, -51.8)
+    islas = [[(centro_islas[0] + (q[0] - centro_islas[0]) * 1.7, centro_islas[1] + (q[1] - centro_islas[1]) * 1.7)
+              for q in (P(*p) for p in isla)] for isla in _MALVINAS]  # agrandadas para que se lean
+    costa = P(-69.05, -51.0)
+
+    def chip(d, x, y, txt, a, col=ACENTO, f=None, centro=False):
+        f = f or f_lab
+        tw = d.textlength(txt, font=f)
+        if centro:
+            x -= tw / 2 + 16 * s
+        d.rectangle([x, y, x + tw + 32 * s, y + f.size + 18 * s], fill=col + (int(255 * a),))
+        d.text((x + 16 * s, y + 8 * s), txt, font=f, fill=OSCURO + (int(255 * a),))
+
+    def cuadro(t, i, n):
+        capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(capa)
+        a = ease(t / 0.6)
+        # mar
+        d.rectangle([0, 0, W, H], fill=(10, 22, 30, int(200 * a)))
+        for k in range(0, int(W), int(60 * s)):  # retícula de coordenadas
+            d.line([k, 0, k, H], fill=(30, 50, 60, int(120 * a)), width=1)
+        for k in range(0, int(H), int(60 * s)):
+            d.line([0, k, W, k], fill=(30, 50, 60, int(120 * a)), width=1)
+        # continente
+        d.polygon(cont, fill=PANEL + (int(255 * a),), outline=VERDE + (int(255 * a),))
+        f_pais = fuente(800, 44 * s)
+        x, y = P(-67.0, -38.5)
+        _espaciado(d, (x, y), "ARGENTINA", f_pais, CLARO + (int(200 * a),), 10 * s)
+        x, y = P(-55.0, -45.0)
+        _espaciado(d, (x, y), "OCÉANO ATLÁNTICO", f_chico, (90, 130, 140, int(220 * a)), 8 * s)
+        _marca(d, s, int(255 * a))
+        if etiqueta:
+            d.rectangle([xl, 136 * s, xl + 46 * s * a, 140 * s], fill=ACENTO + (int(255 * a),))
+            _espaciado(d, (xl + 62 * s, 122 * s), etiqueta.upper(), f_e, ACENTO + (int(255 * a),), 4 * s)
+        # islas
+        ti = T.get("islas", 0.8)
+        if t >= ti:
+            b = ease((t - ti) / 0.5)
+            puls = 0.5 + 0.5 * math.sin((t - ti) * 4)
+            r = (60 + 30 * puls) * s
+            d.ellipse([centro_islas[0] - r, centro_islas[1] - r, centro_islas[0] + r, centro_islas[1] + r],
+                      outline=ACENTO + (int(160 * b * (1 - puls * 0.5)),), width=int(3 * s))
+            for isla in islas:
+                d.polygon(isla, fill=ACENTO + (int(255 * b),))
+            chip(d, centro_islas[0] + 90 * s, centro_islas[1] + 40 * s, "ISLAS MALVINAS", b)
+            d.line([centro_islas[0] + 40 * s, centro_islas[1] + 20 * s, centro_islas[0] + 90 * s, centro_islas[1] + 56 * s],
+                   fill=ACENTO + (int(255 * b),), width=int(3 * s))
+        # distancia a la costa
+        td = T.get("distancia", 1e9)
+        if t >= td:
+            b = ease((t - td) / 0.8)
+            x0, y0 = costa[0] + 4 * s, costa[1]
+            x1, y1 = centro_islas[0] - 60 * s, centro_islas[1] - 5 * s
+            xe = x0 + (x1 - x0) * b
+            ye = y0 + (y1 - y0) * b
+            k = 0
+            while True:  # línea punteada
+                fx = k * 18 * s / max(1, math.hypot(x1 - x0, y1 - y0))
+                if fx > b:
+                    break
+                xa, ya = x0 + (x1 - x0) * fx, y0 + (y1 - y0) * fx
+                fb = min(b, fx + 10 * s / max(1, math.hypot(x1 - x0, y1 - y0)))
+                d.line([xa, ya, x0 + (x1 - x0) * fb, y0 + (y1 - y0) * fb], fill=TEXTO + (255,), width=int(4 * s))
+                k += 1
+            if b >= 1:
+                chip(d, (x0 + x1) / 2, y0 - 80 * s, "≈ 500 KM", ease((t - td - 0.8) / 0.3), col=TEXTO, f=f_lab, centro=True)
+        # flecha al Reino Unido
+        tr = T.get("reino", 1e9)
+        if t >= tr:
+            b = ease((t - tr) / 0.9)
+            x0, y0 = centro_islas[0] + 40 * s, centro_islas[1] - 40 * s
+            x1, y1 = W - 120 * s, 120 * s
+            xe, ye = x0 + (x1 - x0) * b, y0 + (y1 - y0) * b
+            d.line([x0, y0, xe, ye], fill=(200, 80, 80, 255), width=int(5 * s))
+            ang = math.atan2(y1 - y0, x1 - x0)
+            pa = [(xe, ye), (xe - 26 * s * math.cos(ang - 0.45), ye - 26 * s * math.sin(ang - 0.45)),
+                  (xe - 26 * s * math.cos(ang + 0.45), ye - 26 * s * math.sin(ang + 0.45))]
+            d.polygon(pa, fill=(200, 80, 80, 255))
+            if b >= 1:
+                c = ease((t - tr - 0.9) / 0.3)
+                tw = d.textlength("REINO UNIDO", font=f_lab)
+                chip(d, W - 140 * s - tw, 150 * s, "REINO UNIDO", c, col=(220, 120, 120))
+                d.text((W - 140 * s - d.textlength("A 12.700 KM", font=f_chico) + 32 * s, 220 * s), "A 12.700 KM",
+                       font=f_chico, fill=TEXTO + (int(255 * c),))
+        # desde 1833
+        tdd = T.get("desde", 1e9)
+        if t >= tdd:
+            b = ease((t - tdd) / 0.4)
+            d.text((xl, H - 260 * s), "1833", font=fuente(800, 120 * s), fill=TEXTO + (int(255 * b),))
+            chip(d, xl, H - 120 * s, "OCUPADAS POR INGLATERRA · RECLAMADAS POR ARGENTINA", b)
         return capa
 
     _render(dest, W, H, dur, cuadro, fondo)

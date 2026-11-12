@@ -34,6 +34,29 @@ Cualquier visual acepta "duracion"; el resto de la escena se reparte en partes i
   {"tipo": "prestamo", "foto": "material/retratos/caras/crespo.png", "nombre": "Crespo", "en": "@préstamo",
    "origen": {"nombre": "Chelsea", "colores": [[3, 70, 148]]}, "destino": {"nombre": "Milan", "colores": [[200, 16, 46], [20, 20, 20]]},
    "en_nota": "@El mismo equipo", "nota": "Eliminado por el Liverpool", "sub_nota": "semifinal 2005"}   jugador a préstamo
+  {"tipo": "jugada", "titulo": "El gol del siglo", "minuto": "55'", "ancho": 62, "pelota": [{"x": 42, "y": 50, "t": "@Arranca"},
+   {"x": 104, "y": 33, "t": 10.0}], "jugadores": [{"nombre": "Maradona", "equipo": "arg", "x": 42, "y": 50, "foto": "...",
+   "mov": [...]}, {"nombre": "Butcher", "x": 74, "y": 41, "vencido": "@Butcher"}], "contador": {"desde": .., "hasta": ..},
+   "datos": [{"a": "60 METROS", "b": "10,8 SEGUNDOS", "t": [8, 12]}]}   cancha en perspectiva, la pelota recorre la jugada
+   (metros: x 0-105 ataca a la derecha, y 0-68 de arriba a abajo); "aire": true en un punto = pelota por el aire
+  {"tipo": "charla", "titulo": "...", "globos": [{"lado": "izq", "quien": "Menotti", "fuente": "1986", "texto": "...",
+   "en": "@frase", "foto": "...", "recorte": [x0, y0, x1, y1]}]}   citas de a una: foto de quien habla a un costado (sin
+   foto: el nombre del medio como cabecera de diario) y la frase grande al otro; cada una entra al nombrarla
+  {"tipo": "altura", "personas": [{"nombre": "Maradona", "altura": 1.65, "foto": "...", "recorte": [...], "en": "@frase",
+   "sub": "..."}]}   columnas con la foto de cada uno, de alto proporcional a su altura real, que suben desde el piso con el
+   número contando; diferencia en cm al final
+  {"tipo": "mapa", "etiqueta": "...", "tiempos": {"islas": "@frase", "distancia": "@frase", "reino": "@frase", "desde": "@frase"}}
+   mapa del Atlántico Sur con las Malvinas, la distancia a la costa y la flecha al Reino Unido
+  {"tipo": "cifras", "etiqueta": "...", "items": [{"numero": 649, "texto": "SOLDADOS ARGENTINOS MUERTOS", "en": "@frase"}]}
+   hasta tres cifras grandes que cuentan desde cero al nombrarlas
+  {"tipo": "corto", "corto": "camisetas", "parte": 1, "tiempos": {"blanco": "@frase", "tres": "@frase", "moschella": "@frase",
+   "negocio": "@frase"}}   corto animado (parte 2: "modelos", "elige", "treinta", "escudo", "numeros");
+  {"tipo": "corto", "corto": "subasta", "tiempos": {"cambio", "guardo", "subasta", "millones", "cara"}}   la camiseta de Hodge
+  {"archivo": "clip.mp4", "gol": 261.27, "golpe": "1-0", "golpe_estilo": "fantasma", "golpe_en": "@Un gol", "foco": [0.52, 0.45],
+   "golpe_sub": "51' · MARADONA · CON LA MANO", "flechas": [{"a": [0.52, 0.45], "texto": "LA MANO DE DIOS", "en": "@con la mano"}]}
+   en vez del golpe: el clip se congela, la cámara se acerca despacio al foco, el resultado queda como número de contorno
+   abajo a la derecha, y las flechas señalan puntos del cuadro con etiqueta
+Marcas de agua de otro canal (MARCA_AGUA): logo tapado con la insignia LOS 11, URL de abajo borrada con delogo.
   {"tipo": "cierre", "sub": "la próxima historia, acá", "botones": [{"texto": "SUSCRIBITE", "icono": "mas",
    "click": "SUSCRIPTO", "en": "@suscribite"}, {"texto": "LIKE", "icono": "like", "en": "@like"},
    {"texto": "COMENTÁ", "icono": "comentario", "en": "@comentarios"}]}   pantalla final (abajo queda libre)
@@ -94,7 +117,8 @@ def render_imagen(src, dest, dur, W, H, calidad, zocalo=None):
 # LOGO_ESQUINA: logo arriba a la derecha -> (x donde empieza, y donde termina), en fracción del cuadro.
 #   El cuadro se recorta (zoom mínimo) para que el logo quede afuera entero; nunca a medias.
 # LOGO_FRANJA: logo sobre la franja negra de un video 4:3 -> se pinta de negro (x, y, ancho, alto en px del original).
-LOGO_ESQUINA = {"final_uefa": (0.867, 0.125), "grobbelaar_1984": (0.867, 0.125)}
+LOGO_ESQUINA = {"final_uefa": (0.867, 0.125), "grobbelaar_1984": (0.867, 0.125),
+                "peru1985": (0.81, 0.16)}  # "9" de Canal 9 (Argentina-Perú 1985)
 LOGO_FRANJA = {"juventus": [(1700, 30, 220, 90)], "chelsea_semi": [(1700, 30, 220, 90)]}
 # Textos de la transmisión quemados en la fuente: (desde, hasta, (x0, y0, x1, y1) en fracción del cuadro).
 # El recorte los deja ENTEROS o totalmente AFUERA, nunca cortados a medias (pedido del usuario, 09/11).
@@ -105,6 +129,43 @@ TEXTO_TV = {"final_uefa": [(132.5, 139.0, _GOLEADOR), (260.3, 265.3, _GOLEADOR),
 
 # Planos que NUNCA tienen que aparecer (entrevistas de Gerrard grabadas años después, en final_uefa).
 # Si un clip se mete en uno, armar.py avisa (pedido del usuario, 09/11).
+# Marca de agua de otro canal (Football Flashback 6): el logo se tapa con la insignia "LOS 11" y la URL de abajo
+# se borra con delogo (pedido del usuario, 11/11: "cuando hay un logo así, reemplacemos por los 11").
+# Cajas (x, y, w, h) en píxeles DE LA FUENTE: "logo" = se tapa con la insignia; "delogo" = lista que se borra con delogo.
+_FLASHBACK = {"logo": (1530, 28, 350, 140), "delogo": [(620, 975, 700, 72)]}
+MARCA_AGUA = {k: _FLASHBACK for k in ("final", "inglaterra", "belgica", "bulgaria", "corea", "italia", "uruguay")}
+MARCA_AGUA.update({
+    "festejo1986": {"logo": (60, 38, 170, 75), "delogo": [(160, 328, 335, 44), (482, 403, 140, 74)]},   # Archivo DiFilm (640x480)
+    "casa_rosada": {"logo": (38, 28, 110, 62), "delogo": [(135, 168, 200, 48), (334, 264, 110, 66)]},     # Archivo DiFilm (480x360)
+    "malvinas_prisma": {"logo": (498, 14, 125, 62)},                                                      # Archivo RTA (656x480)
+    "wembley1966": {"delogo": [(582, 335, 42, 48)]},                                                      # logo chico (852x480)
+    "final_completo": {"delogo": [(1365, 100, 240, 70)]},                                                 # FIFA TV
+})
+LOGO_FRANJA.update({"final_completo": [(0, 0, 262, 1080), (1658, 0, 262, 1080)]})  # paneles "SUBSCRIBE NOW" a los costados
+
+
+def _tam_fuente(src):
+    """(ancho, alto) en píxeles de un video (cacheado)."""
+    k = str(src)
+    if k not in _tam_fuente.cache:
+        r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
+                            "-of", "csv=p=0", str(src)], capture_output=True, text=True)
+        w, h = r.stdout.strip().split(",")[:2]
+        _tam_fuente.cache[k] = (int(w), int(h))
+    return _tam_fuente.cache[k]
+
+
+_tam_fuente.cache = {}
+
+
+def _a_salida(src, caja, W, H):
+    """Caja de la fuente -> caja del cuadro final (la fuente se escala entera, con negro a los costados)."""
+    sw, sh = _tam_fuente(src)
+    k = min(W / sw, H / sh)
+    ox, oy = (W - sw * k) / 2, (H - sh * k) / 2
+    x, y, w, h = caja
+    return (int(x * k + ox), int(y * k + oy), int(w * k), int(h * k))
+
 PROHIBIDO = {"final_uefa": [(352.9, 359.0), (407.9, 414.0), (490.95, 494.0), (528.2, 530.95),
                             (731.95, 736.0), (746.95, 751.0)]}
 
@@ -178,6 +239,9 @@ def filtro_limpio(src, zoom=None, centro=(0.5, 0.45), tramo=None):
     """Filtros (antes de escalar) que sacan los logos y aplican el zoom fijo. Devuelve (filtro, zoom_que_falta)."""
     partes = [f"drawbox=x={x}:y={y}:w={w}:h={h}:color=black:t=fill"
               for x, y, w, h in LOGO_FRANJA.get(Path(src).stem, [])]
+    marca = MARCA_AGUA.get(Path(src).stem, {})
+    for x, y, w, h in list(marca.get("delogo", [])) + ([marca["url"]] if marca.get("url") else []):
+        partes.append(f"delogo=x={x}:y={y}:w={w}:h={h}")
     rampa = isinstance(zoom, (list, tuple))
     v = ventana(src, None if rampa else zoom, centro, tramo)
     if v:
@@ -210,10 +274,24 @@ def render_video(src, dest, dur, W, H, desde, calidad, vel=1.0, zocalo=None, zoo
         vf += (f",scale={W*2}:{H*2}:flags=lanczos,zoompan=z='{z0}+({z1}-{z0})*min(on/{n},1)'"
                f":x='(iw-iw/zoom)*{cx}':y='(ih-ih/zoom)*{cy}':d=1:s={W}x{H}:fps={FPS}")
     cmd = ["ffmpeg", "-y", "-ss", str(desde), "-t", f"{largo:.3f}", "-i", src]
+    capas = []  # (png, con_fade)
+    marca = MARCA_AGUA.get(Path(src).stem)
+    if marca and marca.get("logo"):
+        ins = Path(dest).parent / f"insignia_{Path(src).stem}.png"
+        if not ins.exists():
+            graficos.insignia(ins, W, H, _a_salida(src, marca["logo"], W, H))
+        capas.append((ins, False))
     if zocalo:
-        cmd += ["-loop", "1", "-t", f"{dur:.3f}", "-i", zocalo, "-filter_complex",
-                f"[0:v]{vf}[b];[1:v]format=rgba,fade=t=in:st={min(0.3, dur*0.1):.2f}:d={min(0.4, dur*0.2):.2f}:alpha=1,"
-                f"fade=t=out:st={max(0.2, dur - min(0.5, dur*0.25)):.2f}:d={min(0.4, dur*0.2):.2f}:alpha=1[z];[b][z]overlay=0:0,format=yuv420p"]
+        capas.append((zocalo, True))
+    if capas:
+        fc, prev = f"[0:v]{vf}[b0];", "b0"
+        for k, (png, fade) in enumerate(capas):
+            cmd += ["-loop", "1", "-t", f"{dur:.3f}", "-i", str(png)]
+            f = (f"fade=t=in:st={min(0.3, dur*0.1):.2f}:d={min(0.4, dur*0.2):.2f}:alpha=1,"
+                 f"fade=t=out:st={max(0.2, dur - min(0.5, dur*0.25)):.2f}:d={min(0.4, dur*0.2):.2f}:alpha=1,") if fade else ""
+            fc += f"[{k+1}:v]format=rgba,{f}null[z{k}];[{prev}][z{k}]overlay=0:0[b{k+1}];"
+            prev = f"b{k+1}"
+        cmd += ["-filter_complex", fc + f"[{prev}]format=yuv420p"]
     else:
         cmd += ["-vf", vf + ",format=yuv420p"]
     run(cmd + ["-t", f"{dur:.3f}"] + _enc(calidad) + [dest])
@@ -407,7 +485,7 @@ def main():
             dest = tmp / f"p{i:03}_{j:02}.mp4"
             tipo = v.get("tipo", "archivo")
             firma = tmp / f"p{i:03}_{j:02}.json"
-            fondo = fondo_de(proyecto, escenas, i, j, v) if tipo in ("placa", "marcador", "formacion", "camino", "tabla", "palmares", "linea", "capitulo", "cambio", "cierre", "prestamo") else None
+            fondo = fondo_de(proyecto, escenas, i, j, v) if tipo in ("placa", "marcador", "formacion", "camino", "tabla", "palmares", "linea", "capitulo", "cambio", "cierre", "prestamo", "jugada", "charla", "altura", "cifras", "corto", "mapa") else None
             sello = json.dumps({**v, "_d": round(d, 3), "_fondo": fondo}, sort_keys=True)
             linea["piezas"].append({"archivo": str(dest), "inicio": round(t_pieza, 4), "duracion": round(d, 4),
                                     "escena": i + 1, "nombre": f"{i+1:02}.{j+1} {v.get('tipo', '') or Path(v.get('archivo', '')).stem}"
@@ -477,6 +555,52 @@ def main():
                 graficos.prestamo(dest, W, H, d, foto, v.get("nombre", ""), v["origen"], v["destino"], t_mov, t_nota,
                                   v.get("nota", ""), v.get("sub_nota", ""), v.get("etiqueta", ""), fondo)
                 etiqueta = "préstamo"
+            elif tipo == "jugada":
+                def _res(o):  # "@frase" -> segundos de la pieza, en cualquier t/vencido/desde/hasta
+                    if isinstance(o, dict):
+                        return {k: (max(0.0, momento(esc, x, info[i]) - v_ini) if isinstance(x, str) and x.startswith("@")
+                                    else _res(x)) for k, x in o.items()}
+                    if isinstance(o, list):
+                        return [max(0.0, momento(esc, x, info[i]) - v_ini) if isinstance(x, str) and x.startswith("@")
+                                else _res(x) for x in o]
+                    return o
+                jg = [{**_res(j), "foto": str((proyecto / j["foto"]).resolve()) if j.get("foto") else None}
+                      for j in v.get("jugadores", [])]
+                graficos.jugada(dest, W, H, d, _res(v["pelota"]), jg, v.get("titulo", ""), v.get("etiqueta", ""),
+                                v.get("minuto", ""), _res(v.get("datos", [])), _res(v.get("contador")),
+                                float(v.get("ancho", 62)), tuple(v.get("color_rival", (236, 236, 236))),
+                                tuple(v.get("color_arg", (117, 170, 219))), fondo, v.get("seguir", True))
+                etiqueta = f"jugada {v.get('titulo', '')}"
+            elif tipo == "charla":
+                gl = [{**g, "foto": str((proyecto / g["foto"]).resolve()) if g.get("foto") else None,
+                       "t": max(0.2, momento(esc, g["en"], info[i]) - v_ini) if g.get("en") is not None else 0.4 + 2.0 * k}
+                      for k, g in enumerate(v["globos"])]
+                graficos.charla(dest, W, H, d, gl, v.get("titulo", ""), v.get("etiqueta", ""), fondo)
+                etiqueta = "charla"
+            elif tipo == "mapa":
+                tm = {k: max(0.0, momento(esc, val, info[i]) - v_ini) for k, val in v.get("tiempos", {}).items()}
+                graficos.mapa_malvinas(dest, W, H, d, tm, v.get("etiqueta", ""), fondo)
+                etiqueta = "mapa"
+            elif tipo == "cifras":
+                its = [{**c, "t": max(0.2, momento(esc, c["en"], info[i]) - v_ini) if c.get("en") is not None else 0.4 + 1.6 * k}
+                       for k, c in enumerate(v["items"])]
+                graficos.cifras(dest, W, H, d, its, v.get("titulo", ""), v.get("etiqueta", ""), fondo)
+                etiqueta = "cifras"
+            elif tipo == "corto":
+                tc = {k: max(0.0, momento(esc, val, info[i]) - v_ini) for k, val in v.get("tiempos", {}).items()}
+                if v["corto"] == "camisetas":
+                    graficos.corto_camisetas(dest, W, H, d, int(v.get("parte", 1)), tc, fondo)
+                elif v["corto"] == "subasta":
+                    graficos.corto_subasta(dest, W, H, d, tc, fondo)
+                else:
+                    raise SystemExit(f"corto desconocido: {v['corto']}")
+                etiqueta = f"corto {v['corto']}"
+            elif tipo == "altura":
+                ps = [{**p, "foto": str((proyecto / p["foto"]).resolve()) if p.get("foto") else None,
+                       "t": max(0.2, momento(esc, p["en"], info[i]) - v_ini) if p.get("en") is not None else 0.4 + 1.8 * k}
+                      for k, p in enumerate(v["personas"])]
+                graficos.altura(dest, W, H, d, ps, v.get("titulo", ""), v.get("etiqueta", ""), fondo)
+                etiqueta = "altura"
             elif tipo == "cierre":
                 bs = [{**b, "t": max(0.2, momento(esc, b["en"], info[i]) - v_ini) if b.get("en") else 0.4 + 0.5 * k}
                       for k, b in enumerate(v["botones"])]
@@ -507,7 +631,12 @@ def main():
                     crudo = tmp / f"c{i:03}_{j:02}.mp4" if v.get("golpe") else dest
                     render_video(src, crudo, d, W, H, desde, calidad, float(v.get("velocidad", 1.0)), zoc,
                                  v.get("zoom"), v.get("centro", (0.5, 0.45)), v.get("fin"))
-                    if v.get("golpe"):
+                    if v.get("golpe") and v.get("golpe_estilo") == "fantasma":
+                        fl = [{**f, "t": (momento(esc, f["en"], info[i]) - v_ini) if isinstance(f.get("en"), str)
+                               else float(f.get("en", 0.4))} for f in v.get("flechas", [])]
+                        graficos.fantasma(crudo, dest, W, H, d, v["golpe"], v.get("golpe_sub", ""), float(t_g),
+                                          fl, v.get("foco"))
+                    elif v.get("golpe"):
                         graficos.golpe(crudo, dest, W, H, d, v["golpe"], v.get("golpe_sub", ""),
                                        float(t_g), v.get("local", ""), v.get("visitante", ""))
                 etiqueta = src.name

@@ -9,7 +9,7 @@ Spec (todas las coordenadas en píxeles de la FUENTE 1920x1080; la cámara es [z
 {"id": "117", "fuente": "../../proyectos/.../final_uefa.mp4", "dur": 8.37,
  "tramos": [
    {"play": [518.6, 519.5], "t": [0, 1.3], "cam": [[1.5, 780, 390], [2, 780, 390]]},
-   {"pausa": 519.5, "t": [1.3, 3.4], "cam": [2, 780, 390],
+   {"pausa": 519.5, "t": [1.3, 3.4], "cam": [2, 780, 390],  ("suave": true y "sin_recorte": true para planos abiertos)
     "marcas": [{"x": 1060, "y": 450, "w": 120, "h": 150, "et": "CABEZAZO", "nm": "SHEVCHENKO", "en": 1.45,
                 "lado": "abajo"}],
     "flecha": {"de": [1050, 420], "a": [680, 400], "curva": -80, "en": 1.8},
@@ -61,7 +61,7 @@ def assets(spec, fuente):
             f = AQUI / f"assets/iv_{i}_f{n}.png"
             sh(["ffmpeg", "-v", "error", "-y", "-ss", tr["pausa"], "-i", fuente, "-frames:v", "1", f])
             c = AQUI / f"assets/iv_{i}_f{n}_cut.png"
-            if not c.exists():
+            if not c.exists() and not tr.get("sin_recorte"):
                 sh(["npx", "hyperframes@0.9.17", "remove-background", f, "-o", c])
 
 
@@ -89,8 +89,9 @@ def html(spec):
                      f"data-track-index=\"1\" data-color-grading='{CG_SUAVE if tr.get('suave') else CG}'>")
         capas.append(f'<div class="clip tinte" data-start="{t0}" data-duration="{d}" data-track-index="2"'
                      + (' style="opacity:.4"' if tr.get("suave") else "") + '></div>')
-        capas.append(f'<img class="clip full cut" src="assets/iv_{i}_f{n}_cut.png" alt="jugadores" data-start="{t0}" '
-                     f'data-duration="{d}" data-track-index="3" data-layout-allow-occlusion="">')
+        if not tr.get("sin_recorte"):  # planos abiertos: el recorte automático agarra a otro jugador
+            capas.append(f'<img class="clip full cut" src="assets/iv_{i}_f{n}_cut.png" alt="jugadores" data-start="{t0}" '
+                         f'data-duration="{d}" data-track-index="3" data-layout-allow-occlusion="">')
         # flash
         js.append(f'tl.fromTo("#{cid} .flash", {{opacity: 0}}, {{opacity: 0.8, duration: 0.03}}, {max(0, t0 - 0.02)});')
         js.append(f'tl.to("#{cid} .flash", {{opacity: 0, duration: 0.25, ease: "power2.out"}}, {t0 + 0.01});')
@@ -222,7 +223,10 @@ if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     specs = json.load(open(args[0]))
     ids = args[1:] or [s["id"] for s in specs]
-    salida = RAIZ / "proyectos/estambul-2005/salida/graficos_sin_logo"
+    # --salida=proyectos/<p>/salida/graficos (relativa a la raíz del repo); por defecto, la de Estambul
+    otra = [a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--salida=")]
+    salida = RAIZ / (otra[0] if otra else "proyectos/estambul-2005/salida/graficos_sin_logo")
+    salida.mkdir(parents=True, exist_ok=True)
     for s in specs:
         if s["id"] not in ids:
             continue

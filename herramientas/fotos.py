@@ -13,7 +13,7 @@ import urllib.request
 from pathlib import Path
 
 API = "https://commons.wikimedia.org/w/api.php"
-UA = {"User-Agent": "LaHistoriaDelFutbol/1.0 (video research; contact via channel)"}
+UA = {"User-Agent": "LOS11-research/1.0 (https://github.com/sebamacchia/los11) python-urllib"}
 
 
 def _get(url, intentos=6):
@@ -56,10 +56,11 @@ def bajar(carpeta, pedidos, ancho=2400):
     creditos = carpeta / "creditos.txt"
     for pedido in pedidos:
         titulo, _, nombre = pedido.partition("=")
-        d = _api(action="query", titles=titulo, prop="imageinfo", iiprop="url|extmetadata", iiurlwidth=ancho)
+        d = _api(action="query", titles=titulo, prop="imageinfo", iiprop="url|size|extmetadata", iiurlwidth=ancho)
         ii = list(d["query"]["pages"].values())[0]["imageinfo"][0]
         m = ii.get("extmetadata", {})
-        url = ii.get("thumburl") or ii["url"]
+        # el original si ya es chico: las miniaturas a medida de Commons dan 429 seguido (10/11)
+        url = ii["url"] if ii.get("width", 1e9) <= ancho else (ii.get("thumburl") or ii["url"])
         ext = Path(urllib.parse.urlparse(url).path).suffix.lower() or ".jpg"
         destino = carpeta / ((nombre or re.sub(r"\W+", "_", titulo[5:])[:40]) + ext)
         destino.write_bytes(_get(url))
