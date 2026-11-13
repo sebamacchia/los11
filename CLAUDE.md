@@ -23,6 +23,7 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
   (no pisa un .fcproj existente; `--forzar` lo rehace). FilmCraft está en /Applications y su CLI en `herramientas/filmcraft-cli/`
 - `elevenlabs.musica(prompt, segundos, destino)` — genera música instrumental (ElevenLabs Music) a `musica/`
 - `reports/Retención YouTube documentales fútbol.md` — investigación de reglas de YouTube (hook, ritmo, copyright, IA)
+- Archivos grandes (todo lo que .gitignore deja afuera) en Drive `LOS11/repo/` con las mismas rutas: `herramientas/archivos_grandes.py subir|bajar|faltan` (ver `ARCHIVOS_GRANDES.md`). Correr `subir` antes de cada commit.
 - `.env` — `ELEVENLABS_API_KEY=...` (no compartir)
 
 ## Flujo
