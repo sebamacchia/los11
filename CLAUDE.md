@@ -15,12 +15,24 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
   Correr con `herramientas/.venv/bin/python` (tiene ddgs + Pillow). `elegir` copia las elegidas y anota el origen en creditos.txt
 - **Manual del canal (v2, 09/11)**: TODO lo que el canal es y puede hacer. Versión para mostrar (con imágenes de cada animación): https://claude.ai/artifact/GZDu5cr8CXi6t5DMQipFDS (fuente `identidad/manual-web/`; republicar con el tool Artifact y esa url).
   Web: `identidad/manual-de-estilo.html` · Drive: Google Doc "Manual del canal — LOS 11 (v2)" en la carpeta LOS11. Leerlo antes de un video nuevo.
+- **Catálogo de planos (14/11)**: estilos con nombre en clave (MESA, ZOOM, REVISTA, TITULO, MAQUINA, DIAGRAMA, CANCHA, MARCA,
+  JUGADA, FOTO, RELATO; nuevos: ARMADO, RECORTE, RUTA, DOCUMENTO, CLASIFICACION, PROFUNDIDAD) que usan los editores para pedir:
+  https://claude.ai/artifact/NvL4sptavQcKLFGSEQ8VDF (fuente `identidad/catalogo-planos/`). Motor: `herramientas/documental.py` (tipo "doc").
 - `herramientas/clips.py` — buscar/bajar videos de YouTube (yt-dlp con cookies de Chrome, autorizado por el usuario), hoja de contacto con tiempos, detectar cortes. Fuentes en `material/fuentes/` (+ `fuentes.txt`)
 - `herramientas/graficos.py` — intro animada del canal, placas de texto, marcador animado, zócalos (Pillow)
 - `herramientas/armar.py` — arma el video (ver docstring para todos los tipos de visual)
 - `herramientas/filmcraft.py` — pasa el video armado a un proyecto de FilmCraft (`salida/<archivo>.fcproj`) para editarlo a mano:
   V1 una pieza por visual, A1 voz, A2-A3 efectos, A4 música, C1 subtítulos. Se llama con `armar.py ... --filmcraft`
   (no pisa un .fcproj existente; `--forzar` lo rehace). FilmCraft está en /Applications y su CLI en `herramientas/filmcraft-cli/`
+- **Efectos de edit sobre clips** (correr con `herramientas/.venv/bin/python`, que tiene rembg + numpy + scipy):
+  - `herramientas/efecto_jugador.py` — JUGADOR (APROBADO 14/11): fondo gris, jugador en color, estela, pelota encendida,
+    flash. Puntos de seguimiento a mano en `material/pistas_siglo.json` (`--pistas`).
+  - `herramientas/efectos_edit.py <contorno|aura|estallido> <video> <desde> <dur> <salida>`: pruebas en
+    `salida/prueba_{contorno,aura,estallido}.mp4` (el usuario aprobó una con "esa!!!!!" pero falta saber cuál).
+  - `herramientas/efecto_dibujo.py` — DIBUJO (referencia Klickpin de Messi: fondo liso granate, Argentina pintados,
+    rivales en contorno blanco, líneas de cancha dibujadas) para el gol del siglo en la escena 39 (relato de Víctor Hugo,
+    `limpias/inglaterra_fifa.mp4` 267.5 + 14 s). Primera prueba automática `salida/prueba_dibujo_gol.mp4`: floja en
+    planos abiertos; siguiente paso = puntos a mano por jugador como en JUGADOR.
 - `elevenlabs.musica(prompt, segundos, destino)` — genera música instrumental (ElevenLabs Music) a `musica/`
 - `reports/Retención YouTube documentales fútbol.md` — investigación de reglas de YouTube (hook, ritmo, copyright, IA)
 - `.env` — `ELEVENLABS_API_KEY=...` (no compartir)
@@ -32,13 +44,16 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 3. Render: sin flags (final) o `--borrador`.
 
 ## Dirección del usuario (respetar)
-- Fotos FIJAS, enteras, con negro a los costados si son verticales. Nada de zoom/Ken Burns.
+- Fotos enteras, con negro a los costados si son verticales. Nada de Ken Burns automático; desde 14/11 SÍ zoom/paneo con intención (hacia el detalle que se nombra) con el tipo "doc" (herramientas/documental.py).
 - Hook primero (cold open, sin saludo), DESPUÉS la intro animada del canal (~3 s).
 - Narración natural, frases cortas, explicar el contexto para quien no conoce la historia.
 
-## Fotos (decisión del usuario, 05/11)
-- Solo fotos LIBRES de verdad (Commons / Creative Commons, con crédito) y cuadros congelados de los videos.
-  Nada de Getty/Alamy/prensa aunque `imagenes.py` las encuentre.
+## Fotos (decisión del usuario, 14/11 — reemplaza la del 05/11)
+- Se pueden usar fotos de prensa/archivo (no solo Commons) cuando la foto cuenta algo que no hay en libre: el usuario asume
+  el riesgo ("lo hacen todos los youtubers"). Siempre TRANSFORMADAS al estilo doc (impresas sobre la mesa, recortadas, trama,
+  zoom, comentario del narrador), nunca a pantalla completa tal cual, y acreditadas en la descripción.
+- Nunca borrar marcas de agua (Getty/Alamy): si la única copia tiene marca, se busca otra foto. Primero Commons/libres.
+- Cronología: la foto tiene que ser del momento que se narra (nada de trofeos posteriores, ver sin spoilers).
 
 ## Video de partidos (pedido del usuario: más video, menos foto)
 - Usar clips de goles/festejos/hinchas: `{"archivo": "material/fuentes/x.mp4", "desde": seg, "velocidad": 0.5, "zocalo": ...}`.
@@ -83,6 +98,8 @@ La API key no tiene permiso voices_write: borrar voces lo hace el usuario desde 
 intro · capitulo (separador con número y barra de progreso) · placa (+ "foto") · marcador · zócalo · formacion (equipo en la
 cancha con retratos que aparecen al nombrarlos) · camino (llaves con ida/vuelta/global) · tabla (posiciones con barras,
 destacado, línea de copa, distancia, cartel) · palmares (copas en línea de tiempo) · linea (tramos de años o minutos + contador)
-· cambio (sale/entra con fotos) · charla (citas con foto) · altura · mapa (Malvinas) · cifras · corto (camisetas 1-2,
+· collage (estilo Vox desde 13/11, herramientas/collage.py: fotos sin borde + tags + títulos con resaltador
++ círculos/flechas sobre fondo desenfocado por tramos; reemplaza a las animaciones en Argentina 86 h, ver
+proyectos/argentina-1986/construir_h.py) · cambio (sale/entra con fotos) · charla (citas con foto) · altura · mapa (Malvinas) · cifras · corto (camisetas 1-2,
 subasta: mini cortometrajes animados) · golpe_estilo "fantasma" con flechas. Relatos reales: sfx con "archivo" en escena muda. Todo se sincroniza con `"en": "@frase"`. Estructura en capítulos con frases puente del narrador.
 `--reusar` NO detecta cambios de código en graficos.py: borrar `tmp_*/pNNN_MM.*` de las piezas a rehacer.

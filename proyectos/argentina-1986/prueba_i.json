@@ -1,0 +1,1413 @@
+{
+ "archivo": "prueba_i",
+ "formato": "horizontal",
+ "pausa": 0.45,
+ "sfx_volumen": 0.55,
+ "musica": [],
+ "escenas": [
+  {
+   "texto": "Y en cuartos venía Inglaterra, que se vestía de blanco. A tres días del partido, Bilardo mandó a un colaborador, Rubén Moschella, a recorrer los negocios de la Ciudad de México. A buscar camisetas... en una tienda.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/collage/fondo_inglaterra_300.png",
+         "x": 960,
+         "y": 540,
+         "alto": 708,
+         "rot": 0.6,
+         "borde": 12,
+         "en": 0,
+         "recorte": [
+          0,
+          151,
+          1920,
+          961
+         ],
+         "sale": "@Bilardo mandó"
+        },
+        {
+         "archivo": "material/collage/fondo_uruguay_34.png",
+         "x": 960,
+         "y": 540,
+         "alto": 708,
+         "rot": -0.5,
+         "borde": 12,
+         "en": "@Bilardo mandó",
+         "recorte": [
+          0,
+          151,
+          1920,
+          961
+         ],
+         "sale": "@a recorrer"
+        },
+        {
+         "archivo": "material/df86_zocalo1.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 940,
+         "rot": 0.6,
+         "borde": 12,
+         "en": "@a recorrer",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/mercado_merced.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 940,
+         "rot": -0.5,
+         "borde": 12,
+         "en": "@A buscar"
+        },
+        {
+         "archivo": "material/collage/ing_323.png",
+         "x": 480.0,
+         "y": 510.0,
+         "alto": 700,
+         "recorte": [
+          728,
+          140,
+          1571,
+          960
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": 0.15,
+         "sale": "@A tres días"
+        },
+        {
+         "archivo": "material/bilardo.jpg",
+         "x": 1400.0,
+         "y": 510.0,
+         "alto": 720,
+         "recorte": [
+          0,
+          20,
+          551,
+          681
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Bilardo mandó",
+         "sale": "@a recorrer"
+        },
+        {
+         "archivo": "material/df86_calle3.jpg",
+         "x": 470.0,
+         "y": 330.0,
+         "alto": 480,
+         "recorte": [
+          0,
+          8,
+          823,
+          528
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@a recorrer",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/df86_calle1.jpg",
+         "x": 910.0,
+         "y": 580.0,
+         "alto": 560,
+         "recorte": [
+          0,
+          16,
+          529,
+          721
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@los negocios",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/mercado_lagunilla_ropa.jpg",
+         "x": 1490.0,
+         "y": 330.0,
+         "alto": 440,
+         "recorte": [
+          0,
+          106,
+          1559,
+          1115
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@de la Ciudad",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/tepito_puestos.jpg",
+         "x": 490.0,
+         "y": 800.0,
+         "alto": 400,
+         "recorte": [
+          0,
+          191,
+          3648,
+          2544
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@de México",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/df86_calle2.jpg",
+         "x": 1500.0,
+         "y": 770.0,
+         "alto": 420,
+         "recorte": [
+          0,
+          3,
+          817,
+          539
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@México.",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/mercado_merced_vendedor.jpg",
+         "x": 960.0,
+         "y": 540.0,
+         "alto": 860,
+         "recorte": [
+          0,
+          103,
+          2048,
+          1261
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@A buscar"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@Bilardo mandó",
+          0
+         ],
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@Bilardo mandó",
+          1.4
+         ],
+         "x": 1056.8,
+         "y": 533.4,
+         "zoom": 1.06
+        },
+        {
+         "t": [
+          "@a recorrer",
+          0
+         ],
+         "x": 1056.8,
+         "y": 533.4,
+         "zoom": 1.06
+        },
+        {
+         "t": [
+          "@a recorrer",
+          1.4
+         ],
+         "x": 852.2,
+         "y": 493.8,
+         "zoom": 1.08
+        },
+        {
+         "t": [
+          "@los negocios",
+          0
+         ],
+         "x": 852.2,
+         "y": 493.8,
+         "zoom": 1.08
+        },
+        {
+         "t": [
+          "@los negocios",
+          1.4
+         ],
+         "x": 949.0,
+         "y": 548.8,
+         "zoom": 1.1
+        },
+        {
+         "t": [
+          "@de la Ciudad",
+          0
+         ],
+         "x": 949.0,
+         "y": 548.8,
+         "zoom": 1.1
+        },
+        {
+         "t": [
+          "@de la Ciudad",
+          1.4
+         ],
+         "x": 1076.6,
+         "y": 493.8,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@de México",
+          0
+         ],
+         "x": 1076.6,
+         "y": 493.8,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@de México",
+          1.4
+         ],
+         "x": 856.6,
+         "y": 597.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@México.",
+          0
+         ],
+         "x": 856.6,
+         "y": 597.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@México.",
+          1.4
+         ],
+         "x": 1078.8,
+         "y": 590.6,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@A buscar",
+          0
+         ],
+         "x": 1078.8,
+         "y": 590.6,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@A buscar",
+          1.4
+         ],
+         "x": 960.0,
+         "y": 540.0,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@en una tienda",
+          0
+         ],
+         "x": 960.0,
+         "y": 540.0,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@en una tienda",
+          1.1
+         ],
+         "x": 1080.0,
+         "y": 520.0,
+         "zoom": 1.25
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "MÉXICO 86 · CUARTOS DE FINAL",
+         "x": 80,
+         "y": 60,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "sale": "@A tres días",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "INGLATERRA",
+         "x": 90,
+         "y": 820,
+         "en": "@Inglaterra",
+         "tam": 28,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@A tres días",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Se vestía\nde blanco.",
+         "x": 920,
+         "y": 380,
+         "en": "@que se vestía",
+         "tam": 96,
+         "sale": "@A tres días",
+         "mundo": true
+        },
+        {
+         "tipo": "subrayado",
+         "x": 920,
+         "y": 564,
+         "ancho": 508,
+         "en": "@que se vestía",
+         "dibujo": 0.5,
+         "sale": "@A tres días",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "19 de junio\nde 1986",
+         "x": 110,
+         "y": 250,
+         "en": "@A tres días",
+         "tam": 104,
+         "sale": "@Bilardo mandó",
+         "mundo": true
+        },
+        {
+         "tipo": "subrayado",
+         "x": 110,
+         "y": 343,
+         "ancho": 606,
+         "en": "@A tres días",
+         "dibujo": 0.5,
+         "sale": "@Bilardo mandó",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "FALTAN 3 DÍAS PARA INGLATERRA",
+         "x": 120,
+         "y": 620,
+         "en": "@del partido",
+         "tam": 26,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Bilardo mandó",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CARLOS BILARDO · DT",
+         "x": 1080,
+         "y": 820,
+         "en": "@Bilardo mandó",
+         "tam": 24,
+         "fondo_tira": true,
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "flecha",
+         "desde": [
+          1080,
+          420
+         ],
+         "hasta": [
+          860,
+          440
+         ],
+         "en": "@a un colaborador",
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "?",
+         "x": 500.0,
+         "y": 350.0,
+         "tam": 300,
+         "rojo": true,
+         "en": "@Rubén",
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RUBÉN MOSCHELLA",
+         "x": 270,
+         "y": 820,
+         "en": "@Rubén",
+         "tam": 28,
+         "fondo_tira": true,
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "COLABORADOR DE LA AFA",
+         "x": 280,
+         "y": 890,
+         "en": "@Rubén",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CDMX · 1986",
+         "x": 110,
+         "y": 520,
+         "en": "@a recorrer",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CDMX · 1986",
+         "x": 830,
+         "y": 790,
+         "en": "@los negocios",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "LA LAGUNILLA · HOY",
+         "x": 1170,
+         "y": 500,
+         "en": "@de la Ciudad",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "TEPITO · HOY",
+         "x": 200,
+         "y": 950,
+         "en": "@de México",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CDMX · 1986",
+         "x": 1200,
+         "y": 930,
+         "en": "@México.",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "A buscar\ncamisetas...",
+         "x": 240,
+         "y": 700,
+         "en": "@A buscar",
+         "tam": 76,
+         "mundo": true
+        },
+        {
+         "tipo": "subrayado",
+         "x": 240,
+         "y": 768,
+         "ancho": 322,
+         "en": "@A buscar",
+         "dibujo": 0.5,
+         "mundo": true
+        },
+        {
+         "tipo": "subrayado",
+         "x": 240,
+         "y": 845,
+         "ancho": 483,
+         "en": "@A buscar",
+         "dibujo": 0.5,
+         "mundo": true
+        },
+        {
+         "tipo": "circulo",
+         "x": 1080.0,
+         "y": 520.0,
+         "ancho": 300,
+         "alto": 380,
+         "en": "@en una tienda",
+         "dibujo": 0.6,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EN UNA TIENDA",
+         "x": 1200,
+         "y": 660,
+         "en": "@en una tienda",
+         "tam": 31,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Volvió con dos modelos. Maradona eligió uno y dijo: con esta le ganamos a Inglaterra. Compraron treinta y ocho, les cosieron el escudo... y les plancharon números plateados en la espalda, de los que se usan en el fútbol americano. Esa es la camiseta de la foto más famosa del siglo.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/collage/ing_331.5.png",
+         "x": 1420.0,
+         "y": 540.0,
+         "alto": 840,
+         "recorte": [
+          559,
+          110,
+          1287,
+          960
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Maradona eligió",
+         "sale": "@Compraron"
+        },
+        {
+         "archivo": "material/collage/ing_229.5.png",
+         "x": 1380.0,
+         "y": 380.0,
+         "alto": 520,
+         "recorte": [
+          408,
+          110,
+          1491,
+          780
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@les cosieron",
+         "sale": "@les plancharon"
+        },
+        {
+         "archivo": "material/collage/ing_365.5.png",
+         "x": 960.0,
+         "y": 440.0,
+         "alto": 640,
+         "recorte": [
+          48,
+          110,
+          1807,
+          780
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@les plancharon"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@les cosieron",
+          0
+         ],
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@les cosieron",
+          1.4
+         ],
+         "x": 1052.4,
+         "y": 504.8,
+         "zoom": 1.06
+        },
+        {
+         "t": [
+          "@el escudo",
+          0
+         ],
+         "x": 1052.4,
+         "y": 504.8,
+         "zoom": 1.06
+        },
+        {
+         "t": [
+          "@el escudo",
+          1.1
+         ],
+         "x": 1490.0,
+         "y": 310.0,
+         "zoom": 1.5101123595505617
+        },
+        {
+         "t": [
+          "@les plancharon",
+          0
+         ],
+         "x": 1490.0,
+         "y": 310.0,
+         "zoom": 1.5101123595505617
+        },
+        {
+         "t": [
+          "@les plancharon",
+          1.4
+         ],
+         "x": 960.0,
+         "y": 518.0,
+         "zoom": 1.08
+        },
+        {
+         "t": [
+          "@números plateados",
+          0
+         ],
+         "x": 960.0,
+         "y": 518.0,
+         "zoom": 1.08
+        },
+        {
+         "t": [
+          "@números plateados",
+          1.1
+         ],
+         "x": 500.0,
+         "y": 370.0,
+         "zoom": 1.25
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "Volvió con\ndos modelos.",
+         "x": 120,
+         "y": 200,
+         "en": "@Volvió",
+         "tam": 96,
+         "sale": "@Maradona eligió",
+         "mundo": true
+        },
+        {
+         "tipo": "subrayado",
+         "x": 120,
+         "y": 384,
+         "ancho": 610,
+         "en": "@Volvió",
+         "dibujo": 0.5,
+         "sale": "@Maradona eligió",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "LE COQ SPORTIF · LISAS",
+         "x": 140,
+         "y": 560,
+         "en": "@Volvió",
+         "tam": 28,
+         "fondo_tira": true,
+         "sale": "@Maradona eligió",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "MARADONA",
+         "x": 1040,
+         "y": 900,
+         "en": "@Maradona eligió",
+         "tam": 28,
+         "fondo_tira": true,
+         "sale": "@Compraron",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Con esta le\nganamos a\nInglaterra»",
+         "x": 120,
+         "y": 260,
+         "en": "@y dijo",
+         "tam": 50,
+         "fondo_tira": true,
+         "sale": "@Compraron",
+         "mundo": true
+        },
+        {
+         "tipo": "subrayado",
+         "x": 120,
+         "y": 471,
+         "ancho": 330,
+         "en": "@y dijo",
+         "dibujo": 0.5,
+         "sale": "@Compraron",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "38\ncamisetas",
+         "x": 120,
+         "y": 200,
+         "en": "@Compraron",
+         "tam": 120,
+         "sale": "@les plancharon",
+         "mundo": true
+        },
+        {
+         "tipo": "subrayado",
+         "x": 120,
+         "y": 308,
+         "ancho": 127,
+         "en": "@Compraron",
+         "dibujo": 0.5,
+         "sale": "@les plancharon",
+         "mundo": true
+        },
+        {
+         "tipo": "circulo",
+         "x": 1490.0,
+         "y": 310.0,
+         "ancho": 300,
+         "alto": 300,
+         "en": "@el escudo",
+         "dibujo": 0.6,
+         "sale": "@les plancharon",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "ESCUDO DE LA AFA · COSIDO A MANO",
+         "x": 980,
+         "y": 680,
+         "en": "@el escudo",
+         "tam": 26,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@les plancharon",
+         "mundo": true
+        },
+        {
+         "tipo": "circulo",
+         "x": 500.0,
+         "y": 370.0,
+         "ancho": 700,
+         "alto": 500,
+         "en": "@números plateados",
+         "dibujo": 0.6,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "NÚMEROS PLATEADOS · PLANCHADOS",
+         "x": 140,
+         "y": 800,
+         "en": "@números plateados",
+         "tam": 31,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "COMO LOS DEL FÚTBOL AMERICANO",
+         "x": 160,
+         "y": 880,
+         "en": "@de los que",
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@Esa es"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/mano_dios2.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -0.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": 6,
+         "x": 960.0,
+         "y": 511.2,
+         "zoom": 1.1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Bilardo salió con los de siempre. Pumpido al arco. Atrás, Cuciuffo, Brown y Ruggeri. En el medio, Giusti, Batista, Enrique y Olarticoechea. Arriba, Burruchaga, Valdano... y Diego.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/retratos/caras/pumpido.png",
+         "x": 200.0,
+         "y": 520.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@Pumpido",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/cuciuffo.png",
+         "x": 560.0,
+         "y": 240.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Cuciuffo",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/brown.png",
+         "x": 560.0,
+         "y": 520.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Brown",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/ruggeri.png",
+         "x": 560.0,
+         "y": 800.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Ruggeri",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/giusti.png",
+         "x": 940.0,
+         "y": 150.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@Giusti",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/batista.png",
+         "x": 940.0,
+         "y": 400.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Batista",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/enrique.png",
+         "x": 940.0,
+         "y": 650.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Enrique",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/olarticoechea.png",
+         "x": 940.0,
+         "y": 900.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Olarticoechea",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/burruchaga.png",
+         "x": 1320.0,
+         "y": 370.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@Burruchaga",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/valdano.png",
+         "x": 1320.0,
+         "y": 690.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Valdano",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/maradona.png",
+         "x": 1690.0,
+         "y": 510.0,
+         "alto": 220,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Diego",
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@Cuciuffo",
+          0
+         ],
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@Cuciuffo",
+          1.4
+         ],
+         "x": 872.0,
+         "y": 474.0,
+         "zoom": 1.06
+        },
+        {
+         "t": [
+          "@Brown",
+          0
+         ],
+         "x": 872.0,
+         "y": 474.0,
+         "zoom": 1.06
+        },
+        {
+         "t": [
+          "@Brown",
+          1.4
+         ],
+         "x": 872.0,
+         "y": 535.6,
+         "zoom": 1.08
+        },
+        {
+         "t": [
+          "@Ruggeri",
+          0
+         ],
+         "x": 872.0,
+         "y": 535.6,
+         "zoom": 1.08
+        },
+        {
+         "t": [
+          "@Ruggeri",
+          1.4
+         ],
+         "x": 872.0,
+         "y": 597.2,
+         "zoom": 1.1
+        },
+        {
+         "t": [
+          "@Giusti",
+          0
+         ],
+         "x": 872.0,
+         "y": 597.2,
+         "zoom": 1.1
+        },
+        {
+         "t": [
+          "@Giusti",
+          1.4
+         ],
+         "x": 955.6,
+         "y": 454.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Batista",
+          0
+         ],
+         "x": 955.6,
+         "y": 454.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Batista",
+          1.4
+         ],
+         "x": 955.6,
+         "y": 509.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Enrique",
+          0
+         ],
+         "x": 955.6,
+         "y": 509.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Enrique",
+          1.4
+         ],
+         "x": 955.6,
+         "y": 564.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Olarticoechea",
+          0
+         ],
+         "x": 955.6,
+         "y": 564.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Olarticoechea",
+          1.4
+         ],
+         "x": 955.6,
+         "y": 619.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Burruchaga",
+          0
+         ],
+         "x": 955.6,
+         "y": 619.2,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Burruchaga",
+          1.4
+         ],
+         "x": 1039.2,
+         "y": 502.6,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Valdano",
+          0
+         ],
+         "x": 1039.2,
+         "y": 502.6,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Valdano",
+          1.4
+         ],
+         "x": 1039.2,
+         "y": 573.0,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Diego",
+          0
+         ],
+         "x": 1039.2,
+         "y": 573.0,
+         "zoom": 1.12
+        },
+        {
+         "t": [
+          "@Diego",
+          1.4
+         ],
+         "x": 1120.6,
+         "y": 533.4,
+         "zoom": 1.12
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "FINAL · 3-5-2",
+         "x": 1560,
+         "y": 60,
+         "en": 0.05,
+         "tam": 26,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "PUMPIDO",
+         "x": 110,
+         "y": 600,
+         "en": "@Pumpido",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CUCIUFFO",
+         "x": 470,
+         "y": 320,
+         "en": "@Cuciuffo",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BROWN",
+         "x": 470,
+         "y": 600,
+         "en": "@Brown",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RUGGERI",
+         "x": 470,
+         "y": 880,
+         "en": "@Ruggeri",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "GIUSTI",
+         "x": 850,
+         "y": 230,
+         "en": "@Giusti",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BATISTA",
+         "x": 850,
+         "y": 480,
+         "en": "@Batista",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "ENRIQUE",
+         "x": 850,
+         "y": 730,
+         "en": "@Enrique",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "OLARTICOECHEA",
+         "x": 850,
+         "y": 980,
+         "en": "@Olarticoechea",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BURRUCHAGA",
+         "x": 1230,
+         "y": 450,
+         "en": "@Burruchaga",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "VALDANO",
+         "x": 1230,
+         "y": 770,
+         "en": "@Valdano",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "DIEGO",
+         "x": 1580,
+         "y": 610,
+         "en": "@Diego",
+         "tam": 24,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ],
+       "cancha": true
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -319,6 +319,18 @@ def frases(texto, max_chars=84):
     return out
 
 
+def voz_provisoria(texto, tmp):
+    """Voz de la Mac (say) solo para ver tiempos sin clave de ElevenLabs. NUNCA va a la caché de ElevenLabs."""
+    import hashlib
+    dest = tmp / f"provisoria_{hashlib.sha1(texto.encode()).hexdigest()[:12]}.mp3"
+    if not dest.exists():
+        aiff = dest.with_suffix(".aiff")
+        subprocess.run(["say", "-v", "Eddy (Spanish (Mexico))", "-r", "165", "-o", str(aiff), texto], check=True)
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(aiff), "-ar", "44100", "-ac", "2", str(dest)], check=True)
+        aiff.unlink()
+    return dest
+
+
 def momento(esc, valor, info):
     """Segundos desde el inicio de la escena. Acepta un número o "@frase" (cuando el narrador dice esa frase)."""
     if isinstance(valor, str) and valor.startswith("@"):
@@ -397,7 +409,13 @@ def main():
         retardo = float(esc.get("retardo", 0))  # silencio antes de que hable
         d_voz = 0
         if esc.get("texto"):
-            mp3 = elevenlabs.voz(esc["texto"], vozcfg["voice_id"], vozcfg["model_id"], vozcfg.get("ajustes"))
+            try:
+                mp3 = elevenlabs.voz(esc["texto"], vozcfg["voice_id"], vozcfg["model_id"], vozcfg.get("ajustes"))
+            except SystemExit:
+                if "--voz-provisoria" not in sys.argv:
+                    raise
+                mp3 = voz_provisoria(esc["texto"], tmp)
+                print(f"  escena {i+1}: VOZ PROVISORIA (say), falta la clave de ElevenLabs")
             d_voz = duracion(mp3)
             voces.append((mp3, t + retardo))
             fr = frases(esc.get("subtitulo", esc["texto"]))
@@ -485,13 +503,77 @@ def main():
             dest = tmp / f"p{i:03}_{j:02}.mp4"
             tipo = v.get("tipo", "archivo")
             firma = tmp / f"p{i:03}_{j:02}.json"
-            fondo = fondo_de(proyecto, escenas, i, j, v) if tipo in ("placa", "marcador", "formacion", "camino", "tabla", "palmares", "linea", "capitulo", "cambio", "cierre", "prestamo", "jugada", "charla", "altura", "cifras", "corto", "mapa") else None
+            fondo = fondo_de(proyecto, escenas, i, j, v) if tipo in ("placa", "marcador", "formacion", "camino", "tabla", "palmares", "linea", "capitulo", "cambio", "cierre", "prestamo", "jugada", "charla", "altura", "cifras", "corto", "mapa", "collage", "doc") else None
             sello = json.dumps({**v, "_d": round(d, 3), "_fondo": fondo}, sort_keys=True)
             linea["piezas"].append({"archivo": str(dest), "inicio": round(t_pieza, 4), "duracion": round(d, 4),
                                     "escena": i + 1, "nombre": f"{i+1:02}.{j+1} {v.get('tipo', '') or Path(v.get('archivo', '')).stem}"
                                     + (f" · {v['zocalo']}" if v.get('zocalo') else "")
                                     + (f" · {v['texto']}" if v.get('texto') else "")})
             t_pieza += d
+            if tipo == "collage":  # tiempos de las piezas y sus efectos (también cuando se reusa el video)
+                import collage
+
+                def _rel(x):  # "@frase" o segundos de escena -> segundos de la pieza
+                    return max(0.0, momento(esc, x, info[i]) - v_ini) if isinstance(x, str) else float(x)
+                col_piezas = []
+                for pz in v["piezas"]:
+                    pz = dict(pz)
+                    for clave in ("en", "sale"):
+                        if clave in pz:
+                            pz[clave] = _rel(pz[clave])
+                    if pz.get("archivo"):
+                        pz["archivo"] = str((proyecto / pz["archivo"]).resolve())
+                    col_piezas.append(pz)
+                col_fondos = [{**f, "t": _rel(f.get("en", 0)), "archivo": str((proyecto / f["archivo"]).resolve())}
+                              for f in v.get("fondos", [])] or ([{**fondo, "t": 0}] if fondo else [])
+                if col_fondos:
+                    col_fondos[0]["t"] = 0
+                tarde = [pz.get("texto") or Path(pz.get("archivo", pz["tipo"])).name for pz in col_piezas
+                         if float(pz["en"]) > d - 0.3]
+                if tarde:
+                    print(f"  ¡ojo! escena {i+1}: el collage dura {d:.1f}s y estas piezas no llegan a verse: {tarde}")
+                for k, (ts, clase) in enumerate(collage.sonidos_vox(col_piezas)):
+                    wav = tmp / f"collage_{clase}_{k % 5}.wav"
+                    if not wav.exists():
+                        collage.sfx_vox(wav, clase, 7 + k % 5)
+                    vol = float(v.get("sfx_volumen", 0.5))
+                    efectos.append((str(wav), t_pieza - d + ts, vol, {"fade_in": 0.005, "fade_out": 0.05}))
+                    linea["efectos"].append({"archivo": str(wav), "inicio": t_pieza - d + ts, "volumen": vol})
+            if tipo == "doc":  # planos documentales: tiempos de planos, cámara y rótulos
+                import documental
+
+                def _r(x):  # "@frase", segundos, o ["@frase", +desfase]
+                    if isinstance(x, list):
+                        return max(0.0, _r(x[0]) + float(x[1]))
+                    return max(0.0, momento(esc, x, info[i]) - v_ini) if isinstance(x, str) else float(x)
+                doc_cfg = {"duracion": d, "planos": []}
+                for pl in v["planos"]:
+                    pl = json.loads(json.dumps(pl))
+                    pl["en"] = _r(pl.get("en", 0))
+                    if isinstance(pl.get("mesa"), dict):
+                        pl["mesa"]["archivo"] = str((proyecto / pl["mesa"]["archivo"]).resolve())
+                    for c in pl.get("capas", []):
+                        c["archivo"] = str((proyecto / c["archivo"]).resolve())
+                        for clave in ("en", "sale"):
+                            if c.get(clave) is not None:
+                                c[clave] = _r(c[clave])
+                    for kf in pl.get("camara", []):
+                        kf["t"] = _r(kf["t"]) - (pl["en"] if isinstance(kf["t"], (str, list)) else 0)
+                    for r in pl.get("rotulos", []):
+                        r["en"] = _r(r.get("en", pl["en"]))
+                        if r.get("sale") is not None:
+                            r["sale"] = _r(r["sale"])
+                        if r.get("archivo"):
+                            r["archivo"] = str((proyecto / r["archivo"]).resolve())
+                    doc_cfg["planos"].append(pl)
+                doc_cfg["planos"][0]["en"] = 0
+                for k, (ts, clase) in enumerate(documental.sonidos(doc_cfg)):
+                    wav = tmp / f"doc_{clase}_{k % 4}.wav"
+                    if not wav.exists():
+                        documental.sfx(wav, clase, 3 + k % 4)
+                    vol = float(v.get("sfx_volumen", 0.35))
+                    efectos.append((str(wav), t_pieza - d + ts, vol, {"fade_in": 0.005, "fade_out": 0.05}))
+                    linea["efectos"].append({"archivo": str(wav), "inicio": t_pieza - d + ts, "volumen": vol})
             if "--reusar" in sys.argv and dest.exists() and firma.exists() and firma.read_text() == sello:
                 piezas.append(dest)
                 continue
@@ -606,6 +688,13 @@ def main():
                       for k, b in enumerate(v["botones"])]
                 graficos.cierre(dest, W, H, d, bs, v.get("titulo", "LOS 11"), v.get("sub", ""), fondo)
                 etiqueta = "cierre"
+            elif tipo == "doc":
+                documental.render(doc_cfg, dest)
+                etiqueta = f"doc ({len(doc_cfg['planos'])} planos)"
+            elif tipo == "collage":
+                collage.render_vox({"texto": "", "retardo": 0, "d_voz": 0, "duracion": d,
+                                    "piezas": col_piezas, "fondos": col_fondos}, dest)
+                etiqueta = f"collage ({len(col_piezas)} piezas)"
             elif tipo == "marcador":
                 cambios = [[momento(esc, c[0], info[i]) - v_ini] + list(c[1:]) for c in v.get("cambios", [])]
                 graficos.marcador(dest, W, H, d, v["local"], v["visitante"], v["goles"],

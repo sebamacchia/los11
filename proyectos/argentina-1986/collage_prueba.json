@@ -1,0 +1,189 @@
+{
+ "salida": "proyectos/argentina-1986/salida/prueba_collage_camiseta.mp4",
+ "voz": ".cache/elevenlabs/voz_72bd3529157f4ca6.mp3",
+ "texto": "Y en cuartos venía Inglaterra, que se vestía de blanco. A tres días del partido, Bilardo mandó a un colaborador, Rubén Moschella, a recorrer los negocios de la Ciudad de México. A buscar camisetas... en una tienda.",
+ "retardo": 1.2,
+ "d_voz": 14.0,
+ "duracion": 16.2,
+ "musica": {
+  "archivo": "musica/m86_relato.mp3",
+  "desde_seg": 20,
+  "volumen": 0.16
+ },
+ "piezas": [
+  {
+   "tipo": "papelito",
+   "texto": "MÉXICO 86 · CUARTOS DE FINAL",
+   "tam": 30,
+   "x": 430,
+   "y": 110,
+   "rot": -2,
+   "en": 0.35,
+   "sale": 9.75
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/collage/ing_323.png",
+   "recorte": [
+    700,
+    140,
+    1600,
+    960
+   ],
+   "alto": 600,
+   "x": 620,
+   "y": 580,
+   "rot": -3,
+   "en": 1.4,
+   "sale": 9.75
+  },
+  {
+   "tipo": "papelito",
+   "sello": true,
+   "texto": "DE BLANCO",
+   "tam": 54,
+   "x": 860,
+   "y": 300,
+   "rot": 9,
+   "en": 3.3,
+   "sale": 9.75
+  },
+  {
+   "tipo": "papelito",
+   "texto": "19 · VI · 1986",
+   "tam": 46,
+   "x": 1440,
+   "y": 230,
+   "rot": 3,
+   "en": 5.2,
+   "sale": 9.75
+  },
+  {
+   "tipo": "papelito",
+   "sello": true,
+   "texto": "FALTAN 3 DÍAS",
+   "tam": 40,
+   "x": 1500,
+   "y": 360,
+   "rot": -6,
+   "en": 5.75,
+   "sale": 9.75
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/bilardo.jpg",
+   "alto": 430,
+   "x": 1180,
+   "y": 660,
+   "rot": 4,
+   "en": 6.75,
+   "sale": 9.75
+  },
+  {
+   "tipo": "papelito",
+   "texto": "CARLOS BILARDO",
+   "tam": 30,
+   "x": 1180,
+   "y": 930,
+   "rot": -2,
+   "en": 6.95,
+   "sale": 9.75
+  },
+  {
+   "tipo": "papelito",
+   "texto": "RUBÉN MOSCHELLA\ncolaborador de la AFA",
+   "tam": 32,
+   "x": 1660,
+   "y": 700,
+   "rot": 3,
+   "en": 8.6,
+   "sale": 9.75
+  },
+  {
+   "tipo": "flecha",
+   "desde": [
+    1330,
+    600
+   ],
+   "hasta": [
+    1505,
+    660
+   ],
+   "en": 8.3,
+   "sale": 9.75,
+   "dibujo": 0.4
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/df86_calle3.jpg",
+   "alto": 470,
+   "x": 560,
+   "y": 360,
+   "rot": -4,
+   "en": 9.95
+  },
+  {
+   "tipo": "papelito",
+   "texto": "MÉXICO D.F. · 1986",
+   "tam": 30,
+   "x": 430,
+   "y": 90,
+   "rot": 2,
+   "en": 10.3
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/df86_calle1.jpg",
+   "alto": 560,
+   "x": 1460,
+   "y": 380,
+   "rot": 3,
+   "en": 10.55
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/mercado_lagunilla_ropa.jpg",
+   "alto": 400,
+   "x": 1000,
+   "y": 730,
+   "rot": -2,
+   "en": 11.0
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/tepito_puestos.jpg",
+   "alto": 360,
+   "x": 380,
+   "y": 820,
+   "rot": 5,
+   "en": 11.45
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/df86_calle2.jpg",
+   "alto": 360,
+   "x": 1580,
+   "y": 860,
+   "rot": -5,
+   "en": 11.9
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/mercado_merced_vendedor.jpg",
+   "alto": 640,
+   "x": 960,
+   "y": 540,
+   "rot": -1.5,
+   "en": 12.6
+  },
+  {
+   "tipo": "circulo",
+   "x": 850,
+   "y": 345,
+   "ancho": 360,
+   "alto": 330,
+   "en": 14.3,
+   "dibujo": 0.6
+  }
+ ]
+}

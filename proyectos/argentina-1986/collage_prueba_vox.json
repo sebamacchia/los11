@@ -1,0 +1,347 @@
+{
+ "salida": "proyectos/argentina-1986/salida/prueba_collage_camiseta_vox2.mp4",
+ "voz": ".cache/elevenlabs/voz_72bd3529157f4ca6.mp3",
+ "texto": "Y en cuartos venía Inglaterra, que se vestía de blanco. A tres días del partido, Bilardo mandó a un colaborador, Rubén Moschella, a recorrer los negocios de la Ciudad de México. A buscar camisetas... en una tienda.",
+ "retardo": 1.2,
+ "d_voz": 14.0,
+ "duracion": 16.2,
+ "musica": {
+  "archivo": "musica/m86_relato.mp3",
+  "desde_seg": 20,
+  "volumen": 0.16
+ },
+ "piezas": [
+  {
+   "tipo": "etiqueta",
+   "texto": "México 86 · Cuartos de final",
+   "x": 80,
+   "y": 60,
+   "en": 0.3,
+   "sale": 5.0,
+   "color": "tinta",
+   "tam": 30,
+   "rot": 0
+  },
+  {
+   "tipo": "foto",
+   "celda": [
+    120,
+    160,
+    720,
+    700
+   ],
+   "en": 1.3,
+   "recorte": [
+    700,
+    140,
+    1600,
+    960
+   ],
+   "archivo": "proyectos/argentina-1986/material/collage/ing_323.png",
+   "sale": 5.0,
+   "centro": [
+    0.5,
+    0.4
+   ]
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "Inglaterra",
+   "x": 90,
+   "y": 820,
+   "en": 1.9,
+   "sale": 5.0,
+   "color": "rojo",
+   "tam": 36,
+   "rot": -3
+  },
+  {
+   "tipo": "titulo",
+   "texto": "Se vestía\nde blanco.",
+   "x": 920,
+   "y": 380,
+   "en": 3.3,
+   "tam": 120,
+   "sale": 5.0,
+   "marcar": [
+    1
+   ]
+  },
+  {
+   "tipo": "titulo",
+   "texto": "19 de junio\nde 1986",
+   "x": 110,
+   "y": 250,
+   "en": 5.2,
+   "tam": 130,
+   "sale": 6.6,
+   "marcar": [
+    0
+   ]
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "Faltan 3 días para Inglaterra",
+   "x": 120,
+   "y": 620,
+   "en": 5.8,
+   "sale": 6.6,
+   "color": "rojo",
+   "tam": 34,
+   "rot": -2
+  },
+  {
+   "tipo": "foto",
+   "celda": [
+    1100,
+    150,
+    600,
+    720
+   ],
+   "en": 6.7,
+   "archivo": "proyectos/argentina-1986/material/bilardo.jpg",
+   "sale": 9.6,
+   "centro": [
+    0.5,
+    0.3
+   ]
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "Carlos Bilardo · DT",
+   "x": 1080,
+   "y": 820,
+   "en": 6.95,
+   "sale": 9.6,
+   "color": "tinta",
+   "tam": 32,
+   "rot": 2
+  },
+  {
+   "tipo": "flecha",
+   "desde": [
+    1080,
+    420
+   ],
+   "hasta": [
+    860,
+    440
+   ],
+   "en": 8.2,
+   "sale": 9.6,
+   "dibujo": 0.35
+  },
+  {
+   "tipo": "silueta",
+   "celda": [
+    300,
+    150,
+    520,
+    720
+   ],
+   "en": 8.5,
+   "sale": 9.6
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "Rubén Moschella",
+   "x": 270,
+   "y": 820,
+   "en": 8.7,
+   "sale": 9.6,
+   "color": "verde",
+   "tam": 36,
+   "rot": -2
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "Colaborador de la AFA",
+   "x": 280,
+   "y": 890,
+   "en": 8.85,
+   "sale": 9.6,
+   "color": "tinta",
+   "tam": 24,
+   "rot": -2
+  },
+  {
+   "tipo": "foto",
+   "celda": [
+    90,
+    90,
+    760,
+    480
+   ],
+   "en": 9.8,
+   "archivo": "proyectos/argentina-1986/material/df86_calle3.jpg",
+   "sale": 12.5
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "CDMX · 1986",
+   "x": 110,
+   "y": 520,
+   "en": 9.92,
+   "sale": 12.5,
+   "color": "tinta",
+   "tam": 24,
+   "rot": 0
+  },
+  {
+   "tipo": "foto",
+   "celda": [
+    700,
+    300,
+    420,
+    560
+   ],
+   "en": 10.15,
+   "archivo": "proyectos/argentina-1986/material/df86_calle1.jpg",
+   "sale": 12.5
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "CDMX · 1986",
+   "x": 830,
+   "y": 790,
+   "en": 10.27,
+   "sale": 12.5,
+   "color": "tinta",
+   "tam": 24,
+   "rot": 0
+  },
+  {
+   "tipo": "foto",
+   "celda": [
+    1150,
+    110,
+    680,
+    440
+   ],
+   "en": 10.5,
+   "archivo": "proyectos/argentina-1986/material/mercado_lagunilla_ropa.jpg",
+   "sale": 12.5
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "La Lagunilla · hoy",
+   "x": 1170,
+   "y": 500,
+   "en": 10.62,
+   "sale": 12.5,
+   "color": "tinta",
+   "tam": 24,
+   "rot": 0
+  },
+  {
+   "tipo": "foto",
+   "celda": [
+    180,
+    600,
+    620,
+    400
+   ],
+   "en": 10.85,
+   "archivo": "proyectos/argentina-1986/material/tepito_puestos.jpg",
+   "sale": 12.5
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "Tepito · hoy",
+   "x": 200,
+   "y": 950,
+   "en": 10.969999999999999,
+   "sale": 12.5,
+   "color": "tinta",
+   "tam": 24,
+   "rot": 0
+  },
+  {
+   "tipo": "foto",
+   "celda": [
+    1180,
+    560,
+    640,
+    420
+   ],
+   "en": 11.2,
+   "archivo": "proyectos/argentina-1986/material/df86_calle2.jpg",
+   "sale": 12.5
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "CDMX · 1986",
+   "x": 1200,
+   "y": 930,
+   "en": 11.319999999999999,
+   "sale": 12.5,
+   "color": "tinta",
+   "tam": 24,
+   "rot": 0
+  },
+  {
+   "tipo": "foto",
+   "celda": [
+    200,
+    110,
+    1520,
+    860
+   ],
+   "en": 12.6,
+   "archivo": "proyectos/argentina-1986/material/mercado_merced_vendedor.jpg"
+  },
+  {
+   "tipo": "titulo",
+   "texto": "A buscar\ncamisetas...",
+   "x": 240,
+   "y": 700,
+   "en": 12.85,
+   "tam": 96,
+   "marcar": [
+    0,
+    1
+   ],
+   "dibujo": 0.5
+  },
+  {
+   "tipo": "circulo",
+   "x": 930,
+   "y": 330,
+   "ancho": 300,
+   "alto": 380,
+   "en": 14.3,
+   "dibujo": 0.5
+  },
+  {
+   "tipo": "etiqueta",
+   "texto": "En una tienda",
+   "x": 1200,
+   "y": 660,
+   "en": 14.45,
+   "color": "rojo",
+   "tam": 40,
+   "rot": -4
+  }
+ ],
+ "estilo": "vox",
+ "fondos": [
+  {
+   "t": 0,
+   "archivo": "proyectos/argentina-1986/material/fuentes/inglaterra.mp4",
+   "desde": 300
+  },
+  {
+   "t": 6.6,
+   "archivo": "proyectos/argentina-1986/material/fuentes/uruguay.mp4",
+   "desde": 34
+  },
+  {
+   "t": 9.6,
+   "archivo": "proyectos/argentina-1986/material/df86_zocalo1.jpg"
+  },
+  {
+   "t": 12.55,
+   "archivo": "proyectos/argentina-1986/material/mercado_merced.jpg"
+  }
+ ]
+}

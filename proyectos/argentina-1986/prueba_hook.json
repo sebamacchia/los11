@@ -1,0 +1,365 @@
+{
+ "archivo": "prueba_hook",
+ "formato": "horizontal",
+ "pausa": 0.45,
+ "sfx_volumen": 0.55,
+ "musica": [
+  {
+   "archivo": "../../musica/m86_hook2.mp3",
+   "desde": 1,
+   "hasta": 4,
+   "volumen": 0.26,
+   "fade_out": 1.0
+  }
+ ],
+ "escenas": [
+  {
+   "capitulo": "Cuatro minutos",
+   "retardo": 0.3,
+   "texto": "Minuto cincuenta y uno. Maradona salta contra un arquero veinte centímetros más alto... y la mete con la mano. El árbitro no lo ve.",
+   "visual": [
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 44.5,
+     "velocidad": 0.6,
+     "hasta": "@y la mete",
+     "fin": 48.2
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "gol": 261.27,
+     "velocidad": 0.35,
+     "golpe": "1-0",
+     "golpe_estilo": "fantasma",
+     "golpe_en": 0.5,
+     "foco": [
+      0.52,
+      0.46
+     ],
+     "golpe_sub": "51'  ·  MARADONA  ·  CON LA MANO",
+     "flechas": [
+      {
+       "a": [
+        0.52,
+        0.455
+       ],
+       "texto": "LA MANO DE DIOS",
+       "en": 0.9
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "huge football stadium crowd ambience, 1980s, chanting and drums, distant",
+     "en": 0,
+     "duracion": 14,
+     "volumen": 0.35,
+     "fade_in": 1.5,
+     "fade_out": 2.0
+    },
+    {
+     "prompt": "stadium crowd erupting in a goal celebration roar",
+     "en": "@El árbitro",
+     "duracion": 4,
+     "volumen": 0.5,
+     "fade_out": 1.5
+    }
+   ]
+  },
+  {
+   "texto": "Cuatro minutos después, el mismo tipo agarra la pelota en su campo... deja a seis ingleses en el camino... y la empuja al gol.",
+   "visual": [
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 266.0,
+     "gol": 279.3,
+     "golpe": "2-0",
+     "golpe_sub": "55'  ·  EL MEJOR GOL DE TODOS LOS TIEMPOS",
+     "golpe_en": "@y la empuja",
+     "velocidad": 1.0,
+     "local": "Argentina",
+     "visitante": "Inglaterra",
+     "fin": 283.0,
+     "golpe_estilo": "fantasma",
+     "foco": [
+      0.5,
+      0.5
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "massive stadium crowd roar for a goal, building excitement",
+     "en": "@y la empuja",
+     "duracion": 5,
+     "volumen": 0.5,
+     "fade_out": 2
+    }
+   ]
+  },
+  {
+   "texto": "El gol más sucio... y el mejor gol de todos los tiempos. El mismo jugador. El mismo partido. Contra Inglaterra... cuatro años después de una guerra.",
+   "pausa": 0.6,
+   "visual": [
+    {
+     "archivo": "material/mano_dios.jpg",
+     "hasta": "@y el mejor"
+    },
+    {
+     "archivo": "material/eludiendo_shilton.jpg",
+     "hasta": "@Contra Inglaterra"
+    },
+    {
+     "archivo": "material/malvinas_desembarco.jpg"
+    }
+   ]
+  },
+  {
+   "texto": "Esta es la historia de una selección que llegó cuestionada... y terminó campeona del mundo. De un equipo que lo dejó todo. Y de un diez imparable. Argentina. Maradona. México ochenta y seis. ¿Cómo hicieron para ganar esa Copa?",
+   "pausa": 0.9,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_bilardo86.jpg",
+         "x": 560,
+         "y": 540,
+         "alto": 860,
+         "rot": -1.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 900,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@y terminó",
+         "x": 1000,
+         "y": 520,
+         "zoom": 1.07
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "«Un enano mental.»",
+         "x": 1040,
+         "y": 350,
+         "en": "@una selección",
+         "tam": 46
+        },
+        {
+         "tipo": "maquina",
+         "texto": "— César L. Menotti, campeón en 1978",
+         "x": 1044,
+         "y": 425,
+         "en": "@una selección",
+         "tam": 22,
+         "mudo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Argentina está diez\n años atrasada.»",
+         "x": 1040,
+         "y": 580,
+         "en": "@llegó",
+         "tam": 40
+        },
+        {
+         "tipo": "maquina",
+         "texto": "— L'Équipe, París, 1986",
+         "x": 1044,
+         "y": 705,
+         "en": "@llegó",
+         "tam": 22,
+         "mudo": true
+        },
+        {
+         "tipo": "subrayado",
+         "x": 1040,
+         "y": 520,
+         "ancho": 560,
+         "en": "@cuestionada",
+         "dibujo": 0.5
+        }
+       ]
+      },
+      {
+       "en": "@y terminó",
+       "mesa": "negro",
+       "capas": [
+        {
+         "archivo": "material/eg_levanta_copa.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 1080,
+         "sombra": false
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@De un equipo",
+         "x": 900,
+         "y": 460,
+         "zoom": 1.16
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "ESTADIO AZTECA · 29 DE JUNIO DE 1986",
+         "x": 1300,
+         "y": 980,
+         "en": "@campeona",
+         "tam": 20,
+         "claro": true,
+         "mudo": true
+        }
+       ]
+      },
+      {
+       "en": "@De un equipo",
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_festejo_tres.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 940,
+         "rot": 1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@Y de un diez",
+         "x": 920,
+         "y": 640,
+         "zoom": 1.32
+        }
+       ]
+      },
+      {
+       "en": "@Y de un diez",
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_festejo_yako.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 760,
+         "rot": -1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@Argentina.",
+         "x": 1120,
+         "y": 450,
+         "zoom": 1.6
+        }
+       ]
+      },
+      {
+       "en": "@Argentina.",
+       "mesa": "negro",
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "Argentina.",
+         "x": 160,
+         "y": 210,
+         "en": "@Argentina.",
+         "tam": 150,
+         "claro": true,
+         "sale": "@¿Cómo"
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Maradona.",
+         "x": 160,
+         "y": 380,
+         "en": "@Maradona.",
+         "tam": 150,
+         "claro": true,
+         "sale": "@¿Cómo"
+        },
+        {
+         "tipo": "titulo",
+         "texto": "México 86.",
+         "x": 160,
+         "y": 550,
+         "en": "@México",
+         "tam": 150,
+         "rojo": true,
+         "sale": "@¿Cómo"
+        },
+        {
+         "tipo": "maquina",
+         "texto": "¿Cómo hicieron para ganar esa Copa?",
+         "x": 500,
+         "y": 510,
+         "en": "@¿Cómo",
+         "tam": 44,
+         "claro": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "duracion": 3.2,
+   "visual": [
+    {
+     "tipo": "intro",
+     "sub": "México 86: el Mundial de Diego"
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "cinematic deep whoosh transition",
+     "en": 0,
+     "duracion": 1.2,
+     "volumen": 0.6
+    },
+    {
+     "prompt": "cinematic deep boom impact hit with reverb tail",
+     "en": 0.9,
+     "duracion": 2.2,
+     "volumen": 0.7
+    }
+   ]
+  }
+ ]
+}

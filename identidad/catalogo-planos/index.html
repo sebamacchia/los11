@@ -1,0 +1,243 @@
+<title>Catálogo de planos LOS 11</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: una "mesa de montaje" — cada plano es una ficha con su cuadro real, su nombre en clave y cómo pedirlo. */
+:root {
+  --papel: #ece6d8;
+  --papel-2: #e2dbca;
+  --tinta: #1c1a16;
+  --tinta-2: #5b554a;
+  --rojo: #b2261e;
+  --linea: #c9c0ac;
+  --ficha: #f4f0e6;
+  --display: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --papel: #16150f; --papel-2: #1f1d16; --tinta: #ece6d8; --tinta-2: #a59d8c;
+    --rojo: #e2584d; --linea: #39352b; --ficha: #1d1b15; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --papel: #16150f; --papel-2: #1f1d16; --tinta: #ece6d8; --tinta-2: #a59d8c;
+  --rojo: #e2584d; --linea: #39352b; --ficha: #1d1b15; color-scheme: dark;
+}
+body {
+  background: var(--papel); color: var(--tinta); font-family: var(--display); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 80px;
+}
+.hoja { max-width: 1160px; margin: 0 auto; display: grid; gap: 56px; }
+header { display: grid; gap: 14px; max-width: 760px; }
+.rotulo { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-2); }
+h1 { font-size: clamp(36px, 6vw, 64px); line-height: 1.02; margin: 0; font-weight: 700; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--rojo); }
+h2 { font-size: 28px; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 68ch; }
+.pedido {
+  font-family: var(--mono); font-size: 13.5px; background: var(--ficha); border: 1px dashed var(--linea);
+  padding: 12px 14px; overflow-x: auto; white-space: pre-wrap; color: var(--tinta);
+}
+.pedido b { color: var(--rojo); font-weight: 600; }
+section { display: grid; gap: 22px; }
+.sec-cab { display: grid; gap: 8px; border-top: 2px solid var(--tinta); padding-top: 14px; }
+.grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 28px; }
+.plano { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.plano figure { margin: 0; aspect-ratio: 16 / 9; background: var(--papel-2); border: 1px solid var(--linea); overflow: hidden; max-width: 100%; }
+.plano figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cab { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.clave { font-family: var(--mono); font-weight: 600; font-size: 15px; background: var(--tinta); color: var(--papel); padding: 2px 8px; }
+.nombre { font-weight: 700; font-size: 19px; }
+.ref { font-family: var(--mono); font-size: 12px; color: var(--tinta-2); }
+.plano p { font-size: 15px; }
+.plano .cuando { color: var(--tinta-2); font-size: 14px; }
+.estado { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; border: 1px solid currentColor; }
+.listo { color: var(--tinta-2); }
+.nuevo { color: var(--rojo); }
+.boceto { display: grid; place-items: center; text-align: center; padding: 18px; height: 100%; box-sizing: border-box;
+  font-family: var(--mono); font-size: 13px; color: var(--tinta-2); line-height: 1.6; }
+.boceto svg { width: 100%; height: 100%; }
+.reglas { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.regla { border-left: 3px solid var(--rojo); padding: 4px 0 4px 14px; display: grid; gap: 4px; }
+.regla b { font-size: 16px; }
+.regla span { font-size: 14px; color: var(--tinta-2); }
+code { font-family: var(--mono); font-size: .9em; }
+</style>
+
+<div class="hoja">
+  <header>
+    <div class="rotulo">LOS 11 · manual de montaje · versión 14/11</div>
+    <h1>Catálogo de planos.<br><em>Cómo contamos</em> una historia.</h1>
+    <p>Cada plano tiene un nombre en clave. Para pedir algo, se escribe la escena, la clave y el momento del narrador
+      (la frase exacta con <code>@</code>). Los que están marcados <b>nuevo</b> todavía no existen: se construyen a pedido.</p>
+    <div class="pedido">Escena 22 · <b>ARMADO</b> · camiseta azul lisa → en "@les cosieron el escudo" aparece el escudo cosido → en "@les plancharon" se planchan los números</div>
+  </header>
+
+  <section>
+    <div class="sec-cab">
+      <div class="rotulo">Reglas de la casa</div>
+      <h2>Antes de elegir un plano</h2>
+    </div>
+    <div class="reglas">
+      <div class="regla"><b>Cámara fija</b><span>Nada de paneos de relleno. Un zoom solo cuando hay algo que mostrar (la cinta, el escudo, la cara).</span></div>
+      <div class="regla"><b>Sin spoilers</b><span>La foto es del momento que se cuenta. Nada de la copa antes de la final.</span></div>
+      <div class="regla"><b>La foto manda</b><span>Primero la imagen real; el texto acompaña, chico y a máquina. Títulos grandes solo para nombres y momentos.</span></div>
+      <div class="regla"><b>Sin tachados</b><span>Nada de líneas rojas sobre el texto. El rojo es para marcar en la foto.</span></div>
+      <div class="regla"><b>Fotos transformadas</b><span>Prensa o archivo: impresas sobre la mesa, recortadas, con crédito. Nunca borrar marcas de agua.</span></div>
+      <div class="regla"><b>Audio original muteado</b><span>Salvo un ARCHIVO SONORO elegido (relato, llamada, entrevista), y solo la parte que importa.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-cab">
+      <div class="rotulo">Ya los tenemos</div>
+      <h2>Planos listos</h2>
+      <p>Cuadros reales de Argentina 86.</p>
+    </div>
+    <div class="grilla">
+      <article class="plano">
+        <figure><img src="img/mesa.jpg" alt="Fotos del D.F. de 1986 impresas sobre papel"></figure>
+        <div class="cab"><span class="clave">MESA</span><span class="nombre">Fotos sobre la mesa</span><span class="estado listo">listo</span></div>
+        <div class="ref">Johnny Harris · archivo de redacción</div>
+        <p>Fotos impresas con borde, apoyadas sobre papel. Van apareciendo cuando el narrador las nombra.</p>
+        <p class="cuando">Para contexto: ciudades, lugares, personas. El plano base del canal.</p>
+      </article>
+      <article class="plano">
+        <figure><img src="img/zoom.jpg" alt="Zoom a la cinta de capitán"></figure>
+        <div class="cab"><span class="clave">ZOOM</span><span class="nombre">Zoom al detalle</span><span class="estado listo">listo</span></div>
+        <div class="ref">The Kid Stays in the Picture</div>
+        <p>La cámara va a un detalle de la foto justo cuando se nombra, y lo señala con una línea fina y un rótulo.</p>
+        <p class="cuando">Una vez por escena, como mucho. Ej.: la cinta de capitán.</p>
+      </article>
+      <article class="plano">
+        <figure><img src="img/revista.jpg" alt="Tapa de revista con trama de imprenta"></figure>
+        <div class="cab"><span class="clave">REVISTA</span><span class="nombre">Recorte de revista</span><span class="estado listo">listo</span></div>
+        <div class="ref">El Gráfico · imprenta de los 80</div>
+        <p>Foto chica o vieja con trama de puntos de imprenta. Convierte la baja resolución en textura.</p>
+        <p class="cuando">Tapas y fotos de diario. Se le saca el logo y los títulos de la tapa.</p>
+      </article>
+      <article class="plano">
+        <figure><img src="img/titulo.jpg" alt="Títulos grandes sobre negro"></figure>
+        <div class="cab"><span class="clave">TITULO</span><span class="nombre">Tipografía contundente</span><span class="estado listo">listo</span></div>
+        <div class="ref">Saul Bass</div>
+        <p>Palabras grandes sobre negro o papel, que entran de golpe cuando el narrador las dice.</p>
+        <p class="cuando">Nombres, frases clave, el cierre del hook. Poco y fuerte.</p>
+      </article>
+      <article class="plano">
+        <figure><img src="img/maquina.jpg" alt="Cita escrita a máquina junto a una foto"></figure>
+        <div class="cab"><span class="clave">MAQUINA</span><span class="nombre">Cita a máquina</span><span class="estado listo">listo</span></div>
+        <div class="ref">Documento de archivo</div>
+        <p>La frase textual se tipea letra por letra, con su firma abajo, al lado de la foto de quien la dijo.</p>
+        <p class="cuando">Citas, declaraciones, titulares de diario.</p>
+      </article>
+      <article class="plano">
+        <figure><img src="img/diagrama.jpg" alt="Diagrama simétrico con diez jugadores alrededor de Maradona"></figure>
+        <div class="cab"><span class="clave">DIAGRAMA</span><span class="nombre">Diagrama simétrico</span><span class="estado listo">listo</span></div>
+        <div class="ref">Wes Anderson</div>
+        <p>Retratos en círculo ordenados en espejo, con líneas que se dibujan. Muestra una relación o una idea.</p>
+        <p class="cuando">"Todos para uno", rivales, quién le pasó a quién.</p>
+      </article>
+      <article class="plano">
+        <figure><img src="img/cancha.jpg" alt="Formación sobre una cancha dibujada en tinta"></figure>
+        <div class="cab"><span class="clave">CANCHA</span><span class="nombre">Formación en tinta</span><span class="estado listo">listo</span></div>
+        <div class="ref">Wes Anderson · pizarra de técnico</div>
+        <p>Cancha dibujada a mano sobre el papel; cada jugador aparece en su puesto cuando se lo nombra.</p>
+        <p class="cuando">Formaciones, cambios tácticos.</p>
+      </article>
+      <article class="plano">
+        <figure><img src="img/circulo.jpg" alt="Círculo rojo marcando a un vendedor en un mercado"></figure>
+        <div class="cab"><span class="clave">MARCA</span><span class="nombre">Marcador rojo</span><span class="estado listo">listo</span></div>
+        <div class="ref">Vox, sin que se note</div>
+        <p>Un círculo o una flecha a mano sobre la foto. La cámara va hacia lo marcado y vuelve en corte.</p>
+        <p class="cuando">Para señalar a alguien o algo dentro de una foto con mucha gente.</p>
+      </article>
+      <article class="plano">
+        <figure><img src="img/jugada.jpg" alt="Jugada congelada con flechas y nombres"></figure>
+        <div class="cab"><span class="clave">JUGADA</span><span class="nombre">Jugada intervenida</span><span class="estado listo">listo</span></div>
+        <div class="ref">Análisis de TV · fantasma</div>
+        <p>El clip del partido se congela, se oscurece y se marcan los jugadores con óvalos, flechas y nombres.</p>
+        <p class="cuando">Explicar un gol o una jugada. Ej.: la mano de Dios.</p>
+      </article>
+      <article class="plano">
+        <figure><img src="img/negro.jpg" alt="Foto suelta impresa sobre papel"></figure>
+        <div class="cab"><span class="clave">FOTO</span><span class="nombre">Foto sola</span><span class="estado listo">listo</span></div>
+        <div class="ref">BBC · Herzog</div>
+        <p>Una sola foto, quieta, impresa sobre la mesa. Silencio visual para que hable el narrador.</p>
+        <p class="cuando">Momentos emotivos, antes de una frase clave.</p>
+      </article>
+      <article class="plano">
+        <figure><div class="boceto">Relato de Víctor Hugo, escena muda,<br>subtítulo a máquina</div></figure>
+        <div class="cab"><span class="clave">RELATO</span><span class="nombre">Archivo sonoro</span><span class="estado listo">listo</span></div>
+        <div class="ref">Radio · archivo</div>
+        <p>El narrador se calla y suena el audio real; abajo, el texto a máquina.</p>
+        <p class="cuando">Relatos, llamadas, entrevistas. Solo el fragmento que importa.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-cab">
+      <div class="rotulo">A construir</div>
+      <h2>Planos nuevos</h2>
+      <p>Animaciones con intención: se mueve solo lo que cuenta algo, como lo haría un documentalista.</p>
+    </div>
+    <div class="grilla">
+      <article class="plano">
+        <figure><div class="boceto"><svg viewBox="0 0 320 180" aria-hidden="true"><path d="M110 40 l25-14 h50 l25 14 l28 30 -20 16 -14-12 v84 h-88 v-84 l-14 12 -20-16z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="185" cy="72" r="10" fill="none" stroke="var(--rojo)" stroke-width="2" stroke-dasharray="3 3"/><text x="160" y="125" font-size="34" text-anchor="middle" fill="none" stroke="var(--rojo)" stroke-dasharray="4 3" font-family="IBM Plex Sans" font-weight="700">10</text></svg></div></figure>
+        <div class="cab"><span class="clave">ARMADO</span><span class="nombre">Objeto que se arma</span><span class="estado nuevo">nuevo</span></div>
+        <div class="ref">Gilliam · recortes de papel</div>
+        <p>Un objeto recortado que se completa por capas al ritmo de la voz: camiseta lisa, después el escudo cosido, después el número planchado.</p>
+        <p class="cuando">La camiseta azul de México 86. También botines, entradas, carnets.</p>
+      </article>
+      <article class="plano">
+        <figure><div class="boceto"><svg viewBox="0 0 320 180" aria-hidden="true"><circle cx="120" cy="70" r="26" fill="none" stroke="currentColor" stroke-width="2"/><path d="M100 96 q20 18 40 0 v60 h-40z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M142 66 q18 -4 22 14" fill="none" stroke="var(--rojo)" stroke-width="3"/><path d="M164 80 q40 20 80 -10 t50 0" fill="none" stroke="currentColor" stroke-dasharray="4 4"/><path d="M200 50 q8 8 0 16 M210 44 q14 14 0 28" fill="none" stroke="var(--rojo)" stroke-width="2"/></svg></div></figure>
+        <div class="cab"><span class="clave">RECORTE</span><span class="nombre">Personaje articulado</span><span class="estado nuevo">nuevo</span></div>
+        <div class="ref">Terry Gilliam · Monty Python</div>
+        <p>Una foto real recortada (Diego) con una parte que se mueve: el brazo con el tubo del teléfono, el cable que se estira, ondas de sonido. Animación rudimentaria a propósito.</p>
+        <p class="cuando">Diego en México hablando con su mamá. Gestos que la foto no tiene.</p>
+      </article>
+      <article class="plano">
+        <figure><div class="boceto"><svg viewBox="0 0 320 180" aria-hidden="true"><path d="M60 40 q20 10 30 40 t20 70" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M200 20 q30 30 20 70 t30 70" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M82 60 C140 40 170 120 228 140" fill="none" stroke="var(--rojo)" stroke-width="3" stroke-dasharray="6 5"/><circle cx="82" cy="60" r="5" fill="var(--rojo)"/><circle cx="228" cy="140" r="5" fill="var(--rojo)"/></svg></div></figure>
+        <div class="cab"><span class="clave">RUTA</span><span class="nombre">Mapa que se traza</span><span class="estado nuevo">nuevo</span></div>
+        <div class="ref">Johnny Harris</div>
+        <p>Mapa de papel; una línea roja une dos lugares mientras el narrador habla, con la distancia o el tiempo a máquina.</p>
+        <p class="cuando">México D.F. → Buenos Aires, Malvinas, el camino de sedes del Mundial.</p>
+      </article>
+      <article class="plano">
+        <figure><div class="boceto"><svg viewBox="0 0 320 180" aria-hidden="true"><rect x="90" y="20" width="140" height="150" fill="none" stroke="currentColor" stroke-width="1.5"/><g stroke="currentColor" stroke-width="1"><path d="M105 45h110M105 60h100M105 75h110M105 90h80M105 105h110M105 120h95"/></g><rect x="103" y="84" width="84" height="12" fill="var(--rojo)" opacity=".25"/></svg></div></figure>
+        <div class="cab"><span class="clave">DOCUMENTO</span><span class="nombre">Papel que se lee</span><span class="estado nuevo">nuevo</span></div>
+        <div class="ref">Johnny Harris · expediente</div>
+        <p>Un documento, carta o artículo apoyado en la mesa; la cámara baja a la línea que importa y se resalta.</p>
+        <p class="cuando">Contratos, telegramas, la planilla del partido, el catálogo de Sotheby's.</p>
+      </article>
+      <article class="plano">
+        <figure><div class="boceto"><svg viewBox="0 0 320 180" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="40" y="30" width="40" height="50"/><rect x="100" y="30" width="40" height="50"/><rect x="160" y="30" width="40" height="50"/><rect x="220" y="30" width="40" height="50"/><rect x="40" y="100" width="40" height="50"/><rect x="100" y="100" width="40" height="50"/><rect x="160" y="100" width="40" height="50"/></g><rect x="220" y="100" width="40" height="50" fill="none" stroke="var(--rojo)" stroke-width="2.5"/></svg></div></figure>
+        <div class="cab"><span class="clave">CLASIFICACION</span><span class="nombre">Objetos ordenados</span><span class="estado nuevo">nuevo</span></div>
+        <div class="ref">Wes Anderson</div>
+        <p>Objetos iguales en grilla simétrica, cada uno con su rótulo; uno se destaca.</p>
+        <p class="cuando">"Compraron 38 camisetas", los 22 convocados, las 5 asistencias de Diego.</p>
+      </article>
+      <article class="plano">
+        <figure><div class="boceto"><svg viewBox="0 0 320 180" aria-hidden="true"><rect x="40" y="30" width="240" height="120" fill="none" stroke="currentColor" stroke-width="1"/><path d="M130 150 v-60 q20 -30 40 0 v60" fill="none" stroke="var(--rojo)" stroke-width="2.5"/><path d="M60 150 l40 -50 40 50" fill="none" stroke="currentColor" stroke-width="1" opacity=".6"/></svg></div></figure>
+        <div class="cab"><span class="clave">PROFUNDIDAD</span><span class="nombre">Foto en capas</span><span class="estado nuevo">nuevo</span></div>
+        <div class="ref">The Kid Stays in the Picture</div>
+        <p>La persona se separa del fondo y avanza unos milímetros. Muy de vez en cuando: la regla sigue siendo cámara fija.</p>
+        <p class="cuando">Un solo momento por video, el más importante.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-cab">
+      <div class="rotulo">Cómo pedirlo</div>
+      <h2>Ejemplos</h2>
+    </div>
+    <div class="pedido">Escena 22 · <b>ARMADO</b> · camiseta azul lisa → "@les cosieron el escudo" escudo → "@les plancharon" el 10 plateado</div>
+    <div class="pedido">Escena nueva · <b>RELATO</b> · llamada de Diego con su mamá: solo cuando hablan ellos, sin el periodista
+→ encima <b>RECORTE</b>: Diego en México con el tubo del teléfono, el cable se estira hacia una <b>RUTA</b> México → Buenos Aires</div>
+    <div class="pedido">Escena 10 · <b>ZOOM</b> · foto de El Gráfico 1985 → "@la cinta" ir a la cinta → rótulo CAPITÁN</div>
+  </section>
+</div>

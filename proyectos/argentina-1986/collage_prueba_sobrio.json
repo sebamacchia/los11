@@ -1,0 +1,274 @@
+{
+ "salida": "proyectos/argentina-1986/salida/prueba_collage_camiseta_sobrio.mp4",
+ "voz": ".cache/elevenlabs/voz_72bd3529157f4ca6.mp3",
+ "texto": "Y en cuartos venía Inglaterra, que se vestía de blanco. A tres días del partido, Bilardo mandó a un colaborador, Rubén Moschella, a recorrer los negocios de la Ciudad de México. A buscar camisetas... en una tienda.",
+ "retardo": 1.2,
+ "d_voz": 14.0,
+ "duracion": 16.2,
+ "musica": {
+  "archivo": "musica/m86_relato.mp3",
+  "desde_seg": 20,
+  "volumen": 0.16
+ },
+ "piezas": [
+  {
+   "tipo": "papelito",
+   "texto": "Cuartos de final.\nMundial de México, 1986.",
+   "x": 80,
+   "y": 450,
+   "en": 0.3,
+   "tam": 64,
+   "sale": 1.4
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/collage/ing_323.png",
+   "celda": [
+    580,
+    100,
+    760,
+    700
+   ],
+   "en": 1.4,
+   "sale": 5.1,
+   "centro": [
+    0.5,
+    0.4
+   ],
+   "recorte": [
+    700,
+    140,
+    1600,
+    960
+   ]
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Inglaterra.\nCamiseta blanca.",
+   "x": 580,
+   "y": 830,
+   "en": 3.3,
+   "tam": 34,
+   "sale": 5.1
+  },
+  {
+   "tipo": "papelito",
+   "texto": "19 de junio de 1986.",
+   "x": 80,
+   "y": 450,
+   "en": 5.2,
+   "tam": 64,
+   "sale": 6.7
+  },
+  {
+   "tipo": "papelito",
+   "texto": "\nFaltan tres días.",
+   "x": 80,
+   "y": 450,
+   "en": 5.75,
+   "tam": 64,
+   "sale": 6.7
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/bilardo.jpg",
+   "celda": [
+    330,
+    90,
+    600,
+    760
+   ],
+   "en": 6.75,
+   "sale": 9.75,
+   "centro": [
+    0.5,
+    0.3
+   ]
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Carlos Bilardo.\nDirector técnico.",
+   "x": 330,
+   "y": 880,
+   "en": 6.9,
+   "tam": 34,
+   "sale": 9.75
+  },
+  {
+   "tipo": "marco",
+   "caja": [
+    990,
+    90,
+    600,
+    760
+   ],
+   "en": 8.4,
+   "sale": 9.75
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Rubén Moschella.\nColaborador de la AFA.",
+   "x": 990,
+   "y": 880,
+   "en": 8.55,
+   "tam": 34,
+   "sale": 9.75
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/df86_calle3.jpg",
+   "celda": [
+    80,
+    110,
+    560,
+    340
+   ],
+   "en": 9.95,
+   "sale": 12.6
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Ciudad de México, 1986.",
+   "x": 80,
+   "y": 464,
+   "en": 9.95,
+   "tam": 24,
+   "sale": 12.6
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/df86_calle1.jpg",
+   "celda": [
+    680,
+    110,
+    560,
+    340
+   ],
+   "en": 10.399999999999999,
+   "sale": 12.6
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Ciudad de México, 1986.",
+   "x": 680,
+   "y": 464,
+   "en": 10.399999999999999,
+   "tam": 24,
+   "sale": 12.6
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/mercado_lagunilla_ropa.jpg",
+   "celda": [
+    1280,
+    110,
+    560,
+    340
+   ],
+   "en": 10.85,
+   "sale": 12.6
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Mercado de la Lagunilla.",
+   "x": 1280,
+   "y": 464,
+   "en": 10.85,
+   "tam": 24,
+   "sale": 12.6
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/tepito_puestos.jpg",
+   "celda": [
+    80,
+    600,
+    560,
+    340
+   ],
+   "en": 11.299999999999999,
+   "sale": 12.6
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Tepito.",
+   "x": 80,
+   "y": 954,
+   "en": 11.299999999999999,
+   "tam": 24,
+   "sale": 12.6
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/df86_calle2.jpg",
+   "celda": [
+    680,
+    600,
+    560,
+    340
+   ],
+   "en": 11.75,
+   "sale": 12.6
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Ciudad de México, 1986.",
+   "x": 680,
+   "y": 954,
+   "en": 11.75,
+   "tam": 24,
+   "sale": 12.6
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/mercado_merced_vendedor.jpg",
+   "celda": [
+    1280,
+    600,
+    560,
+    340
+   ],
+   "en": 12.2,
+   "sale": 12.6
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Mercado de La Merced.",
+   "x": 1280,
+   "y": 954,
+   "en": 12.2,
+   "tam": 24,
+   "sale": 12.6
+  },
+  {
+   "tipo": "foto",
+   "archivo": "proyectos/argentina-1986/material/mercado_merced_vendedor.jpg",
+   "celda": [
+    0,
+    0,
+    1920,
+    1080
+   ],
+   "en": 12.6
+  },
+  {
+   "tipo": "marco",
+   "caja": [
+    1020,
+    310,
+    270,
+    360
+   ],
+   "en": 14.3
+  },
+  {
+   "tipo": "papelito",
+   "texto": "Una tienda.",
+   "x": 80,
+   "y": 975,
+   "en": 14.3,
+   "tam": 34
+  }
+ ],
+ "estilo": "sobrio"
+}

@@ -1,0 +1,459 @@
+{
+ "formato": "horizontal",
+ "pausa": 0.45,
+ "sfx_volumen": 0.55,
+ "archivo": "prueba_doc_cinta",
+ "musica": [
+  {
+   "archivo": "../../musica/m86_relato.mp3",
+   "desde": 1,
+   "hasta": 1,
+   "volumen": 0.18,
+   "fade_in": 0.5,
+   "fade_out": 1.0
+  }
+ ],
+ "escenas": [
+  {
+   "texto": "Maradona lo bancó: si lo tocan a Bilardo, nos vamos todos. Pero Bilardo tenía una idea fija: todo el equipo iba a jugar para un solo hombre. Y a ese hombre le dio la cinta de capitán. Diego Armando Maradona. Veinticinco años.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_besa_camiseta.jpg",
+         "x": 960,
+         "y": 500,
+         "alto": 760,
+         "rot": -1.2,
+         "borde": 14,
+         "recorte": [
+          60,
+          48,
+          598,
+          513
+         ]
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@Pero Bilardo",
+         "x": 930,
+         "y": 430,
+         "zoom": 1.25
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "«Si lo tocan a Bilardo,\n nos vamos todos.»",
+         "x": 130,
+         "y": 900,
+         "en": 0.6,
+         "tam": 36,
+         "fondo_tira": true
+        }
+       ]
+      },
+      {
+       "en": "@Pero Bilardo",
+       "mesa": "papel",
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@Y a ese hombre",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.07
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "EL PLAN DE BILARDO · 1986",
+         "x": 752,
+         "y": 70,
+         "en": "@Pero Bilardo",
+         "tam": 28,
+         "mudo": true
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/pumpido.png",
+         "x": 360,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Pumpido",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          360,
+          354
+         ],
+         "hasta": [
+          832.1208662941873,
+          496.7342264295334
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/cuciuffo.png",
+         "x": 660,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Cuciuffo",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          660,
+          354
+         ],
+         "hasta": [
+          848.19191466443,
+          464.3431955895976
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/brown.png",
+         "x": 960,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Brown",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          960,
+          354
+         ],
+         "hasta": [
+          960.0,
+          405.0
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/ruggeri.png",
+         "x": 1260,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Ruggeri",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1260,
+          354
+         ],
+         "hasta": [
+          1071.80808533557,
+          464.3431955895976
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/giusti.png",
+         "x": 1560,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Giusti",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1560,
+          354
+         ],
+         "hasta": [
+          1087.8791337058126,
+          496.7342264295334
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/batista.png",
+         "x": 360,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Batista",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          360,
+          762
+         ],
+         "hasta": [
+          833.8042166205729,
+          587.9543976841823
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/enrique.png",
+         "x": 660,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Enrique",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          660,
+          762
+         ],
+         "hasta": [
+          852.5181037933812,
+          621.6862411170304
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/olarticoechea.png",
+         "x": 960,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Olarticoechea",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          960,
+          762
+         ],
+         "hasta": [
+          960.0,
+          675.0
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/burruchaga.png",
+         "x": 1260,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Burruchaga",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1260,
+          762
+         ],
+         "hasta": [
+          1067.4818962066188,
+          621.6862411170304
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/valdano.png",
+         "x": 1560,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Valdano",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1560,
+          762
+         ],
+         "hasta": [
+          1086.1957833794272,
+          587.9543976841823
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/maradona_copa.jpg",
+         "x": 960,
+         "y": 540,
+         "r": 120,
+         "en": "@Pero Bilardo",
+         "nombre": "",
+         "anillo": true,
+         "recorte": [
+          840,
+          1100,
+          1220,
+          1480
+         ]
+        }
+       ]
+      },
+      {
+       "en": "@Y a ese hombre",
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_3427_foto.jpg",
+         "x": 760,
+         "y": 540,
+         "alto": 900,
+         "rot": -1.5,
+         "borde": 10,
+         "trama": 7
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 900,
+         "y": 540,
+         "zoom": 1.05
+        },
+        {
+         "t": "@le dio",
+         "x": 920,
+         "y": 530,
+         "zoom": 1.12
+        },
+        {
+         "t": "@capitán",
+         "x": 1130,
+         "y": 365,
+         "zoom": 2.2
+        },
+        {
+         "t": "@Diego Armando",
+         "x": 1134,
+         "y": 367,
+         "zoom": 2.28
+        },
+        {
+         "t": "@Veinticinco",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "linea",
+         "desde": [
+          1150,
+          356
+         ],
+         "hasta": [
+          1290,
+          356
+         ],
+         "en": "@capitán",
+         "dibujo": 0.4,
+         "mundo": true,
+         "sale": "@Diego Armando",
+         "grosor": 3
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CAPITÁN",
+         "x": 1298,
+         "y": 344,
+         "en": "@capitán",
+         "tam": 26,
+         "mundo": true,
+         "sale": "@Diego Armando",
+         "fondo_tira": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Diego Armando\nMaradona",
+         "x": 1245,
+         "y": 400,
+         "en": "@Armando Maradona",
+         "tam": 84
+        },
+        {
+         "tipo": "maquina",
+         "texto": "25 AÑOS · CAPITÁN",
+         "x": 1249,
+         "y": 600,
+         "en": "@Veinticinco",
+         "tam": 26
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EL GRÁFICO · JUNIO 1985",
+         "x": 360,
+         "y": 1004,
+         "en": "@Armando Maradona",
+         "tam": 20,
+         "mudo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

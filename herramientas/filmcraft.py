@@ -6,7 +6,7 @@ Lo que queda en el proyecto (.fcproj en salida/):
   V1  cada pieza del video como un clip suelto (las fotos, videos, placas, marcador y zócalos
       ya vienen dibujados en cada pieza), uno detrás del otro, con su número de escena en el nombre
   A1  la voz del narrador, una frase por escena
-  A2, A3  los efectos de sonido (en dos pistas para que no se pisen)
+  A2, A3 (y A5-A8 si se pisan muchos)  los efectos de sonido, sin que uno tape a otro
   A4  la música (repetida hasta cubrir su tramo)
   C1  los subtítulos (subtitulos.srt)
 FilmCraft no hace el "ducking" que hace armar.py (bajar la música cuando habla el narrador): la música
@@ -70,7 +70,7 @@ def exportar(linea_json, destino, forzar=False):
     res = _run([{"id": "file.import", "params": {"paths": medios}},
                 {"id": "file.newSequence", "params": {"name": destino.stem, "width": linea["ancho"],
                                                       "height": linea["alto"], "fps": linea["fps"],
-                                                      "video": 1, "audio": 4}}], guardar=destino)
+                                                      "video": 1, "audio": 8}}], guardar=destino)
     if res[0]["errors"]:
         raise SystemExit(f"FilmCraft no pudo importar: {res[0]['errors']}")
     item = dict(zip(medios, res[0]["items"]))
@@ -93,10 +93,11 @@ def exportar(linea_json, destino, forzar=False):
         poner(x["archivo"], "V1", x["inicio"], x["duracion"])
     for x in linea["voces"]:
         poner(x["archivo"], "A1", x["inicio"], video=False)
-    fin_pista = {"A2": -1.0, "A3": -1.0}
+    # efectos: la primera pista libre (A2, A3 y, si se pisan muchos, A5-A8); nunca uno encima de otro
+    fin_pista = {k: -1.0 for k in ("A2", "A3", "A5", "A6", "A7", "A8")}
     for x in sorted(linea["efectos"], key=lambda e: e["inicio"]):
         d = _dur(x["archivo"])
-        pista = "A2" if fin_pista["A2"] <= x["inicio"] else "A3"
+        pista = next((k for k, f in fin_pista.items() if f <= x["inicio"]), min(fin_pista, key=fin_pista.get))
         fin_pista[pista] = x["inicio"] + d
         poner(x["archivo"], pista, x["inicio"], video=False, ganancia=_db(x["volumen"]))
     for x in linea["musica"]:
@@ -105,7 +106,8 @@ def exportar(linea_json, destino, forzar=False):
             poner(x["archivo"], "A4", x["inicio"] + t, min(d, x["largo"] - t), video=False,
                   ganancia=_db(x["volumen"] * 0.7))
             t += d
-    for pista, nombre in (("V1", "Video"), ("A1", "Voz"), ("A2", "Efectos"), ("A3", "Efectos 2"), ("A4", "Música")):
+    for pista, nombre in (("V1", "Video"), ("A1", "Voz"), ("A2", "Efectos"), ("A3", "Efectos 2"), ("A4", "Música"),
+                         ("A5", "Efectos 3"), ("A6", "Efectos 4"), ("A7", "Efectos 5"), ("A8", "Efectos 6")):
         pasos.append({"id": "timeline.setTrack", "params": {"track": pista, "name": nombre}})
         ganancias.append(None)
     if Path(linea["subtitulos"]).exists():
