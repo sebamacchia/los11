@@ -46,4 +46,6 @@ La carpeta local contiene herramientas de narración y edición, material de pro
 - `reports/` y `research_notes/`: investigación.
 - `CLAUDE.md`: instrucciones existentes de producción.
 
+**Archivos grandes** (videos, fotos, música, voz, renders): no están en GitHub sino en Google Drive > LOS11/repo/, con las mismas rutas. Ver [`ARCHIVOS_GRANDES.md`](ARCHIVOS_GRANDES.md) y la lista [`archivos_grandes.txt`](archivos_grandes.txt).
+
 Las claves de `.env`, las cookies y otros datos privados no deben subirse al repositorio.

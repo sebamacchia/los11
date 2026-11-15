@@ -42,6 +42,8 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 - `elevenlabs.musica(prompt, segundos, destino)` — genera música instrumental (ElevenLabs Music) a `musica/`
 - `reports/Retención YouTube documentales fútbol.md` — investigación de reglas de YouTube (hook, ritmo, copyright, IA)
 - `.env` — `ELEVENLABS_API_KEY=...` (no compartir)
+- **Archivos grandes** (material, salida, música, caché): fuera de git, en Drive `LOS11/repo` con la misma estructura.
+  `herramientas/archivos_grandes.py subir|bajar|faltan` (ver `ARCHIVOS_GRANDES.md`). ComfyUI no va: se reinstala.
 
 ## Flujo
 1. Material a `proyectos/<nombre>/material/`; mirarlo (hoja de contacto con Pillow).
@@ -51,6 +53,7 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 
 ## Dirección del usuario (respetar)
 - Fotos enteras, con negro a los costados si son verticales. Nada de Ken Burns automático; desde 14/11 SÍ zoom/paneo con intención (hacia el detalle que se nombra) con el tipo "doc" (herramientas/documental.py).
+- Estambul (14/11): no abrir con goles; empezar con el entretiempo, la tensión y las tribunas.
 - Hook primero (cold open, sin saludo), DESPUÉS la intro animada del canal (~3 s).
 - Narración natural, frases cortas, explicar el contexto para quien no conoce la historia.
 
