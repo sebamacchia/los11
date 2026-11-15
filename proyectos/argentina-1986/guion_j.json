@@ -1,0 +1,6294 @@
+{
+ "archivo": "argentina-1986_j",
+ "formato": "horizontal",
+ "pausa": 0.45,
+ "sfx_volumen": 0.55,
+ "musica": [
+  {
+   "archivo": "../../musica/m86_hook2.mp3",
+   "desde": 1,
+   "hasta": 1,
+   "volumen": 0.26,
+   "fade_out": 1.0
+  },
+  {
+   "archivo": "../../musica/m86_relato.mp3",
+   "desde": 3,
+   "hasta": 20,
+   "volumen": 0.2,
+   "fade_in": 1.0,
+   "fade_out": 2.0
+  },
+  {
+   "archivo": "../../musica/m86_guerra.mp3",
+   "desde": 21,
+   "hasta": 24,
+   "volumen": 0.24,
+   "fade_in": 1.0,
+   "fade_out": 2.0
+  },
+  {
+   "archivo": "../../musica/m86_epica2.mp3",
+   "desde": 25,
+   "hasta": 26,
+   "volumen": 0.24,
+   "fade_in": 1.0,
+   "fade_out": 2.0
+  },
+  {
+   "archivo": "../../musica/m86_inglaterra.mp3",
+   "desde": 27,
+   "hasta": 28,
+   "volumen": 0.22,
+   "fade_in": 1.0,
+   "fade_out": 1.0
+  },
+  {
+   "archivo": "../../musica/m86_inglaterra.mp3",
+   "desde": 30,
+   "hasta": 32,
+   "volumen": 0.22,
+   "fade_in": 1.0,
+   "fade_out": 1.5
+  },
+  {
+   "archivo": "../../musica/m86_siglo.mp3",
+   "desde": 33,
+   "hasta": 36,
+   "volumen": 0.24,
+   "fade_in": 1.0,
+   "fade_out": 1.0
+  },
+  {
+   "archivo": "../../musica/m86_epica2.mp3",
+   "desde": 38,
+   "hasta": 39,
+   "volumen": 0.22,
+   "fade_in": 1.5,
+   "fade_out": 1.0
+  },
+  {
+   "archivo": "../../musica/m86_relato.mp3",
+   "desde": 41,
+   "hasta": 46,
+   "volumen": 0.2,
+   "fade_in": 1.5,
+   "fade_out": 2.0
+  },
+  {
+   "archivo": "../../musica/m86_final.mp3",
+   "desde": 47,
+   "hasta": 56,
+   "volumen": 0.22,
+   "fade_in": 1.0,
+   "fade_out": 1.5
+  },
+  {
+   "archivo": "../../musica/m86_gloria.mp3",
+   "desde": 57,
+   "hasta": 59,
+   "volumen": 0.42,
+   "fade_in": 0.5,
+   "fade_out": 2.0
+  },
+  {
+   "archivo": "../../musica/m86_gloria.mp3",
+   "desde": 62,
+   "hasta": 63,
+   "volumen": 0.42,
+   "fade_in": 0.5,
+   "fade_out": 2.5
+  },
+  {
+   "archivo": "../../musica/m86_epica2.mp3",
+   "desde": 64,
+   "hasta": 67,
+   "volumen": 0.24,
+   "fade_in": 1.5,
+   "fade_out": 3
+  }
+ ],
+ "escenas": [
+  {
+   "capitulo": "Siete partidos",
+   "retardo": 0.3,
+   "pausa": 0.9,
+   "texto": "Siete partidos separaban a Argentina de la gloria. En el camino la esperaban el campeón del mundo, un duelo con Inglaterra que iba mucho más allá del fútbol... y una final que se le escapaba de las manos. Para levantar esa copa, necesitaba a Maradona. Pero también necesitaba un equipo capaz de llegar hasta el final.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": {
+        "archivo": "material/fuentes/final.mp4",
+        "desde": 44.5
+       },
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@de la gloria",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.08
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "7 partidos.",
+         "x": 160,
+         "y": 380,
+         "en": 0.2,
+         "tam": 170,
+         "claro": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "MÉXICO · 31 DE MAYO – 29 DE JUNIO DE 1986",
+         "x": 168,
+         "y": 610,
+         "en": "@separaban",
+         "tam": 30,
+         "claro": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@En el camino"
+    },
+    {
+     "archivo": "material/fuentes/italia.mp4",
+     "desde": 58.0,
+     "velocidad": 0.6,
+     "hasta": "@un duelo",
+     "zocalo": "Italia",
+     "sub": "campeón del mundo en 1982"
+    },
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 140.0,
+     "velocidad": 0.6,
+     "hasta": "@y una final"
+    },
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 447.0,
+     "velocidad": 0.5,
+     "hasta": "@Para levantar",
+     "golpe": "2-2",
+     "golpe_en": "@se le escapaba",
+     "golpe_estilo": "fantasma",
+     "foco": [
+      0.5,
+      0.5
+     ]
+    },
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 270.0,
+     "velocidad": 0.7,
+     "hasta": "@Pero también"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_festejo_tres.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 940,
+         "rot": 1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@hasta el final",
+         "x": 960,
+         "y": 520,
+         "zoom": 1.12
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "huge football stadium crowd ambience, 1980s, chanting and drums, distant",
+     "en": 0,
+     "duracion": 14,
+     "volumen": 0.35,
+     "fade_in": 1.5,
+     "fade_out": 2.0
+    }
+   ]
+  },
+  {
+   "duracion": 3.2,
+   "visual": [
+    {
+     "tipo": "intro",
+     "sub": "México 86: el Mundial de Diego"
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "cinematic deep whoosh transition",
+     "en": 0,
+     "duracion": 1.2,
+     "volumen": 0.6
+    },
+    {
+     "prompt": "cinematic deep boom impact hit with reverb tail",
+     "en": 0.9,
+     "duracion": 2.2,
+     "volumen": 0.7
+    }
+   ]
+  },
+  {
+   "capitulo": "Nadie creía",
+   "visual": [
+    {
+     "tipo": "capitulo",
+     "numero": 1,
+     "titulo": "Nadie creía",
+     "total": 9
+    }
+   ],
+   "duracion": 2.4
+  },
+  {
+   "texto": "Para entender México, hay que volver un año atrás. Treinta de junio de mil novecientos ochenta y cinco, cancha de River. Última fecha de la eliminatoria: Argentina contra Perú.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 8.0,
+     "velocidad": 0.6,
+     "golpe": "1985",
+     "golpe_sub": "ELIMINATORIAS · ARGENTINA-PERÚ",
+     "golpe_en": "@Treinta de junio"
+    },
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 40.0,
+     "velocidad": 0.6
+    }
+   ]
+  },
+  {
+   "texto": "Con un empate, Argentina iba al Mundial. Y arrancó ganando: Pasculli, a los doce. Pero Perú lo dio vuelta antes del entretiempo: Velásquez... y Barbadillo. Dos a uno. Y a diez minutos del final, el país entero estaba a diez minutos de quedarse afuera.",
+   "pausa": 0.6,
+   "visual": [
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 15.0,
+     "gol": 19.5,
+     "golpe": "1-0",
+     "golpe_sub": "PASCULLI · 12'",
+     "golpe_en": "@Pasculli",
+     "local": "Argentina",
+     "visitante": "Perú",
+     "fin": 22.5,
+     "hasta": "@Pero Perú"
+    },
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 61.0,
+     "gol": 65.5,
+     "golpe": "1-1",
+     "golpe_sub": "VELÁSQUEZ · 23'",
+     "golpe_en": "@Velásquez",
+     "local": "Argentina",
+     "visitante": "Perú",
+     "fin": 68.0,
+     "hasta": "@y Barbadillo"
+    },
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 131.0,
+     "gol": 136.3,
+     "golpe": "1-2",
+     "golpe_sub": "BARBADILLO · 39'",
+     "golpe_en": "@Barbadillo",
+     "local": "Argentina",
+     "visitante": "Perú",
+     "fin": 139.5,
+     "hasta": "@Y a diez"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_passarella_peru.jpg",
+         "x": 1460.0,
+         "y": 520.0,
+         "alto": 740,
+         "recorte": [
+          87,
+          150,
+          262,
+          380
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": 0.3,
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "ARGENTINA-PERÚ · MONUMENTAL · 30/6/1985",
+         "x": 120,
+         "y": 90,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Perú 2\nArgentina 1",
+         "x": 120,
+         "y": 200,
+         "en": 0.2,
+         "tam": 112,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1-0 · PASCULLI 12'",
+         "x": 140,
+         "y": 600,
+         "en": 0.5,
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1-1 · VELÁSQUEZ 23'",
+         "x": 140,
+         "y": 665,
+         "en": 0.75,
+         "tam": 24,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1-2 · BARBADILLO 39'",
+         "x": 140,
+         "y": 730,
+         "en": 1.0,
+         "tam": 24,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "A 10 minutos\nde quedar afuera",
+         "x": 120,
+         "y": 820,
+         "en": "@el país",
+         "tam": 67,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd cheering a goal",
+     "en": "@Pasculli",
+     "duracion": 2.5,
+     "volumen": 0.35,
+     "fade_out": 1.0
+    }
+   ]
+  },
+  {
+   "texto": "Passarella le pega, la pelota da en el palo... y en el rebote aparece Ricardo Gareca. Dos a dos. Argentina, al Mundial. Por la ventana.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 211.0,
+     "gol": 215.5,
+     "golpe": "2-2",
+     "golpe_sub": "GARECA · 81'",
+     "golpe_en": "@Dos a dos",
+     "local": "Argentina",
+     "visitante": "Perú",
+     "fin": 219.5,
+     "hasta": "@Argentina, al"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/gareca.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd erupting in a goal celebration roar",
+     "en": "@Dos a dos",
+     "duracion": 4,
+     "volumen": 0.4,
+     "fade_out": 1.5
+    }
+   ]
+  },
+  {
+   "texto": "El técnico era Carlos Bilardo. Y a Bilardo lo criticaban todos. Menotti, el campeón del setenta y ocho, lo llamó cobarde y enano mental. Los diarios de Francia decían que Argentina estaba diez años atrasada. A Giusti lo silbaban en su propio club por jugar en la selección. Y el presidente Alfonsín le preguntó a su secretario de deportes: ¿qué estás esperando para echarlo? Faltaban cincuenta días para el Mundial.",
+   "pausa": 0.5,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_bilardo86.jpg",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          4,
+          0,
+          546,
+          729
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": 0.1,
+         "sale": "@Menotti"
+        },
+        {
+         "archivo": "material/menotti_fumando.jpg",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          0,
+          22,
+          286,
+          407
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Menotti",
+         "sale": "@Los diarios",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/giusti.png",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          42,
+          0,
+          287,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@A Giusti",
+         "sale": "@Y el presidente",
+         "trama": 5
+        },
+        {
+         "archivo": "material/alfonsin.jpg",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          4,
+          0,
+          800,
+          1072
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Y el presidente",
+         "sale": "@Faltaban"
+        },
+        {
+         "archivo": "material/eg_bilardo86.jpg",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          4,
+          0,
+          546,
+          729
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Faltaban"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "CARLOS BILARDO · DT",
+         "x": 120,
+         "y": 900,
+         "en": 0.3,
+         "tam": 26,
+         "fondo_tira": true,
+         "sale": "@Menotti",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Lo criticaban\ntodos.",
+         "x": 760,
+         "y": 330,
+         "en": "@lo criticaban",
+         "tam": 96,
+         "fondo_tira": true,
+         "sale": "@Menotti",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "MENOTTI · CAMPEÓN 1978",
+         "x": 120,
+         "y": 900,
+         "en": "@Menotti",
+         "tam": 24,
+         "fondo_tira": true,
+         "sale": "@Los diarios",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Cobarde y\nenano mental»",
+         "x": 760,
+         "y": 330,
+         "en": "@cobarde",
+         "tam": 55,
+         "fondo_tira": true,
+         "sale": "@Los diarios",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "L'ÉQUIPE · PARÍS, 1/4/1986",
+         "x": 760,
+         "y": 260,
+         "en": "@Los diarios",
+         "tam": 26,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@A Giusti",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Argentina está\ndiez años\natrasada»",
+         "x": 760,
+         "y": 340,
+         "en": "@Los diarios",
+         "tam": 50,
+         "fondo_tira": true,
+         "sale": "@A Giusti",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RICARDO GIUSTI · INDEPENDIENTE",
+         "x": 120,
+         "y": 900,
+         "en": "@A Giusti",
+         "tam": 23,
+         "fondo_tira": true,
+         "sale": "@Y el presidente",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Me silban porque\njuego en la\nselección»",
+         "x": 760,
+         "y": 330,
+         "en": "@A Giusti",
+         "tam": 48,
+         "fondo_tira": true,
+         "sale": "@Y el presidente",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RAÚL ALFONSÍN · PRESIDENTE",
+         "x": 120,
+         "y": 900,
+         "en": "@Y el presidente",
+         "tam": 24,
+         "fondo_tira": true,
+         "sale": "@Faltaban",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«¿Qué estás\nesperando para\necharlo?»",
+         "x": 760,
+         "y": 330,
+         "en": "@qué estás",
+         "tam": 52,
+         "fondo_tira": true,
+         "sale": "@Faltaban",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Faltaban\n50 días",
+         "x": 760,
+         "y": 300,
+         "en": "@Faltaban",
+         "tam": 120,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "PARA EL MUNDIAL",
+         "x": 780,
+         "y": 680,
+         "en": "@cincuenta",
+         "tam": 31,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Maradona lo bancó: si lo tocan a Bilardo, nos vamos todos. Pero Bilardo tenía una idea fija: todo el equipo iba a jugar para un solo hombre. Y a ese hombre le dio la cinta de capitán. Diego Armando Maradona. Veinticinco años.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_besa_camiseta.jpg",
+         "x": 960,
+         "y": 500,
+         "alto": 760,
+         "rot": -1.2,
+         "borde": 14,
+         "recorte": [
+          60,
+          48,
+          598,
+          513
+         ]
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "«Si lo tocan a Bilardo,\n nos vamos todos.»",
+         "x": 130,
+         "y": 900,
+         "en": 0.6,
+         "tam": 36,
+         "fondo_tira": true
+        }
+       ]
+      },
+      {
+       "en": "@Pero Bilardo",
+       "mesa": "papel",
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "EL PLAN DE BILARDO · 1986",
+         "x": 752,
+         "y": 70,
+         "en": "@Pero Bilardo",
+         "tam": 28,
+         "mudo": true
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/pumpido.png",
+         "x": 360,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Pumpido",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          360,
+          354
+         ],
+         "hasta": [
+          832.1208662941873,
+          496.7342264295334
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/cuciuffo.png",
+         "x": 660,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Cuciuffo",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          660,
+          354
+         ],
+         "hasta": [
+          848.19191466443,
+          464.3431955895976
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/brown.png",
+         "x": 960,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Brown",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          960,
+          354
+         ],
+         "hasta": [
+          960.0,
+          405.0
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/ruggeri.png",
+         "x": 1260,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Ruggeri",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1260,
+          354
+         ],
+         "hasta": [
+          1071.80808533557,
+          464.3431955895976
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/giusti.png",
+         "x": 1560,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Giusti",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1560,
+          354
+         ],
+         "hasta": [
+          1087.8791337058126,
+          496.7342264295334
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/batista.png",
+         "x": 360,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Batista",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          360,
+          762
+         ],
+         "hasta": [
+          833.8042166205729,
+          587.9543976841823
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/enrique.png",
+         "x": 660,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Enrique",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          660,
+          762
+         ],
+         "hasta": [
+          852.5181037933812,
+          621.6862411170304
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/olarticoechea.png",
+         "x": 960,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Olarticoechea",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          960,
+          762
+         ],
+         "hasta": [
+          960.0,
+          675.0
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/burruchaga.png",
+         "x": 1260,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Burruchaga",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1260,
+          762
+         ],
+         "hasta": [
+          1067.4818962066188,
+          621.6862411170304
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/valdano.png",
+         "x": 1560,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Valdano",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1560,
+          762
+         ],
+         "hasta": [
+          1086.1957833794272,
+          587.9543976841823
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/maradona_copa.jpg",
+         "x": 960,
+         "y": 540,
+         "r": 120,
+         "en": "@Pero Bilardo",
+         "nombre": "",
+         "anillo": true,
+         "recorte": [
+          840,
+          1100,
+          1220,
+          1480
+         ]
+        }
+       ]
+      },
+      {
+       "en": "@Y a ese hombre",
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_3427_foto.jpg",
+         "x": 760,
+         "y": 540,
+         "alto": 900,
+         "rot": -1.5,
+         "borde": 10,
+         "trama": 7
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@le dio",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@capitán",
+         "x": 1130,
+         "y": 365,
+         "zoom": 2.2
+        },
+        {
+         "t": "@Diego Armando",
+         "x": 1134,
+         "y": 367,
+         "zoom": 2.28
+        },
+        {
+         "t": "@Veinticinco",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "linea",
+         "desde": [
+          1150,
+          356
+         ],
+         "hasta": [
+          1290,
+          356
+         ],
+         "en": "@capitán",
+         "dibujo": 0.4,
+         "mundo": true,
+         "sale": "@Diego Armando",
+         "grosor": 3
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CAPITÁN",
+         "x": 1298,
+         "y": 344,
+         "en": "@capitán",
+         "tam": 26,
+         "mundo": true,
+         "sale": "@Diego Armando",
+         "fondo_tira": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Diego Armando\nMaradona",
+         "x": 1245,
+         "y": 400,
+         "en": "@Armando Maradona",
+         "tam": 84
+        },
+        {
+         "tipo": "maquina",
+         "texto": "25 AÑOS · CAPITÁN",
+         "x": 1249,
+         "y": 600,
+         "en": "@Veinticinco",
+         "tam": 26
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EL GRÁFICO · JUNIO 1985",
+         "x": 360,
+         "y": 1004,
+         "en": "@Armando Maradona",
+         "tam": 20,
+         "mudo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Llegó a México como la gran estrella del mundo. Jugaba en el Nápoles, en Italia, y su pase había sido el más caro de la historia. Pero en los Mundiales le debía una al fútbol: en España ochenta y dos lo habían pateado de todos lados... y se fue expulsado.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/bulgaria.mp4",
+     "desde": 204.0,
+     "velocidad": 0.5,
+     "hasta": "@Jugaba",
+     "fin": 206.5
+    },
+    {
+     "tipo": "doc",
+     "hasta": "@Pero en los",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/maradona_napoli_fotografos.jpg",
+         "x": 700,
+         "y": 500,
+         "alto": 620,
+         "rot": -1.4,
+         "borde": 10
+        },
+        {
+         "archivo": "material/maradona_companeros_napoli.jpg",
+         "recorte": [
+          735,
+          0,
+          1140,
+          761
+         ],
+         "x": 1440,
+         "y": 590,
+         "alto": 760,
+         "rot": 1.6,
+         "borde": 10,
+         "en": "@y su pase"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "NÁPOLES · ESTADIO SAN PAOLO",
+         "x": 260,
+         "y": 900,
+         "en": "@el Nápoles",
+         "tam": 26,
+         "fondo_tira": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BARCELONA → NÁPOLES, 1984\nEL PASE MÁS CARO DEL MUNDO",
+         "x": 1120,
+         "y": 80,
+         "en": "@el más caro",
+         "tam": 26,
+         "fondo_tira": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/retratos/caras/maradona.png",
+         "x": 1560.0,
+         "y": 520.0,
+         "alto": 520,
+         "recorte": [
+          38,
+          0,
+          291,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": 0.3,
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "LA CUENTA PENDIENTE",
+         "x": 120,
+         "y": 120,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "España 82",
+         "x": 120,
+         "y": 220,
+         "en": 0.2,
+         "tam": 136,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EXPULSADO CONTRA BRASIL",
+         "x": 140,
+         "y": 520,
+         "en": "@expulsado",
+         "tam": 34,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "ARGENTINA, AFUERA EN SEGUNDA FASE",
+         "x": 140,
+         "y": 610,
+         "en": "@expulsado",
+         "tam": 26,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Y había un problema más. El otro gran líder del plantel, el capitán campeón del setenta y ocho, Daniel Passarella, se enfermó en México... y no jugó ni un minuto. El equipo era de Diego. Para bien o para mal.",
+   "pausa": 0.6,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/diego_passarella_sombreros.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 940,
+         "rot": -0.8,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@Daniel Passarella",
+         "x": 1150,
+         "y": 420,
+         "zoom": 1.7
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "DANIEL PASSARELLA · CAPITÁN CAMPEÓN EN 1978",
+         "x": 900,
+         "y": 760,
+         "en": "@Daniel Passarella",
+         "tam": 22,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@El equipo era"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/entrenamiento.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": 0.8,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "capitulo": "El grupo",
+   "visual": [
+    {
+     "tipo": "capitulo",
+     "numero": 2,
+     "titulo": "El grupo",
+     "total": 9
+    }
+   ],
+   "duracion": 2.4
+  },
+  {
+   "texto": "Primer partido, en el Estadio Olímpico Universitario: Corea del Sur. Los coreanos esperaban a Diego con un solo plan... pegarle. Lo patearon once veces en noventa minutos.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/corea.mp4",
+     "desde": 8.0,
+     "velocidad": 0.4,
+     "hasta": "@Los coreanos",
+     "golpe": "ARG-COR",
+     "golpe_sub": "GRUPO A · 2 DE JUNIO",
+     "golpe_en": 0.4
+    },
+    {
+     "archivo": "material/fuentes/corea.mp4",
+     "desde": 195.5,
+     "velocidad": 0.4,
+     "hasta": "@Lo patearon"
+    },
+    {
+     "archivo": "material/fuentes/corea.mp4",
+     "desde": 178.0,
+     "velocidad": 0.5,
+     "golpe": "11",
+     "golpe_sub": "FALTAS CONTRA MARADONA EN UN PARTIDO",
+     "golpe_en": "@once veces"
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "referee whistle blow, football match",
+     "en": "@pegarle",
+     "duracion": 1.0,
+     "volumen": 0.4
+    }
+   ]
+  },
+  {
+   "texto": "Pero Argentina ganó tres a uno. Dos goles de Jorge Valdano... y uno de Oscar Ruggeri. Los tres, con pase de Diego.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/corea.mp4",
+     "desde": 52.0,
+     "gol": 56.0,
+     "golpe": "1-0",
+     "golpe_sub": "VALDANO · 6'",
+     "golpe_en": "@Jorge Valdano",
+     "local": "Argentina",
+     "visitante": "Corea",
+     "fin": 59.0,
+     "hasta": "@y uno de"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_valdano.jpg",
+         "x": 1510.0,
+         "y": 470.0,
+         "alto": 660,
+         "recorte": [
+          26,
+          0,
+          904,
+          1074
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@Dos goles"
+        },
+        {
+         "archivo": "material/eg_ruggeri.jpg",
+         "x": 1310.0,
+         "y": 795.0,
+         "alto": 310,
+         "recorte": [
+          0,
+          0,
+          380,
+          280
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@y uno de",
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "GRUPO A · OLÍMPICO UNIVERSITARIO",
+         "x": 120,
+         "y": 110,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Argentina 3\nCorea del Sur 1",
+         "x": 120,
+         "y": 210,
+         "en": 0.15,
+         "tam": 96,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "VALDANO ×2",
+         "x": 140,
+         "y": 560,
+         "en": "@Dos goles",
+         "tam": 31,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RUGGERI",
+         "x": 140,
+         "y": 640,
+         "en": "@y uno de",
+         "tam": 31,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "LOS 3, CON PASE DE DIEGO",
+         "x": 140,
+         "y": 740,
+         "en": "@Los tres",
+         "tam": 34,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Después, en Puebla, el campeón del mundo: Italia. Altobelli, de penal, uno a cero. Y Maradona, casi sin ángulo, de zurda... uno a uno.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/italia.mp4",
+     "desde": 58.0,
+     "gol": 61.0,
+     "golpe": "0-1",
+     "golpe_sub": "ALTOBELLI · 6' · PENAL",
+     "golpe_en": "@uno a cero",
+     "local": "Argentina",
+     "visitante": "Italia",
+     "fin": 63.0
+    },
+    {
+     "archivo": "material/fuentes/italia.mp4",
+     "desde": 268.0,
+     "gol": 272.0,
+     "golpe": "1-1",
+     "golpe_sub": "MARADONA · 34'",
+     "golpe_en": "@uno a uno",
+     "local": "Argentina",
+     "visitante": "Italia",
+     "fin": 274.5
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd cheering a goal",
+     "en": "@uno a uno",
+     "duracion": 3,
+     "volumen": 0.45,
+     "fade_out": 1.2
+    }
+   ]
+  },
+  {
+   "texto": "Y para cerrar, Bulgaria: dos a cero, con goles de Valdano y Burruchaga. Primera del grupo. Sin perder. Y sin que nadie, todavía, se asustara de Argentina.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/bulgaria.mp4",
+     "desde": 24.0,
+     "gol": 28.5,
+     "golpe": "1-0",
+     "golpe_sub": "VALDANO · 4'",
+     "golpe_en": "@Valdano",
+     "local": "Argentina",
+     "visitante": "Bulgaria",
+     "fin": 31.5
+    },
+    {
+     "archivo": "material/fuentes/bulgaria.mp4",
+     "desde": 440.0,
+     "gol": 443.0,
+     "golpe": "2-0",
+     "golpe_sub": "BURRUCHAGA · 77'",
+     "golpe_en": "@Burruchaga",
+     "local": "Argentina",
+     "visitante": "Bulgaria",
+     "fin": 445.5
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@Primera",
+          0
+         ],
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@Primera",
+          1.3
+         ],
+         "x": 420.0,
+         "y": 450.0,
+         "zoom": 1.26
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "Grupo A · tabla final · 2 puntos por victoria",
+         "x": 120,
+         "y": 110,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Grupo A",
+         "x": 120,
+         "y": 190,
+         "en": 0.1,
+         "tam": 96,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1 · ARGENTINA · 5 PTS",
+         "x": 140,
+         "y": 420,
+         "en": 0.3,
+         "tam": 35,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "2 · ITALIA · 4 PTS",
+         "x": 140,
+         "y": 515,
+         "en": 0.55,
+         "tam": 35,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "3 · BULGARIA · 2 PTS",
+         "x": 140,
+         "y": 610,
+         "en": 0.8,
+         "tam": 35,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "4 · COREA DEL SUR · 1 PT",
+         "x": 140,
+         "y": 705,
+         "en": 1.05,
+         "tam": 35,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "circulo",
+         "x": 420.0,
+         "y": 450.0,
+         "ancho": 640,
+         "alto": 130,
+         "en": "@Primera",
+         "dibujo": 0.6,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Sin perder.",
+         "x": 1060,
+         "y": 300,
+         "en": "@Sin perder",
+         "tam": 88,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Nadie se asustaba\nde Argentina.",
+         "x": 1060,
+         "y": 520,
+         "en": "@Y sin que",
+         "tam": 57,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "capitulo": "Las camisetas",
+   "visual": [
+    {
+     "tipo": "capitulo",
+     "numero": 3,
+     "titulo": "Las camisetas",
+     "total": 9
+    }
+   ],
+   "duracion": 2.4
+  },
+  {
+   "texto": "En octavos, otra vez en Puebla, el clásico del Río de la Plata: Uruguay. Un partido trabado, cerrado... que lo definió Pedro Pasculli, antes del entretiempo. Uno a cero.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/uruguay.mp4",
+     "desde": 25.0,
+     "velocidad": 0.45,
+     "hasta": "@Un partido",
+     "golpe": "ARG-URU",
+     "golpe_sub": "OCTAVOS DE FINAL · PUEBLA",
+     "golpe_en": 0.4
+    },
+    {
+     "archivo": "material/fuentes/uruguay.mp4",
+     "desde": 154.0,
+     "velocidad": 0.5,
+     "hasta": "@Pedro Pasculli"
+    },
+    {
+     "archivo": "material/fuentes/uruguay.mp4",
+     "desde": 233.0,
+     "gol": 237.5,
+     "golpe": "1-0",
+     "golpe_sub": "PASCULLI · 42'",
+     "golpe_en": "@Uno a cero",
+     "local": "Argentina",
+     "visitante": "Uruguay",
+     "fin": 239.0
+    }
+   ]
+  },
+  {
+   "texto": "Pero ese partido dejó un problema. Argentina jugó con camisetas azules de algodón, gruesas... y con el calor de México pesaban una tonelada. Los jugadores terminaron empapados.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/uruguay.mp4",
+     "desde": 34.0,
+     "velocidad": 0.4,
+     "fin": 36.5,
+     "hasta": "@y con el calor"
+    },
+    {
+     "archivo": "material/fuentes/uruguay.mp4",
+     "desde": 94.0,
+     "velocidad": 0.4,
+     "golpe": "ALGODÓN",
+     "golpe_sub": "CAMISETAS PESADAS PARA EL CALOR DE MÉXICO",
+     "golpe_en": "@pesaban"
+    }
+   ]
+  },
+  {
+   "texto": "Y en cuartos venía Inglaterra, que se vestía de blanco. A tres días del partido, Bilardo mandó a un colaborador, Rubén Moschella, a recorrer los negocios de la Ciudad de México. A buscar camisetas... en una tienda.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/collage/fondo_inglaterra_300.png",
+         "x": 960,
+         "y": 540,
+         "alto": 708,
+         "rot": 0.6,
+         "borde": 12,
+         "en": 0,
+         "recorte": [
+          0,
+          151,
+          1920,
+          961
+         ],
+         "sale": "@Bilardo mandó"
+        },
+        {
+         "archivo": "material/collage/fondo_uruguay_34.png",
+         "x": 960,
+         "y": 540,
+         "alto": 708,
+         "rot": -0.5,
+         "borde": 12,
+         "en": "@Bilardo mandó",
+         "recorte": [
+          0,
+          151,
+          1920,
+          961
+         ],
+         "sale": "@a recorrer"
+        },
+        {
+         "archivo": "material/df86_zocalo1.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 940,
+         "rot": 0.6,
+         "borde": 12,
+         "en": "@a recorrer",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/mercado_merced.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 940,
+         "rot": -0.5,
+         "borde": 12,
+         "en": "@A buscar"
+        },
+        {
+         "archivo": "material/collage/ing_323.png",
+         "x": 480.0,
+         "y": 510.0,
+         "alto": 700,
+         "recorte": [
+          733,
+          150,
+          1566,
+          960
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": 0.15,
+         "sale": "@A tres días"
+        },
+        {
+         "archivo": "material/bilardo.jpg",
+         "x": 1400.0,
+         "y": 510.0,
+         "alto": 720,
+         "recorte": [
+          0,
+          20,
+          551,
+          681
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Bilardo mandó",
+         "sale": "@a recorrer"
+        },
+        {
+         "archivo": "material/df86_calle3.jpg",
+         "x": 470.0,
+         "y": 330.0,
+         "alto": 480,
+         "recorte": [
+          0,
+          8,
+          823,
+          528
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@a recorrer",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/df86_calle1.jpg",
+         "x": 910.0,
+         "y": 580.0,
+         "alto": 560,
+         "recorte": [
+          0,
+          16,
+          529,
+          721
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@los negocios",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/mercado_lagunilla_ropa.jpg",
+         "x": 1490.0,
+         "y": 330.0,
+         "alto": 440,
+         "recorte": [
+          0,
+          106,
+          1559,
+          1115
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@de la Ciudad",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/tepito_puestos.jpg",
+         "x": 490.0,
+         "y": 800.0,
+         "alto": 400,
+         "recorte": [
+          0,
+          191,
+          3648,
+          2544
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@de México",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/df86_calle2.jpg",
+         "x": 1500.0,
+         "y": 770.0,
+         "alto": 420,
+         "recorte": [
+          0,
+          3,
+          817,
+          539
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@México.",
+         "sale": "@A buscar"
+        },
+        {
+         "archivo": "material/mercado_merced_vendedor.jpg",
+         "x": 960.0,
+         "y": 540.0,
+         "alto": 860,
+         "recorte": [
+          0,
+          103,
+          2048,
+          1261
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@A buscar"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@en una tienda",
+          0
+         ],
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@en una tienda",
+          1.3
+         ],
+         "x": 1080.0,
+         "y": 520.0,
+         "zoom": 1.25
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "MÉXICO 86 · CUARTOS DE FINAL",
+         "x": 80,
+         "y": 60,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "sale": "@A tres días",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "INGLATERRA",
+         "x": 90,
+         "y": 820,
+         "en": "@Inglaterra",
+         "tam": 28,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@A tres días",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Se vestía\nde blanco.",
+         "x": 920,
+         "y": 380,
+         "en": "@que se vestía",
+         "tam": 96,
+         "fondo_tira": true,
+         "sale": "@A tres días",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "19 de junio\nde 1986",
+         "x": 110,
+         "y": 250,
+         "en": "@A tres días",
+         "tam": 104,
+         "fondo_tira": true,
+         "sale": "@Bilardo mandó",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "FALTAN 3 DÍAS PARA INGLATERRA",
+         "x": 120,
+         "y": 620,
+         "en": "@del partido",
+         "tam": 26,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Bilardo mandó",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CARLOS BILARDO · DT",
+         "x": 1080,
+         "y": 820,
+         "en": "@Bilardo mandó",
+         "tam": 24,
+         "fondo_tira": true,
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "flecha",
+         "desde": [
+          1080,
+          420
+         ],
+         "hasta": [
+          860,
+          440
+         ],
+         "en": "@a un colaborador",
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "?",
+         "x": 500.0,
+         "y": 350.0,
+         "tam": 300,
+         "rojo": true,
+         "en": "@Rubén",
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RUBÉN MOSCHELLA",
+         "x": 270,
+         "y": 820,
+         "en": "@Rubén",
+         "tam": 28,
+         "fondo_tira": true,
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "COLABORADOR DE LA AFA",
+         "x": 280,
+         "y": 890,
+         "en": "@Rubén",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@a recorrer",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CDMX · 1986",
+         "x": 110,
+         "y": 520,
+         "en": "@a recorrer",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CDMX · 1986",
+         "x": 830,
+         "y": 790,
+         "en": "@los negocios",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "LA LAGUNILLA · HOY",
+         "x": 1170,
+         "y": 500,
+         "en": "@de la Ciudad",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "TEPITO · HOY",
+         "x": 200,
+         "y": 950,
+         "en": "@de México",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CDMX · 1986",
+         "x": 1200,
+         "y": 930,
+         "en": "@México.",
+         "tam": 20,
+         "fondo_tira": true,
+         "sale": "@A buscar",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "A buscar\ncamisetas...",
+         "x": 240,
+         "y": 700,
+         "en": "@A buscar",
+         "tam": 76,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "circulo",
+         "x": 1080.0,
+         "y": 520.0,
+         "ancho": 300,
+         "alto": 380,
+         "en": "@en una tienda",
+         "dibujo": 0.6,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EN UNA TIENDA",
+         "x": 1200,
+         "y": 660,
+         "en": "@en una tienda",
+         "tam": 31,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Volvió con dos modelos. Maradona eligió uno y dijo: con esta le ganamos a Inglaterra. Compraron treinta y ocho, les cosieron el escudo... y les plancharon números plateados en la espalda, de los que se usan en el fútbol americano. Esa es la camiseta de la foto más famosa del siglo.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/collage/ing_331.5.png",
+         "x": 1420.0,
+         "y": 540.0,
+         "alto": 840,
+         "recorte": [
+          578,
+          150,
+          1272,
+          960
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Maradona eligió",
+         "sale": "@Compraron"
+        },
+        {
+         "archivo": "material/collage/ing_229.5.png",
+         "x": 1380.0,
+         "y": 380.0,
+         "alto": 520,
+         "recorte": [
+          441,
+          150,
+          1458,
+          780
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@les cosieron",
+         "sale": "@les plancharon"
+        },
+        {
+         "archivo": "material/collage/ing_365.5.png",
+         "x": 960.0,
+         "y": 440.0,
+         "alto": 640,
+         "recorte": [
+          79,
+          150,
+          1733,
+          780
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@les plancharon"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@el escudo",
+          0
+         ],
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@el escudo",
+          1.3
+         ],
+         "x": 1490.0,
+         "y": 310.0,
+         "zoom": 1.5101123595505617
+        },
+        {
+         "t": [
+          "@les plancharon",
+          -0.01
+         ],
+         "x": 1490.0,
+         "y": 310.0,
+         "zoom": 1.5101123595505617
+        },
+        {
+         "t": [
+          "@les plancharon",
+          0
+         ],
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@números plateados",
+          0
+         ],
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@números plateados",
+          1.3
+         ],
+         "x": 500.0,
+         "y": 370.0,
+         "zoom": 1.25
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "Volvió con\ndos modelos.",
+         "x": 120,
+         "y": 200,
+         "en": "@Volvió",
+         "tam": 96,
+         "fondo_tira": true,
+         "sale": "@Maradona eligió",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "LE COQ SPORTIF · LISAS",
+         "x": 140,
+         "y": 560,
+         "en": "@Volvió",
+         "tam": 28,
+         "fondo_tira": true,
+         "sale": "@Maradona eligió",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "MARADONA",
+         "x": 1040,
+         "y": 900,
+         "en": "@Maradona eligió",
+         "tam": 28,
+         "fondo_tira": true,
+         "sale": "@Compraron",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Con esta le\nganamos a\nInglaterra»",
+         "x": 120,
+         "y": 260,
+         "en": "@y dijo",
+         "tam": 50,
+         "fondo_tira": true,
+         "sale": "@Compraron",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "38\ncamisetas",
+         "x": 120,
+         "y": 200,
+         "en": "@Compraron",
+         "tam": 120,
+         "fondo_tira": true,
+         "sale": "@les plancharon",
+         "mundo": true
+        },
+        {
+         "tipo": "circulo",
+         "x": 1490.0,
+         "y": 310.0,
+         "ancho": 300,
+         "alto": 300,
+         "en": "@el escudo",
+         "dibujo": 0.6,
+         "sale": "@les plancharon",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "ESCUDO DE LA AFA · COSIDO A MANO",
+         "x": 980,
+         "y": 680,
+         "en": "@el escudo",
+         "tam": 26,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@les plancharon",
+         "mundo": true
+        },
+        {
+         "tipo": "circulo",
+         "x": 500.0,
+         "y": 370.0,
+         "ancho": 700,
+         "alto": 500,
+         "en": "@números plateados",
+         "dibujo": 0.6,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "NÚMEROS PLATEADOS · PLANCHADOS",
+         "x": 140,
+         "y": 800,
+         "en": "@números plateados",
+         "tam": 31,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "COMO LOS DEL FÚTBOL AMERICANO",
+         "x": 160,
+         "y": 880,
+         "en": "@de los que",
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@Esa es"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/mano_dios2.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -0.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "capitulo": "La guerra",
+   "visual": [
+    {
+     "tipo": "capitulo",
+     "numero": 4,
+     "titulo": "La guerra",
+     "total": 9
+    }
+   ],
+   "duracion": 2.4
+  },
+  {
+   "texto": "Porque ese no era un partido más. Cuatro años antes, Argentina e Inglaterra habían ido a la guerra. ¿Por qué? Por las Malvinas: unas islas en el Atlántico Sur, a unos quinientos kilómetros de la costa patagónica. Inglaterra las ocupa desde mil ochocientos treinta y tres... y Argentina siempre las reclamó como propias.",
+   "pausa": 0.5,
+   "visual": [
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 140.0,
+     "velocidad": 0.4,
+     "hasta": "@Por las Malvinas"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/malv_satelite.png",
+         "x": 680.0,
+         "y": 440.0,
+         "alto": 640,
+         "recorte": [
+          38,
+          0,
+          1807,
+          1011
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@unas islas"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "¿Por qué?",
+         "x": 120,
+         "y": 160,
+         "en": 0.05,
+         "tam": 104,
+         "fondo_tira": true,
+         "sale": "@unas islas",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "PUERTO ARGENTINO · SATÉLITE, 13/6/1982",
+         "x": 120,
+         "y": 790,
+         "en": "@unas islas",
+         "tam": 21,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Malvinas",
+         "x": 1300,
+         "y": 160,
+         "en": "@unas islas",
+         "tam": 96,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "ATLÁNTICO SUR",
+         "x": 1320,
+         "y": 330,
+         "en": "@en el Atlántico",
+         "tam": 26,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "500 km\nde la Patagonia",
+         "x": 1300,
+         "y": 430,
+         "en": "@a unos quinientos",
+         "tam": 62,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "OCUPADAS POR INGLATERRA · 1833",
+         "x": 1280,
+         "y": 700,
+         "en": "@Inglaterra las",
+         "tam": 21,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RECLAMADAS POR ARGENTINA",
+         "x": 1300,
+         "y": 780,
+         "en": "@y Argentina siempre",
+         "tam": 26,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "En abril de mil novecientos ochenta y dos, la dictadura militar mandó tropas a recuperarlas. Inglaterra respondió con su flota. Fueron setenta y cuatro días de guerra. Murieron seiscientos cuarenta y nueve soldados argentinos... y doscientos cincuenta y cinco británicos. Muchos de los argentinos eran chicos de dieciocho y diecinueve años, que hacían el servicio militar.",
+   "pausa": 0.8,
+   "visual": [
+    {
+     "archivo": "material/fuentes/malvinas_galtieri.mp4",
+     "desde": 111.0,
+     "velocidad": 0.8,
+     "hasta": "@Inglaterra respondió",
+     "zocalo": "Guerra de Malvinas",
+     "sub": "2 de abril - 14 de junio de 1982"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/malvinas_desembarco.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 847,
+         "rot": -0.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ],
+     "hasta": "@Fueron setenta"
+    },
+    {
+     "archivo": "material/fuentes/malvinas_prisma.mp4",
+     "desde": 40.0,
+     "velocidad": 0.8,
+     "hasta": "@Murieron"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/malv_tumbas.jpg",
+         "x": 1440.0,
+         "y": 420.0,
+         "alto": 520,
+         "recorte": [
+          9,
+          0,
+          1413,
+          1014
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": 0.1
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "TUMBAS BRITÁNICAS · MALVINAS, 1982",
+         "x": 1080,
+         "y": 710,
+         "en": 0.2,
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "74 días\nde guerra",
+         "x": 120,
+         "y": 120,
+         "en": 0.15,
+         "tam": 67,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "649 soldados\nargentinos",
+         "x": 120,
+         "y": 420,
+         "en": "@seiscientos",
+         "tam": 67,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "255\nbritánicos",
+         "x": 120,
+         "y": 720,
+         "en": "@doscientos",
+         "tam": 67,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@Muchos de los"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/malvinas_soldados.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -0.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Los jugadores decían que era solo fútbol. Pero nadie les creía. Y en el fútbol, además, había una cuenta pendiente desde el sesenta y seis: en Wembley echaron a Rattín, que se negó a irse de la cancha... y el técnico inglés llamó animales a los argentinos.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 34.0,
+     "velocidad": 0.5,
+     "hasta": "@Y en el fútbol"
+    },
+    {
+     "archivo": "material/fuentes/wembley1966.mp4",
+     "desde": 8.0,
+     "zoom": 1.32,
+     "centro": [
+      0.5,
+      0.5
+     ],
+     "zocalo": "Antonio Rattín",
+     "sub": "Wembley, 1966",
+     "hasta": "@que se negó"
+    },
+    {
+     "archivo": "material/fuentes/wembley1966.mp4",
+     "desde": 42.0,
+     "zoom": 1.32,
+     "centro": [
+      0.5,
+      0.5
+     ],
+     "hasta": "@y el técnico"
+    },
+    {
+     "archivo": "material/fuentes/wembley1966.mp4",
+     "desde": 84.0,
+     "zoom": 1.32,
+     "centro": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Veintidós de junio, al mediodía, bajo el sol de México. Estadio Azteca: ciento catorce mil personas. El partido más cargado de la historia de los Mundiales.",
+   "visual": [
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 140.0,
+     "velocidad": 0.5,
+     "hasta": "@Estadio Azteca",
+     "golpe": "22·06·86",
+     "golpe_sub": "CUARTOS DE FINAL · 12:00 · ESTADIO AZTECA",
+     "golpe_en": "@Veintidós"
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 59.5,
+     "velocidad": 0.5,
+     "golpe": "114.580",
+     "golpe_sub": "PERSONAS EN EL AZTECA",
+     "golpe_en": "@ciento catorce"
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "huge football stadium crowd ambience, 1980s, chanting and drums, distant",
+     "en": 0,
+     "duracion": 12,
+     "volumen": 0.35,
+     "fade_in": 1.5,
+     "fade_out": 2.0
+    }
+   ]
+  },
+  {
+   "texto": "Primer tiempo: cero a cero. Inglaterra cerraba todos los caminos. Y Diego, cada vez que agarraba la pelota, tenía dos ingleses encima.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 25.5,
+     "velocidad": 0.5,
+     "hasta": "@Y Diego"
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 140.0,
+     "velocidad": 0.5,
+     "golpe": "0-0",
+     "golpe_sub": "ENTRETIEMPO",
+     "golpe_en": 0.4,
+     "local": "Argentina",
+     "visitante": "Inglaterra"
+    }
+   ]
+  },
+  {
+   "capitulo": "La mano de Dios",
+   "visual": [
+    {
+     "tipo": "capitulo",
+     "numero": 5,
+     "titulo": "La mano de Dios",
+     "total": 9
+    }
+   ],
+   "duracion": 2.4
+  },
+  {
+   "texto": "Minuto cincuenta y uno. Maradona arranca por el medio y busca a Valdano. Steve Hodge, el inglés, quiere despejar... y se la tira para atrás, a su arquero. Sale Peter Shilton, casi veinte centímetros más alto. Diego salta... y la empuja con la mano izquierda.",
+   "retardo": 0.5,
+   "visual": [
+    {
+     "archivo": "salida/graficos/iv_mano.mp4",
+     "desde": 0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "tense heartbeat pulse, low cinematic",
+     "en": 0,
+     "duracion": 6,
+     "volumen": 0.3,
+     "fade_out": 1.0
+    }
+   ]
+  },
+  {
+   "texto": "",
+   "duracion": 12.5,
+   "sfx": [
+    {
+     "archivo": "material/fuentes/vh_relato.mp4",
+     "desde": 17.0,
+     "duracion": 12.5,
+     "en": 0,
+     "volumen": 1.0,
+     "fade_out": 0.8
+    }
+   ],
+   "visual": [
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 44.4,
+     "fin": 48.4,
+     "duracion": 4.0
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 261.0,
+     "velocidad": 0.4,
+     "fin": 262.8,
+     "duracion": 4.5,
+     "zocalo": "Víctor Hugo Morales",
+     "sub": "relato original · 22/06/1986"
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 272.0,
+     "velocidad": 0.7,
+     "fin": 274.5
+    }
+   ]
+  },
+  {
+   "texto": "Visto desde arriba, se entiende mejor. Hodge la levanta hacia atrás. Shilton sale con las dos manos. Y Diego, que mide un metro sesenta y cinco, llega primero... con el puño pegado a la cabeza.",
+   "pausa": 0.5,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_mano_shilton.jpg",
+         "x": 680.0,
+         "y": 540.0,
+         "alto": 860,
+         "recorte": [
+          27,
+          0,
+          1099,
+          823
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Shilton sale"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@con el puño",
+          0
+         ],
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": [
+          "@con el puño",
+          1.3
+         ],
+         "x": 510.0,
+         "y": 290.0,
+         "zoom": 1.2584269662921348
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "ARGENTINA-INGLATERRA · 51'",
+         "x": 120,
+         "y": 80,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Hodge la levanta\nhacia atrás.",
+         "x": 120,
+         "y": 360,
+         "en": "@Hodge",
+         "tam": 88,
+         "fondo_tira": true,
+         "sale": "@Shilton sale",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "SHILTON · 1,83 M · DOS MANOS",
+         "x": 700,
+         "y": 900,
+         "en": "@Shilton sale",
+         "tam": 26,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "MARADONA · 1,65 M",
+         "x": 150,
+         "y": 900,
+         "en": "@Y Diego",
+         "tam": 29,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Llega\nprimero.",
+         "x": 1320,
+         "y": 300,
+         "en": "@llega primero",
+         "tam": 88,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "circulo",
+         "x": 510.0,
+         "y": 290.0,
+         "ancho": 420,
+         "alto": 360,
+         "en": "@con el puño",
+         "dibujo": 0.6,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EL PUÑO",
+         "x": 600,
+         "y": 420,
+         "en": "@con el puño",
+         "tam": 34,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "tense heartbeat pulse, low cinematic",
+     "en": 0,
+     "duracion": 8,
+     "volumen": 0.25,
+     "fade_out": 1.0
+    }
+   ]
+  },
+  {
+   "texto": "El árbitro, el tunecino Alí Bin Nasser, no lo ve. Gol. Los ingleses protestan... y Diego les grita a sus compañeros: vengan a abrazarme, que si no, no lo cobra.",
+   "visual": [
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 52.0,
+     "velocidad": 0.6,
+     "fin": 57.0,
+     "hasta": "@Los ingleses"
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 276.8,
+     "velocidad": 0.6,
+     "fin": 279.2,
+     "hasta": "@y Diego les grita"
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 274.6,
+     "velocidad": 0.45,
+     "fin": 276.8
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd erupting in a goal celebration roar",
+     "en": "@Gol",
+     "duracion": 4,
+     "volumen": 0.45,
+     "fade_out": 1.5
+    }
+   ]
+  },
+  {
+   "texto": "Esa noche, Maradona diría que el gol fue un poco con la cabeza... y otro poco con la mano de Dios. Shilton nunca se lo perdonó. Cuarenta años después, todavía no le había dado la mano.",
+   "pausa": 0.8,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/mano_dios2.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": 0.8,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ],
+     "hasta": "@y otro poco"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "MARADONA, DESPUÉS DEL PARTIDO",
+         "x": 120,
+         "y": 180,
+         "en": 0.05,
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Un poco con la cabeza\nde Maradona y otro\npoco con la mano\nde Dios»",
+         "x": 120,
+         "y": 270,
+         "en": 0.15,
+         "tam": 46,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@Shilton nunca"
+    },
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 99.0,
+     "velocidad": 0.4,
+     "fin": 102.5
+    }
+   ]
+  },
+  {
+   "capitulo": "El gol del siglo",
+   "visual": [
+    {
+     "tipo": "capitulo",
+     "numero": 6,
+     "titulo": "El gol del siglo",
+     "total": 9
+    }
+   ],
+   "duracion": 2.4
+  },
+  {
+   "texto": "Cuatro minutos después, pasó lo otro.",
+   "pausa": 0.7,
+   "visual": [
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 264.0,
+     "velocidad": 0.5,
+     "fin": 266.0
+    }
+   ]
+  },
+  {
+   "texto": "Minuto cincuenta y cinco. Héctor Enrique se la da a Maradona en su propio campo. Gira, y deja en el camino a Beardsley y a Reid. Arranca. Pasa la mitad de cancha. Le sale Butcher: lo deja. Le sale Fenwick: lo deja. Entra al área, sale Shilton... Diego amaga, lo deja sentado... y con Butcher colgado de la espalda, la empuja. Gol.",
+   "retardo": 0.6,
+   "visual": [
+    {
+     "archivo": "salida/graficos/iv_siglo.mp4",
+     "desde": 0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd roar rising to an explosion of joy for a goal",
+     "en": "@Gol",
+     "duracion": 5,
+     "volumen": 0.55,
+     "fade_out": 2
+    }
+   ]
+  },
+  {
+   "texto": "Visto desde arriba, es todavía más loco. Arranca en su campo. Beardsley. Reid. Pasa la mitad de la cancha. Butcher. Fenwick. Entra al área. Shilton... y Butcher otra vez. Sesenta metros. Diez segundos y ocho décimas. Y ni un solo toque con la derecha.",
+   "pausa": 1.2,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/collage/fifa_266.png",
+         "x": 360.0,
+         "y": 280.0,
+         "alto": 340,
+         "recorte": [
+          70,
+          0,
+          1849,
+          1080
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Arranca",
+         "sale": "@Sesenta"
+        },
+        {
+         "archivo": "material/collage/fifa_270.png",
+         "x": 960.0,
+         "y": 280.0,
+         "alto": 340,
+         "recorte": [
+          70,
+          0,
+          1849,
+          1080
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@Beardsley",
+         "sale": "@Sesenta"
+        },
+        {
+         "archivo": "material/collage/fifa_271.png",
+         "x": 1560.0,
+         "y": 280.0,
+         "alto": 340,
+         "recorte": [
+          70,
+          0,
+          1849,
+          1080
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Reid",
+         "sale": "@Sesenta"
+        },
+        {
+         "archivo": "material/collage/fifa_274.png",
+         "x": 360.0,
+         "y": 730.0,
+         "alto": 340,
+         "recorte": [
+          70,
+          0,
+          1849,
+          1080
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Butcher. Fenwick",
+         "sale": "@Sesenta"
+        },
+        {
+         "archivo": "material/collage/fifa_275.png",
+         "x": 960.0,
+         "y": 730.0,
+         "alto": 340,
+         "recorte": [
+          70,
+          0,
+          1849,
+          1080
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Fenwick. Entra",
+         "sale": "@Sesenta"
+        },
+        {
+         "archivo": "material/eludiendo_shilton.jpg",
+         "x": 1560.0,
+         "y": 730.0,
+         "alto": 340,
+         "recorte": [
+          0,
+          24,
+          1140,
+          716
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@Shilton...",
+         "sale": "@Sesenta"
+        },
+        {
+         "archivo": "material/eg_fenwick.jpg",
+         "x": 1520.0,
+         "y": 540.0,
+         "alto": 760,
+         "recorte": [
+          141,
+          0,
+          805,
+          900
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Sesenta"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "ARGENTINA-INGLATERRA · 55'",
+         "x": 80,
+         "y": 40,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "sale": "@Sesenta",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EN SU CAMPO",
+         "x": 90,
+         "y": 400,
+         "en": "@Arranca",
+         "tam": 23,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Sesenta",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BEARDSLEY",
+         "x": 690,
+         "y": 400,
+         "en": "@Beardsley",
+         "tam": 23,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Sesenta",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "REID",
+         "x": 1290,
+         "y": 400,
+         "en": "@Reid",
+         "tam": 23,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Sesenta",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BUTCHER",
+         "x": 90,
+         "y": 850,
+         "en": "@Butcher. Fenwick",
+         "tam": 23,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Sesenta",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "FENWICK",
+         "x": 690,
+         "y": 850,
+         "en": "@Fenwick. Entra",
+         "tam": 23,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Sesenta",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "SHILTON",
+         "x": 1290,
+         "y": 850,
+         "en": "@Shilton...",
+         "tam": 23,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Sesenta",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BUTCHER, OTRA VEZ",
+         "x": 1290,
+         "y": 920,
+         "en": "@y Butcher",
+         "tam": 23,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Sesenta",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "60 metros",
+         "x": 120,
+         "y": 160,
+         "en": "@Sesenta",
+         "tam": 104,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "10,8 segundos",
+         "x": 120,
+         "y": 420,
+         "en": "@Diez segundos",
+         "tam": 104,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "0 toques con\nla derecha",
+         "x": 120,
+         "y": 680,
+         "en": "@Y ni un",
+         "tam": 80,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "soft digital tick counting, subtle, cinematic",
+     "en": "@Beardsley",
+     "duracion": 11,
+     "volumen": 0.2,
+     "fade_out": 1.0
+    }
+   ]
+  },
+  {
+   "texto": "",
+   "duracion": 41.5,
+   "sfx": [
+    {
+     "archivo": "material/fuentes/vh_relato.mp4",
+     "desde": 83.0,
+     "duracion": 41.5,
+     "en": 0,
+     "volumen": 1.0,
+     "fade_out": 1.5
+    }
+   ],
+   "visual": [
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 267.5,
+     "duracion": 14.0,
+     "zocalo": "Víctor Hugo Morales",
+     "sub": "relato original · 22/06/1986"
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 299.5,
+     "velocidad": 0.6,
+     "duracion": 5.0
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 287.5,
+     "velocidad": 0.6,
+     "duracion": 4.0
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 294.0,
+     "velocidad": 0.5,
+     "fin": 299.2,
+     "duracion": 8.0
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 305.0,
+     "velocidad": 0.6,
+     "fin": 308.5,
+     "duracion": 5.0
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eludiendo_shilton.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -0.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Eso que escuchaste es Víctor Hugo Morales, en la radio. Barrilete cósmico... ¿de qué planeta viniste? Y Gary Lineker, el delantero inglés, confesó que fue la única vez en su carrera que tuvo ganas de aplaudir un gol del rival.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 294.0,
+     "velocidad": 0.4,
+     "fin": 299.2,
+     "hasta": "@¿de qué planeta",
+     "zocalo": "Víctor Hugo Morales",
+     "sub": "«Barrilete cósmico, ¿de qué planeta viniste?»"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/diego_festejo_inglaterra.png",
+         "x": 960,
+         "y": 540,
+         "alto": 760,
+         "rot": 1.2,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@Y Gary",
+         "x": 1120,
+         "y": 420,
+         "zoom": 1.35
+        }
+       ]
+      }
+     ],
+     "hasta": "@Y Gary"
+    },
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 283.0,
+     "velocidad": 0.4,
+     "fin": 286.0,
+     "zocalo": "Gary Lineker",
+     "sub": "\"tuve ganas de aplaudir\""
+    }
+   ]
+  },
+  {
+   "texto": "En dos mil dos, en una votación de la FIFA, lo eligieron el gol del siglo. El gol más sucio y el mejor de todos los tiempos. El mismo día, con cuatro minutos de diferencia. Y quizás por eso, cuarenta años después, todavía no nos cansamos de verlo.",
+   "pausa": 0.8,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eludiendo_shilton.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -0.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ],
+     "hasta": "@El gol más sucio"
+    },
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 270.0,
+     "velocidad": 0.3,
+     "fin": 275.5
+    }
+   ]
+  },
+  {
+   "texto": "",
+   "duracion": 6.6,
+   "sfx": [
+    {
+     "archivo": "material/fuentes/vh_relato.mp4",
+     "desde": 142.6,
+     "duracion": 6.6,
+     "en": 0,
+     "volumen": 1.0,
+     "fade_out": 0.8
+    }
+   ],
+   "visual": [
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 305.0,
+     "velocidad": 0.4,
+     "fin": 308.5
+    }
+   ]
+  },
+  {
+   "texto": "Lineker descontó a los ochenta y uno. Pero ya era tarde. Argentina dos, Inglaterra uno. A semifinales.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_festejo_yako.jpg",
+         "x": 1480.0,
+         "y": 530.0,
+         "alto": 780,
+         "recorte": [
+          227,
+          0,
+          710,
+          588
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": 0.3
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "CUARTOS DE FINAL · ESTADIO AZTECA",
+         "x": 120,
+         "y": 110,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Argentina 2\nInglaterra 1",
+         "x": 120,
+         "y": 210,
+         "en": 0.15,
+         "tam": 104,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "LINEKER 81'",
+         "x": 140,
+         "y": 600,
+         "en": "@Lineker",
+         "tam": 31,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "A SEMIFINALES",
+         "x": 140,
+         "y": 690,
+         "en": "@A semifinales",
+         "tam": 40,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "FOTO: DANI YAKO",
+         "x": 1180,
+         "y": 880,
+         "en": 0.4,
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Y todavía faltaba una final. Si te gustan estas historias, suscribite a Los Once: acá contamos todo el fútbol, como merece ser contado.",
+   "pausa": 0.6,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_telefono.jpg",
+         "x": 1470.0,
+         "y": 530.0,
+         "alto": 760,
+         "recorte": [
+          65,
+          0,
+          462,
+          486
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Si te gustan"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "Y todavía faltaba\nuna final.",
+         "x": 120,
+         "y": 200,
+         "en": 0.05,
+         "tam": 80,
+         "fondo_tira": true,
+         "sale": "@Si te gustan",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "MÉXICO, 1986",
+         "x": 1180,
+         "y": 860,
+         "en": "@Si te gustan",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Suscribite\na LOS 11",
+         "x": 120,
+         "y": 250,
+         "en": "@suscribite",
+         "tam": 112,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "TODO EL FÚTBOL, COMO MERECE SER CONTADO",
+         "x": 140,
+         "y": 640,
+         "en": "@acá contamos",
+         "tam": 26,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "capitulo": "Bélgica",
+   "visual": [
+    {
+     "tipo": "capitulo",
+     "numero": 7,
+     "titulo": "Bélgica",
+     "total": 9
+    }
+   ],
+   "duracion": 2.4
+  },
+  {
+   "texto": "En semifinales, Bélgica. La sorpresa del torneo, que venía de eliminar a la Unión Soviética y a España. Y Diego lo volvió a hacer. Minuto cincuenta y uno: entra entre dos defensores y la pica por encima del arquero.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/belgica.mp4",
+     "desde": 0.0,
+     "velocidad": 0.5,
+     "hasta": "@Y Diego",
+     "golpe": "ARG-BÉL",
+     "golpe_sub": "SEMIFINAL · AZTECA · 25 DE JUNIO",
+     "golpe_en": 0.4
+    },
+    {
+     "archivo": "material/fuentes/belgica.mp4",
+     "desde": 266.5,
+     "gol": 270.0,
+     "golpe": "1-0",
+     "golpe_sub": "MARADONA · 51'",
+     "golpe_en": "@la pica",
+     "local": "Argentina",
+     "visitante": "Bélgica",
+     "fin": 275.5
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd cheering a goal",
+     "en": "@la pica",
+     "duracion": 3,
+     "volumen": 0.45,
+     "fade_out": 1.2
+    }
+   ]
+  },
+  {
+   "texto": "Minuto sesenta y tres. Arranca desde la izquierda, pegado a la raya. Un belga queda en el piso. Otro, pasado de largo. Sale el arquero, Pfaff... y Diego la cruza. Otra vez.",
+   "retardo": 0.4,
+   "visual": [
+    {
+     "archivo": "salida/graficos/iv_belg2.mp4",
+     "desde": 0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd roar rising to an explosion of joy for a goal",
+     "en": "@Diego la cruza",
+     "duracion": 5,
+     "volumen": 0.5,
+     "fade_out": 2
+    }
+   ]
+  },
+  {
+   "texto": "Dos a cero. Argentina, a la final. Invicta: cinco victorias y un empate. Y un solo nombre en todos los diarios del mundo.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/belgica.mp4",
+     "desde": 362.0,
+     "velocidad": 0.4,
+     "hasta": "@Invicta",
+     "golpe": "2-0",
+     "golpe_sub": "MARADONA · 63'",
+     "golpe_en": 0.4,
+     "local": "Argentina",
+     "visitante": "Bélgica"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_tapa_3481.jpg",
+         "x": 1460.0,
+         "y": 540.0,
+         "alto": 860,
+         "recorte": [
+          716,
+          780,
+          1223,
+          1560
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Y un solo"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "Invicta.",
+         "x": 120,
+         "y": 150,
+         "en": 0.05,
+         "tam": 104,
+         "fondo_tira": true,
+         "sale": "@Y un solo",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "Grupo A · Corea 3-1 · Italia 1-1 · Bulgaria 2-0",
+         "x": 140,
+         "y": 400,
+         "en": 0.25,
+         "tam": 29,
+         "fondo_tira": true,
+         "sale": "@Y un solo",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "OCTAVOS · URUGUAY 1-0",
+         "x": 140,
+         "y": 490,
+         "en": 0.55,
+         "tam": 29,
+         "fondo_tira": true,
+         "sale": "@Y un solo",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CUARTOS · INGLATERRA 2-1",
+         "x": 140,
+         "y": 580,
+         "en": 0.85,
+         "tam": 29,
+         "fondo_tira": true,
+         "sale": "@Y un solo",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "SEMIFINAL · BÉLGICA 2-0",
+         "x": 140,
+         "y": 670,
+         "en": 1.15,
+         "tam": 29,
+         "fondo_tira": true,
+         "sale": "@Y un solo",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "5 VICTORIAS · 1 EMPATE",
+         "x": 140,
+         "y": 790,
+         "en": "@cinco victorias",
+         "tam": 34,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@Y un solo",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EL GRÁFICO · 24/6/1986",
+         "x": 1160,
+         "y": 920,
+         "en": "@Y un solo",
+         "tam": 21,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«No llores\npor mí,\nInglaterra»",
+         "x": 120,
+         "y": 280,
+         "en": "@Y un solo",
+         "tam": 60,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "capitulo": "La final",
+   "visual": [
+    {
+     "tipo": "capitulo",
+     "numero": 8,
+     "titulo": "La final",
+     "total": 9
+    }
+   ],
+   "duracion": 2.4
+  },
+  {
+   "texto": "Veintinueve de junio. Estadio Azteca, otra vez lleno. Enfrente, Alemania Federal, dirigida por Franz Beckenbauer, que en semifinales había eliminado a la Francia de Platini. Rummenigge, Völler, Schumacher... y Lothar Matthäus, con una sola misión: perseguir a Maradona por toda la cancha.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 44.5,
+     "velocidad": 0.5,
+     "hasta": "@Enfrente",
+     "golpe": "ARG-ALE",
+     "golpe_sub": "FINAL · 29 DE JUNIO · AZTECA",
+     "golpe_en": 0.4
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/retratos/caras/beckenbauer.png",
+         "x": 390.0,
+         "y": 510.0,
+         "alto": 500,
+         "recorte": [
+          51,
+          0,
+          378,
+          430
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": 0.05
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "FRANZ BECKENBAUER · DT",
+         "x": 120,
+         "y": 850,
+         "en": 0.2,
+         "tam": 26,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Campeón como\njugador en 1974",
+         "x": 720,
+         "y": 300,
+         "en": 0.3,
+         "tam": 76,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "ELIMINÓ A LA FRANCIA DE PLATINI",
+         "x": 740,
+         "y": 600,
+         "en": "@que en semifinales",
+         "tam": 26,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@Rummenigge"
+    },
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 115.0,
+     "velocidad": 0.5,
+     "hasta": "@y Lothar"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/retratos/caras/matthaus.png",
+         "x": 390.0,
+         "y": 510.0,
+         "alto": 500,
+         "recorte": [
+          51,
+          0,
+          378,
+          430
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": 0.05
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "LOTHAR MATTHÄUS · Nº 8",
+         "x": 120,
+         "y": 850,
+         "en": 0.2,
+         "tam": 26,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Misión:\nperseguir\na Diego",
+         "x": 720,
+         "y": 260,
+         "en": 0.3,
+         "tam": 96,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Bilardo salió con los de siempre. Pumpido al arco. Atrás, Cuciuffo, Brown y Ruggeri. En el medio, Giusti, Batista, Enrique y Olarticoechea. Arriba, Burruchaga, Valdano... y Diego.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/retratos/caras/pumpido.png",
+         "x": 200.0,
+         "y": 520.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@Pumpido",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/cuciuffo.png",
+         "x": 560.0,
+         "y": 240.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Cuciuffo",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/brown.png",
+         "x": 560.0,
+         "y": 520.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Brown",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/ruggeri.png",
+         "x": 560.0,
+         "y": 800.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Ruggeri",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/giusti.png",
+         "x": 940.0,
+         "y": 150.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@Giusti",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/batista.png",
+         "x": 940.0,
+         "y": 400.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Batista",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/enrique.png",
+         "x": 940.0,
+         "y": 650.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Enrique",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/olarticoechea.png",
+         "x": 940.0,
+         "y": 900.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Olarticoechea",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/burruchaga.png",
+         "x": 1320.0,
+         "y": 370.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@Burruchaga",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/valdano.png",
+         "x": 1320.0,
+         "y": 690.0,
+         "alto": 180,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Valdano",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/maradona.png",
+         "x": 1690.0,
+         "y": 510.0,
+         "alto": 220,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Diego",
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "FINAL · 3-5-2",
+         "x": 1560,
+         "y": 60,
+         "en": 0.05,
+         "tam": 26,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "PUMPIDO",
+         "x": 110,
+         "y": 600,
+         "en": "@Pumpido",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CUCIUFFO",
+         "x": 470,
+         "y": 320,
+         "en": "@Cuciuffo",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BROWN",
+         "x": 470,
+         "y": 600,
+         "en": "@Brown",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RUGGERI",
+         "x": 470,
+         "y": 880,
+         "en": "@Ruggeri",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "GIUSTI",
+         "x": 850,
+         "y": 230,
+         "en": "@Giusti",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BATISTA",
+         "x": 850,
+         "y": 480,
+         "en": "@Batista",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "ENRIQUE",
+         "x": 850,
+         "y": 730,
+         "en": "@Enrique",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "OLARTICOECHEA",
+         "x": 850,
+         "y": 980,
+         "en": "@Olarticoechea",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BURRUCHAGA",
+         "x": 1230,
+         "y": 450,
+         "en": "@Burruchaga",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "VALDANO",
+         "x": 1230,
+         "y": 770,
+         "en": "@Valdano",
+         "tam": 20,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "DIEGO",
+         "x": 1580,
+         "y": 610,
+         "en": "@Diego",
+         "tam": 24,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ],
+       "cancha": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Minuto veintitrés: tiro libre de Burruchaga desde la derecha. Schumacher, el arquero, sale a buscarla... y se queda a mitad de camino. Y José Luis Brown, que nunca había hecho un gol con la selección, la cabecea al arco vacío. Uno a cero.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/collage/fin_116.5.png",
+         "x": 540.0,
+         "y": 335.0,
+         "alto": 390,
+         "recorte": [
+          87,
+          150,
+          1832,
+          960
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@tiro libre"
+        },
+        {
+         "archivo": "material/collage/fin_119.5.png",
+         "x": 1400.0,
+         "y": 335.0,
+         "alto": 390,
+         "recorte": [
+          129,
+          150,
+          1790,
+          960
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@sale a buscarla"
+        },
+        {
+         "archivo": "material/retratos/caras/brown.png",
+         "x": 310.0,
+         "y": 790.0,
+         "alto": 380,
+         "recorte": [
+          0,
+          0,
+          330,
+          330
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Y José Luis",
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "ARGENTINA-ALEMANIA · 23'",
+         "x": 120,
+         "y": 60,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "TIRO LIBRE · BURRUCHAGA",
+         "x": 130,
+         "y": 490,
+         "en": "@tiro libre",
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "SCHUMACHER SALE",
+         "x": 1010,
+         "y": 490,
+         "en": "@sale a buscarla",
+         "tam": 23,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "...y se queda.",
+         "x": 1000,
+         "y": 590,
+         "en": "@se queda",
+         "tam": 72,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "JOSÉ LUIS BROWN",
+         "x": 120,
+         "y": 940,
+         "en": "@Y José Luis",
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Su primer gol\ncon la selección",
+         "x": 540,
+         "y": 760,
+         "en": "@que nunca",
+         "tam": 56,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@la cabecea"
+    },
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 116.0,
+     "gol": 121.0,
+     "golpe": "1-0",
+     "golpe_sub": "BROWN · 23'",
+     "golpe_en": "@Uno a cero",
+     "local": "Argentina",
+     "visitante": "Alemania",
+     "fin": 123.8
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd erupting in a goal celebration roar",
+     "en": "@Uno a cero",
+     "duracion": 3.5,
+     "volumen": 0.45,
+     "fade_out": 1.5
+    }
+   ]
+  },
+  {
+   "texto": "En ese mismo partido, Brown se dislocó el hombro. Le hizo un agujero a la camiseta, metió el dedo para sostener el brazo... y siguió jugando. No quería salir de una final del mundo.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/brown.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -0.5,
+         "borde": 10,
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ],
+     "hasta": "@Le hizo"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/brown_camiseta.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Minuto cincuenta y cinco: Enrique para Valdano, que entra solo y la cruza. Dos a cero. Parecía terminado.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 279.0,
+     "gol": 285.0,
+     "golpe": "2-0",
+     "golpe_sub": "VALDANO · 55'",
+     "golpe_en": "@Dos a cero",
+     "local": "Argentina",
+     "visitante": "Alemania",
+     "fin": 286.5
+    },
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 287.0,
+     "velocidad": 0.4,
+     "fin": 288.0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd erupting in a goal celebration roar",
+     "en": "@Dos a cero",
+     "duracion": 3.5,
+     "volumen": 0.45,
+     "fade_out": 1.5
+    }
+   ]
+  },
+  {
+   "texto": "Pero Alemania no se rendía nunca. Dos córners, dos goles. Minuto setenta y cuatro: Rummenigge. Minuto ochenta: Völler. Dos a dos. Y el Azteca... en silencio.",
+   "pausa": 1.0,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 369.0,
+     "gol": 374.5,
+     "golpe": "2-1",
+     "golpe_sub": "RUMMENIGGE · 74'",
+     "golpe_en": "@Rummenigge",
+     "local": "Argentina",
+     "visitante": "Alemania",
+     "fin": 376.0
+    },
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 447.0,
+     "gol": 451.0,
+     "golpe": "2-2",
+     "golpe_sub": "VÖLLER · 80'",
+     "golpe_en": "@Dos a dos",
+     "local": "Argentina",
+     "visitante": "Alemania",
+     "fin": 452.0
+    },
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 376.5,
+     "velocidad": 0.4,
+     "fin": 378.5
+    }
+   ]
+  },
+  {
+   "texto": "Minuto ochenta y cuatro. Maradona, rodeado de alemanes, levanta la cabeza... y mete un pase para Burruchaga. Que corre, corre, con Briegel atrás... y la cruza ante Schumacher. Tres a dos.",
+   "retardo": 1.0,
+   "visual": [
+    {
+     "archivo": "salida/graficos/iv_burru.mp4",
+     "desde": 0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd roar rising to an explosion of joy for a goal",
+     "en": "@Tres a dos",
+     "duracion": 5,
+     "volumen": 0.55,
+     "fade_out": 2
+    }
+   ]
+  },
+  {
+   "texto": "Mirá el pase. Diego tiene tres alemanes encima, en el círculo central. Levanta la cabeza una vez. Y la pone adelante de Burruchaga, cuarenta metros, con un solo toque. Briegel corre, pero no llega. El mejor jugador del mundo, en el minuto ochenta y cuatro de una final... hizo lo más simple.",
+   "pausa": 1.0,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/collage/fin_465.5.png",
+         "x": 540.0,
+         "y": 340.0,
+         "alto": 400,
+         "recorte": [
+          109,
+          150,
+          1810,
+          960
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Mirá el pase"
+        },
+        {
+         "archivo": "material/collage/fin_467.png",
+         "x": 1400.0,
+         "y": 340.0,
+         "alto": 400,
+         "recorte": [
+          150,
+          150,
+          1770,
+          960
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Levanta"
+        },
+        {
+         "archivo": "material/collage/fin_469.png",
+         "x": 540.0,
+         "y": 800.0,
+         "alto": 400,
+         "recorte": [
+          109,
+          150,
+          1810,
+          960
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@cuarenta metros"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "ARGENTINA-ALEMANIA · 84'",
+         "x": 120,
+         "y": 60,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "3 ALEMANES ENCIMA",
+         "x": 130,
+         "y": 500,
+         "en": "@tres alemanes",
+         "tam": 24,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "LEVANTA LA CABEZA · UNA VEZ",
+         "x": 1010,
+         "y": 500,
+         "en": "@Levanta",
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "40 METROS · UN TOQUE",
+         "x": 130,
+         "y": 960,
+         "en": "@cuarenta metros",
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BRIEGEL NO LLEGA",
+         "x": 680,
+         "y": 640,
+         "en": "@Briegel",
+         "tam": 23,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Lo más\nsimple.",
+         "x": 1060,
+         "y": 640,
+         "en": "@hizo lo más",
+         "tam": 104,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "tense heartbeat pulse, low cinematic",
+     "en": 0,
+     "duracion": 8,
+     "volumen": 0.25,
+     "fade_out": 1.0
+    }
+   ]
+  },
+  {
+   "texto": "Seis minutos después, el árbitro brasileño Romualdo Arppi Filho termina el partido. Argentina es campeón del mundo.",
+   "pausa": 0.8,
+   "visual": [
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 482.0,
+     "velocidad": 0.4,
+     "hasta": "@Argentina es",
+     "fin": 485.8
+    },
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 474.0,
+     "velocidad": 0.4,
+     "golpe": "3-2",
+     "golpe_sub": "ARGENTINA CAMPEÓN DEL MUNDO",
+     "golpe_en": "@campeón",
+     "local": "Argentina",
+     "visitante": "Alemania",
+     "fin": 477.0,
+     "golpe_estilo": "fantasma",
+     "foco": [
+      0.5,
+      0.45
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "referee final whistle three blows then huge stadium crowd celebration",
+     "en": "@termina",
+     "duracion": 5,
+     "volumen": 0.5,
+     "fade_out": 2
+    }
+   ]
+  },
+  {
+   "texto": "",
+   "duracion": 18.0,
+   "sfx": [
+    {
+     "prompt": "huge stadium crowd celebrating a world cup win, cheering and chanting, 1980s",
+     "en": 0,
+     "duracion": 18,
+     "volumen": 0.35,
+     "fade_in": 1.0,
+     "fade_out": 3.0
+    }
+   ],
+   "visual": [
+    {
+     "archivo": "material/fuentes/final_completo.mp4",
+     "desde": 5857.5,
+     "velocidad": 0.6,
+     "duracion": 2.6
+    },
+    {
+     "archivo": "material/fuentes/final_completo.mp4",
+     "desde": 5866.0,
+     "velocidad": 0.6,
+     "duracion": 2.6
+    },
+    {
+     "archivo": "material/fuentes/final_completo.mp4",
+     "desde": 5871.0,
+     "duracion": 2.4
+    },
+    {
+     "archivo": "material/fuentes/final_completo.mp4",
+     "desde": 5890.0,
+     "velocidad": 0.7,
+     "duracion": 2.4
+    },
+    {
+     "archivo": "material/fuentes/final_completo.mp4",
+     "desde": 5940.0,
+     "velocidad": 0.6,
+     "duracion": 3.0
+    },
+    {
+     "archivo": "material/fuentes/final_completo.mp4",
+     "desde": 5926.0,
+     "velocidad": 0.7,
+     "duracion": 2.4
+    },
+    {
+     "archivo": "material/fuentes/final_completo.mp4",
+     "desde": 5930.0,
+     "velocidad": 0.7
+    }
+   ]
+  },
+  {
+   "capitulo": "El Mundial de Diego",
+   "visual": [
+    {
+     "tipo": "capitulo",
+     "numero": 9,
+     "titulo": "El Mundial de Diego",
+     "total": 9
+    }
+   ],
+   "duracion": 2.4
+  },
+  {
+   "texto": "Diego levanta la copa en el Azteca. Cinco goles, cinco asistencias... y el Balón de Oro del torneo. Nunca un jugador había ganado un Mundial tan solo. Y nunca volvió a pasar.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/final.mp4",
+     "desde": 528.0,
+     "velocidad": 0.5,
+     "hasta": "@Cinco goles"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_levanta_copa.jpg",
+         "x": 1500.0,
+         "y": 550.0,
+         "alto": 860,
+         "recorte": [
+          0,
+          61,
+          375,
+          681
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": 0.3,
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "MARADONA EN MÉXICO 86",
+         "x": 120,
+         "y": 130,
+         "en": 0.05,
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "5 goles\n5 asistencias",
+         "x": 120,
+         "y": 230,
+         "en": 0.15,
+         "tam": 104,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BALÓN DE ORO DEL MUNDIAL",
+         "x": 140,
+         "y": 620,
+         "en": "@y el Balón",
+         "tam": 34,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@Nunca un"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/diego_copa_espalda.png",
+         "x": 960,
+         "y": 540,
+         "alto": 880,
+         "rot": -1,
+         "borde": 10,
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 560,
+         "zoom": 1.0
+        },
+        {
+         "t": "@Y nunca volvió",
+         "x": 960,
+         "y": 470,
+         "zoom": 1.25
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Unos minutos después, todavía en el Azteca, Diego salió al aire en una radio argentina. Del otro lado de la línea, en Buenos Aires, estaba su mamá: doña Tota.",
+   "pausa": 0.3,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/maradona_copa2.jpg",
+         "x": 540,
+         "y": 430,
+         "alto": 660,
+         "rot": -1.5,
+         "borde": 10,
+         "recorte": [
+          60,
+          0,
+          660,
+          760
+         ]
+        },
+        {
+         "archivo": "material/tota_diario.jpg",
+         "x": 1380,
+         "y": 430,
+         "alto": 660,
+         "rot": 1.5,
+         "borde": 10,
+         "recorte": [
+          700,
+          0,
+          1200,
+          675
+         ]
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 640,
+         "y": 480,
+         "zoom": 1.35
+        },
+        {
+         "t": "@Del otro lado",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@doña Tota",
+         "x": 1200,
+         "y": 500,
+         "zoom": 1.2
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "ESTADIO AZTECA · MÉXICO",
+         "x": 330,
+         "y": 790,
+         "en": 0.3,
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BUENOS AIRES",
+         "x": 1290,
+         "y": 790,
+         "en": "@en Buenos Aires",
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          790,
+          260
+         ],
+         "hasta": [
+          1130,
+          260
+         ],
+         "rojo": true,
+         "en": "@Del otro lado",
+         "dibujo": 1.2,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "old telephone line hiss and click, analog radio static, 1980s",
+     "en": "@Del otro lado",
+     "duracion": 3,
+     "volumen": 0.25,
+     "fade_out": 1.0
+    }
+   ]
+  },
+  {
+   "texto": "",
+   "duracion": 21.0,
+   "sfx": [
+    {
+     "archivo": "material/fuentes/llamada_tota.mp4",
+     "desde": 86.4,
+     "duracion": 20.8,
+     "en": 0,
+     "volumen": 1.0,
+     "fade_in": 0.2,
+     "fade_out": 0.6
+    }
+   ],
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/maradona_copa2.jpg",
+         "x": 540,
+         "y": 430,
+         "alto": 660,
+         "rot": -1.5,
+         "borde": 10,
+         "recorte": [
+          60,
+          0,
+          660,
+          760
+         ]
+        },
+        {
+         "archivo": "material/tota_diario.jpg",
+         "x": 1380,
+         "y": 430,
+         "alto": 660,
+         "rot": 1.5,
+         "borde": 10,
+         "recorte": [
+          700,
+          0,
+          1200,
+          675
+         ]
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 800,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 2.8,
+         "x": 800,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 3.4,
+         "x": 1120,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 5.7,
+         "x": 1120,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 6.3,
+         "x": 800,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 7.4,
+         "x": 800,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 8.0,
+         "x": 1120,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 15.5,
+         "x": 1120,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 16.1,
+         "x": 800,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 17.7,
+         "x": 800,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 18.3,
+         "x": 1120,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 19.5,
+         "x": 1120,
+         "y": 500,
+         "zoom": 1.12
+        },
+        {
+         "t": 20.8,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "ESTADIO AZTECA · MÉXICO",
+         "x": 330,
+         "y": 790,
+         "en": 0,
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BUENOS AIRES",
+         "x": 1290,
+         "y": 790,
+         "en": 0,
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          790,
+          260
+         ],
+         "hasta": [
+          1130,
+          260
+         ],
+         "rojo": true,
+         "en": 0,
+         "dibujo": 0.01,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "—Hola, mamita. ¿Cómo estás, mamá?",
+         "x": 150,
+         "y": 900,
+         "en": 0.1,
+         "tam": 34,
+         "fondo_tira": true,
+         "sale": 3.3
+        },
+        {
+         "tipo": "maquina",
+         "texto": "—Mi vida.",
+         "x": 1030,
+         "y": 900,
+         "en": 3.4,
+         "tam": 34,
+         "fondo_tira": true,
+         "sale": 6.2
+        },
+        {
+         "tipo": "maquina",
+         "texto": "—Te quiero mucho, mamá.",
+         "x": 150,
+         "y": 900,
+         "en": 6.3,
+         "tam": 34,
+         "fondo_tira": true,
+         "sale": 7.9
+        },
+        {
+         "tipo": "maquina",
+         "texto": "—También, mi amor. Andá, descansá,\n mi hijo, que me hiciste la madre\n más feliz del mundo hoy.",
+         "x": 1030,
+         "y": 900,
+         "en": 8.0,
+         "tam": 34,
+         "fondo_tira": true,
+         "sale": 16.0
+        },
+        {
+         "tipo": "maquina",
+         "texto": "—Yo juego para vos, mamá.",
+         "x": 150,
+         "y": 900,
+         "en": 16.1,
+         "tam": 34,
+         "fondo_tira": true,
+         "sale": 18.2
+        },
+        {
+         "tipo": "maquina",
+         "texto": "—Sí, mi amor.",
+         "x": 1030,
+         "y": 900,
+         "en": 18.3,
+         "tam": 34,
+         "fondo_tira": true,
+         "sale": 20.8
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Cuando volvieron a Buenos Aires, la gente los esperaba en Ezeiza, en las rutas, en las calles. Salieron al balcón de la Casa Rosada... y Diego levantó la copa frente a una Plaza de Mayo repleta. Esa noche, el país entero salió a festejar.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/festejo_avion.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -0.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ],
+     "hasta": "@la gente"
+    },
+    {
+     "archivo": "material/fuentes/casa_rosada.mp4",
+     "desde": 80.0,
+     "hasta": "@en las calles"
+    },
+    {
+     "archivo": "material/fuentes/festejo1986.mp4",
+     "desde": 19.5,
+     "hasta": "@Salieron"
+    },
+    {
+     "archivo": "material/fuentes/casa_rosada.mp4",
+     "desde": 160.0,
+     "hasta": "@y Diego"
+    },
+    {
+     "archivo": "material/fuentes/casa_rosada.mp4",
+     "desde": 400.0,
+     "hasta": "@Plaza de Mayo"
+    },
+    {
+     "archivo": "material/fuentes/casa_rosada.mp4",
+     "desde": 420.0,
+     "hasta": "@Esa noche"
+    },
+    {
+     "archivo": "material/fuentes/casa_rosada.mp4",
+     "desde": 180.0,
+     "hasta": "@salió a festejar"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/balcon.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Bilardo, el que todos querían echar, era campeón del mundo. Con el equipo feo. Con el que no le ganaba a nadie.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/bilardo.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ],
+     "hasta": "@Con el equipo"
+    },
+    {
+     "archivo": "material/fuentes/final_completo.mp4",
+     "desde": 5950.0,
+     "velocidad": 0.6,
+     "hasta": "@Con el que"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/bilardo_valdano.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -0.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "¿Y la camiseta azul, la que compraron en un negocio del DF? Después del partido, Diego la cambió con Steve Hodge, el inglés del despeje. Hodge la guardó treinta y seis años. En dos mil veintidós la subastó... por más de nueve millones de dólares. La camiseta más cara de la historia del deporte.",
+   "visual": [
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 239.0,
+     "velocidad": 0.35,
+     "hasta": "@Después del partido",
+     "fin": 242.6
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/hodge_camiseta.jpg",
+         "x": 420.0,
+         "y": 510.0,
+         "alto": 700,
+         "recorte": [
+          0,
+          88,
+          411,
+          601
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Después del partido",
+         "sale": "@En dos mil",
+         "trama": 5
+        },
+        {
+         "archivo": "material/nfm_manchester.jpg",
+         "x": 1280.0,
+         "y": 510.0,
+         "alto": 620,
+         "recorte": [
+          0,
+          22,
+          3800,
+          2378
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Hodge la guardó",
+         "sale": "@En dos mil"
+        },
+        {
+         "archivo": "material/sothebys.jpg",
+         "x": 440.0,
+         "y": 530.0,
+         "alto": 820,
+         "recorte": [
+          23,
+          0,
+          1920,
+          2592
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@En dos mil"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "STEVE HODGE",
+         "x": 120,
+         "y": 880,
+         "en": "@Steve Hodge",
+         "tam": 28,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@En dos mil",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "La cambió con\nun inglés.",
+         "x": 780,
+         "y": 240,
+         "en": "@Después del partido",
+         "tam": 80,
+         "fondo_tira": true,
+         "sale": "@Hodge la guardó",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "NATIONAL FOOTBALL MUSEUM · MANCHESTER",
+         "x": 790,
+         "y": 850,
+         "en": "@Hodge la guardó",
+         "tam": 21,
+         "fondo_tira": true,
+         "sale": "@En dos mil",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "36 años",
+         "x": 800,
+         "y": 80,
+         "en": "@treinta y seis",
+         "tam": 80,
+         "fondo_tira": true,
+         "sale": "@En dos mil",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "SOTHEBY'S · LONDRES · 4/5/2022",
+         "x": 120,
+         "y": 900,
+         "en": "@En dos mil",
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "US$ 9,3\nmillones",
+         "x": 820,
+         "y": 250,
+         "en": "@por más de",
+         "tam": 128,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "£7.142.500",
+         "x": 840,
+         "y": 650,
+         "en": "@por más de",
+         "tam": 34,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RÉCORD PARA UN OBJETO DEPORTIVO (2022)",
+         "x": 840,
+         "y": 740,
+         "en": "@La camiseta",
+         "tam": 26,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/hodge_camiseta.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -1,
+         "borde": 10,
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ],
+     "duracion": 3.0
+    }
+   ],
+   "pausa": 1.0
+  },
+  {
+   "texto": "Y un dato más. Daniel Passarella, el capitán del setenta y ocho, el que no pudo jugar ni un minuto en México, también era parte de ese plantel. Así se convirtió en el único argentino con dos medallas de campeón del mundo. Por eso, durante treinta y seis años, en la Argentina se repitió una frase: hay cuarenta y cuatro medallas de campeón del mundo... para cuarenta y tres jugadores.",
+   "pausa": 0.9,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/diego_passarella_sombreros.jpg",
+         "x": 1380,
+         "y": 520,
+         "alto": 900,
+         "rot": 1.2,
+         "borde": 10,
+         "trama": 5,
+         "recorte": [
+          1060,
+          240,
+          1760,
+          1500
+         ]
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "1978 · CAMPEÓN, CAPITÁN",
+         "x": 140,
+         "y": 330,
+         "en": "@el capitán",
+         "tam": 34,
+         "fondo_tira": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1986 · CAMPEÓN, SIN JUGAR",
+         "x": 140,
+         "y": 420,
+         "en": "@ni un minuto",
+         "tam": 34,
+         "fondo_tira": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "2 medallas.",
+         "x": 130,
+         "y": 560,
+         "en": "@dos medallas",
+         "tam": 120,
+         "rojo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@Por eso"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "negro",
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@para cuarenta",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.06
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "1978 + 1986",
+         "x": 170,
+         "y": 250,
+         "en": "@una frase",
+         "tam": 36,
+         "claro": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "44 medallas",
+         "x": 160,
+         "y": 340,
+         "en": "@hay cuarenta",
+         "tam": 150,
+         "claro": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "para 43 jugadores.",
+         "x": 160,
+         "y": 520,
+         "en": "@para cuarenta",
+         "tam": 150,
+         "rojo": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "texto": "Pasaron cuarenta años. Argentina volvió a ser campeona en Qatar, con Messi. Pero México ochenta y seis... siempre va a ser el Mundial de Diego. El de la mano. El del gol. El de los cuatro minutos.",
+   "pausa": 1.0,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_tapa_3482.jpg",
+         "x": 1460.0,
+         "y": 540.0,
+         "alto": 860,
+         "recorte": [
+          685,
+          980,
+          1336,
+          1914
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": 0.3
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "Pasaron\n40 años.",
+         "x": 120,
+         "y": 160,
+         "en": "@Pasaron",
+         "tam": 96,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1978 · ARGENTINA",
+         "x": 140,
+         "y": 520,
+         "en": "@Pasaron",
+         "tam": 31,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1986 · MÉXICO",
+         "x": 140,
+         "y": 600,
+         "en": "@Argentina volvió",
+         "tam": 40,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "2022 · QATAR · MESSI",
+         "x": 140,
+         "y": 700,
+         "en": "@en Qatar",
+         "tam": 31,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EL GRÁFICO · 1/7/1986",
+         "x": 1140,
+         "y": 920,
+         "en": 0.4,
+         "tam": 21,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@Pero México"
+    },
+    {
+     "archivo": "material/limpias/inglaterra_fifa.mp4",
+     "desde": 283.0,
+     "velocidad": 0.35,
+     "hasta": "@El de la mano",
+     "fin": 285.5
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/mano_dios.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": 0.8,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ],
+     "hasta": "@El del gol"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eludiendo_shilton.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -0.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ],
+     "hasta": "@El de los cuatro"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/maradona_copa2.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "retardo": 0.5,
+   "pausa": 10.0,
+   "texto": "Si llegaste hasta acá: suscribite, dejá tu like, y contanos en los comentarios cuál es el mejor gol que viste en tu vida. Te leemos.",
+   "visual": [
+    {
+     "tipo": "cierre",
+     "sub": "",
+     "botones": [
+      {
+       "texto": "SUSCRIBITE",
+       "icono": "mas",
+       "click": "SUSCRIPTO",
+       "en": "@suscribite"
+      },
+      {
+       "texto": "LIKE",
+       "icono": "like",
+       "en": "@like"
+      },
+      {
+       "texto": "COMENTÁ",
+       "icono": "comentario",
+       "en": "@comentarios"
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "soft modern UI pop click sound",
+     "en": "@suscribite",
+     "duracion": 0.6,
+     "volumen": 11.0
+    },
+    {
+     "prompt": "soft modern UI pop click sound",
+     "en": "@like",
+     "duracion": 0.6,
+     "volumen": 11.0
+    },
+    {
+     "prompt": "soft modern UI pop click sound",
+     "en": "@comentarios",
+     "duracion": 0.6,
+     "volumen": 11.0
+    }
+   ]
+  }
+ ]
+}
