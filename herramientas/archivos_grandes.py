@@ -20,7 +20,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LISTA = os.path.join(RAIZ, "archivos_grandes.txt")
 # ignorados que NO van a Drive: secretos, entornos, temporales y fuentes DIN (licencia de Apple, ya están en macOS)
 FUERA = (".env", ".venv/", "venv/", "__pycache__/", "node_modules/", ".DS_Store", "cookies", ".cookies",
-         "/.hyperframes/", "/renders/", "fonts/din-", ".pyc")
+         "/.hyperframes/", "/renders/", "fonts/din-", ".pyc", "herramientas/comfyui/")
 
 
 def drive():
