@@ -33,6 +33,12 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
     rivales en contorno blanco, líneas de cancha dibujadas) para el gol del siglo en la escena 39 (relato de Víctor Hugo,
     `limpias/inglaterra_fifa.mp4` 267.5 + 14 s). Primera prueba automática `salida/prueba_dibujo_gol.mp4`: floja en
     planos abiertos; siguiente paso = puntos a mano por jugador como en JUGADOR.
+  - `herramientas/efecto_anime.py` — ANIME (14/11, gol del siglo): filtro cel + tinta y clase `Cinta` (suciedad VHS: color
+    corrido, grano, rayas, tracking, cortes rotos; `--suciedad 0..1.6`, `--tiempos 2|3`). Prueba `salida/prueba_anime_gol.mp4`.
+  - `herramientas/comfy.py` — mismo pedido con Stable Diffusion local en ComfyUI (`herramientas/comfyui/`, fuera de git; levantar
+    con `herramientas/comfyui/.venv/bin/python herramientas/comfyui/main.py --port 8188 --force-fp16`). `--seguir X,Y` sigue
+    al jugador de azul; `primerplano` hace caras. En el M2 de 16 GB usar `--ancho 512` (más hace swap). Insertos de cara fija:
+    rechazados ("horrible"). Siguiente: video a video en la nube (fal.ai, falta `FAL_KEY` en `.env`).
 - `elevenlabs.musica(prompt, segundos, destino)` — genera música instrumental (ElevenLabs Music) a `musica/`
 - `reports/Retención YouTube documentales fútbol.md` — investigación de reglas de YouTube (hook, ritmo, copyright, IA)
 - `.env` — `ELEVENLABS_API_KEY=...` (no compartir)
