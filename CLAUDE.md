@@ -60,6 +60,20 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
     con `herramientas/comfyui/.venv/bin/python herramientas/comfyui/main.py --port 8188 --force-fp16`). `--seguir X,Y` sigue
     al jugador de azul; `primerplano` hace caras. En el M2 de 16 GB usar `--ancho 512` (más hace swap). Insertos de cara fija:
     rechazados ("horrible"). Siguiente: video a video en la nube (fal.ai, falta `FAL_KEY` en `.env`).
+- **CARPETA (16/11)** `herramientas/carpeta.py`: collage analógico estilo carpeta escolar (recortes a tijera con borde suave,
+  texturas de `identidad/texturas/` hechas con Higgsfield, todo se apila sobre lo anterior, sello, tiza, VHS). Intro de Argentina 86:
+  `/usr/bin/python3 herramientas/carpeta.py 1986 proyectos/argentina-1986/salida/graficos/intro_1986.mp4 --capas`.
+  **Entrega por CAPAS en FilmCraft** (pedido del usuario): `--capas` deja `<salida>_capas/` (una capa ProRes 4444 por elemento,
+  `capas.json`, `sonidos/`) y `filmcraft.py capas <carpeta>` arma el .fcproj (una pista por elemento, voz, cada efecto suelto).
+  Ante un cambio, rehacer SOLO esa capa: `--solo valderrama,pique`. Versiones nuevas del .fcproj (`_b`, `_c`...), nunca pisar.
+  Estado: tramo 1 de la intro hecho (VHS → sello 1986 → pila 80s → "el fútbol no se quedaba atrás": ola, Valderrama, Pique,
+  roja de Batista "56 SEG"), preview `intro_1986_b_preview.mp4`, proyecto `intro_1986_capas_b.fcproj`. Siguiente: afiches/XIII.
+- **Sonidos libres** `herramientas/sonidos.py buscar|bajar` (Openverse, solo CC0 por defecto, crédito a creditos.txt) →
+  `material/sonidos/`. Ubicación fina con la skill **real-sfx** (Clipwing, en ~/.claude/skills; hoja de cues de la intro en
+  `salida/graficos/intro_1986.cues_realsfx.json`; `mix.py --voice-safe --export-clips <capas>/sonidos`) y **earshot**
+  (`uv tool install`, para "escuchar"). En otra compu: reinstalar ambas (github.com/Clipwing/skills, github.com/Leonxlnx/earshot),
+  `setup.py init --library main=<material/sonidos> --index`, y `herramientas/.venv` con `uv venv --python 3.11` +
+  `uv pip install ddgs pillow numpy scipy "rembg[cpu,cli]" filetype` (rembg = recortes gratis, sin créditos de Higgsfield).
 - `elevenlabs.musica(prompt, segundos, destino)` — genera música instrumental (ElevenLabs Music) a `musica/`
 - `reports/Retención YouTube documentales fútbol.md` — investigación de reglas de YouTube (hook, ritmo, copyright, IA)
 - `.env` — `ELEVENLABS_API_KEY=...` (no compartir)

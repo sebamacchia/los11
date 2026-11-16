@@ -12,6 +12,9 @@ Lo que queda en el proyecto (.fcproj en salida/):
 FilmCraft no hace el "ducking" que hace armar.py (bajar la música cuando habla el narrador): la música
 entra más baja y se puede ajustar en la pista A4.
 
+Piezas animadas por capas (carpeta.py --capas): python3 herramientas/filmcraft.py capas <salida>_capas
+  -> una pista por elemento, voz y cada efecto suelto (ver capas()).
+
 No pisa un .fcproj que ya existe (puede tener tus cambios): para rehacerlo, pasá --forzar.
 """
 import json
@@ -129,9 +132,72 @@ def exportar(linea_json, destino, forzar=False):
     return destino
 
 
+def capas(carpeta, destino=None, forzar=False):
+    """Pieza animada por capas (carpeta.py --capas) -> .fcproj: V1 fondo, una pista de video por elemento (en el orden
+    en que se apilan, cada clip arranca cuando entra), arriba el VHS; A1 la voz, A2... cada efecto como clip suelto
+    (sonidos/sfx_clips.json de real-sfx). Para cambiar algo se rehace SOLO esa capa con el mismo nombre de archivo."""
+    carpeta = Path(carpeta).resolve()
+    d = json.loads((carpeta / "capas.json").read_text())
+    destino = Path(destino or carpeta.with_suffix(".fcproj")).resolve()
+    if destino.exists() and not forzar:
+        print(f"  {destino.name} ya existe (puede tener tus cambios): no lo toco. Usá --forzar para rehacerlo.")
+        return destino
+    sfx_json = carpeta / "sonidos" / "sfx_clips.json"
+    sfx = json.loads(sfx_json.read_text()) if sfx_json.exists() else []
+    voz = d.get("voz")
+    videos = [carpeta / d["fondo"]] + [carpeta / c["archivo"] for c in d["capas"]] + \
+             ([carpeta / d["vhs"]] if d.get("vhs") else [])
+    audios = ([voz["archivo"]] if voz else []) + [str(carpeta / "sonidos" / x["file"]) for x in sfx]
+    medios = [str(v) for v in videos] + audios
+    carriles = 1 + max([x["lane"] for x in sfx] or [0])
+    res = _run([{"id": "file.import", "params": {"paths": medios}},
+                {"id": "file.newSequence", "params": {"name": destino.stem, "width": 1920, "height": 1080,
+                                                      "fps": d["fps"], "video": len(videos),
+                                                      "audio": 1 + carriles}}], guardar=destino)
+    if res[0]["errors"]:
+        raise SystemExit(f"FilmCraft no pudo importar: {res[0]['errors']}")
+    item = dict(zip(medios, res[0]["items"]))
+    pasos, nombres = [], []
+
+    def poner(archivo, pista, inicio, dur=None, video=True, nombre=None):
+        p = {"item": item[str(archivo)], "track": pista, "seconds": round(inicio, 4), "insert": False}
+        p["audio" if video else "video"] = False
+        if dur is not None:
+            p["duration"] = {"seconds": round(dur, 4)}
+        pasos.append({"id": "timeline.place", "params": p})
+        nombres.append(nombre)
+
+    poner(videos[0], "V1", 0, d["duracion"], nombre="fondo")
+    for n, c in enumerate(d["capas"], 2):
+        poner(carpeta / c["archivo"], f"V{n}", c["inicio"], nombre=c["nombre"])
+    if d.get("vhs"):
+        poner(carpeta / d["vhs"], f"V{len(videos)}", 0, nombre="vhs_play")
+    if voz:
+        poner(voz["archivo"], "A1", voz["inicio"], video=False, nombre="voz")
+    for x in sfx:
+        poner(carpeta / "sonidos" / x["file"], f"A{2 + x['lane']}", x["start"], video=False,
+              nombre=f"{x['label']} ({Path(x['source_file']).stem})")
+    pistas = [("V1", "fondo")] + [(f"V{n}", c["nombre"]) for n, c in enumerate(d["capas"], 2)] + \
+             ([(f"V{len(videos)}", "vhs")] if d.get("vhs") else []) + [("A1", "Voz")] + \
+             [(f"A{2 + i}", f"Efectos {i + 1}") for i in range(carriles)]
+    for pista, nombre in pistas:
+        pasos.append({"id": "timeline.setTrack", "params": {"track": pista, "name": nombre}})
+        nombres.append(None)
+    res = _run(pasos, proyecto=destino, guardar=destino)
+    ren = [{"id": "clip.rename", "params": {"clips": r["clips"], "name": n}}
+           for r, n in zip(res, nombres) if n and r and r.get("clips")]
+    if ren:
+        _run(ren, proyecto=destino, guardar=destino)
+    print(f"  {destino.name}: {len(videos)} capas de video, voz y {len(sfx)} efectos sueltos")
+    return destino
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         raise SystemExit(__doc__)
+    if sys.argv[1] == "capas":       # filmcraft.py capas <carpeta>_capas [--forzar]
+        print(capas(sys.argv[2], forzar="--forzar" in sys.argv))
+        raise SystemExit
     proyecto = Path(sys.argv[1]).resolve()
     guion = json.loads((proyecto / "guion.json").read_text())
     print(exportar(proyecto / "tmp" / "linea.json",
