@@ -1104,6 +1104,7 @@
 0	proyectos/argentina-1986/salida/graficos/.intro_1986_capas_b.fcproj.lock
 70375	proyectos/argentina-1986/salida/graficos/Auto-Save/intro_1986_capas-2026-11-16_16-52-42-1794865962.fcproj
 70377	proyectos/argentina-1986/salida/graficos/Auto-Save/intro_1986_capas-2026-11-16_16-57-42-1794866262.fcproj
+70377	proyectos/argentina-1986/salida/graficos/Auto-Save/intro_1986_capas-2026-11-16_17-07-42-1794866862.fcproj
 5488	proyectos/argentina-1986/salida/graficos/intro_1986.cues_realsfx.json
 84340643	proyectos/argentina-1986/salida/graficos/intro_1986.mp4
 3397	proyectos/argentina-1986/salida/graficos/intro_1986.sonidos.json
