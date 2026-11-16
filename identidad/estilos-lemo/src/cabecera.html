@@ -1,0 +1,112 @@
+<title>Estilos LOS 11</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Anton&family=Bebas+Neue&family=Special+Elite&family=Permanent+Marker&family=Bangers&family=Monoton&family=Limelight&family=Space+Mono:wght@400;700&family=Rubik+Mono+One&family=VT323&family=Press+Start+2P&family=Caveat:wght@500;700&family=UnifrakturMaguntia&family=Michroma&family=Fredoka:wght@500;700&family=Cinzel:wght@600&display=swap">
+<style>
+/* Layout: sala de edición — reproductor y ficha arriba, el catálogo de 99 abajo, filtrable por familia */
+:root {
+  --bg: #eceee9; --panel: #f8f9f6; --fg: #17201b; --muted: #5c6a62; --line: #c9d0ca;
+  --accent: #1f6b4a; --rojo: #c8352a; --ink: #0d1310;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e1411; --panel: #161e1a; --fg: #e4eae6; --muted: #93a39a; --line: #2b3832;
+  --accent: #5fbf8f; --rojo: #ef6b5d; --ink: #000; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0e1411; --panel: #161e1a; --fg: #e4eae6; --muted: #93a39a; --line: #2b3832;
+  --accent: #5fbf8f; --rojo: #ef6b5d; --ink: #000; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 48px }
+.wrap { max-width: 1360px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px }
+header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; border-bottom: 1px solid var(--line); padding-bottom: 14px }
+h1 { font-family: var(--mono); font-size: 15px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin: 0 }
+h1 b { color: var(--rojo) }
+header p { margin: 0; color: var(--muted); max-width: 64ch; font-size: 14px }
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 22px; align-items: start }
+@media (max-width: 1000px) { .main { grid-template-columns: minmax(0, 1fr) } }
+.stage { display: flex; flex-direction: column; gap: 12px; min-width: 0 }
+.screen { background: var(--ink); border-radius: 4px; overflow: hidden; aspect-ratio: 16/9; max-width: 100%; position: relative }
+.screen canvas { width: 100%; height: 100%; display: block }
+.controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap }
+button { font-family: var(--mono); font-size: 13px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); border-radius: 3px; padding: 7px 12px; cursor: pointer; min-width: 44px }
+button:hover { border-color: var(--accent) }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+#play { background: var(--fg); color: var(--bg); border-color: var(--fg); min-width: 96px }
+#scrub { flex: 1 1 200px; accent-color: var(--rojo); min-width: 0 }
+.tiempo { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 96px; text-align: right }
+.ficha { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; min-width: 0 }
+.ficha h2 { margin: 0; font-size: 22px; font-weight: 600; text-wrap: balance; line-height: 1.2 }
+.slug { font-family: var(--mono); font-size: 12px; color: var(--muted) }
+.ficha h3 { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 12px 0 2px; font-weight: 600 }
+.ficha p { margin: 0 }
+.uso { border-left: 3px solid var(--rojo); padding-left: 12px }
+.nav { display: flex; gap: 8px; margin-top: 10px }
+.nav button { flex: 1 }
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px }
+label { display: flex; flex-direction: column; gap: 3px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); min-width: 0 }
+label.ancho { grid-column: 1 / -1 }
+input { font-family: var(--sans); font-size: 14px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--fg); min-width: 0; width: 100% }
+.catalogo { display: flex; flex-direction: column; gap: 14px }
+.catalogo h2 { font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin: 0 }
+.filtros { display: flex; flex-wrap: wrap; gap: 6px }
+.filtros button { font-size: 12px; padding: 5px 10px; min-width: 0 }
+.filtros button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg) }
+.filtros span { opacity: .6; margin-left: 4px }
+.grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 10px }
+.grilla button { display: flex; flex-direction: column; gap: 4px; padding: 5px; text-align: left; font-family: var(--sans); font-size: 13px; font-weight: 500; line-height: 1.3 }
+.grilla button[aria-current="true"] { border-color: var(--rojo); box-shadow: inset 0 0 0 1px var(--rojo) }
+.grilla canvas { width: 100%; aspect-ratio: 16/9; display: block; border-radius: 2px; background: var(--ink) }
+.grilla small { font-family: var(--mono); font-size: 10.5px; color: var(--muted); font-weight: 400 }
+.pie { color: var(--muted); font-size: 13px; max-width: 80ch }
+.pie a { color: var(--accent) }
+body.hoja .wrap > *:not(.catalogo) { display: none }
+body.hoja .grilla { grid-template-columns: repeat(4, 340px) }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>LOS 11 <b>·</b> Estilos de animación</h1>
+    <p>Los 99 estilos del catálogo lemo-opuscar, hechos con material de Argentina 86 y animados en vivo en el navegador. Cambiá los textos y mirá cómo los toma cada uno.</p>
+  </header>
+
+  <div class="main">
+    <section class="stage" aria-label="Reproductor">
+      <div class="screen"><canvas id="cv" width="1440" height="810" aria-label="Muestra animada del estilo"></canvas></div>
+      <div class="controls">
+        <button id="play" type="button">▶ Play</button>
+        <input id="scrub" type="range" min="0" max="8" step="0.01" value="0" aria-label="Tiempo">
+        <span class="tiempo" id="tiempo">0.0 / 8.0 s</span>
+        <button id="vel" type="button" title="Velocidad">1×</button>
+      </div>
+    </section>
+    <aside class="ficha">
+      <h2 id="nombre">—</h2>
+      <div class="slug" id="slug"></div>
+      <h3>Qué es</h3>
+      <p id="que"></p>
+      <h3>Dónde lo usaríamos</h3>
+      <p class="uso" id="uso"></p>
+      <div class="nav"><button id="ant" type="button">← Anterior</button><button id="sig" type="button">Siguiente →</button></div>
+      <h3>Probá con tu texto</h3>
+      <form id="textos" autocomplete="off">
+        <label class="ancho" for="t-nombre">Nombre<input id="t-nombre" value="Diego Armando Maradona"></label>
+        <label class="ancho" for="t-titulo">Título<input id="t-titulo" value="El pase más caro de la historia"></label>
+        <label for="t-cifra">Cifra<input id="t-cifra" value="US$ 7.500.000"></label>
+        <label for="t-anio">Año<input id="t-anio" value="1984" inputmode="numeric"></label>
+      </form>
+    </aside>
+  </div>
+
+  <section class="catalogo">
+    <h2 id="cuenta">Catálogo</h2>
+    <div class="filtros" id="filtros"></div>
+    <div class="grilla" id="grilla"></div>
+  </section>
+
+  <p class="pie">Basado en el catálogo de estilos de <a href="https://lemomo-ai.github.io/lemo-opuscar/" target="_blank" rel="noopener">lemo-opuscar</a>. Cada muestra está programada de cero para LOS 11, sin copiar su código de estilos ni sus textos.</p>
+</div>
+
+<video id="vid" src="img/jugada.mp4" muted playsinline preload="auto" hidden></video>

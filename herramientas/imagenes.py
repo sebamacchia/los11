@@ -71,7 +71,13 @@ def _bajar(r):
 
 def buscar(proyecto, consulta, n=40, minimo=0):
     from ddgs import DDGS
-    res = DDGS().images(consulta, max_results=int(n) * 2)
+    res = []
+    for backend in ("auto", "bing"):  # DuckDuckGo a veces corta ("No results found"): probar Bing
+        try:
+            res = DDGS().images(consulta, max_results=int(n) * 2, backend=backend)
+            break
+        except Exception as e:
+            print(f"  ({backend}: {e})")
     res = [r for r in res if min(int(r.get("width") or 0), int(r.get("height") or 0)) >= minimo][: int(n)]
     carpeta = Path(proyecto) / "material" / "candidatas" / slug(consulta)
     carpeta.mkdir(parents=True, exist_ok=True)

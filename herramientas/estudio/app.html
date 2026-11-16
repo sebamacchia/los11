@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estudio LOS 11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--FUENTES-->
+<style>
+:root {
+  --bg: #0c120e; --panel: #131c16; --panel2: #18241c; --fg: #e6ece7; --muted: #8fa097; --line: #26352b;
+  --accent: #7ab37a; --rojo: #e0483a; --ink: #000;
+  --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box }
+html, body { margin: 0; height: 100% }
+body { background: var(--bg); color: var(--fg); font: 14px/1.45 var(--sans); display: grid; grid-template-rows: auto 1fr; }
+button, input, select, textarea { font: inherit; color: inherit }
+button { background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; cursor: pointer }
+button:hover { border-color: var(--accent) }
+button.prim { background: var(--accent); color: #06100a; border-color: var(--accent); font-weight: 600 }
+button:disabled { opacity: .5; cursor: default }
+input, select, textarea { background: #0a0f0c; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; width: 100% }
+input[type=range] { padding: 0; accent-color: var(--accent) }
+input[type=checkbox] { width: auto; accent-color: var(--accent) }
+label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted) }
+label.fila { flex-direction: row; align-items: center; gap: 8px; color: var(--fg); font-size: 13px }
+.barra { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap }
+.barra h1 { font: 600 14px var(--mono); letter-spacing: .08em; margin: 0 12px 0 0; text-transform: uppercase }
+.barra h1 b { color: var(--rojo) }
+.barra select { width: auto }
+.estado { margin-left: auto; font: 12px var(--mono); color: var(--muted) }
+.main { display: grid; grid-template-columns: minmax(0, 1fr) 380px; min-height: 0 }
+.escena { padding: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; overflow: auto }
+.pantalla { background: #000; aspect-ratio: 16/9; width: 100%; max-height: calc(100vh - 190px); border-radius: 4px; overflow: hidden; display: grid; place-items: center }
+.pantalla { position: relative }
+.pantalla canvas { width: 100%; height: 100%; object-fit: contain; display: block }
+.pantalla canvas#ov { position: absolute; inset: 0; touch-action: none }
+.herramientas { display: flex; gap: 6px; flex-wrap: wrap; align-items: center }
+.herramientas button { font-size: 13px; padding: 5px 10px }
+.herramientas button[aria-pressed=true] { background: var(--accent); color: #06100a; border-color: var(--accent) }
+.herramientas .sep { width: 1px; height: 22px; background: var(--line); margin: 0 4px }
+.herramientas .pista { font-size: 12px; color: var(--muted); margin-left: 6px }
+.capa { display: grid; grid-template-columns: 1fr repeat(4, 28px); gap: 4px; align-items: center }
+.capa button { padding: 3px 0; font-size: 12px }
+.capa .nom { text-align: left; padding: 5px 8px; display: flex; gap: 6px; align-items: baseline; overflow: hidden; white-space: nowrap }
+.capa .nom span { color: var(--muted); overflow: hidden; text-overflow: ellipsis; flex: 1 }
+.capa .nom small { font: 11px var(--mono); color: var(--muted) }
+.capa.sel .nom { border-color: var(--accent); background: #1f3326 }
+.capa.oculta .nom { opacity: .45 }
+.transporte { display: flex; gap: 10px; align-items: center }
+.transporte input { flex: 1 }
+.tiempo { font: 12px var(--mono); color: var(--muted); min-width: 110px; text-align: right }
+.info { color: var(--muted); font-size: 13px; max-width: 90ch }
+.info b { color: var(--fg) }
+.lado { border-left: 1px solid var(--line); background: var(--panel); overflow: auto; padding: 4px 0 40px }
+details { border-bottom: 1px solid var(--line) }
+summary { padding: 12px 16px; cursor: pointer; font: 600 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; list-style: none; display: flex; justify-content: space-between }
+summary::after { content: "+"; color: var(--muted) }
+details[open] summary::after { content: "−" }
+.cuerpo { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 10px }
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px }
+.nota { font-size: 12px; color: var(--muted); margin: 0 }
+.slot { display: grid; grid-template-columns: 96px 1fr; gap: 10px; background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; padding: 8px }
+.slot .mini { width: 96px; height: 54px; background: #000 center/cover no-repeat; border-radius: 4px; cursor: pointer }
+.slot .mini.rec { background-size: contain; background-color: #2a332c }
+.slot .t { font-weight: 600; font-size: 13px }
+.slot .r { font: 11px var(--mono); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.slot .enc { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px }
+.slot .acc { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap }
+.slot .acc button { padding: 3px 8px; font-size: 12px }
+.txt { display: grid; grid-template-columns: 1fr; gap: 2px }
+.txt small { font: 11px var(--mono); color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.txt input.cambiado { border-color: var(--accent) }
+.paleta { display: flex; gap: 4px }
+.paleta span { flex: 1; height: 22px; border-radius: 3px }
+.modos { display: grid; grid-template-columns: 1fr 1fr; gap: 6px }
+.modos button[aria-pressed=true] { border-color: var(--accent); background: #1f3326 }
+.progreso { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden }
+.progreso div { height: 100%; width: 0; background: var(--accent) }
+code.snip { display: block; font: 12px var(--mono); background: #0a0f0c; border: 1px solid var(--line); border-radius: 6px; padding: 8px; word-break: break-all }
+textarea { min-height: 110px; resize: vertical }
+/* modales */
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,.72); display: none; z-index: 10; padding: 28px }
+.modal.abierto { display: flex }
+.caja { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; margin: auto; width: min(1280px, 100%); max-height: 100%; display: flex; flex-direction: column }
+.caja header { display: flex; gap: 10px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap }
+.caja header h2 { font: 600 13px var(--mono); text-transform: uppercase; letter-spacing: .06em; margin: 0 }
+.caja header input { width: 260px }
+.caja header .x { margin-left: auto }
+.rejilla { overflow: auto; padding: 14px 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px }
+.rejilla button { padding: 0; background: none; border: 1px solid transparent; text-align: left; display: flex; flex-direction: column; gap: 4px }
+.rejilla button:hover { border-color: var(--accent) }
+.rejilla canvas, .rejilla img { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: #000; border-radius: 4px; display: block }
+.rejilla span { font-size: 13px; padding: 0 4px }
+.rejilla small { font: 11px var(--mono); color: var(--muted); padding: 0 4px 4px }
+.filtros { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 16px 0 }
+.filtros button { font-size: 12px; padding: 3px 9px }
+.filtros button[aria-pressed=true] { background: var(--accent); color: #06100a }
+.toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #06100a; padding: 8px 16px; border-radius: 20px; font-weight: 600; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 20 }
+.toast.ver { opacity: 1 }
+.nueva { display: flex; gap: 8px; align-items: center }
+.nueva input { width: 220px }
+</style>
+</head>
+<body>
+<div class="barra">
+  <h1>LOS 11 · <b>Estudio</b></h1>
+  <select id="proyecto" aria-label="Proyecto"></select>
+  <select id="pieza" aria-label="Pieza"></select>
+  <form class="nueva" id="f-nueva"><input id="n-nueva" placeholder="nueva-pieza (sin espacios)" pattern="[\w\-]+" aria-label="Nombre de la pieza nueva"><button type="submit">+ Nueva pieza</button></form>
+  <a href="/mesa" style="color:var(--accent)">Mesa de guion →</a>
+  <span class="estado" id="estado">—</span>
+</div>
+<div class="main">
+  <section class="escena">
+    <div class="herramientas" id="herramientas">
+      <button type="button" data-h="mover" aria-pressed="true" title="Elegir, mover y cambiar tamaño">✋ Mover</button>
+      <span class="sep"></span>
+      <button type="button" data-h="texto" title="Tocá donde va el texto">T Texto</button>
+      <button type="button" data-h="imagen" title="Tocá donde va la foto">▣ Imagen</button>
+      <button type="button" data-h="circulo" title="Arrastrá para marcar">◯ Círculo</button>
+      <button type="button" data-h="flecha" title="Arrastrá desde donde sale hasta donde apunta">➜ Flecha</button>
+      <button type="button" data-h="resaltador" title="Arrastrá sobre la zona">▬ Resaltador</button>
+      <button type="button" data-h="estilo" title="Arrastrá una zona y elegí otro estilo para mezclar ahí">◧ Mezclar estilo</button>
+      <span class="sep"></span>
+      <button type="button" data-h="pedido" title="Tocá el lugar y escribime qué querés ahí">📍 Pedido para Claude</button>
+      <span class="pista">aparece desde el segundo actual</span>
+    </div>
+    <div class="pantalla"><canvas id="cv" width="1440" height="810"></canvas><canvas id="ov" aria-label="Edición sobre la pantalla"></canvas></div>
+    <div class="transporte">
+      <button id="play" type="button">▶ Play</button>
+      <input id="scrub" type="range" min="0" max="8" step="0.01" value="0" aria-label="Tiempo">
+      <span class="tiempo" id="tiempo">0.0 / 8.0 s</span>
+      <button id="vel" type="button">1×</button>
+    </div>
+    <p class="info" id="info"></p>
+  </section>
+  <aside class="lado">
+    <details open><summary>Estilo</summary><div class="cuerpo">
+      <div><b id="e-nombre">—</b> <small class="nota" id="e-slug"></small></div>
+      <button type="button" id="cambiar-estilo">Cambiar estilo…</button>
+    </div></details>
+    <details open><summary>Capas</summary><div class="cuerpo">
+      <div id="lista-capas" style="display:flex;flex-direction:column;gap:4px"></div>
+      <div id="capa-props"></div>
+    </div></details>
+    <details><summary>Textos del estilo</summary><div class="cuerpo">
+      <div class="dos">
+        <label style="grid-column:1/-1">Nombre<input data-t="nombre"></label>
+        <label style="grid-column:1/-1">Título<input data-t="titulo"></label>
+        <label>Cifra<input data-t="cifra"></label>
+        <label>Año<input data-t="anio"></label>
+      </div>
+      <p class="nota">Otros textos que aparecen en este estilo (cambialos acá; vacío = el original):</p>
+      <div id="textos" class="dos" style="grid-template-columns:1fr"></div>
+    </div></details>
+    <details><summary>Imágenes del estilo</summary><div class="cuerpo">
+      <p class="nota">Tocá una imagen para cambiarla por material del proyecto. Zoom y X/Y ajustan el encuadre.</p>
+      <div id="slots" style="display:flex;flex-direction:column;gap:8px"></div>
+    </div></details>
+    <details open><summary>Marca</summary><div class="cuerpo">
+      <div class="paleta" id="paleta"></div>
+      <div class="modos" id="modos"></div>
+      <label>Intensidad<input type="range" id="m-int" min="0" max="1" step="0.05"></label>
+      <label class="fila"><input type="checkbox" id="m-fuentes"> Tipografía de la marca (Plex Sans + JetBrains Mono)</label>
+    </div></details>
+    <details><summary>Tiempo</summary><div class="cuerpo">
+      <div class="dos">
+        <label>Duración (s)<input type="number" id="d-dur" min="1" max="60" step="0.5"></label>
+        <label>Quieto al final (s)<input type="number" id="d-hold" min="0" max="20" step="0.5"></label>
+      </div>
+      <p class="nota">La animación se estira o se acelera para durar lo que digas; después queda congelada.</p>
+    </div></details>
+    <details open><summary>Pedidos para Claude</summary><div class="cuerpo">
+      <textarea id="pedidos" placeholder="Ej.: poné el escudo del Napoli arriba a la derecha; que la cifra entre con un golpe; usá la foto del balcón para el fondo…"></textarea>
+      <p class="nota">Se guarda en la pieza. Decime «mirá los pedidos de &lt;pieza&gt;» en el chat y lo hago; la app se actualiza sola.</p>
+    </div></details>
+    <details open><summary>Exportar</summary><div class="cuerpo">
+      <button class="prim" type="button" id="exportar">Exportar .mp4 (1920×1080)</button>
+      <div class="progreso"><div id="prog"></div></div>
+      <p class="nota" id="exp-nota">Queda en material/animaciones/ del proyecto. En guion.json:</p>
+      <code class="snip" id="snip"></code>
+    </div></details>
+  </aside>
+</div>
+
+<div class="modal" id="m-estilos" role="dialog" aria-label="Elegir estilo"><div class="caja">
+  <header><h2>Elegir estilo</h2><input id="busca-estilo" placeholder="Buscar…" aria-label="Buscar estilo"><button class="x" type="button" data-cerrar>Cerrar</button></header>
+  <div class="filtros" id="filtros"></div>
+  <div class="rejilla" id="rej-estilos"></div>
+</div></div>
+<div class="modal" id="m-material" role="dialog" aria-label="Elegir imagen"><div class="caja">
+  <header><h2 id="mat-tit">Elegir imagen</h2><input id="busca-mat" placeholder="Buscar archivo…" aria-label="Buscar imagen"><label class="fila"><input type="checkbox" id="mat-recortar"> Sacarle el fondo (recorte)</label><button class="x" type="button" data-cerrar>Cerrar</button></header>
+  <div class="rejilla" id="rej-mat"></div>
+</div></div>
+<div class="toast" id="toast"></div>
+<video id="vid" src="/lemo/img/jugada.mp4" muted playsinline preload="auto" hidden></video>
+<script>
+/*ESTILOS*/
+/*APP*/
+</script>
+</body>
+</html>

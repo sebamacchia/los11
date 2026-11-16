@@ -18,6 +18,27 @@ genera voz, efectos y música con ElevenLabs y monta todo con ffmpeg + Pillow. R
 - **Catálogo de planos (14/11)**: estilos con nombre en clave (MESA, ZOOM, REVISTA, TITULO, MAQUINA, DIAGRAMA, CANCHA, MARCA,
   JUGADA, FOTO, RELATO; nuevos: ARMADO, RECORTE, RUTA, DOCUMENTO, CLASIFICACION, PROFUNDIDAD) que usan los editores para pedir:
   https://claude.ai/artifact/NvL4sptavQcKLFGSEQ8VDF (fuente `identidad/catalogo-planos/`). Motor: `herramientas/documental.py` (tipo "doc").
+- **ESTUDIO (15/11)**: app local para trabajar los 99 estilos de `identidad/estilos-lemo` (web: https://claude.ai/artifact/NXH3kiGV5migZdE6mSWcAe)
+  con material del proyecto: `/usr/bin/python3 herramientas/estudio.py` → http://localhost:8770. Cada pieza = `proyectos/<p>/estudio/<pieza>.json`
+  (estilo, `T` nombre/título/cifra/año, `textos` original→nuevo, `imagenes` slot→{ruta, zoom, x, y}, `marca` original|mapa|paleta|duotono +
+  fuentes, `tiempo` dur/hold, `pedidos` = lo que el usuario le pide a Claude, `codigo` = JS extra `(c,t,T,P)` dibujado encima en 960×540).
+  Claude edita ese JSON y la app se recarga sola. Estilos nuevos del canal: `herramientas/estudio/estilos/*.js`.
+  Exportar: botón o `estudio.py exportar <p> <pieza>` → `material/animaciones/<pieza>.mp4` (1920×1080, 30 fps) → `{"archivo": "material/animaciones/<pieza>.mp4"}`.
+  Recortes sin fondo (rembg) → `estudio/recortes/`.
+  **Capas** (`capas` en el JSON, herramientas/estudio/capas.js): texto, imagen, círculo, flecha, resaltador, `estilo` (otro de los 99 mezclado en
+  una zona: ventana/achicado, máscara rect/elipse/pantalla, modo de fusión) y `pedido` = pin del usuario {x, y (960×540), desde, texto}.
+  "Mirá los pedidos": leer los pins, hacer cada uno (agregando capas o código) y marcarlo `"hecho": true`.
+- **MESA DE GUION (15/11)**: http://localhost:8770/mesa (mismo servidor). Conversación humano ↔ Claude escena por escena: narrador · imagen
+  (miniaturas) · música y efectos · hilo de mensajes, con el video renderizado sincronizado (tiempos sacados del .srt). Mensajes en
+  `proyectos/<p>/mesa/<guion>.json` + bandeja `.cache/mesa_bandeja.jsonl`. Claude escucha con un Monitor sobre la bandeja (y toca
+  `.cache/mesa_escucha` para que la página muestre "Claude está escuchando"); responde con `estudio.py responder <p> <guion> <n|general> "texto"`,
+  ve lo pendiente con `estudio.py pendientes`. Los "cambio de narración" son propuestas: aplicarlas en la FUENTE (p. ej. construir_intro.py
+  genera guion_intro.json), regenerar/renderizar y responder. Ver herramientas/mesa.py.
+  PENDIENTE (16/11): publicarla para compartir con el primo en sebastianmacchia.com/los11 (repo PÚBLICO `sebastianmacchiacom`,
+  Hostinger con PHP): interfaz PHP + contraseña en Hostinger, material y renders SOLO en Hostinger fuera de git; la Mac
+  sincroniza (baja mensajes, sube previews), no queda expuesta. Etapas: Mesa online → sala del director tipo Premiere
+  (pistas V/narración/música/efectos/notas + bandeja de lo disponible) → piezas del Estudio. Falta que el usuario diga:
+  cómo publica en Hostinger (git o FTP), una contraseña o una por persona, y si Claude contesta solo con límites.
 - `herramientas/clips.py` — buscar/bajar videos de YouTube (yt-dlp con cookies de Chrome, autorizado por el usuario), hoja de contacto con tiempos, detectar cortes. Fuentes en `material/fuentes/` (+ `fuentes.txt`)
 - `herramientas/graficos.py` — intro animada del canal, placas de texto, marcador animado, zócalos (Pillow)
 - `herramientas/armar.py` — arma el video (ver docstring para todos los tipos de visual)

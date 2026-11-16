@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesa de guion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--FUENTES-->
+<style>
+:root { --bg: #0c120e; --panel: #131c16; --panel2: #18241c; --fg: #e6ece7; --muted: #8fa097; --line: #26352b; --accent: #7ab37a; --rojo: #e0483a; --naranja: #ff8a3d;
+  --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Menlo, monospace; color-scheme: dark }
+* { box-sizing: border-box }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.5 var(--sans) }
+button, select, textarea, input { font: inherit; color: inherit }
+button { background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; padding: 5px 11px; cursor: pointer }
+button:hover { border-color: var(--accent) }
+button.prim { background: var(--accent); color: #06100a; border-color: var(--accent); font-weight: 600 }
+select, textarea, input { background: #0a0f0c; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px }
+textarea { width: 100%; resize: vertical; min-height: 54px }
+a { color: var(--accent) }
+.barra { display: flex; gap: 10px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap; position: sticky; top: 0; background: var(--bg); z-index: 5 }
+.barra h1 { font: 600 14px var(--mono); letter-spacing: .08em; text-transform: uppercase; margin: 0 10px 0 0 }
+.barra h1 b { color: var(--rojo) }
+.pill { margin-left: auto; font: 12px var(--mono); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--line); color: var(--muted) }
+.pill.on { color: #06100a; background: var(--accent); border-color: var(--accent) }
+.arriba { display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); gap: 18px; padding: 16px; align-items: start }
+@media (max-width: 1100px) { .arriba { grid-template-columns: 1fr } }
+.player { position: sticky; top: 64px }
+video { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 6px; display: block }
+.player .info { font: 12px var(--mono); color: var(--muted); margin-top: 6px }
+.caja { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px }
+.caja h2 { font: 600 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; margin: 0 0 8px; color: var(--muted) }
+.como { color: var(--muted); font-size: 13px; margin: 0 0 8px }
+.tabla { padding: 0 16px 80px }
+.cab, .fila { display: grid; grid-template-columns: 84px minmax(0, 1.15fr) minmax(0, 1.25fr) minmax(0, .95fr) minmax(0, 1.25fr); gap: 0 }
+.cab { position: sticky; top: 57px; background: var(--bg); z-index: 4; border-bottom: 1px solid var(--line) }
+.cab div { font: 600 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 10px 10px }
+.fila { border-bottom: 1px solid var(--line) }
+.fila > div { padding: 12px 10px; min-width: 0 }
+.fila > div + div { border-left: 1px solid var(--line) }
+.fila.actual { background: #142019 }
+.fila.actual .num b { color: var(--accent) }
+.capitulo { grid-column: 1 / -1; font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); padding: 18px 10px 6px; border-bottom: 1px solid var(--line) }
+.num b { font: 600 20px var(--mono); display: block }
+.num small { font: 11px var(--mono); color: var(--muted); display: block }
+.num button { margin-top: 6px; padding: 2px 8px; font-size: 12px }
+.narr p { margin: 0 0 6px; font-size: 15px }
+.narr .meta { font: 11px var(--mono); color: var(--muted) }
+.narr .prop { border-left: 3px solid var(--naranja); padding: 4px 8px; margin: 6px 0; font-size: 13px; background: #20180f }
+.narr .prop del { color: var(--muted) }
+.vis { display: grid; grid-template-columns: 96px 1fr; gap: 8px; margin-bottom: 8px; cursor: pointer; border-radius: 6px; padding: 3px }
+.vis:hover { background: var(--panel2) }
+.vis .th { width: 96px; height: 54px; background: #000 center/cover no-repeat; border-radius: 4px; display: grid; place-items: center; font-size: 20px; color: var(--muted) }
+.vis .d { font-size: 13px }
+.vis .d small { display: block; font: 11px var(--mono); color: var(--muted) }
+.son div { font-size: 13px; margin-bottom: 5px; cursor: pointer; border-radius: 4px; padding: 1px 3px }
+.son div:hover { background: var(--panel2) }
+.son small { font: 11px var(--mono); color: var(--muted) }
+.msgs { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px }
+.msg { border-radius: 10px; padding: 6px 10px; font-size: 13px; max-width: 96%; white-space: pre-wrap }
+.msg.humano { background: #22301f; align-self: flex-end; border: 1px solid #344a30 }
+.msg.claude { background: #10261b; border: 1px solid #2b5a3f; align-self: flex-start }
+.msg .de { font: 600 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 2px }
+.msg.claude .de { color: var(--accent) }
+.msg .esp { font: 10px var(--mono); color: var(--naranja) }
+.chips { display: flex; gap: 4px; margin-bottom: 4px; flex-wrap: wrap }
+.chips button { font-size: 11px; padding: 1px 7px; border-radius: 10px }
+.chips button[aria-pressed=true] { background: var(--accent); color: #06100a; border-color: var(--accent) }
+.enviar { display: flex; gap: 6px; margin-top: 4px; align-items: center }
+.enviar small { color: var(--muted); font-size: 11px; margin-right: auto }
+.toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #06100a; padding: 8px 16px; border-radius: 20px; font-weight: 600; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 20 }
+.toast.ver { opacity: 1 }
+</style>
+</head>
+<body>
+<div class="barra">
+  <h1>LOS 11 · <b>Mesa de guion</b></h1>
+  <select id="proyecto" aria-label="Proyecto"></select>
+  <select id="guion" aria-label="Guion"></select>
+  <a href="/">Estudio de estilos →</a>
+  <span class="pill" id="pill">…</span>
+</div>
+<div class="arriba">
+  <div class="player">
+    <video id="video" controls preload="metadata"></video>
+    <div class="info" id="vinfo"></div>
+  </div>
+  <div class="caja">
+    <h2>Conversación general del video</h2>
+    <p class="como">Escribí en cualquier escena (abajo) o acá para todo el video. Tocá una imagen o un sonido de la escena para hablar de eso. Si el video está en pausa, el mensaje lleva el segundo. <b>Enviar</b> (o ⌘ Enter) me lo manda; te respondo en el mismo hilo y la página se actualiza sola.</p>
+    <div id="hilo-general"></div>
+  </div>
+</div>
+<div class="tabla">
+  <div class="cab"><div>#</div><div>Narrador</div><div>Imagen</div><div>Música y efectos</div><div>Conversación</div></div>
+  <div id="filas"></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const $ = id => document.getElementById(id);
+let P = null, G = null, D = null, firma = "", BORR = {}, COL = {}, escenaActual = -1;
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const mmss = s => s == null ? "" : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+const base = r => String(r || "").split("/").pop();
+const cuando = v => v == null ? "" : typeof v === "string" && v.startsWith("@") ? `«${v.slice(1)}»` : `${(+v).toFixed(1)} s`;
+function toast(s) { const el = $("toast"); el.textContent = s; el.classList.add("ver"); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove("ver"), 2600) }
+
+// ---------- describir en castellano lo que arma armar.py ----------
+function describirVisual(v) {
+  if (typeof v === "string") v = { archivo: v };
+  const partes = [], ex = []; let th = null, icono = "▦";
+  const a = v.archivo || "";
+  if (v.tipo === "doc") { const pl = v.planos || [], capas = pl.flatMap(p => p.capas || []), rot = pl.flatMap(p => p.rotulos || []);
+    partes.push(`Mesa documental (${pl[0]?.mesa || "papel"})`); if (capas.length) { ex.push("fotos: " + capas.map(c => base(c.archivo)).join(", ")); th = capas[0].archivo }
+    rot.forEach(r => ex.push(`${r.tipo || "rótulo"}: «${String(r.texto || "").replace(/\n/g, " ")}» ${r.en != null ? "en " + cuando(r.en) : ""}`));
+    if (pl.some(p => (p.camara || []).length > 1)) ex.push("cámara con zoom/paneo"); icono = "▤" }
+  else if (/\.(mp4|mov|webm)$/i.test(a)) { partes.push(`Clip ${base(a)}`); ex.push(`desde ${mmss(v.desde || 0)}${v.velocidad && v.velocidad !== 1 ? ` a ${v.velocidad}×` : ""}`); th = { ruta: a, t: (+v.desde || 0) + .5 }; icono = "▶" }
+  else if (/\.(jpe?g|png|webp)$/i.test(a)) { partes.push(`Foto ${base(a)}`); th = a }
+  else partes.push(v.tipo ? `Gráfico «${v.tipo}»` : "Visual");
+  if (v.golpe) ex.push(`golpe «${v.golpe}»${v.golpe_sub ? " · " + v.golpe_sub : ""}`);
+  if (v.zocalo) ex.push(`zócalo: ${v.zocalo}${v.sub ? " — " + v.sub : ""}`);
+  ["titulo", "texto", "nombre"].forEach(k => { if (v[k] && v.tipo) ex.push(`${k}: «${String(v[k]).replace(/\n/g, " ")}»`) });
+  if (v.hasta) ex.push(`hasta ${cuando(v.hasta)}`);
+  return { titulo: partes.join(" "), extra: ex, th, icono };
+}
+const urlTh = th => !th ? null : typeof th === "string" ? (/\.(mp4|mov|webm)$/i.test(th) ? `/api/cuadro?p=${P}&ruta=${encodeURIComponent(th)}&t=0.5` : `/p/${P}/${th}`) : `/api/cuadro?p=${P}&ruta=${encodeURIComponent(th.ruta)}&t=${th.t}`;
+
+// ---------- pintar ----------
+function hiloHTML(clave) { const h = D.conv.hilos[clave] || []; return h.map(m => `<div class="msg ${m.de}"><span class="de">${m.de === "claude" ? "Claude" : "Vos"}${m.columna && m.columna !== "general" ? " · " + esc(m.columna) : ""}${m.t != null ? " · en " + mmss(m.t) : ""}</span>${m.tipo === "cambio" ? `<b>Cambio de narración:</b>\n<del>${esc(m.antes)}</del>\n→ ${esc(m.despues)}${m.texto ? "\n" + esc(m.texto) : ""}` : esc(m.texto)}${m.de === "humano" && !m.respondido ? '<div class="esp">enviado · esperando a Claude</div>' : ""}</div>`).join("") }
+function compositorHTML(clave, cols) { const c = COL[clave] || "general"; return `<div class="chips" data-chips="${clave}">${cols.map(x => `<button type="button" data-col="${x}" aria-pressed="${x === c}">${x}</button>`).join("")}</div>
+  <textarea data-borr="${clave}" placeholder="Escribime qué cambiar o qué te parece…">${esc(BORR[clave] || "")}</textarea><div class="enviar"><small></small><button class="prim" type="button" data-enviar="${clave}">Enviar</button></div>` }
+function pintar() {
+  const g = D.guion, mus = g.musica || [], foco = document.activeElement?.dataset?.borr, sel = foco ? [document.activeElement.selectionStart, document.activeElement.selectionEnd] : null;
+  $("hilo-general").innerHTML = `<div class="msgs">${hiloHTML("general")}</div>${compositorHTML("general", ["general", "ritmo", "música", "título"])}`;
+  let html = "";
+  g.escenas.forEach((e, i) => { const n = i + 1, ti = D.tiempos[i];
+    if (e.capitulo) html += `<div class="capitulo">${esc(typeof e.capitulo === "string" ? e.capitulo : e.capitulo.titulo || "Capítulo")}</div>`;
+    const props = (D.conv.hilos[n] || []).filter(m => m.tipo === "cambio" && !m.respondido);
+    const vis = (e.visual ? (Array.isArray(e.visual) ? e.visual : [e.visual]) : []).map((v, k) => { const d = describirVisual(v), u = urlTh(d.th);
+      return `<div class="vis" data-ref="${n}" data-col="imagen" data-pre="[Imagen ${k + 1}: ${esc(d.titulo)}] "><div class="th" style="${u ? `background-image:url('${u}')` : ""}">${u ? "" : d.icono}</div><div class="d">${esc(d.titulo)}${d.extra.map(x => `<small>${esc(x)}</small>`).join("")}</div></div>` }).join("") || '<span class="como">(sin visual)</span>';
+    const sfx = (e.sfx || []).map((s, k) => `<div data-ref="${n}" data-col="sonido" data-pre="[Efecto ${k + 1}] ">🔊 ${esc(s.archivo ? "audio real " + base(s.archivo) : s.prompt)} <small>· ${cuando(s.en ?? 0)}${s.volumen != null ? " · vol " + s.volumen : ""}</small></div>`).join("");
+    const mu = mus.filter(m => n >= m.desde && n <= m.hasta).map(m => `<div data-ref="${n}" data-col="sonido" data-pre="[Música ${esc(base(m.archivo))}] ">🎵 ${esc(base(m.archivo))} <small>· vol ${m.volumen}${m.desde === n ? " · entra" : ""}${m.hasta === n ? " · sale" : ""}${m.retardo ? " · +" + m.retardo + " s" : ""}</small></div>`).join("");
+    html += `<div class="fila" data-n="${n}">
+      <div class="num"><b>${n}</b><small>${ti ? mmss(ti[0]) + "–" + mmss(ti[1]) : ""}</small>${ti && D.video ? `<button type="button" data-ir="${ti[0]}">▶ ver</button>` : ""}</div>
+      <div class="narr"><p>${esc(e.texto)}</p>${props.map(m => `<div class="prop">Propuesto: <del>${esc(m.antes)}</del><br>→ ${esc(m.despues)}</div>`).join("")}
+        <div class="meta">${(e.texto || "").split(/\s+/).filter(Boolean).length} palabras${e.pausa ? " · pausa " + e.pausa + " s" : ""}${e.retardo ? " · respiro antes " + e.retardo + " s" : ""}</div>
+        <button type="button" data-cambiar="${n}" style="margin-top:6px;font-size:12px;padding:2px 8px">✎ proponer otro texto</button></div>
+      <div>${vis}</div>
+      <div class="son">${mu}${sfx || (mu ? "" : '<span class="como">(sin sonido)</span>')}</div>
+      <div><div class="msgs">${hiloHTML(n)}</div>${compositorHTML(n, ["general", "narración", "imagen", "sonido"])}</div></div>` });
+  $("filas").innerHTML = html; marcarActual(true);
+  if (foco) { const el = document.querySelector(`[data-borr="${foco}"]`); if (el) { el.focus(); try { el.setSelectionRange(...sel) } catch (_) {} } }
+  const pend = Object.values(D.conv.hilos).flat().filter(m => m.de === "humano" && !m.respondido).length;
+  $("pill").className = "pill" + (D.escucha ? " on" : ""); $("pill").textContent = D.escucha ? `● Claude está escuchando${pend ? " · " + pend + " sin responder" : ""}` : `○ Claude no está mirando — ${pend ? pend + " mensajes en la bandeja" : "decile «mirá la mesa» en el chat"}`;
+}
+
+// ---------- acciones ----------
+document.addEventListener("input", e => { const k = e.target.dataset?.borr; if (k) BORR[k] = e.target.value });
+document.addEventListener("click", async e => {
+  const el = e.target.closest("[data-col],[data-enviar],[data-ir],[data-cambiar],[data-ref]"); if (!el) return;
+  if (el.closest("[data-chips]")) { const k = el.closest("[data-chips]").dataset.chips; COL[k] = el.dataset.col; el.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === el)); return }
+  if (el.dataset.ir != null) { const v = $("video"); v.currentTime = +el.dataset.ir; v.play().catch(() => {}); window.scrollTo({ top: 0, behavior: "smooth" }); return }
+  if (el.dataset.ref) { const n = el.dataset.ref, ta = document.querySelector(`[data-borr="${n}"]`); COL[n] = el.dataset.col; BORR[n] = (el.dataset.pre || "") + (BORR[n] || ""); ta.value = BORR[n]; ta.closest("div").querySelectorAll(`[data-chips="${n}"] button`).forEach(b => b.setAttribute("aria-pressed", b.dataset.col === COL[n])); ta.focus(); return }
+  if (el.dataset.cambiar) { const n = +el.dataset.cambiar, e2 = D.guion.escenas[n - 1], box = el.parentElement; if (box.querySelector(".editor")) return;
+    const d = document.createElement("div"); d.className = "editor"; d.innerHTML = `<textarea style="min-height:90px;margin-top:6px"></textarea><input placeholder="¿Por qué? (opcional)" style="width:100%;margin-top:4px"><div class="enviar"><small>Va como propuesta: la aplico yo en la fuente.</small><button type="button" data-x>Cancelar</button><button class="prim" type="button" data-ok>Enviar cambio</button></div>`;
+    d.querySelector("textarea").value = e2.texto; box.append(d); d.querySelector("textarea").focus(); d.querySelector("[data-x]").onclick = () => d.remove();
+    d.querySelector("[data-ok]").onclick = async () => { const nuevo = d.querySelector("textarea").value.trim(); if (!nuevo || nuevo === e2.texto) return d.remove(); await enviar(n, { tipo: "cambio", columna: "narración", antes: e2.texto, despues: nuevo, texto: d.querySelector("input").value.trim() }) }; return }
+  if (el.dataset.enviar) { const k = el.dataset.enviar, txt = (BORR[k] || "").trim(); if (!txt) return; await enviar(k, { texto: txt, columna: COL[k] || "general" }) }
+});
+document.addEventListener("keydown", e => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter" && e.target.dataset?.borr) { e.preventDefault(); document.querySelector(`[data-enviar="${e.target.dataset.borr}"]`)?.click() } });
+async function enviar(escena, datos) {
+  const v = $("video"); if (D.video && v.currentTime > 0 && v.paused) datos.t = Math.round(v.currentTime * 10) / 10;
+  const r = await fetch(`/api/mesa/mensaje?p=${P}&g=${G}`, { method: "POST", body: JSON.stringify({ escena: escena === "general" ? "general" : +escena, ...datos }) }); const j = await r.json();
+  if (j.error) return toast("Error: " + j.error); delete BORR[escena]; toast(D.escucha ? "Enviado a Claude" : "Guardado en la bandeja — avisale a Claude en el chat"); await cargar(true);
+}
+
+// ---------- video ↔ escenas ----------
+function marcarActual(forzar) { const t = $("video").currentTime; let k = -1; D.tiempos.forEach((ti, i) => { if (ti && t >= ti[0] - .05) k = i }); if (k === escenaActual && !forzar) return; escenaActual = k;
+  document.querySelectorAll(".fila").forEach(f => f.classList.toggle("actual", +f.dataset.n === k + 1)); $("vinfo").textContent = D.video ? `${D.video} · escena ${k + 1 || "—"} · ${mmss(t)}` : "Todavía no hay video renderizado de este guion." }
+$("video").addEventListener("timeupdate", () => D && marcarActual());
+
+// ---------- carga y recarga ----------
+async function cargar(forzar) {
+  const j = await (await fetch(`/api/mesa?p=${P}&g=${G}`)).json(); if (j.error) return toast(j.error);
+  const f = [j.mtime_guion, j.mtime_conv, j.escucha].join("|"); const cambioVideo = !D || D.video !== j.video; D = j;
+  if (cambioVideo) { const v = $("video"), t0 = v.currentTime; v.src = j.video ? `/p/${P}/${j.video}` : ""; if (D && t0) v.currentTime = t0; if (firma) toast("Video nuevo cargado") }
+  if (forzar || f !== firma) { const antes = firma; firma = f; pintar(); if (antes && !forzar && antes.split("|")[1] !== String(j.mtime_conv)) toast("Claude respondió") }
+}
+setInterval(() => { if (!document.hidden && P && G) cargar().catch(() => {}) }, 2500);
+$("proyecto").onchange = async () => { P = $("proyecto").value; await listarGuiones() };
+$("guion").onchange = async () => { G = $("guion").value; try { localStorage.setItem("mesa:" + P, G) } catch (_) {} D = null; firma = ""; BORR = {}; await cargar(true) };
+async function listarGuiones() { const l = await (await fetch(`/api/guiones?p=${P}`)).json(); $("guion").textContent = ""; l.forEach(g => $("guion").append(new Option(g, g)));
+  let g = null; try { g = localStorage.getItem("mesa:" + P) } catch (_) {} G = l.includes(g) ? g : l.includes("guion_intro") ? "guion_intro" : l[l.length - 1]; $("guion").value = G; D = null; firma = ""; await cargar(true) }
+(async () => { const ps = await (await fetch("/api/proyectos")).json(); ps.forEach(p => $("proyecto").append(new Option(p, p)));
+  let q; try { q = new URLSearchParams(location.search) } catch (_) { q = new URLSearchParams() }
+  P = q.get("p") || (ps.includes("argentina-1986") ? "argentina-1986" : ps[0]); $("proyecto").value = P; await listarGuiones() })();
+</script>
+</body>
+</html>

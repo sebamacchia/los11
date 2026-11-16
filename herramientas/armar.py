@@ -64,6 +64,8 @@ Efectos ("sfx"): {"prompt": "...", "en": "@frase", "duracion": 5, "volumen": 0.5
   {"archivo": "material/fuentes/x.mp4", "desde": 40, "duracion": 10, "en": "@frase", "volumen": 0.6} (audio real)
   cualquiera acepta "velocidad": 0.6 (más lento/largo), "fade_in": 1.2 y "fade_out": 2.5 (segundos)
 Música: "musica": [{"archivo": "...", "desde": <n° escena>, "hasta": <n° escena>, "volumen": 0.2}]
+  (+ "retardo": s de silencio al empezar el tramo, "salta": s del tema donde arrancar, "continua": true = sigue el mismo
+  tema donde iba como si nunca hubiera parado: sirve para bajar/cortar la música en una escena y retomarla)
 (escenas numeradas desde 1; "hasta" incluida).
 """
 import json
@@ -771,18 +773,24 @@ def main():
     if isinstance(musicas, dict):
         musicas = [{**musicas, "desde": 1, "hasta": len(escenas)}]
     if musicas:
+        inicio_pista = {}  # archivo -> segundo del video en que arrancó (para "continua")
         for k, m in enumerate(musicas):
             a = tiempos[m.get("desde", 1) - 1][0] if m.get("desde", 1) > 1 else 0
+            a += float(m.get("retardo", 0))
+            salta = float(m.get("salta", 0))
+            if m.get("continua") and m["archivo"] in inicio_pista:
+                salta = a - inicio_pista[m["archivo"]]
+            inicio_pista.setdefault(m["archivo"], a - salta)
             hasta = m.get("hasta", len(escenas))
             b = (tiempos[hasta - 1][0] + tiempos[hasta - 1][1]) if hasta < len(escenas) else total
             largo = b - a
             pista = (proyecto / m["archivo"]).resolve()
-            vueltas = int(largo // duracion(pista))  # loops finitos: con -1 ffmpeg queda girando para siempre
+            vueltas = int((largo + salta) // duracion(pista))  # loops finitos: con -1 ffmpeg queda girando para siempre
             cmd.extend(["-stream_loop", str(vueltas), "-i", pista])
             fi = float(m.get("fade_in", 1.0))
             fo = float(m.get("fade_out", 1.5))
             ms = int(a * 1000)
-            filtros.append(f"[{n}:a]aresample=44100,aformat=channel_layouts=stereo,atrim=0:{largo:.3f},"
+            filtros.append(f"[{n}:a]aresample=44100,aformat=channel_layouts=stereo,atrim={salta:.3f}:{salta + largo:.3f},asetpts=PTS-STARTPTS,"
                            f"volume={m.get('volumen', 0.2)},afade=t=in:d={fi},"
                            f"afade=t=out:st={max(0, largo - fo):.2f}:d={fo},adelay={ms}|{ms}[m{k}]")
             n += 1

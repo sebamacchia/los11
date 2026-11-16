@@ -1,0 +1,461 @@
+{
+ "archivo": "argentina-1986_intro",
+ "formato": "horizontal",
+ "pausa": 0.35,
+ "sfx_volumen": 1.0,
+ "musica": [
+  {
+   "archivo": "../../musica/intro86_jazz_b.mp3",
+   "desde": 1,
+   "hasta": 4,
+   "volumen": 0.34,
+   "fade_in": 0.05,
+   "fade_out": 0.5
+  },
+  {
+   "archivo": "../../musica/intro86_jazz_b.mp3",
+   "desde": 5,
+   "hasta": 5,
+   "volumen": 0.17,
+   "continua": true,
+   "retardo": 2.6,
+   "fade_in": 2.0,
+   "fade_out": 0.3
+  },
+  {
+   "archivo": "../../musica/intro86_jazz_b.mp3",
+   "desde": 6,
+   "hasta": 6,
+   "volumen": 0.4,
+   "continua": true,
+   "fade_in": 0.3,
+   "fade_out": 0.25
+  }
+ ],
+ "escenas": [
+  {
+   "capitulo": "Intro",
+   "retardo": 2.2,
+   "texto": "Mil novecientos ochenta y seis. El mundo estaba completamente loco... y el fútbol no se quedaba atrás.",
+   "visual": [
+    {
+     "archivo": "salida/graficos/intro_iconos.mp4",
+     "desde": 0.0,
+     "velocidad": 1.0,
+     "hasta": "@y el fútbol"
+    },
+    {
+     "archivo": "material/fuentes/belgica.mp4",
+     "desde": 264.5,
+     "velocidad": 0.8
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "VHS tape inserted into a VCR, mechanical clunk, then tape whirring and glitchy rewind chirps",
+     "en": 0,
+     "volumen": 0.5,
+     "duracion": 3
+    }
+   ]
+  },
+  {
+   "texto": "Se jugaba la decimotercera edición de la Copa del Mundo.",
+   "pausa": 1.4,
+   "visual": [
+    {
+     "archivo": "salida/graficos/intro_afiches.mp4",
+     "desde": 0.0,
+     "velocidad": 1.0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "rapid succession of paper posters slapping down onto a wooden table, accelerating",
+     "en": 0,
+     "volumen": 0.55,
+     "duracion": 2.1
+    },
+    {
+     "prompt": "heavy rubber stamp thud on paper, single hit",
+     "en": 2.05,
+     "volumen": 0.8,
+     "duracion": 1
+    }
+   ]
+  },
+  {
+   "retardo": 1.5,
+   "texto": "La sede: México.",
+   "pausa": 0.7,
+   "visual": [
+    {
+     "archivo": "salida/graficos/intro_satelital.mp4",
+     "desde": 0.0,
+     "velocidad": 1.0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "fast cinematic descent whoosh from space through the atmosphere, wind rushing",
+     "en": 0,
+     "volumen": 0.55,
+     "duracion": 3
+    }
+   ]
+  },
+  {
+   "texto": "Veinticuatro selecciones buscando la gloria eterna. Y entre ellas, Argentina... un equipo que llegaba al límite, sufriendo, cuestionado por todos, pero que guardaba un as bajo la manga.",
+   "pausa": 0.5,
+   "visual": [
+    {
+     "archivo": "salida/graficos/intro_banderas.mp4",
+     "desde": 0.0,
+     "velocidad": 1.0,
+     "hasta": "@un equipo"
+    },
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 211.0,
+     "velocidad": 0.6,
+     "golpe": "2-2",
+     "golpe_sub": "ARGENTINA-PERÚ · 1985 · AL MUNDIAL POR LA VENTANA",
+     "golpe_en": 0.3,
+     "golpe_estilo": "fantasma",
+     "foco": [
+      0.5,
+      0.5
+     ],
+     "hasta": "@sufriendo"
+    },
+    {
+     "tipo": "doc",
+     "hasta": "@pero que guardaba",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_bilardo86.jpg",
+         "x": 640,
+         "y": 540,
+         "alto": 860,
+         "rot": -1.5,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": 2.5,
+         "x": 760,
+         "y": 480,
+         "zoom": 1.08
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "Cuestionado\npor todos.",
+         "x": 1100,
+         "y": 400,
+         "en": 0.05,
+         "tam": 84
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "negro",
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@bajo la manga",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.08
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "titulo",
+         "texto": "Un as bajo\nla manga.",
+         "x": 160,
+         "y": 330,
+         "en": "@un as",
+         "tam": 150,
+         "claro": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "quick succession of small cartoon pops, playful, like bubbles popping",
+     "en": 0,
+     "volumen": 0.45,
+     "duracion": 2
+    },
+    {
+     "prompt": "magical bright shimmer swell, glowing sparkle",
+     "en": 2.0,
+     "volumen": 0.5,
+     "duracion": 1.5
+    },
+    {
+     "prompt": "old camera shutter click",
+     "en": "@sufriendo",
+     "volumen": 0.6,
+     "duracion": 1
+    },
+    {
+     "prompt": "playing card snapped down on a table, crisp",
+     "en": "@un as",
+     "volumen": 0.8,
+     "duracion": 1
+    }
+   ]
+  },
+  {
+   "retardo": 0.9,
+   "texto": "Tenía a Diego Armando Maradona. El pibe de Fiorito, la estrella absoluta del Napoli, que venía de romper el mercado siendo el fichaje más caro de la historia: siete millones y medio de dólares. Una verdadera locura para la época.",
+   "pausa": 0.4,
+   "visual": [
+    {
+     "archivo": "material/fuentes/napoli1984.mp4",
+     "desde": 84.5,
+     "velocidad": 0.5,
+     "hasta": "@la estrella"
+    },
+    {
+     "archivo": "material/fuentes/napoli1984.mp4",
+     "desde": 93.5,
+     "velocidad": 0.5,
+     "hasta": "@que venía"
+    },
+    {
+     "tipo": "doc",
+     "hasta": "@Una verdadera",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/maradona_napoli_fotografos.jpg",
+         "x": 1420,
+         "y": 470,
+         "alto": 640,
+         "rot": 1.5,
+         "borde": 10,
+         "trama": 5
+        },
+        {
+         "archivo": "material/intro/dolar.jpg",
+         "x": 900,
+         "y": 640,
+         "alto": 520,
+         "rot": -9,
+         "borde": 10,
+         "en": "@siete millones"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@siete millones",
+         "x": 900,
+         "y": 600,
+         "zoom": 1.15
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "BARCELONA → NÁPOLES · JULIO DE 1984",
+         "x": 130,
+         "y": 150,
+         "en": 0.1,
+         "tam": 28,
+         "fondo_tira": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "El pase más\ncaro de la historia.",
+         "x": 120,
+         "y": 230,
+         "en": "@el fichaje",
+         "tam": 92
+        },
+        {
+         "tipo": "titulo",
+         "texto": "US$ 7.500.000",
+         "x": 140,
+         "y": 880,
+         "en": "@siete millones",
+         "tam": 110,
+         "rojo": true,
+         "fondo_tira": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "archivo": "material/fuentes/napoli1984.mp4",
+     "desde": 126.0,
+     "velocidad": 0.5
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "press photographers camera flashes and shutter clicks",
+     "en": "@la estrella",
+     "volumen": 0.5,
+     "duracion": 2.5
+    },
+    {
+     "prompt": "paper banknote flutter whoosh landing on table",
+     "en": "@siete millones",
+     "volumen": 0.7,
+     "duracion": 1.2
+    }
+   ]
+  },
+  {
+   "texto": "En este video vamos a desenmarañar el camino de la Selección dirigida por Bilardo y el gran Diego hasta tocar el cielo con las manos: los partidos, el lado B de las anécdotas, los pormenores que nadie te contó... y unos datos que literalmente te van a volar la peluca.",
+   "pausa": 0.7,
+   "visual": [
+    {
+     "archivo": "material/fuentes/corea.mp4",
+     "desde": 195.5,
+     "velocidad": 0.6,
+     "hasta": "@dirigida"
+    },
+    {
+     "archivo": "material/fuentes/italia.mp4",
+     "desde": 266.0,
+     "velocidad": 0.8,
+     "hasta": "@hasta tocar"
+    },
+    {
+     "archivo": "material/fuentes/inglaterra.mp4",
+     "desde": 287.5,
+     "velocidad": 0.6,
+     "hasta": "@los partidos"
+    },
+    {
+     "archivo": "material/fuentes/belgica.mp4",
+     "desde": 266.5,
+     "velocidad": 0.8,
+     "hasta": "@el lado B"
+    },
+    {
+     "tipo": "doc",
+     "hasta": "@los pormenores",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_comedor.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 880,
+         "rot": 1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@los pormenores",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.1
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "EL LADO B",
+         "x": 140,
+         "y": 900,
+         "en": 0.1,
+         "tam": 34,
+         "fondo_tira": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "archivo": "material/fuentes/uruguay.mp4",
+     "desde": 94.0,
+     "velocidad": 0.6,
+     "hasta": "@y unos datos"
+    },
+    {
+     "archivo": "salida/graficos/intro_peluca.mp4",
+     "desde": 0.0,
+     "velocidad": 1.0
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "hard kick of a leather football",
+     "en": 0,
+     "volumen": 0.6,
+     "duracion": 1
+    },
+    {
+     "prompt": "photograph slapped down on a wooden table",
+     "en": "@el lado B",
+     "volumen": 0.6,
+     "duracion": 1
+    },
+    {
+     "prompt": "strong comedic wind gust blowing",
+     "en": "@literalmente",
+     "volumen": 0.7,
+     "duracion": 2
+    },
+    {
+     "prompt": "single loud crash cymbal hit, dry, then silence",
+     "en": "@la peluca",
+     "volumen": 0.8,
+     "duracion": 1.5
+    }
+   ]
+  }
+ ]
+}

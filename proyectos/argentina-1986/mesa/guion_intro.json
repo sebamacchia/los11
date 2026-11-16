@@ -1,0 +1,39 @@
+{
+  "hilos": {
+    "general": [
+      {
+        "id": "a54e768a53",
+        "de": "humano",
+        "texto": "los gritos de la trubuna son re pesados, salcalos",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-15 21:35:38",
+        "respondido": true
+      },
+      {
+        "id": "604339fe4d",
+        "de": "claude",
+        "texto": "Dale, saco los gritos de tribuna. Ya busco cuáles son y rearmo la intro: te aviso acá cuando esté.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-15 21:35:44"
+      },
+      {
+        "id": "23eac3d1da",
+        "de": "claude",
+        "texto": "Saqué los 5 gritos de tribuna: el rugido de «y el fútbol» (1), el ambiente de estadio de «México» (3), el abucheo de «un equipo» (4), los cantos de Nápoles (5) y el grito de gol de «hasta tocar» (6). Quedan el jazz y los efectos de objetos (VHS, sellos, cámara, carta, billetes, viento, platillo). Estoy rearmando el video: en unos minutos se actualiza arriba.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-15 21:36:02"
+      },
+      {
+        "id": "6adda3ff86",
+        "de": "claude",
+        "texto": "Listo: la intro nueva (1:06) ya está, sin ningún grito de tribuna. Recargá la página una vez (⌘R) y el video de arriba es el nuevo. Desde ahora, cuando lo rearme, se cambia solo.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-15 21:36:45"
+      }
+    ]
+  }
+}
