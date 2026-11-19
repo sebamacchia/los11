@@ -102,22 +102,64 @@ def estado(p, g):
             "escucha": escucha}
 
 
-def mensaje(p, g, escena, de, texto, columna="general", tipo="nota", extra=None):
+def mensaje(p, g, escena, de, texto, columna="general", tipo="nota", extra=None, borrador=False):
+    """borrador=True: la nota queda guardada en la conversación pero NO va a la bandeja (Claude no la ve) hasta que el
+    humano aprieta "Mandar todo" (ver enviar_borradores)."""
     conv = leer_conv(p, g)
     m = {"id": uuid.uuid4().hex[:10], "de": de, "texto": texto, "columna": columna, "tipo": tipo,
          "fecha": time.strftime("%Y-%m-%d %H:%M:%S"), **(extra or {})}
+    if borrador:
+        m["borrador"] = True
     hilo = conv["hilos"].setdefault(str(escena), [])
     if de == "claude":
         for x in hilo:
-            if x["de"] == "humano":
+            if x["de"] == "humano" and not x.get("borrador"):
                 x["respondido"] = True
     hilo.append(m)
     guardar_conv(p, g, conv)
-    if de == "humano":
+    if de == "humano" and not borrador:
         BANDEJA.parent.mkdir(exist_ok=True)
         with open(BANDEJA, "a") as f:
             f.write(json.dumps({"proyecto": p, "guion": g, "escena": escena, **m}, ensure_ascii=False) + "\n")
     return m
+
+
+def borradores(p):
+    """Notas guardadas sin mandar, de todos los cortes del proyecto: [{guion, escena, id, texto, t...}]."""
+    out = []
+    for f in sorted((PROY / p / "mesa").glob("*.json")) if (PROY / p / "mesa").is_dir() else []:
+        for esc, hilo in json.loads(f.read_text())["hilos"].items():
+            out += [{"guion": f.stem, "escena": esc, **m} for m in hilo if m.get("borrador")]
+    return out
+
+
+def enviar_borradores(p):
+    """"Mandar todo": cada borrador pasa a nota normal y entra a la bandeja (con su corte, pieza y segundo)."""
+    n = 0
+    BANDEJA.parent.mkdir(exist_ok=True)
+    for f in sorted((PROY / p / "mesa").glob("*.json")) if (PROY / p / "mesa").is_dir() else []:
+        conv = json.loads(f.read_text())
+        cambio = False
+        for esc, hilo in conv["hilos"].items():
+            for m in hilo:
+                if m.pop("borrador", False):
+                    m["enviada"] = time.strftime("%Y-%m-%d %H:%M:%S")
+                    with open(BANDEJA, "a") as b:
+                        b.write(json.dumps({"proyecto": p, "guion": f.stem, "escena": esc, **m}, ensure_ascii=False) + "\n")
+                    n += 1
+                    cambio = True
+        if cambio:
+            guardar_conv(p, f.stem, conv)
+    return n
+
+
+def borrar_borrador(p, g, id_):
+    conv = leer_conv(p, g)
+    for hilo in conv["hilos"].values():
+        hilo[:] = [m for m in hilo if not (m.get("borrador") and m["id"] == id_)]
+    conv["hilos"] = {k: v for k, v in conv["hilos"].items() if v}
+    guardar_conv(p, g, conv)
+    return {"ok": True}
 
 
 def pendientes(p=None):
@@ -127,7 +169,7 @@ def pendientes(p=None):
             conv = json.loads(f.read_text())
             for esc, hilo in conv["hilos"].items():
                 for m in hilo:
-                    if m["de"] == "humano" and not m.get("respondido"):
+                    if m["de"] == "humano" and not m.get("respondido") and not m.get("borrador"):
                         out.append({"proyecto": d.name, "guion": f.stem, "escena": esc, **m})
     return out
 

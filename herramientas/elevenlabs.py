@@ -33,7 +33,7 @@ def _post(ruta, cuerpo, destino: Path):
     )
     for intento in range(6):  # 429 = sistema ocupado: esperar y reintentar
         try:
-            with urllib.request.urlopen(req, timeout=300) as r:
+            with urllib.request.urlopen(req, timeout=600 if "/music" in ruta else 120) as r:
                 datos = r.read()
             break
         except urllib.error.HTTPError as e:

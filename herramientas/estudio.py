@@ -4,6 +4,8 @@ de un proyecto, los colores de la marca y exportar la pieza a .mp4 para usarla e
   /usr/bin/python3 herramientas/estudio.py [--puerto 8770]      → abre http://localhost:8770
   /usr/bin/python3 herramientas/estudio.py exportar <proyecto> <pieza>   → .mp4 sin abrir nada (Chrome headless)
   http://localhost:8770/mesa → MESA DE GUION (conversación por escena con Claude, ver herramientas/mesa.py)
+  http://localhost:8770/vibe → VIBE EDITOR (antes "Sala", /sala sigue andando): capítulos en carpeta con pistas (piezas, animación, narración, música,
+                               sfx) y notas a Claude sobre cualquier cosa (ver herramientas/sala.py)
 
 Cada pieza se guarda en proyectos/<p>/estudio/<pieza>.json (estilo, textos, imágenes, encuadres, marca,
 tiempos y "pedidos" para Claude). Claude puede editar ese JSON a mano: la app lo recarga sola.
@@ -25,6 +27,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlparse
 
 import mesa
+import sala
 
 RAIZ = Path(__file__).resolve().parent.parent
 PROY = RAIZ / "proyectos"
@@ -127,6 +130,18 @@ class H(BaseHTTPRequestHandler):
                 cab = (LEMO / "src" / "cabecera.html").read_text()
                 fuentes_g = next(l for l in cab.splitlines() if "fonts.googleapis.com/css2" in l)
                 return self.responder((APP / "mesa.html").read_text().replace("<!--FUENTES-->", fuentes_g), "text/html; charset=utf-8")
+            if ruta in ("/vibe", "/sala"):
+                cab = (LEMO / "src" / "cabecera.html").read_text()
+                fuentes_g = next(l for l in cab.splitlines() if "fonts.googleapis.com/css2" in l)
+                return self.responder((APP / "sala.html").read_text().replace("<!--FUENTES-->", fuentes_g), "text/html; charset=utf-8")
+            if ruta == "/api/sala/borradores":
+                return self.responder(mesa.borradores(q["p"]))
+            if ruta == "/api/sala/cortes":
+                return self.responder(sala.cortes(q["p"]))
+            if ruta == "/api/sala":
+                if not nombre_ok(q.get("c")):
+                    return self.responder({"error": "corte"}, codigo=400)
+                return self.responder(sala.estado(q["p"], q["c"]))
             if ruta == "/api/guiones":
                 return self.responder(mesa.guiones(q["p"]))
             if ruta == "/api/mesa":
@@ -189,6 +204,18 @@ class H(BaseHTTPRequestHandler):
                 m = mesa.mensaje(q["p"], q["g"], d.get("escena", "general"), "humano", d["texto"], d.get("columna", "general"),
                                  d.get("tipo", "nota"), {k: d[k] for k in ("antes", "despues", "t") if k in d})
                 return self.responder(m)
+            if u.path == "/api/sala/nota":
+                if not nombre_ok(q.get("c")) or not nombre_ok(q.get("p")):
+                    return self.responder({"error": "corte"}, codigo=400)
+                return self.responder(sala.nota(q["p"], q["c"], json.loads(self.cuerpo())))
+            if u.path == "/api/sala/enviar":
+                if not nombre_ok(q.get("p")):
+                    return self.responder({"error": "proyecto"}, codigo=400)
+                return self.responder({"enviadas": mesa.enviar_borradores(q["p"])})
+            if u.path == "/api/sala/borrar":
+                if not nombre_ok(q.get("p")) or not re.fullmatch(r"sala_[\w\-]+", q.get("g", "")):
+                    return self.responder({"error": "corte"}, codigo=400)
+                return self.responder(mesa.borrar_borrador(q["p"], q["g"], json.loads(self.cuerpo())["id"]))
             if u.path == "/api/recorte":
                 return self.responder({"ruta": recortar(q["p"], json.loads(self.cuerpo())["ruta"])})
             if u.path == "/api/exportar/inicio":

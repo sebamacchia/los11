@@ -1,0 +1,26 @@
+{
+  "hilos": {
+    "p6_3": [
+      {
+        "id": "f3e07c39df",
+        "de": "humano",
+        "texto": "esto de visto desde arriba saquemoslo",
+        "columna": "animacion",
+        "tipo": "nota",
+        "fecha": "2026-11-18 18:33:43",
+        "t": 35.1,
+        "pista": "pieza",
+        "t1": 48.9,
+        "respondido": true
+      },
+      {
+        "id": "0781a4168d",
+        "de": "claude",
+        "texto": "Listo, saqué la pieza \"visto desde arriba\" entera (imagen y narración): ahora después del relato de Víctor Hugo va directo al árbitro que no lo ve. El capítulo queda 14 segundos más corto. En el gol del siglo (p7_3) hay otra igual (\"visto desde arriba: en su campo, Beardsley, Reid...\", con los 60 metros y los 10,8 segundos). ¿La saco también?",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 18:34:15"
+      }
+    ]
+  }
+}

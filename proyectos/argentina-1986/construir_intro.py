@@ -59,8 +59,10 @@ escenas = [
         "sfx": [fx("fast cinematic descent whoosh from space through the atmosphere, wind rushing", 0, 3, 0.55)],
     },
     {
-        "texto": ("Veinticuatro selecciones buscando la gloria eterna. Y entre ellas, Argentina... un equipo que llegaba "
-                  "al límite, sufriendo, cuestionado por todos, pero que guardaba un as bajo la manga."),
+        # 17/11 (Vibe Editor): más corto, sin "llegaba al límite, sufriendo, cuestionado por todos, pero" (la intro en
+        # carpeta usa esta voz: carpeta.py VOCES_MEDIO["a"])
+        "texto": ("Veinticuatro selecciones buscando la gloria eterna. Y entre ellas, Argentina... un equipo que "
+                  "guardaba un as bajo la manga."),
         "pausa": 0.5,
         "visual": [clip(G + "intro_banderas.mp4", hasta="@un equipo"),
                    clip("material/fuentes/peru1985.mp4", 211.0, vel=0.6, hasta="@sufriendo", golpe="2-2",
@@ -81,36 +83,13 @@ escenas = [
                 fx("old camera shutter click", "@sufriendo", 1, 0.6),
                 fx("playing card snapped down on a table, crisp", "@un as", 1, 0.8)],
     },
-    {  # respiro: un silencio y entra la voz sola; la batería vuelve en escobillas
-        "retardo": 0.9,
-        "texto": ("Tenía a Diego Armando Maradona. El pibe de Fiorito, la estrella absoluta del Napoli, que venía de "
-                  "romper el mercado siendo el fichaje más caro de la historia: siete millones y medio de dólares. "
-                  "Una verdadera locura para la época."),
-        "pausa": 0.4,
-        "visual": [clip("material/fuentes/napoli1984.mp4", 84.5, vel=0.5, hasta="@la estrella"),
-                   clip("material/fuentes/napoli1984.mp4", 93.5, vel=0.5, hasta="@que venía"),
-                   {"tipo": "doc", "hasta": "@Una verdadera", "planos": [
-                       {"en": 0, "mesa": "papel",
-                        "capas": [foto("material/maradona_napoli_fotografos.jpg", x=1420, y=470, alto=640, rot=1.5,
-                                       trama=5),
-                                  foto("material/intro/dolar.jpg", x=900, y=640, alto=520, rot=-9,
-                                       en="@siete millones")],
-                        "camara": [{"t": 0, "x": 960, "y": 540, "zoom": 1.0},
-                                   {"t": "@siete millones", "x": 900, "y": 600, "zoom": 1.15}],
-                        "rotulos": [{"tipo": "maquina", "texto": "BARCELONA → NÁPOLES · JULIO DE 1984", "x": 130,
-                                     "y": 150, "en": 0.1, "tam": 28, "fondo_tira": True},
-                                    {"tipo": "titulo", "texto": "El pase más\ncaro de la historia.", "x": 120,
-                                     "y": 230, "en": "@el fichaje", "tam": 92},
-                                    {"tipo": "titulo", "texto": "US$ 7.500.000", "x": 140, "y": 880,
-                                     "en": "@siete millones", "tam": 110, "rojo": True, "fondo_tira": True}]}]},
-                   clip("material/fuentes/napoli1984.mp4", 126.0, vel=0.5)],
-        "sfx": [fx("press photographers camera flashes and shutter clicks", "@la estrella", 2.5, 0.5),
-                fx("paper banknote flutter whoosh landing on table", "@siete millones", 1.2, 0.7)],
-    },
+    # (17/11) Escena de Maradona/Napoli/US$ 7.500.000 SACADA de la intro (pedido del usuario: el "pibe de Fiorito"
+    # se decía dos veces; los millones van más adelante en el video). Diego se presenta con el as bajo la manga.
     {  # vuelve la batería con todo: montaje y remate de la peluca
-        "texto": ("En este video vamos a desenmarañar el camino de la Selección dirigida por Bilardo y el gran Diego "
-                  "hasta tocar el cielo con las manos: los partidos, el lado B de las anécdotas, los pormenores que "
-                  "nadie te contó... y unos datos que literalmente te van a volar la peluca."),
+        # 17/11 (Vibe Editor): más corto, sin "la Selección dirigida por Bilardo y el gran Diego hasta tocar el cielo
+        # con las manos" (lo dice el cierre). Voz en carpeta.py VOCES_MEDIO["c"]
+        "texto": ("En este video vamos a desenmarañar el camino: los partidos, el lado B de las anécdotas, lo que nadie "
+                  "te contó... y unos datos que literalmente te van a volar la peluca."),
         "pausa": 0.7,
         "visual": [clip("material/fuentes/corea.mp4", 195.5, vel=0.6, hasta="@dirigida"),
                    clip("material/fuentes/italia.mp4", 266.0, vel=0.8, hasta="@hasta tocar"),
@@ -128,6 +107,15 @@ escenas = [
                 fx("photograph slapped down on a wooden table", "@el lado B", 1, 0.6),
                 fx("strong comedic wind gust blowing", "@literalmente", 2, 0.7),
                 fx("single loud crash cymbal hit, dry, then silence", "@la peluca", 1.5, 0.8)],
+    },
+    {  # cierre (16/11, pedido del usuario): las cuatro órdenes a los golpes, el nombre del canal, y el remate poético
+        # con Diego que le toca la mano a Dios (Creación de Adán en recortes). Pieza: carpeta.py cierre
+        "retardo": 0.3,
+        "texto": ("Así que subite, sentate, callate y agarrate... porque esto es LOS ONCE. Y lo que sigue es cómo "
+                  "Argentina ganó su segundo Mundial: la historia de un equipo que nadie quería, de un pibe de "
+                  "Fiorito que le tocó la mano a Dios... y de un mes en el que el cielo fue celeste y blanco."),
+        "pausa": 1.0,
+        "visual": [clip(G + "intro_cierre.mp4")],
     },
 ]
 

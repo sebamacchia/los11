@@ -1,0 +1,115 @@
+{
+  "hilos": {
+    "intro_1986_c": [
+      {
+        "id": "3bebed64dd",
+        "de": "humano",
+        "texto": "hace la intro del play de VHS un segundo mas chica, esta medio largo el ruido de vhs y me temo que algun visitante del video no aguante ese segundo",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-17 18:55:15",
+        "t": 0,
+        "pista": "pieza",
+        "t1": 19.13,
+        "respondido": true
+      },
+      {
+        "id": "639ad50f20",
+        "de": "claude",
+        "texto": "Hecho: el PLAY de VHS ahora dura 1,3 s (antes 2,3). Adelanté toda la pieza 1 un segundo, así que el sello 1986 y la voz entran juntos como antes. La intro quedó en 1:09. Lo viejo está guardado en intro_1986_c_vhs_largo.mp4 por si querés volver. Si sigue largo, le saco otro medio segundo.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-17 19:00:43"
+      },
+      {
+        "id": "57271c2c53",
+        "de": "humano",
+        "texto": "saca la tiza que rodea a mario baracus\nel mapa que aparece de la tierra tiene un borde blanco que no me gusta --> no se uede hacer una animacion desde la estratosfera  a nexico? y cuando decis mexico que se muestre en el mapa y no el estadio ese.",
+        "columna": "animacion",
+        "tipo": "nota",
+        "fecha": "2026-11-17 19:00:52",
+        "t": 0,
+        "pista": "pieza",
+        "t1": 18.13,
+        "respondido": true
+      },
+      {
+        "id": "2930de7b1d",
+        "de": "claude",
+        "texto": "Hecho las dos cosas: 1) Mr. T sin la tiza. 2) Saqué la foto de la Tierra con borde blanco, el satélite y el estadio. Ahora aparece un globo en 3D (textura real de la NASA) sobre el collage, la cámara baja desde el espacio girando hasta México y, justo cuando digo «México», el país se pinta en rojo con su contorno y caen el sello MÉXICO y la bandera. Si querés el rojo más fuerte o que tarde más en bajar, decime.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-17 19:08:19"
+      }
+    ],
+    "intro_1986_medio_a_v2": [
+      {
+        "id": "48a3273208",
+        "de": "humano",
+        "texto": "aca comenza de nuevo sin lo del fondo porque con lo del mapa a mexico eso se perdio, que tenga coherencia conn lo anterior",
+        "columna": "animacion",
+        "tipo": "nota",
+        "fecha": "2026-11-17 19:10:05",
+        "t": 18.13,
+        "pista": "pieza",
+        "t1": 31.03,
+        "respondido": true
+      },
+      {
+        "id": "b1f6389afc",
+        "de": "humano",
+        "texto": "este sonido esta muy fuerte",
+        "columna": "sfx",
+        "tipo": "nota",
+        "fecha": "2026-11-17 19:14:55",
+        "t": 22.54,
+        "pista": "sfx",
+        "elemento": "libro cae (en bandera_argentina)",
+        "respondido": true
+      },
+      {
+        "id": "415daad949",
+        "de": "claude",
+        "texto": "Hecho las dos: 1) Rehice en cadena medio a, medio c y el cierre: ahora todo arranca y se apila sobre el mapa de México (las banderas de las 24 caen encima del mapa), sin el collage viejo de fondo. 2) El golpe de la bandera argentina (libro cae) bajó de 0.9 a 0.35. Las versiones anteriores quedaron como *_antes_globo.mp4.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-17 19:16:43"
+      }
+    ],
+    "intro_1986_medio_c_v2": [
+      {
+        "id": "7fd0eedd19",
+        "de": "humano",
+        "texto": "saca esa tiza horrible, no mas tiza\nel camino hace un canino con cada uno de los partidos, una animacion",
+        "columna": "animacion",
+        "tipo": "nota",
+        "fecha": "2026-11-17 19:27:34",
+        "t": 27.01,
+        "pista": "narracion",
+        "palabras": "En este video vamos a desenmarañar el camino de la selección dirigida por Bilardo y el gran Diego hasta tocar el cielo con las manos.",
+        "t1": 34.37,
+        "respondido": true
+      },
+      {
+        "id": "94ffd808f8",
+        "de": "humano",
+        "texto": "sacale la tiza fea esa que da una flecha y hace que el camnino sea una animacion de una camino con cada partido\nsacale lo  del la seleaccion dirigida por bilardo y el gran diego hasta tocarle el cielo con las manos porque lo dice despues eso en la intro, resumilo, escribilo vos, lo dejo a tu criterio",
+        "columna": "animacion",
+        "tipo": "nota",
+        "fecha": "2026-11-17 19:33:55",
+        "t": 26.93,
+        "pista": "pieza",
+        "t1": 44.17,
+        "respondido": true
+      },
+      {
+        "id": "2a11b345fc",
+        "de": "claude",
+        "texto": "Hecho: 1) Sin tiza en toda la intro (bandera argentina, el camino, el toque de Dios). 2) «El camino» ahora es una línea punteada roja que se dibuja y para en cada partido: Corea, Italia, Bulgaria, Uruguay, Inglaterra, Bélgica y LA FINAL (sin rival, sin spoiler). 3) Texto más corto: «En este video vamos a desenmarañar el camino: los partidos, el lado B de las anécdotas, lo que nadie te contó... y unos datos que literalmente te van a volar la peluca.» Sin Bilardo ni «tocar el cielo» (lo dice el cierre). Quedan 3 clips (Corea, Italia, Uruguay) para no tapar el camino.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-17 19:43:34"
+      }
+    ]
+  }
+}

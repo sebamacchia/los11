@@ -1,0 +1,48 @@
+{
+  "hilos": {
+    "p9_2": [
+      {
+        "id": "7993ada9ba",
+        "de": "humano",
+        "texto": "aca hace una cancha, siempre que presenten alineacion hace una cancha",
+        "columna": "animacion",
+        "tipo": "nota",
+        "fecha": "2026-11-18 15:25:12",
+        "t": 24.6,
+        "pista": "pieza",
+        "t1": 39.6,
+        "respondido": true
+      },
+      {
+        "id": "526e015e1a",
+        "de": "claude",
+        "texto": "Listo: la alineación ahora está sobre una cancha vista desde arriba (pasto a franjas, líneas de cal, recortada a tijera), con los once en su puesto del 3-5-2 apareciendo cuando el narrador los nombra. Queda como regla: toda alineación va sobre una cancha.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 15:28:40"
+      }
+    ],
+    "p9_3": [
+      {
+        "id": "f4f20cfde8",
+        "de": "humano",
+        "texto": "estas do imagenes fijas no quedan buenas, pone el gol, que se vea el gol, intervenido si queres pero que se vea al gol y tambpoco es necesarioo que TODO lo que dice el locutor este en texto, mejor an images, aplica eso a la pieza entrea",
+        "columna": "animacion",
+        "tipo": "nota",
+        "fecha": "2026-11-18 16:35:53",
+        "t": 39.6,
+        "pista": "pieza",
+        "t1": 56.4,
+        "respondido": true
+      },
+      {
+        "id": "460f4c3e91",
+        "de": "claude",
+        "texto": "Hecho: saqué las dos fotos fijas. Ahora se ve el gol en video, tomado desde arriba con el arco adentro: el tiro libre de Burruchaga, congelado cuando sale Schumacher (\"sale... y se queda\"), congelado en el cabezazo de Brown con su cara y la pelota punteada al arco, y la pelota entrando + el festejo de rodillas. Menos texto: solo nombres sobre los jugadores y el marcador chico de TV (0-0 → 1-0). Lo apliqué como regla: lo que el locutor dice se muestra con imágenes, no todo en texto.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 16:54:27"
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "hilos": {
+    "p7_2": [
+      {
+        "id": "2d15109937",
+        "de": "humano",
+        "texto": "esta musiquita no da\nhace algo mas como lo que hiciste en la mano de dios,",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 18:34:49",
+        "t": 11.9,
+        "respondido": true
+      },
+      {
+        "id": "79c6067b40",
+        "de": "claude",
+        "texto": "Hice música nueva en la línea de la mano de Dios: épica de tráiler, percusión, bronces graves y golpes de cine. Va hasta el final del relato y ahí se funde con la que te gustó (la de después), que ahora entra un poco antes para que caiga en el mismo momento del capítulo.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 18:39:19"
+      }
+    ],
+    "p7_3": [
+      {
+        "id": "3b1d8793af",
+        "de": "humano",
+        "texto": "este visto desde arriba tambien sacalo",
+        "columna": "animacion",
+        "tipo": "nota",
+        "fecha": "2026-11-18 18:35:32",
+        "t": 31.1,
+        "pista": "pieza",
+        "t1": 50.9,
+        "respondido": true
+      },
+      {
+        "id": "afefe799ad",
+        "de": "claude",
+        "texto": "Sacado: la pieza \"visto desde arriba\" del gol del siglo ya no está (imagen y narración, -20 s). Después del gol va directo al relato de Víctor Hugo.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 18:39:19"
+      }
+    ],
+    "p7_7": [
+      {
+        "id": "1c8d0dc869",
+        "de": "humano",
+        "texto": "esta musica ue esta despues esta buena, fusionala con la otra",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 18:38:03",
+        "t": 117.13,
+        "respondido": true
+      },
+      {
+        "id": "cb0520b94e",
+        "de": "claude",
+        "texto": "Hecho: esa música queda, fundida con la nueva épica del principio (4 s de fundido, a la altura de Lineker).",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 18:39:19"
+      }
+    ]
+  }
+}

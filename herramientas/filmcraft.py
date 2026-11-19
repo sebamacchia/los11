@@ -132,28 +132,31 @@ def exportar(linea_json, destino, forzar=False):
     return destino
 
 
-def capas(carpeta, destino=None, forzar=False):
+def capas(carpeta, destino=None, forzar=False, sonidos="sonidos", musica=None):
     """Pieza animada por capas (carpeta.py --capas) -> .fcproj: V1 fondo, una pista de video por elemento (en el orden
     en que se apilan, cada clip arranca cuando entra), arriba el VHS; A1 la voz, A2... cada efecto como clip suelto
-    (sonidos/sfx_clips.json de real-sfx). Para cambiar algo se rehace SOLO esa capa con el mismo nombre de archivo."""
+    (sonidos/sfx_clips.json de real-sfx). Para cambiar algo se rehace SOLO esa capa con el mismo nombre de archivo.
+    `sonidos` = otra subcarpeta de efectos (p. ej. sonidos_mezcla, la selección de la mezcla final) y `musica` = un wav
+    que va en su propia pista, abajo de todo, desde el segundo 0."""
     carpeta = Path(carpeta).resolve()
     d = json.loads((carpeta / "capas.json").read_text())
     destino = Path(destino or carpeta.with_suffix(".fcproj")).resolve()
     if destino.exists() and not forzar:
         print(f"  {destino.name} ya existe (puede tener tus cambios): no lo toco. Usá --forzar para rehacerlo.")
         return destino
-    sfx_json = carpeta / "sonidos" / "sfx_clips.json"
+    sfx_json = carpeta / sonidos / "sfx_clips.json"
     sfx = json.loads(sfx_json.read_text()) if sfx_json.exists() else []
-    voz = d.get("voz")
+    voces = d.get("voces") or ([d["voz"]] if d.get("voz") else [])
     videos = [carpeta / d["fondo"]] + [carpeta / c["archivo"] for c in d["capas"]] + \
              ([carpeta / d["vhs"]] if d.get("vhs") else [])
-    audios = ([voz["archivo"]] if voz else []) + [str(carpeta / "sonidos" / x["file"]) for x in sfx]
+    audios = list(dict.fromkeys(v["archivo"] for v in voces)) + [str(carpeta / sonidos / x["file"]) for x in sfx] + \
+        ([str(Path(musica).resolve())] if musica else [])
     medios = [str(v) for v in videos] + audios
     carriles = 1 + max([x["lane"] for x in sfx] or [0])
     res = _run([{"id": "file.import", "params": {"paths": medios}},
                 {"id": "file.newSequence", "params": {"name": destino.stem, "width": 1920, "height": 1080,
                                                       "fps": d["fps"], "video": len(videos),
-                                                      "audio": 1 + carriles}}], guardar=destino)
+                                                      "audio": 1 + carriles + (1 if musica else 0)}}], guardar=destino)
     if res[0]["errors"]:
         raise SystemExit(f"FilmCraft no pudo importar: {res[0]['errors']}")
     item = dict(zip(medios, res[0]["items"]))
@@ -172,14 +175,17 @@ def capas(carpeta, destino=None, forzar=False):
         poner(carpeta / c["archivo"], f"V{n}", c["inicio"], nombre=c["nombre"])
     if d.get("vhs"):
         poner(carpeta / d["vhs"], f"V{len(videos)}", 0, nombre="vhs_play")
-    if voz:
-        poner(voz["archivo"], "A1", voz["inicio"], video=False, nombre="voz")
+    for j, voz in enumerate(voces, 1):
+        poner(voz["archivo"], "A1", voz["inicio"], video=False, nombre=f"voz {j}")
     for x in sfx:
-        poner(carpeta / "sonidos" / x["file"], f"A{2 + x['lane']}", x["start"], video=False,
+        poner(carpeta / sonidos / x["file"], f"A{2 + x['lane']}", x["start"], video=False,
               nombre=f"{x['label']} ({Path(x['source_file']).stem})")
     pistas = [("V1", "fondo")] + [(f"V{n}", c["nombre"]) for n, c in enumerate(d["capas"], 2)] + \
              ([(f"V{len(videos)}", "vhs")] if d.get("vhs") else []) + [("A1", "Voz")] + \
-             [(f"A{2 + i}", f"Efectos {i + 1}") for i in range(carriles)]
+             [(f"A{2 + i}", f"Efectos {i + 1}") for i in range(carriles)] + \
+             ([(f"A{2 + carriles}", "Música")] if musica else [])
+    if musica:
+        poner(Path(musica).resolve(), f"A{2 + carriles}", 0, d["duracion"], video=False, nombre="música")
     for pista, nombre in pistas:
         pasos.append({"id": "timeline.setTrack", "params": {"track": pista, "name": nombre}})
         nombres.append(None)
@@ -196,7 +202,9 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         raise SystemExit(__doc__)
     if sys.argv[1] == "capas":       # filmcraft.py capas <carpeta>_capas [--forzar]
-        print(capas(sys.argv[2], forzar="--forzar" in sys.argv))
+        a = sys.argv     # [--sonidos sonidos_mezcla] [--musica x.wav] [--destino y.fcproj]
+        op = {k: a[a.index("--" + k) + 1] for k in ("sonidos", "musica", "destino") if "--" + k in a}
+        print(capas(a[2], forzar="--forzar" in a, **op))
         raise SystemExit
     proyecto = Path(sys.argv[1]).resolve()
     guion = json.loads((proyecto / "guion.json").read_text())

@@ -235,117 +235,6 @@
    ]
   },
   {
-   "retardo": 0.9,
-   "texto": "Tenía a Diego Armando Maradona. El pibe de Fiorito, la estrella absoluta del Napoli, que venía de romper el mercado siendo el fichaje más caro de la historia: siete millones y medio de dólares. Una verdadera locura para la época.",
-   "pausa": 0.4,
-   "visual": [
-    {
-     "archivo": "material/fuentes/napoli1984.mp4",
-     "desde": 84.5,
-     "velocidad": 0.5,
-     "hasta": "@la estrella"
-    },
-    {
-     "archivo": "material/fuentes/napoli1984.mp4",
-     "desde": 93.5,
-     "velocidad": 0.5,
-     "hasta": "@que venía"
-    },
-    {
-     "tipo": "doc",
-     "hasta": "@Una verdadera",
-     "planos": [
-      {
-       "en": 0,
-       "mesa": "papel",
-       "capas": [
-        {
-         "archivo": "material/maradona_napoli_fotografos.jpg",
-         "x": 1420,
-         "y": 470,
-         "alto": 640,
-         "rot": 1.5,
-         "borde": 10,
-         "trama": 5
-        },
-        {
-         "archivo": "material/intro/dolar.jpg",
-         "x": 900,
-         "y": 640,
-         "alto": 520,
-         "rot": -9,
-         "borde": 10,
-         "en": "@siete millones"
-        }
-       ],
-       "camara": [
-        {
-         "t": 0,
-         "x": 960,
-         "y": 540,
-         "zoom": 1.0
-        },
-        {
-         "t": "@siete millones",
-         "x": 900,
-         "y": 600,
-         "zoom": 1.15
-        }
-       ],
-       "rotulos": [
-        {
-         "tipo": "maquina",
-         "texto": "BARCELONA → NÁPOLES · JULIO DE 1984",
-         "x": 130,
-         "y": 150,
-         "en": 0.1,
-         "tam": 28,
-         "fondo_tira": true
-        },
-        {
-         "tipo": "titulo",
-         "texto": "El pase más\ncaro de la historia.",
-         "x": 120,
-         "y": 230,
-         "en": "@el fichaje",
-         "tam": 92
-        },
-        {
-         "tipo": "titulo",
-         "texto": "US$ 7.500.000",
-         "x": 140,
-         "y": 880,
-         "en": "@siete millones",
-         "tam": 110,
-         "rojo": true,
-         "fondo_tira": true
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "archivo": "material/fuentes/napoli1984.mp4",
-     "desde": 126.0,
-     "velocidad": 0.5
-    }
-   ],
-   "sfx": [
-    {
-     "prompt": "press photographers camera flashes and shutter clicks",
-     "en": "@la estrella",
-     "volumen": 0.5,
-     "duracion": 2.5
-    },
-    {
-     "prompt": "paper banknote flutter whoosh landing on table",
-     "en": "@siete millones",
-     "volumen": 0.7,
-     "duracion": 1.2
-    }
-   ]
-  },
-  {
    "texto": "En este video vamos a desenmarañar el camino de la Selección dirigida por Bilardo y el gran Diego hasta tocar el cielo con las manos: los partidos, el lado B de las anécdotas, los pormenores que nadie te contó... y unos datos que literalmente te van a volar la peluca.",
    "pausa": 0.7,
    "visual": [
@@ -454,6 +343,18 @@
      "en": "@la peluca",
      "volumen": 0.8,
      "duracion": 1.5
+    }
+   ]
+  },
+  {
+   "retardo": 0.3,
+   "texto": "Así que subite, sentate, callate y agarrate... porque esto es LOS ONCE. Y lo que sigue es cómo Argentina ganó su segundo Mundial: la historia de un equipo que nadie quería, de un pibe de Fiorito que le tocó la mano a Dios... y de un mes en el que el cielo fue celeste y blanco.",
+   "pausa": 1.0,
+   "visual": [
+    {
+     "archivo": "salida/graficos/intro_cierre.mp4",
+     "desde": 0.0,
+     "velocidad": 1.0
     }
    ]
   }

@@ -1,0 +1,1170 @@
+{
+ "archivo": "argentina-1986_parte2",
+ "formato": "horizontal",
+ "pausa": 0.75,
+ "sfx_volumen": 0.5,
+ "musica": [
+  {
+   "archivo": "../../musica/m86_parte2_80s.mp3",
+   "desde": 1,
+   "hasta": 8,
+   "volumen": 0.17,
+   "fade_in": 1.5,
+   "fade_out": 2.0
+  }
+ ],
+ "escenas": [
+  {
+   "capitulo": "Nadie creía",
+   "visual": [
+    {
+     "archivo": "salida/graficos/capitulo1_1986.mp4",
+     "desde": 0
+    }
+   ],
+   "duracion": 3.6,
+   "sfx": [
+    {
+     "archivo": "salida/graficos/capitulo1_1986_con_sonido.mp4",
+     "desde": 0,
+     "duracion": 3.6,
+     "en": 0,
+     "volumen": 0.8
+    }
+   ]
+  },
+  {
+   "texto": "Para entender México, hay que volver un año atrás. Treinta de junio de mil novecientos ochenta y cinco, cancha de River. Última fecha de la eliminatoria: Argentina contra Perú.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 8.0,
+     "velocidad": 0.6,
+     "golpe": "1985",
+     "golpe_sub": "ELIMINATORIAS · ARGENTINA-PERÚ",
+     "golpe_en": "@Treinta de junio"
+    },
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 40.0,
+     "velocidad": 0.6
+    }
+   ],
+   "retardo": 0.35,
+   "pausa": 0.75
+  },
+  {
+   "texto": "Con un empate, Argentina iba al Mundial. Y arrancó ganando: Pasculli, a los doce. Pero Perú lo dio vuelta antes del entretiempo: Velásquez... y Barbadillo. Dos a uno. Y a diez minutos del final, el país entero estaba a diez minutos de quedarse afuera.",
+   "pausa": 0.75,
+   "visual": [
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 15.0,
+     "gol": 19.5,
+     "golpe": "1-0",
+     "golpe_sub": "PASCULLI · 12'",
+     "golpe_en": "@Pasculli",
+     "local": "Argentina",
+     "visitante": "Perú",
+     "fin": 22.5,
+     "hasta": "@Pero Perú"
+    },
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 61.0,
+     "gol": 65.5,
+     "golpe": "1-1",
+     "golpe_sub": "VELÁSQUEZ · 23'",
+     "golpe_en": "@Velásquez",
+     "local": "Argentina",
+     "visitante": "Perú",
+     "fin": 68.0,
+     "hasta": "@y Barbadillo"
+    },
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 131.0,
+     "gol": 136.3,
+     "golpe": "1-2",
+     "golpe_sub": "BARBADILLO · 39'",
+     "golpe_en": "@Barbadillo",
+     "local": "Argentina",
+     "visitante": "Perú",
+     "fin": 139.5,
+     "hasta": "@Y a diez"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_passarella_peru.jpg",
+         "x": 1460.0,
+         "y": 520.0,
+         "alto": 740,
+         "recorte": [
+          87,
+          150,
+          262,
+          380
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": 0.3,
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "ARGENTINA-PERÚ · MONUMENTAL · 30/6/1985",
+         "x": 120,
+         "y": 90,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Perú 2\nArgentina 1",
+         "x": 120,
+         "y": 200,
+         "en": 0.2,
+         "tam": 112,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1-0 · PASCULLI 12'",
+         "x": 140,
+         "y": 600,
+         "en": 0.5,
+         "tam": 24,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1-1 · VELÁSQUEZ 23'",
+         "x": 140,
+         "y": 665,
+         "en": 0.75,
+         "tam": 24,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "1-2 · BARBADILLO 39'",
+         "x": 140,
+         "y": 730,
+         "en": 1.0,
+         "tam": 24,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "A 10 minutos\nde quedar afuera",
+         "x": 120,
+         "y": 820,
+         "en": "@el país",
+         "tam": 67,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd cheering a goal",
+     "en": "@Pasculli",
+     "duracion": 2.5,
+     "volumen": 0.35,
+     "fade_out": 1.0
+    }
+   ],
+   "retardo": 0.35
+  },
+  {
+   "texto": "Passarella le pega, la pelota da en el palo... y en el rebote aparece Ricardo Gareca. Dos a dos. Argentina, al Mundial. Por la ventana.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/peru1985.mp4",
+     "desde": 211.0,
+     "gol": 215.5,
+     "golpe": "2-2",
+     "golpe_sub": "GARECA · 81'",
+     "golpe_en": "@Dos a dos",
+     "local": "Argentina",
+     "visitante": "Perú",
+     "fin": 219.5,
+     "hasta": "@Argentina, al"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/gareca.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": -1,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sfx": [
+    {
+     "prompt": "stadium crowd erupting in a goal celebration roar",
+     "en": "@Dos a dos",
+     "duracion": 4,
+     "volumen": 0.4,
+     "fade_out": 1.5
+    }
+   ],
+   "retardo": 0.35,
+   "pausa": 0.75
+  },
+  {
+   "texto": "El técnico era Carlos Bilardo. Y a Bilardo lo criticaban todos. Menotti, el campeón del setenta y ocho, lo llamó cobarde y enano mental. Los diarios de Francia decían que Argentina estaba diez años atrasada. A Giusti lo silbaban en su propio club por jugar en la selección. Y el presidente Alfonsín le preguntó a su secretario de deportes: ¿qué estás esperando para echarlo? Faltaban cincuenta días para el Mundial.",
+   "pausa": 0.75,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_bilardo86.jpg",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          4,
+          0,
+          546,
+          729
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": 0.1,
+         "sale": "@Menotti"
+        },
+        {
+         "archivo": "material/menotti_fumando.jpg",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          0,
+          22,
+          286,
+          407
+         ],
+         "rot": -0.6,
+         "borde": 9,
+         "en": "@Menotti",
+         "sale": "@Los diarios",
+         "trama": 5
+        },
+        {
+         "archivo": "material/retratos/caras/giusti.png",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          42,
+          0,
+          287,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": "@A Giusti",
+         "sale": "@Y el presidente",
+         "trama": 5
+        },
+        {
+         "archivo": "material/alfonsin.jpg",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          4,
+          0,
+          800,
+          1072
+         ],
+         "rot": -1.2,
+         "borde": 9,
+         "en": "@Y el presidente",
+         "sale": "@Faltaban"
+        },
+        {
+         "archivo": "material/eg_bilardo86.jpg",
+         "x": 400.0,
+         "y": 530.0,
+         "alto": 700,
+         "recorte": [
+          4,
+          0,
+          546,
+          729
+         ],
+         "rot": 0.9,
+         "borde": 9,
+         "en": "@Faltaban"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "CARLOS BILARDO · DT",
+         "x": 120,
+         "y": 900,
+         "en": 0.3,
+         "tam": 26,
+         "fondo_tira": true,
+         "sale": "@Menotti",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Lo criticaban\ntodos.",
+         "x": 760,
+         "y": 330,
+         "en": "@lo criticaban",
+         "tam": 96,
+         "fondo_tira": true,
+         "sale": "@Menotti",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "MENOTTI · CAMPEÓN 1978",
+         "x": 120,
+         "y": 900,
+         "en": "@Menotti",
+         "tam": 24,
+         "fondo_tira": true,
+         "sale": "@Los diarios",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Cobarde y\nenano mental»",
+         "x": 760,
+         "y": 330,
+         "en": "@cobarde",
+         "tam": 55,
+         "fondo_tira": true,
+         "sale": "@Los diarios",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "L'ÉQUIPE · PARÍS, 1/4/1986",
+         "x": 760,
+         "y": 260,
+         "en": "@Los diarios",
+         "tam": 26,
+         "fondo_tira": true,
+         "rojo": true,
+         "sale": "@A Giusti",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Argentina está\ndiez años\natrasada»",
+         "x": 760,
+         "y": 340,
+         "en": "@Los diarios",
+         "tam": 50,
+         "fondo_tira": true,
+         "sale": "@A Giusti",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RICARDO GIUSTI · INDEPENDIENTE",
+         "x": 120,
+         "y": 900,
+         "en": "@A Giusti",
+         "tam": 23,
+         "fondo_tira": true,
+         "sale": "@Y el presidente",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«Me silban porque\njuego en la\nselección»",
+         "x": 760,
+         "y": 330,
+         "en": "@A Giusti",
+         "tam": 48,
+         "fondo_tira": true,
+         "sale": "@Y el presidente",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "RAÚL ALFONSÍN · PRESIDENTE",
+         "x": 120,
+         "y": 900,
+         "en": "@Y el presidente",
+         "tam": 24,
+         "fondo_tira": true,
+         "sale": "@Faltaban",
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "«¿Qué estás\nesperando para\necharlo?»",
+         "x": 760,
+         "y": 330,
+         "en": "@qué estás",
+         "tam": 52,
+         "fondo_tira": true,
+         "sale": "@Faltaban",
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Faltaban\n50 días",
+         "x": 760,
+         "y": 300,
+         "en": "@Faltaban",
+         "tam": 120,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "PARA EL MUNDIAL",
+         "x": 780,
+         "y": 680,
+         "en": "@cincuenta",
+         "tam": 31,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "retardo": 0.35
+  },
+  {
+   "texto": "Maradona lo bancó: si lo tocan a Bilardo, nos vamos todos. Pero Bilardo tenía una idea fija: todo el equipo iba a jugar para un solo hombre. Y a ese hombre le dio la cinta de capitán. Diego Armando Maradona. Veinticinco años.",
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_besa_camiseta.jpg",
+         "x": 960,
+         "y": 500,
+         "alto": 760,
+         "rot": -1.2,
+         "borde": 14,
+         "recorte": [
+          60,
+          48,
+          598,
+          513
+         ]
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "«Si lo tocan a Bilardo,\n nos vamos todos.»",
+         "x": 130,
+         "y": 900,
+         "en": 0.6,
+         "tam": 36,
+         "fondo_tira": true
+        }
+       ]
+      },
+      {
+       "en": "@Pero Bilardo",
+       "mesa": "papel",
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "EL PLAN DE BILARDO · 1986",
+         "x": 752,
+         "y": 70,
+         "en": "@Pero Bilardo",
+         "tam": 28,
+         "mudo": true
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/pumpido.png",
+         "x": 360,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Pumpido",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          360,
+          354
+         ],
+         "hasta": [
+          832.1208662941873,
+          496.7342264295334
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/cuciuffo.png",
+         "x": 660,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Cuciuffo",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          660,
+          354
+         ],
+         "hasta": [
+          848.19191466443,
+          464.3431955895976
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/brown.png",
+         "x": 960,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Brown",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          960,
+          354
+         ],
+         "hasta": [
+          960.0,
+          405.0
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/ruggeri.png",
+         "x": 1260,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Ruggeri",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1260,
+          354
+         ],
+         "hasta": [
+          1071.80808533557,
+          464.3431955895976
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/giusti.png",
+         "x": 1560,
+         "y": 230,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Giusti",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1560,
+          354
+         ],
+         "hasta": [
+          1087.8791337058126,
+          496.7342264295334
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/batista.png",
+         "x": 360,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Batista",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          360,
+          762
+         ],
+         "hasta": [
+          833.8042166205729,
+          587.9543976841823
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/enrique.png",
+         "x": 660,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Enrique",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          660,
+          762
+         ],
+         "hasta": [
+          852.5181037933812,
+          621.6862411170304
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/olarticoechea.png",
+         "x": 960,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Olarticoechea",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          960,
+          762
+         ],
+         "hasta": [
+          960.0,
+          675.0
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/burruchaga.png",
+         "x": 1260,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Burruchaga",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1260,
+          762
+         ],
+         "hasta": [
+          1067.4818962066188,
+          621.6862411170304
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/retratos/caras/valdano.png",
+         "x": 1560,
+         "y": 850,
+         "r": 74,
+         "en": "@Pero Bilardo",
+         "nombre": "Valdano",
+         "tam": 18
+        },
+        {
+         "tipo": "linea",
+         "desde": [
+          1560,
+          762
+         ],
+         "hasta": [
+          1086.1957833794272,
+          587.9543976841823
+         ],
+         "en": "@todo el equipo",
+         "dibujo": 0.6,
+         "grosor": 2
+        },
+        {
+         "tipo": "retrato",
+         "archivo": "material/maradona_copa.jpg",
+         "x": 960,
+         "y": 540,
+         "r": 120,
+         "en": "@Pero Bilardo",
+         "nombre": "",
+         "anillo": true,
+         "recorte": [
+          840,
+          1100,
+          1220,
+          1480
+         ]
+        }
+       ]
+      },
+      {
+       "en": "@Y a ese hombre",
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/eg_3427_foto.jpg",
+         "x": 760,
+         "y": 540,
+         "alto": 900,
+         "rot": -1.5,
+         "borde": 10,
+         "trama": 7
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@le dio",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@capitán",
+         "x": 1130,
+         "y": 365,
+         "zoom": 2.2
+        },
+        {
+         "t": "@Diego Armando",
+         "x": 1134,
+         "y": 367,
+         "zoom": 2.28
+        },
+        {
+         "t": "@Veinticinco",
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "linea",
+         "desde": [
+          1150,
+          356
+         ],
+         "hasta": [
+          1290,
+          356
+         ],
+         "en": "@capitán",
+         "dibujo": 0.4,
+         "mundo": true,
+         "sale": "@Diego Armando",
+         "grosor": 3
+        },
+        {
+         "tipo": "maquina",
+         "texto": "CAPITÁN",
+         "x": 1298,
+         "y": 344,
+         "en": "@capitán",
+         "tam": 26,
+         "mundo": true,
+         "sale": "@Diego Armando",
+         "fondo_tira": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "Diego Armando\nMaradona",
+         "x": 1245,
+         "y": 400,
+         "en": "@Armando Maradona",
+         "tam": 84
+        },
+        {
+         "tipo": "maquina",
+         "texto": "25 AÑOS · CAPITÁN",
+         "x": 1249,
+         "y": 600,
+         "en": "@Veinticinco",
+         "tam": 26
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EL GRÁFICO · JUNIO 1985",
+         "x": 360,
+         "y": 1004,
+         "en": "@Armando Maradona",
+         "tam": 20,
+         "mudo": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "retardo": 0.35,
+   "pausa": 0.75
+  },
+  {
+   "texto": "Llegó a México como la gran estrella del mundo. Jugaba en el Nápoles, en Italia. Dos años antes, el Nápoles se lo había comprado al Barcelona por siete millones y medio de dólares: el pase más caro de la historia. Pero en los Mundiales le debía una al fútbol: en España ochenta y dos lo habían pateado de todos lados... y se fue expulsado.",
+   "visual": [
+    {
+     "archivo": "material/fuentes/bulgaria.mp4",
+     "desde": 204.0,
+     "velocidad": 0.5,
+     "hasta": "@Jugaba",
+     "fin": 206.5
+    },
+    {
+     "tipo": "doc",
+     "hasta": "@Pero en los",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/maradona_napoli_fotografos.jpg",
+         "x": 700,
+         "y": 500,
+         "alto": 620,
+         "rot": -1.4,
+         "borde": 10
+        },
+        {
+         "archivo": "material/maradona_companeros_napoli.jpg",
+         "recorte": [
+          735,
+          0,
+          1140,
+          761
+         ],
+         "x": 1440,
+         "y": 590,
+         "alto": 760,
+         "rot": 1.6,
+         "borde": 10,
+         "en": "@y su pase"
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "NÁPOLES · ESTADIO SAN PAOLO",
+         "x": 260,
+         "y": 900,
+         "en": "@el Nápoles",
+         "tam": 26,
+         "fondo_tira": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "BARCELONA → NÁPOLES, 1984\nEL PASE MÁS CARO DEL MUNDO",
+         "x": 1120,
+         "y": 80,
+         "en": "@el más caro",
+         "tam": 26,
+         "fondo_tira": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/retratos/caras/maradona.png",
+         "x": 1560.0,
+         "y": 520.0,
+         "alto": 520,
+         "recorte": [
+          38,
+          0,
+          291,
+          330
+         ],
+         "rot": 1.4,
+         "borde": 9,
+         "en": 0.3,
+         "trama": 5
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "LA CUENTA PENDIENTE",
+         "x": 120,
+         "y": 120,
+         "en": 0.05,
+         "tam": 23,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "titulo",
+         "texto": "España 82",
+         "x": 120,
+         "y": 220,
+         "en": 0.2,
+         "tam": 136,
+         "fondo_tira": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "EXPULSADO CONTRA BRASIL",
+         "x": 140,
+         "y": 520,
+         "en": "@expulsado",
+         "tam": 34,
+         "fondo_tira": true,
+         "rojo": true,
+         "mundo": true
+        },
+        {
+         "tipo": "maquina",
+         "texto": "ARGENTINA, AFUERA EN SEGUNDA FASE",
+         "x": 140,
+         "y": 610,
+         "en": "@expulsado",
+         "tam": 26,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "retardo": 0.35,
+   "pausa": 0.75
+  },
+  {
+   "texto": "Y había un problema más. El otro gran líder del plantel, el capitán campeón del setenta y ocho, Daniel Passarella, se enfermó en México: una infección intestinal, la famosa venganza de Moctezuma. Diarrea, deshidratación... y no jugó ni un minuto. El equipo era de Diego. Para bien o para mal.",
+   "pausa": 0.75,
+   "visual": [
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/diego_passarella_sombreros.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 940,
+         "rot": -0.8,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        },
+        {
+         "t": "@Daniel Passarella",
+         "x": 1150,
+         "y": 420,
+         "zoom": 1.7
+        }
+       ],
+       "rotulos": [
+        {
+         "tipo": "maquina",
+         "texto": "DANIEL PASSARELLA · CAPITÁN CAMPEÓN EN 1978",
+         "x": 900,
+         "y": 760,
+         "en": "@Daniel Passarella",
+         "tam": 22,
+         "fondo_tira": true,
+         "mundo": true
+        }
+       ]
+      }
+     ],
+     "hasta": "@El equipo era"
+    },
+    {
+     "tipo": "doc",
+     "planos": [
+      {
+       "en": 0,
+       "mesa": "papel",
+       "capas": [
+        {
+         "archivo": "material/entrenamiento.jpg",
+         "x": 960,
+         "y": 540,
+         "alto": 900,
+         "rot": 0.8,
+         "borde": 10
+        }
+       ],
+       "camara": [
+        {
+         "t": 0,
+         "x": 960,
+         "y": 540,
+         "zoom": 1.0
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "retardo": 0.35
+  }
+ ]
+}

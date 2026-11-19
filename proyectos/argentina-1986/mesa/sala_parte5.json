@@ -1,0 +1,52 @@
+{
+  "hilos": {
+    "p5_1": [
+      {
+        "id": "5735acd3be",
+        "de": "humano",
+        "texto": "cuando dice porque ese no era un partido mas en lugar de pooner en texto eso que se dice, no se puede poner algo que acompane --> una foto de diario de la epoca donde dice que se enfrentan, no se, algo, una foto, tratemos que que lo visual complemente al narrador,  ---> APLICA ESTO PARA TODO",
+        "columna": "animacion",
+        "tipo": "nota",
+        "fecha": "2026-11-18 17:39:47",
+        "t": 3.6,
+        "pista": "pieza",
+        "t1": 25.3,
+        "respondido": true
+      },
+      {
+        "id": "408f67717d",
+        "de": "humano",
+        "texto": "cuando el narrador dice \"porque ese no era un partido más\", querés una imagen que acompañe (por ejemplo, un diario de la época anunciando el partido) en vez del mismo texto escrito. Y pedís aplicarlo a todo el video. Primero veo cuántas veces la pantalla repite en texto lo que dice el narrador --- APLICA ESTO A TODO EL VIDEO",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 17:41:06",
+        "t": 8.98,
+        "respondido": true
+      },
+      {
+        "id": "39076bdf7e",
+        "de": "claude",
+        "texto": "Conté: hay 80 textos grandes en pantalla en todo el video (intro aparte). Unos 45 repiten casi palabra por palabra lo que dice el narrador (\"No era un partido más\", \"Lo criticaban todos\", \"Ya era tarde\", \"Otra vez\", \"Corre, corre\"...): esos los cambio por imágenes que sumen, como diarios de la época, fotos o clips. Unos 25 son cifras que se ven mejor de lo que se oyen (US$ 7.500.000, 60 metros, 10,8 segundos, 114.000 personas, 44 medallas para 43 jugadores): esos quedan, salvo que me digas otra cosa. Unos 10 son nombres o rótulos (España 82, Algodón, El gol del siglo) y los reviso uno por uno. Arranco por este: en \"No era un partido más\" va una tapa de diario de junio de 1986 anunciando Argentina-Inglaterra.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 17:41:29"
+      },
+      {
+        "id": "d041357862",
+        "de": "claude",
+        "texto": "Listo en p5_1: en \"No era un partido más\" ahora aparece la tapa del suplemento Mundial de El País de Montevideo del mismo 22 de junio de 1986, \"¡Y que la victoria se grite en español!\", con Valdano y Stevens, y abajo la fecha. Ya está re-mezclado (parte5_carpeta.mp4). Si te gusta el criterio, sigo con los otros ~45 textos que repiten al narrador, capítulo por capítulo.",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 17:46:44"
+      },
+      {
+        "id": "3d762adce5",
+        "de": "claude",
+        "texto": "Aplicado a TODO el video: saqué los ~45 textos que repetían al narrador. Donde hacía falta algo, puse diarios, revistas y fotos de la época (afiche de México 86, «Todos enmudecidos» del partido con Perú, la tapa «¡Allá vamos, México!», la presentación de Diego en Nápoles, Zoff con la copa del 82, la selección del 66, el cartel «Siempre Malvinas», el saludo Diego-Shilton, los festejos en Buenos Aires...); donde la imagen ya lo decía, solo saqué el texto. Quedan las cifras (60 metros, 114.000, 44 medallas...), el «suscribite» y los subtítulos de la llamada de la Tota. Video completo rearmado: salida/argentina-1986_completo.mp4 (15:37).",
+        "columna": "general",
+        "tipo": "nota",
+        "fecha": "2026-11-18 18:44:17"
+      }
+    ]
+  }
+}
